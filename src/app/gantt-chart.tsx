@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Calendar, Plus, Trash2, Clock, CheckCircle, PlayCircle, PauseCircle, ArrowUp, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,6 +11,7 @@ import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+const monthsShort = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
 type SortOrder = "desc" | "asc"
 
 export default function Component() {
@@ -25,13 +26,19 @@ export default function Component() {
     y: 0,
     side: "right",
   })
-  const [newActivity, setNewActivity] = useState({
-    name: "",
-    startDate: "",
-    endDate: "",
-    url: "",
-  })
+  const [isMobile, setIsMobile] = useState(false)
 
+  // 檢測是否為手機版
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
   const availableYears = useMemo(() => {
     const years = new Set<number>()
     activities.forEach((activity) => {
@@ -60,7 +67,30 @@ export default function Component() {
     })
   }, [sortedActivities, selectedYear])
 
-  const getActivitySegments = (activity: Activity, year: number) => {
+  // 計算活動相關的月份（手機版用）
+  const getRelevantMonths = (activity: Activity, year: number) => {
+    const startDate = new Date(activity.startDate)
+    const endDate = new Date(activity.endDate)
+    const activityStartMonth = startDate.getFullYear() === year ? startDate.getMonth() : 0
+    const activityEndMonth = endDate.getFullYear() === year ? endDate.getMonth() : 11
+
+    // 找出活動涉及的月份
+    const involvedMonths = []
+    for (let month = activityStartMonth; month <= activityEndMonth; month++) {
+      involvedMonths.push(month)
+    }
+
+    // 如果活動跨越的月份少於2個，則包含相鄰月份
+    if (involvedMonths.length === 1) {
+      const month = involvedMonths[0]
+      if (month > 0) involvedMonths.unshift(month - 1)
+      if (month < 11 && involvedMonths.length < 2) involvedMonths.push(month + 1)
+    }
+
+    return involvedMonths.slice(0, 2) // 最多返回2個月份
+  }
+
+  const getActivitySegments = (activity: Activity, year: number, relevantMonths?: number[]) => {
     const startDate = new Date(activity.startDate)
     const endDate = new Date(activity.endDate)
     const yearStart = new Date(year, 0, 1)
@@ -77,8 +107,35 @@ export default function Component() {
     const daysInStartMonth = new Date(year, startMonth + 1, 0).getDate()
     const daysInEndMonth = new Date(year, endMonth + 1, 0).getDate()
 
-    const startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
-    const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
+    let startPosition, width
+
+    if (isMobile && relevantMonths) {
+      // 手機版：基於相關月份計算位置
+      const firstMonth = relevantMonths[0]
+      const lastMonth = relevantMonths[relevantMonths.length - 1]
+
+      // 計算在相關月份範圍內的位置
+      const relativeStartMonth = Math.max(startMonth, firstMonth)
+      const relativeEndMonth = Math.min(endMonth, lastMonth)
+
+      const monthRange = lastMonth - firstMonth + 1
+      startPosition =
+        ((relativeStartMonth - firstMonth) * 100) / monthRange +
+        ((relativeStartMonth === startMonth ? startDay - 1 : 0) / daysInStartMonth) * (100 / monthRange)
+
+      const endPosition =
+        ((relativeEndMonth - firstMonth) * 100) / monthRange +
+        ((relativeEndMonth === endMonth ? endDay : new Date(year, relativeEndMonth + 1, 0).getDate()) /
+          new Date(year, relativeEndMonth + 1, 0).getDate()) *
+          (100 / monthRange)
+
+      width = endPosition - startPosition
+    } else {
+      // 桌面版：原有邏輯
+      startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
+      const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
+      width = endPosition - startPosition
+    }
 
     const isFirstSegment = startDate.getFullYear() === year
     const isLastSegment = endDate.getFullYear() === year
@@ -86,7 +143,7 @@ export default function Component() {
 
     return {
       startPosition,
-      width: endPosition - startPosition,
+      width,
       isFirstSegment,
       isLastSegment,
       isMultiYear,
@@ -114,7 +171,7 @@ export default function Component() {
   }
 
   const handleImageHover = (imageSrc: string | null, event?: React.MouseEvent) => {
-    if (!imageSrc || !event) {
+    if (!imageSrc || !event || isMobile) {
       setHoveredImage(null)
       return
     }
@@ -177,7 +234,8 @@ export default function Component() {
       <div key={year} className="mb-8 relative">
         <h3 className="text-2xl font-bold text-white mb-4">{year}年</h3>
 
-        {/* 標題行 */}
+        {/* 桌面版標題行 */}
+        {!isMobile && (
         <div className="flex mb-4">
           <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
             活動資訊
@@ -193,26 +251,30 @@ export default function Component() {
             ))}
           </div>
         </div>
+        )}
 
         {/* 活動列表 */}
         <div className="space-y-3">
           {yearActivities.map((activity) => {
-            const segment = getActivitySegments(activity, year)
+            const relevantMonths = isMobile ? getRelevantMonths(activity, year) : undefined
+            const segment = getActivitySegments(activity, year, relevantMonths)
             const config = statusConfig[activity.status]
             const Icon = getStatusIcon(config.icon)
 
             return (
               <div
                 key={`${activity.id}-${year}`}
-                className="flex bg-gray-800/30 rounded-lg min-h-[80px]"
+                className="flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px]"
               >
                 {/* 左側活動資訊欄 */}
-                <div className="w-80 flex-shrink-0 p-4 border-r border-gray-600/50 flex items-center gap-4">
+                <div
+                  className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
+                >
                   <div className="relative">
                     <img
                       src={activity.image || "/placeholder.svg"}
                       alt={activity.name}
-                      className="w-12 h-12 rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all"
+                      className={`${isMobile ? "w-20 h-20" : "w-12 h-12"} rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all`}
                       onMouseEnter={(e) => handleImageHover(activity.image, e)}
                       onMouseLeave={() => handleImageHover(null)}
                     />
@@ -221,52 +283,70 @@ export default function Component() {
                     <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
                       <div className="flex items-center gap-2 mb-1">
                           <Icon className="w-4 h-4 text-white flex-shrink-0" />
-                          <h4>{activity.name}</h4>
+                          <h4 className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate`}>
+                            {activity.name}
+                          </h4>
                       </div>
                     </a>
-                    <p className="text-white text-xs font-medium mb-1">
+                    <p
+                      className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2 mb-1`}
+                    >
                       {new Date(activity.startDate).getMonth() + 1}/{new Date(activity.startDate).getDate()} -{" "}
                       {new Date(activity.endDate).getMonth() + 1}/{new Date(activity.endDate).getDate()}
                     </p>
-                    <p className="text-gray-400 text-xs">{activity.category}</p>
+                    {/* 類別標籤 */}
+                    {activity.category && (
+                      <p
+                        className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2`}
+                      >{activity.category}</p>
+                    )}
                     {/* 成員列表 */}
-                    <p className="text-gray-400 text-xs mb-1">
-                      {activity.member ? `${activity.member.join(", ")}` : "無成員資訊"}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`w-2 h-2 ${config.color} rounded-full flex-shrink-0 ${
-                          activity.status === "ongoing" ? "animate-pulse" : ""
-                        }`}
-                      ></div>
-                      <span className="text-gray-400 text-xs">{config.label}</span>
-                    </div>
+                    {activity.member && (
+                      <p className="text-gray-400 text-xs">
+                        {activity.member ? `${activity.member.join(", ")}` : ""}
+                      </p>
+                    )}
+                    {/* 狀態標籤 */}
+                    {isMobile && (
+                      <div className="flex items-center gap-2 mt-1">
+                        <div
+                          className={`w-2 h-2 ${config.color} rounded-full flex-shrink-0 ${
+                            activity.status === "ongoing" ? "animate-pulse" : ""
+                          }`}
+                        ></div>
+                        <span className="text-gray-400 text-xs">{config.label}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* 右側時間軸 */}
-                <div className="flex-1 relative flex items-center">
-                  <div
-                    className={`absolute h-8 ${config.color} rounded-lg flex items-center px-3 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                      activity.status === "ongoing" ? "animate-pulse" : ""
-                    } ${
-                      segment.isMultiYear
-                        ? segment.isFirstSegment
-                          ? "rounded-r-none"
-                          : segment.isLastSegment
-                            ? "rounded-l-none"
-                            : "rounded-none"
-                        : ""
-                    }`}
-                    style={{
-                      left: `${segment.startPosition}%`,
-                      width: `${segment.width}%`,
-                    }}
-                    onMouseEnter={(e) => handleActivityHover(activity, e)}
-                    onMouseLeave={() => handleActivityHover(null)}
-                  >
+                {!isMobile && (
+                <div className="flex-1 relative">
+                  <div className={`relative h-20 flex items-center`}>
+                    <div
+                      className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
+                        activity.status === "ongoing" ? "animate-pulse" : ""
+                      } ${
+                        segment.isMultiYear
+                          ? segment.isFirstSegment
+                            ? "rounded-r-none"
+                            : segment.isLastSegment
+                              ? "rounded-l-none"
+                              : "rounded-none"
+                          : ""
+                      }`}
+                      style={{
+                        left: `${segment.startPosition}%`,
+                        width: `${segment.width}%`,
+                      }}
+                      onMouseEnter={(e) => handleActivityHover(activity, e)}
+                      onMouseLeave={() => handleActivityHover(null)}
+                    >
+                    </div>
                   </div>
                 </div>
+                )}
               </div>
             )
           })}
@@ -283,8 +363,12 @@ export default function Component() {
         {/* 標題和篩選器 */}
         <div className="mb-8">
           <img className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
-          <h1 className="text-4xl font-bold text-white mb-6 text-center">繁中服活動列表</h1>
-          <p className="text-gray-400 text-xs text-center">PS.主線類別不會有角色標籤</p>
+          <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
+          <p className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2">
+            1.主線類別與全員不會有角色標籤<br />
+            2.活動類型參照中國服wiki分類<br />
+            3.預計會再新增中國服活動&復刻時間
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -325,7 +409,7 @@ export default function Component() {
               </Button>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap justify-center">
               {Object.entries(statusConfig).map(([status, config]) => {
                 const Icon = getStatusIcon(config.icon)
                 return (
@@ -341,7 +425,7 @@ export default function Component() {
         </div>
 
         {/* 甘特圖 */}
-        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl p-6 mb-8 relative">
+        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 mb-8 relative">
           {selectedYear === "all"
             ? availableYears.map((year) => renderYearTimeline(year))
             : renderYearTimeline(Number.parseInt(selectedYear))}
