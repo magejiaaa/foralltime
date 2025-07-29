@@ -40,8 +40,8 @@ export default function Component() {
       return "completed" // 已結束
     } else if (startDate <= today && today <= endDate) {
       return "ongoing" // 進行中
-    } else if (startDate > today) {
-      return "upcoming" // 即將開始
+    } else if (startDate === null || endDate === null) {
+      return "upcoming" // 即將開始(沒有時間)
     }
 
     return activity.status // 預設返回原狀態
@@ -612,7 +612,7 @@ export default function Component() {
             {/* 規劃中的活動列表 */}
             <div className="space-y-2">
               {activities
-                .filter((activity) => activity.status === "planned")
+                .filter((activity) => activity.status === "upcoming")
                 .map((activity) => (
                   <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg">
                     <div className="flex items-center gap-3">
