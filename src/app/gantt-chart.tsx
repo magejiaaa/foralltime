@@ -1,22 +1,62 @@
 "use client"
 import type React from "react"
 import { useState, useMemo, useEffect } from "react"
-import { Calendar, Plus, Trash2, Clock, CheckCircle, PlayCircle, PauseCircle, ArrowUp, ArrowDown } from "lucide-react"
+import {
+  Calendar,
+  Plus,
+  Clock,
+  CheckCircle,
+  PlayCircle,
+  PauseCircle,
+  ArrowUp,
+  ArrowDown,
+  Filter,
+  User,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
-const monthsShort = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
 type SortOrder = "desc" | "asc"
 
 export default function Component() {
-  const [activities, setActivities] = useState<Activity[]>(activitiesData)
+  // 自動判斷活動狀態的函數
+  const getActivityStatus = (activity: Activity): Activity["status"] => {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0) // 設定為當天開始時間
+
+    const startDate = new Date(activity.startDate)
+    startDate.setHours(0, 0, 0, 0)
+
+    const endDate = new Date(activity.endDate)
+    endDate.setHours(23, 59, 59, 999) // 設定為當天結束時間
+
+    if (endDate < today) {
+      return "completed" // 已結束
+    } else if (startDate <= today && today <= endDate) {
+      return "ongoing" // 進行中
+    } else if (startDate > today) {
+      return "upcoming" // 即將開始
+    }
+
+    return activity.status // 預設返回原狀態
+  }
+  const [activities] = useState<Activity[]>(activitiesData)
+  // 處理活動數據，添加計算出的狀態
+  const processedActivities = useMemo(() => {
+    return activities.map((activity) => ({
+      ...activity,
+      calculatedStatus: getActivityStatus(activity),
+    }))
+  }, [activities])
   const [selectedYear, setSelectedYear] = useState<string>("all")
+  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [selectedMember, setSelectedMember] = useState<string>("all")
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc") // 預設最新在前
   const [hoveredActivity, setHoveredActivity] = useState<string | null>(null)
   const [hoveredImage, setHoveredImage] = useState<string | null>(null)
@@ -39,33 +79,67 @@ export default function Component() {
 
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
+  // 可用年份列表
   const availableYears = useMemo(() => {
     const years = new Set<number>()
-    activities.forEach((activity) => {
+    processedActivities.forEach((activity) => {
       years.add(new Date(activity.startDate).getFullYear())
       years.add(new Date(activity.endDate).getFullYear())
     })
     const sortedYears = Array.from(years).sort()
     return sortOrder === "desc" ? sortedYears.reverse() : sortedYears
-  }, [activities, sortOrder])
-
+  }, [processedActivities, sortOrder])
+  // 活動類別列表
+  const availableCategories = useMemo(() => {
+    const categories = new Set<string>()
+    processedActivities.forEach((activity) => {
+      if (activity.category) {
+        categories.add(activity.category)
+      }
+    })
+    return Array.from(categories).sort()
+  }, [processedActivities])
+  // 角色列表
+  const availableMembers = useMemo(() => {
+    const members = new Set<string>()
+    processedActivities.forEach((activity) => {
+      if (activity.member) {
+        activity.member.forEach((member) => members.add(member))
+      }
+    })
+    return Array.from(members).sort()
+  }, [processedActivities])
   const sortedActivities = useMemo(() => {
-    const sorted = [...activities].sort((a, b) => {
+    const sorted = [...processedActivities].sort((a, b) => {
       const dateA = new Date(a.startDate).getTime()
       const dateB = new Date(b.startDate).getTime()
       return sortOrder === "desc" ? dateB - dateA : dateA - dateB
     })
     return sorted
-  }, [activities, sortOrder])
+  }, [processedActivities, sortOrder])
 
   const filteredActivities = useMemo(() => {
-    if (selectedYear === "all") return sortedActivities
-    return sortedActivities.filter((activity) => {
-      const startYear = new Date(activity.startDate).getFullYear()
-      const endYear = new Date(activity.endDate).getFullYear()
-      return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-    })
-  }, [sortedActivities, selectedYear])
+    let filtered = sortedActivities
+    // 年份篩選
+    if (selectedYear !== "all") {
+      filtered = filtered.filter((activity) => {
+        const startYear = new Date(activity.startDate).getFullYear()
+        const endYear = new Date(activity.endDate).getFullYear()
+        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
+      })
+    }    
+    // 類型篩選
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((activity) => activity.category === selectedCategory)
+    }
+    // 角色篩選
+    if (selectedMember !== "all") {
+      filtered = filtered.filter((activity) => {
+        return activity.member && activity.member.some((member) => member === selectedMember)
+      })
+    }
+    return filtered
+  }, [sortedActivities, selectedYear, selectedCategory, selectedMember])
 
   // 計算活動相關的月份（手機版用）
   const getRelevantMonths = (activity: Activity, year: number) => {
@@ -207,6 +281,12 @@ export default function Component() {
     setSortOrder(sortOrder === "desc" ? "asc" : "desc")
   }
 
+  const clearFilters = () => {
+    setSelectedYear("all")
+    setSelectedCategory("all")
+    setSelectedMember("all")
+  }
+
   const renderYearTimeline = (year: number) => {
     const yearActivities = filteredActivities.filter((activity) => {
       const startYear = new Date(activity.startDate).getFullYear()
@@ -229,10 +309,18 @@ export default function Component() {
       }
     }
     
+    if (yearActivities.length === 0) {
+      return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
+    }
 
     return (
       <div key={year} className="mb-8 relative">
-        <h3 className="text-2xl font-bold text-white mb-4">{year}年</h3>
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold text-white">{year}年</h3>
+          <Badge variant="secondary" className="bg-gray-700 text-gray-300">
+            {yearActivities.length} 個活動
+          </Badge>
+        </div>
 
         {/* 桌面版標題行 */}
         {!isMobile && (
@@ -258,7 +346,7 @@ export default function Component() {
           {yearActivities.map((activity) => {
             const relevantMonths = isMobile ? getRelevantMonths(activity, year) : undefined
             const segment = getActivitySegments(activity, year, relevantMonths)
-            const config = statusConfig[activity.status]
+            const config = statusConfig[activity.calculatedStatus]
             const Icon = getStatusIcon(config.icon)
 
             return (
@@ -311,7 +399,7 @@ export default function Component() {
                       <div className="flex items-center gap-2 mt-1">
                         <div
                           className={`w-2 h-2 ${config.color} rounded-full flex-shrink-0 ${
-                            activity.status === "ongoing" ? "animate-pulse" : ""
+                            activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
                           }`}
                         ></div>
                         <span className="text-gray-400 text-xs">{config.label}</span>
@@ -326,7 +414,7 @@ export default function Component() {
                   <div className={`relative h-20 flex items-center`}>
                     <div
                       className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                        activity.status === "ongoing" ? "animate-pulse" : ""
+                        activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
                       } ${
                         segment.isMultiYear
                           ? segment.isFirstSegment
@@ -355,7 +443,8 @@ export default function Component() {
     )
   }
 
-  const hoveredActivityData = hoveredActivity ? activities.find((a) => a.id === hoveredActivity) : null
+  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
+  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
 
   return (
     <div className="min-h-screen p-4" style={{ backgroundColor: "#16192c" }}>
@@ -370,7 +459,7 @@ export default function Component() {
             3.預計會再新增中國服活動&復刻時間
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-white" />
                 <Select value={selectedYear} onValueChange={setSelectedYear}>
@@ -386,6 +475,46 @@ export default function Component() {
                         {year}年
                       </SelectItem>
                     ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex items-center gap-2">
+                <Filter className="w-5 h-5 text-white" />
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white">
+                    <SelectValue placeholder="選擇類型" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-600">
+                    <SelectItem value="all" className="text-white">
+                      所有類型
+                    </SelectItem>
+                    {availableCategories.map((category) => {
+                      return (
+                        <SelectItem key={category} value={category} className="text-white">
+                          {category}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="w-5 h-5 text-white" />
+                <Select value={selectedMember} onValueChange={setSelectedMember}>
+                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white">
+                    <SelectValue placeholder="選擇成員" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-600">
+                    <SelectItem value="all" className="text-white">
+                      所有成員
+                    </SelectItem>
+                    {availableMembers.map((member) => {
+                      return (
+                        <SelectItem key={member} value={member} className="text-white">
+                          {member}
+                        </SelectItem>
+                      )
+                    })}
                   </SelectContent>
                 </Select>
               </div>
@@ -407,9 +536,20 @@ export default function Component() {
                   </>
                 )}
               </Button>
-            </div>
 
-            <div className="flex gap-2 flex-wrap justify-center">
+              {hasActiveFilters && (
+                <Button
+                  onClick={clearFilters}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-white hover:bg-gray-700/50"
+                >
+                  清除篩選
+                </Button>
+              )}
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              {/* 狀態圖例 */}
               {Object.entries(statusConfig).map(([status, config]) => {
                 const Icon = getStatusIcon(config.icon)
                 return (
@@ -424,11 +564,40 @@ export default function Component() {
           </div>
         </div>
 
+        {/* 篩選狀態顯示 */}
+        {hasActiveFilters && (
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="text-gray-400 text-sm">目前篩選：</span>
+            {selectedYear !== "all" && (
+              <Badge variant="secondary" className="bg-blue-900/50 text-blue-300">
+                {selectedYear}年
+              </Badge>
+            )}
+            {selectedCategory !== "all" && (
+              <Badge variant="secondary" className="bg-green-900/50 text-green-300">
+                {selectedCategory}
+              </Badge>
+            )}
+            {selectedMember !== "all" && (
+              <Badge variant="secondary" className="bg-purple-900/50 text-purple-300">
+                {selectedMember}
+              </Badge>
+            )}
+            <span className="text-gray-400 text-sm">共 {filteredActivities.length} 個活動</span>
+          </div>
+        )}
         {/* 甘特圖 */}
         <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 mb-8 relative">
-          {selectedYear === "all"
-            ? availableYears.map((year) => renderYearTimeline(year))
-            : renderYearTimeline(Number.parseInt(selectedYear))}
+          {filteredActivities.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-gray-400 text-lg mb-2">沒有找到符合條件的活動</div>
+              <div className="text-gray-500 text-sm">請調整篩選條件或新增活動</div>
+            </div>
+          ) : selectedYear === "all" ? (
+            availableYears.map((year) => renderYearTimeline(year))
+          ) : (
+            renderYearTimeline(Number.parseInt(selectedYear))
+          )}
         </div>
 
         {/* 未來會開的活動 */}
@@ -482,7 +651,7 @@ export default function Component() {
           <p className="text-xs text-gray-400">
             {hoveredActivityData.startDate} ~ {hoveredActivityData.endDate}
           </p>
-          <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.status].label}</p>
+          <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
         </div>
       )}
 
