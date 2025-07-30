@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge"
 import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
+import Image from 'next/image'
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 type SortOrder = "desc" | "asc"
@@ -28,13 +29,13 @@ export default function Component() {
   // 自動判斷活動狀態的函數
   const getActivityStatus = (activity: Activity): Activity["status"] => {
     const today = new Date()
-    today.setHours(0, 0, 0, 0) // 設定為當天開始時間
+    today.setHours(9, 0, 0, 0) // 設定為當天開始時間
 
     const startDate = new Date(activity.startDate)
-    startDate.setHours(0, 0, 0, 0)
+    startDate.setHours(9, 0, 0, 0)
 
     const endDate = new Date(activity.endDate)
-    endDate.setHours(23, 59, 59, 999) // 設定為當天結束時間
+    endDate.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
 
     if (endDate < today) {
       return "completed" // 已結束
@@ -140,6 +141,32 @@ export default function Component() {
     }
     return filtered
   }, [sortedActivities, selectedYear, selectedCategory, selectedMember])
+
+  const filteredPlannedActivities = useMemo(() => {
+    let filtered = activities.filter((activity) => activity.status === "upcoming")
+
+    // 年份篩選
+    if (selectedYear !== "all") {
+      filtered = filtered.filter((activity) => {
+        const startYear = new Date(activity.startDate).getFullYear()
+        const endYear = new Date(activity.endDate).getFullYear()
+        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
+      })
+    }
+
+    // 類型篩選
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((activity) => activity.category === selectedCategory)
+    }
+    // 角色篩選
+    if (selectedMember !== "all") {
+      filtered = filtered.filter((activity) => {
+        return activity.member && activity.member.some((member) => member === selectedMember)
+      })
+    }
+
+    return filtered
+  }, [activities, selectedYear, selectedCategory, selectedMember])
 
   // 計算活動相關的月份（手機版用）
   const getRelevantMonths = (activity: Activity, year: number) => {
@@ -287,6 +314,17 @@ export default function Component() {
     setSelectedMember("all")
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const scrollToPlanning = () => {
+    const planningSection = document.getElementById("planning-section")
+    if (planningSection) {
+      planningSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   const renderYearTimeline = (year: number) => {
     const yearActivities = filteredActivities.filter((activity) => {
       const startYear = new Date(activity.startDate).getFullYear()
@@ -351,7 +389,7 @@ export default function Component() {
 
             return (
               <div
-                key={`${activity.id}-${year}`}
+                key={`${activity.id}-${year}`} data-id={activity.id}
                 className="flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px]"
               >
                 {/* 左側活動資訊欄 */}
@@ -359,9 +397,11 @@ export default function Component() {
                   className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
                 >
                   <div className="relative">
-                    <img
+                    <Image
                       src={activity.image || "/placeholder.svg"}
                       alt={activity.name}
+                      width={100}
+                      height={100}
                       className={`${isMobile ? "w-20 h-20" : "w-12 h-12"} rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all`}
                       onMouseEnter={(e) => handleImageHover(activity.image, e)}
                       onMouseLeave={() => handleImageHover(null)}
@@ -456,7 +496,7 @@ export default function Component() {
           <p className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2">
             1.主線類別與全員不會有角色標籤<br />
             2.活動類型參照中國服wiki分類<br />
-            3.預計會再新增中國服活動&復刻時間
+            3.活動目前新增到中國服2023年結束
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-4 flex-wrap">
@@ -601,40 +641,59 @@ export default function Component() {
         </div>
 
         {/* 未來會開的活動 */}
-        <Card className="bg-gray-900/30 backdrop-blur-sm border-gray-600">
+        <Card id="planning-section" className="bg-gray-900/30 backdrop-blur-sm border-gray-600">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Plus className="w-5 h-5" style={{ color: "#3e6cc3" }} />
+              <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
               未來會開的活動
             </CardTitle>
           </CardHeader>
           <CardContent>
             {/* 規劃中的活動列表 */}
-            <div className="space-y-2">
-              {activities
-                .filter((activity) => activity.status === "upcoming")
-                .map((activity) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredPlannedActivities.length === 0 ? (
+                <div className="text-center py-8">
+                  <div className="text-gray-400 text-sm mb-2">沒有符合篩選條件的規劃活動</div>
+                </div>
+              ) : (
+                filteredPlannedActivities.map((activity) => (
                   <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <img
-                        src={activity.image || "/placeholder.svg"}
-                        alt={activity.name}
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
-                      <div>
-                        <h4 className="text-white font-medium">{activity.name}</h4>
-                        <p className="text-gray-400 text-sm">
-                          {activity.startDate} ~ {activity.endDate}
-                        </p>
-                      </div>
+                    <div>
+                      <a href={activity.url} target="_blank" className="flex items-center gap-3">
+                        <Image
+                          src={activity.image || "/placeholder.svg"}
+                          alt={activity.name}
+                          className="w-16 h-16 rounded-full object-cover"
+                          width={100}
+                          height={100}
+                        />
+                        <div>
+                          <h4 className="text-white font-medium">{activity.name}</h4>
+                          <p className="text-gray-400 text-sm">
+                            {activity.description}
+                          </p>
+                          <p className="text-gray-400 text-sm">
+                            {activity.category}
+                          </p>
+                          {activity.member && activity.member.length > 0 && (
+                            <p className="text-gray-400 text-sm">
+                              {activity.member ? activity.member.join(", ") : ""}
+                            </p>
+                          )}
+                        </div>
+                      </a>
                     </div>
                   </div>
-                ))}
+                ))
+              )}
             </div>
           </CardContent>
         </Card>
         
-        <p className="text-gray-400 text-center text-xs mt-4">所有素材與活動資訊均來自官網，版權為時空中的繪旅人官方所有。</p>
+        <p className="text-gray-400 text-center text-xs mt-4">
+          所有素材與活動資訊均來自官網，版權為時空中的繪旅人官方所有。<br />
+          尚未開放活動資訊與圖片來源為時空中的繪旅人wiki。
+        </p>
       </div>
       {/* 活動詳情懸浮視窗 */}
       {hoveredActivity && hoveredActivityData && (
@@ -674,6 +733,24 @@ export default function Component() {
           </div>
         </div>
       )}
+
+      {/* 底部導航按鈕 */}
+      <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-50">
+        <Button
+          onClick={scrollToPlanning}
+          className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg rounded-full w-12 h-12 p-0 flex items-center justify-center"
+          title="跳至未來活動"
+        >
+          <Clock className="w-5 h-5" />
+        </Button>
+        <Button
+          onClick={scrollToTop}
+          className="bg-gray-600 hover:bg-gray-700 text-white shadow-lg rounded-full w-12 h-12 p-0 flex items-center justify-center"
+          title="返回最上方"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </Button>
+      </div>
     </div>
   )
 }

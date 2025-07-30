@@ -8,6 +8,7 @@ export interface Activity {
   image: string
   category?: string
   member?: Array<string>
+  description?: string
 }
 
 export const statusConfig = {
