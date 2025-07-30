@@ -84,6 +84,7 @@ export default function Component() {
   const availableYears = useMemo(() => {
     const years = new Set<number>()
     processedActivities.forEach((activity) => {
+      if (!activity.startDate || !activity.endDate) return
       years.add(new Date(activity.startDate).getFullYear())
       years.add(new Date(activity.endDate).getFullYear())
     })
@@ -433,6 +434,21 @@ export default function Component() {
                           </h4>
                       </div>
                     </a>
+                    {/* 進行中活動的剩餘時間顯示 */}
+                    {isMobile && activity.calculatedStatus === "ongoing" &&
+                      (() => {
+                        const remaining = getRemainingTime(activity.endDate)
+                        return remaining ? (
+                          <div
+                            className="text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm flex items-center w-fit"
+                          >
+                            <span className="truncate">
+                              剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
+                              {remaining.hours}小時
+                            </span>
+                          </div>
+                        ) : null
+                      })()}
                     <p
                       className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2 mb-1`}
                     >
@@ -464,7 +480,7 @@ export default function Component() {
                     )}
                   </div>
                 </div>
-
+              
                 {/* 右側時間軸 */}
                 {!isMobile && (
                 <div className="flex-1 relative flex flex-col justify-center">
@@ -541,7 +557,7 @@ export default function Component() {
             3.活動目前新增到中國服2023年結束
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <div className="flex items-center gap-4 flex-wrap">
+            <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-white" />
                 <Select value={selectedYear} onValueChange={setSelectedYear}>

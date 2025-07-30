@@ -1230,6 +1230,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%88%E5%A4%A9%E7%81%AF%E4%BC%9A",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/7/76/%E8%89%BE%E5%9B%A0-%E6%9C%9D%E7%84%B0%E8%BF%8E%E7%81%AF-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: "週年免費SSR",
+    member: ["艾因"],
     description: "預計2025.10",
   },
   {
@@ -1262,7 +1263,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98",
     image: "https://wx1.sinaimg.cn/mw2000/007T2sSPgy1h7d33mkozrj30qe1axdt9.jpg",
     category: "萬聖",
-    description: "2025萬聖",
+    description: "2025萬聖根據去年可能是8月",
   },
   {
     id: "126",
@@ -1273,7 +1274,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/472795245_490021164116449_187261042615931281_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vjFTMU4EVf0Q7kNvwHvzq5H&_nc_oc=AdlmdFB_k5YTw2Up1P99CG2SpSHChlRBJLFeNzuMS0Hy5BpWvKifZzqyBOmUaUbybsDp6Cxe5Voyg8C260C9VmLw&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=k4Q0vKW-zZ21r191OdO57g&oh=00_AfRVU4P-k_JTVvAcLCNQN_QGoRjDaQ4ZyT3dn47T3FL7MQ&oe=688D714A",
     category: "萬聖",
-    description: "2025萬聖",
+    description: "2025萬聖根據去年可能是8月",
   },
   {
     id: "127",
@@ -2105,6 +2106,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BC%E7%BF%BC%E9%A3%9E%E9%B8%BE",
     image: "https://wx3.sinaimg.cn/mw2000/007T2sSPgy1hiay4mazycj30qe1au1kx.jpg",
     category: "週年免費SSR",
+    description: "2026周年慶10月",
+    member: ["葉瑄"],
   },
   {
     id: "207",
@@ -2263,6 +2266,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%82%80%E9%9B%AA%E7%A7%B0%E5%BA%86",
     image: "https://wx4.sinaimg.cn/mw2000/007T2sSPgy1hkyyfdiizfj30qe1a8do6.jpg",
     category: "聖誕",
+    description: "2026聖誕",
   },
   {
     id: "222",
