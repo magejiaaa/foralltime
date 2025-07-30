@@ -1243,6 +1243,7 @@ export const activitiesData: Activity[] = [
     image: "https://wx2.sinaimg.cn/mw2000/007T2sSPgy1h753r81pnhj30rs0k076x.jpg",
     category: "生日",
     member: ["司嵐"],
+    description: "預計2025.10",
   },
   {
     id: "124",
@@ -1492,6 +1493,7 @@ export const activitiesData: Activity[] = [
     image: "https://wx4.sinaimg.cn/mw2000/007T2sSPgy1hbzkgptqb3j30rs0k0ds3.jpg",
     category: "生日",
     member: ["路辰"],
+    description: "預計2026.01",
   },
   {
     id: "147",
@@ -1888,6 +1890,7 @@ export const activitiesData: Activity[] = [
     image: "https://wx2.sinaimg.cn/mw2000/007T2sSPgy1hggbyqlpegj30rs0k0gxh.jpg",
     category: "生日",
     member: ["羅夏"],
+    description: "預計2026.08",
   },
   {
     id: "186",
@@ -2119,6 +2122,7 @@ export const activitiesData: Activity[] = [
     image: "https://wx4.sinaimg.cn/mw2000/007T2sSPgy1hixe36343aj30rs0k0wpp.jpg",
     category: "生日",
     member: ["司嵐"],
+    description: "預計2026.10",
   },
   {
     id: "208",
@@ -2192,6 +2196,7 @@ export const activitiesData: Activity[] = [
     image: "https://wx3.sinaimg.cn/mw2000/007T2sSPgy1hjx261urvcj31jk1404o4.jpg",
     category: "生日",
     member: ["艾因"],
+    description: "預計2026.11",
   },
   {
     id: "215",

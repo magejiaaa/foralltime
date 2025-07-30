@@ -554,7 +554,8 @@ export default function Component() {
           <p className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2">
             1.主線類別與全員不會有角色標籤<br />
             2.活動類型參照中國服wiki分類<br />
-            3.活動目前新增到中國服2023年結束
+            3.活動目前新增到中國服2023年結束<br />
+            4.點擊活動名稱可直接連到wiki活動頁面
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
@@ -715,7 +716,7 @@ export default function Component() {
                 </div>
               ) : (
                 filteredPlannedActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg">
+                  <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
                     <div>
                       <a href={activity.url} target="_blank" className="flex items-center gap-3">
                         <Image
