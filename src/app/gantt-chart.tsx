@@ -326,6 +326,23 @@ export default function Component() {
   }
 
   const renderYearTimeline = (year: number) => {
+    // 計算剩餘時間的函數
+    const getRemainingTime = (endDate: string) => {
+      const now = new Date()
+      const end = new Date(endDate)
+      end.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
+
+      const diffMs = end.getTime() - now.getTime()
+
+      if (diffMs <= 0) {
+        return null // 已結束
+      }
+
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+
+      return { days, hours }
+    }
     const yearActivities = filteredActivities.filter((activity) => {
       const startYear = new Date(activity.startDate).getFullYear()
       // 只在活動開始的年份顯示，避免跨年活動重複顯示
@@ -450,29 +467,54 @@ export default function Component() {
 
                 {/* 右側時間軸 */}
                 {!isMobile && (
-                <div className="flex-1 relative">
-                  <div className={`relative h-20 flex items-center`}>
-                    <div
-                      className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                        activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
-                      } ${
-                        segment.isMultiYear
-                          ? segment.isFirstSegment
-                            ? "rounded-r-none"
-                            : segment.isLastSegment
-                              ? "rounded-l-none"
-                              : "rounded-none"
-                          : ""
-                      }`}
-                      style={{
-                        left: `${segment.startPosition}%`,
-                        width: `${segment.width}%`,
-                      }}
-                      onMouseEnter={(e) => handleActivityHover(activity, e)}
-                      onMouseLeave={() => handleActivityHover(null)}
-                    >
+                <div className="flex-1 relative flex flex-col justify-center">
+                    <div className={`relative h-8 flex items-center justify-center`}>
+                      <div
+                        className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
+                          activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
+                        } ${
+                          segment.isMultiYear
+                            ? segment.isFirstSegment
+                              ? "rounded-r-none"
+                              : segment.isLastSegment
+                                ? "rounded-l-none"
+                                : "rounded-none"
+                            : ""
+                        }`}
+                        style={{
+                          left: `${segment.startPosition}%`,
+                          width: `${segment.width}%`,
+                        }}
+                        onMouseEnter={(e) => handleActivityHover(activity, e)}
+                        onMouseLeave={() => handleActivityHover(null)}
+                      >
+                      </div>
                     </div>
-                  </div>
+                    {/* 進行中活動的剩餘時間顯示 */}
+                    {activity.calculatedStatus === "ongoing" &&
+                      (() => {
+                        const remaining = getRemainingTime(activity.endDate)
+                        return remaining ? (
+                          <div
+                            className="absolute text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm"
+                            style={{
+                              left: `${segment.startPosition}%`,
+                              width: `${segment.width}%`,
+                              top: isMobile ? "calc(50% + 20px)" : "calc(50% + 24px)",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              minWidth: "fit-content",
+                            }}
+                          >
+                            <Clock className="w-3 h-3 mr-1 flex-shrink-0" />
+                            <span className="truncate">
+                              剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
+                              {remaining.hours}小時
+                            </span>
+                          </div>
+                        ) : null
+                      })()}
                 </div>
                 )}
               </div>
@@ -708,7 +750,7 @@ export default function Component() {
         >
           <h4 className="font-bold mb-1">{hoveredActivityData.name}</h4>
           <p className="text-xs text-gray-400">
-            {hoveredActivityData.startDate} ~ {hoveredActivityData.endDate}
+            {hoveredActivityData.startDate} ~ {hoveredActivityData.endDate} 04:00
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
         </div>
