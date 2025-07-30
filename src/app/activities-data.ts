@@ -1157,6 +1157,17 @@ export const activitiesData: Activity[] = [
     category: "裁縫店",
   },
   {
+    id: "103",
+    name: "羅夏生日",
+    startDate: "2025-07-29",
+    endDate: "2025-08-12",
+    status: "completed",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
+    image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/523072424_634376346347596_2983549386574932496_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QFBOjm7fkg8Q7kNvwEPPbZm&_nc_oc=AdkIrmSR7DP1P-PR6TknyujnY7YRbUuF51uw66ujXBY7145scPQDiBHBR6j3aALP3rW9s1etsFufWvS7rRehYCva&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=HHMMxgK2G8FsOjAo3a6ILw&oh=00_AfRiUozPpDyHrCKzNZ3alDuxHslRk9zyC6I7A5yHIrMJKA&oe=688F90F2",
+    category: "生日",
+    member: ["羅夏"],
+  },
+  {
     id: "113",
     name: "粽子馬拉松",
     startDate: "",
