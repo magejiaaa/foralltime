@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect, useCallback } from "react"
 import {
   Calendar,
   Plus,
@@ -12,6 +12,7 @@ import {
   ArrowDown,
   Filter,
   User,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -26,35 +27,73 @@ const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七
 type SortOrder = "desc" | "asc"
 
 export default function Component() {
-  // 自動判斷活動狀態的函數
-  const getActivityStatus = (activity: Activity): Activity["status"] => {
-    const today = new Date()
-    today.setHours(9, 0, 0, 0) // 設定為當天開始時間
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  // 自動判斷活動狀態的函數 - 使用useCallback避免重複創建
+  const getActivityStatus = useCallback((activity: Activity): Activity["status"] => {
+    try {
+      const today = new Date()
+      today.setHours(9, 0, 0, 0) // 設定為當天開始時間
 
-    const startDate = new Date(activity.startDate)
-    startDate.setHours(9, 0, 0, 0)
+      const startDate = new Date(activity.startDate)
+      startDate.setHours(9, 0, 0, 0)
 
-    const endDate = new Date(activity.endDate)
-    endDate.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
+      const endDate = new Date(activity.endDate)
+      endDate.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
 
-    if (endDate < today) {
-      return "completed" // 已結束
-    } else if (startDate <= today && today <= endDate) {
-      return "ongoing" // 進行中
-    } else if (startDate === null || endDate === null) {
-      return "upcoming" // 即將開始(沒有時間)
+      if (endDate < today) {
+        return "completed" // 已結束
+      } else if (startDate <= today && today <= endDate) {
+        return "ongoing" // 進行中
+      } else if (startDate === null || endDate === null) {
+        return "upcoming" // 即將開始(沒有時間)
+      }
+
+      return activity.status // 預設返回原狀態
+    } catch (err) {
+      console.error("Error calculating activity status:", err)
+      return activity.status
+    }
+  }, [])
+
+  const [activities, setActivities] = useState<Activity[]>([])
+  // 初始化數據
+  useEffect(() => {
+    const initializeData = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+
+        // 模擬異步載入，避免阻塞UI
+        await new Promise((resolve) => setTimeout(resolve, 100))
+
+        setActivities(activitiesData)
+        setIsLoading(false)
+      } catch (err) {
+        console.error("Error initializing data:", err)
+        setError("載入數據時發生錯誤")
+        setIsLoading(false)
+      }
     }
 
-    return activity.status // 預設返回原狀態
-  }
-  const [activities] = useState<Activity[]>(activitiesData)
+    initializeData()
+  }, [])
+
   // 處理活動數據，添加計算出的狀態
   const processedActivities = useMemo(() => {
-    return activities.map((activity) => ({
-      ...activity,
-      calculatedStatus: getActivityStatus(activity),
-    }))
-  }, [activities])
+    if (!activities.length) return []
+
+    try {
+      return activities.map((activity) => ({
+        ...activity,
+        calculatedStatus: getActivityStatus(activity),
+      }))
+    } catch (err) {
+      console.error("Error processing activities:", err)
+      return activities.map((activity) => ({ ...activity, calculatedStatus: activity.status }))
+    }
+  }, [activities, getActivityStatus])
+
   const [selectedYear, setSelectedYear] = useState<string>("all")
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedMember, setSelectedMember] = useState<string>("all")
@@ -71,46 +110,77 @@ export default function Component() {
 
   // 檢測是否為手機版
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768)
+      }, 100)
     }
 
     checkMobile()
     window.addEventListener("resize", checkMobile)
 
-    return () => window.removeEventListener("resize", checkMobile)
+    return () => {
+      window.removeEventListener("resize", checkMobile)
+      clearTimeout(timeoutId)
+    }
   }, [])
   // 可用年份列表
   const availableYears = useMemo(() => {
-    const years = new Set<number>()
-    processedActivities.forEach((activity) => {
-      if (!activity.startDate || !activity.endDate) return
-      years.add(new Date(activity.startDate).getFullYear())
-      years.add(new Date(activity.endDate).getFullYear())
-    })
-    const sortedYears = Array.from(years).sort()
-    return sortOrder === "desc" ? sortedYears.reverse() : sortedYears
+    if (!processedActivities.length) return []
+
+    try {
+      const years = new Set<number>()
+      processedActivities.forEach((activity) => {
+        if (!activity.startDate || !activity.endDate) return
+        years.add(new Date(activity.startDate).getFullYear())
+        years.add(new Date(activity.endDate).getFullYear())
+      })
+      const sortedYears = Array.from(years).sort()
+      return sortOrder === "desc" ? sortedYears.reverse() : sortedYears
+    } catch (err) {
+      console.error("Error calculating available years:", err)
+      return []
+    }
   }, [processedActivities, sortOrder])
   // 活動類別列表
   const availableCategories = useMemo(() => {
-    const categories = new Set<string>()
-    processedActivities.forEach((activity) => {
-      if (activity.category) {
-        categories.add(activity.category)
-      }
-    })
-    return Array.from(categories).sort()
+    if (!processedActivities.length) return []
+
+    try {
+      const categories = new Set<string>()
+      processedActivities.forEach((activity) => {
+        if (activity.category) {
+          categories.add(activity.category)
+        }
+      })
+      return Array.from(categories).sort()
+    } catch (err) {
+      console.error("Error calculating available categories:", err)
+      return []
+    }
   }, [processedActivities])
+
   // 角色列表
   const availableMembers = useMemo(() => {
-    const members = new Set<string>()
-    processedActivities.forEach((activity) => {
-      if (activity.member) {
-        activity.member.forEach((member) => members.add(member))
-      }
-    })
-    return Array.from(members).sort()
+    if (!processedActivities.length) return []
+
+    try {
+      const members = new Set<string>()
+      processedActivities.forEach((activity) => {
+        if (activity.member) {
+          activity.member.forEach((member) => members.add(member))
+        }
+      })
+      return Array.from(members).sort()
+    } catch (err) {
+      console.error("Error calculating available members:", err)
+      return []
+    }
   }, [processedActivities])
+
+  // 排序活動
   const sortedActivities = useMemo(() => {
     const sorted = [...processedActivities].sort((a, b) => {
       const dateA = new Date(a.startDate).getTime()
@@ -121,136 +191,109 @@ export default function Component() {
   }, [processedActivities, sortOrder])
 
   const filteredActivities = useMemo(() => {
+    if (!processedActivities.length) return []
+
     let filtered = sortedActivities
-    // 年份篩選
-    if (selectedYear !== "all") {
-      filtered = filtered.filter((activity) => {
-        const startYear = new Date(activity.startDate).getFullYear()
-        const endYear = new Date(activity.endDate).getFullYear()
-        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-      })
-    }    
-    // 類型篩選
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter((activity) => activity.category === selectedCategory)
+    try {
+      // 年份篩選
+      if (selectedYear !== "all") {
+        filtered = filtered.filter((activity) => {
+          const startYear = new Date(activity.startDate).getFullYear()
+          const endYear = new Date(activity.endDate).getFullYear()
+          return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
+        })
+      }    
+    
+      // 類型篩選
+      if (selectedCategory !== "all") {
+        filtered = filtered.filter((activity) => activity.category === selectedCategory)
+      }
+      // 角色篩選
+      if (selectedMember !== "all") {
+        filtered = filtered.filter((activity) => {
+          return activity.member && activity.member.some((member) => member === selectedMember)
+        })
+      }
+    } catch (err) {
+      console.error("Error filtering activities:", err)
+      return []
     }
-    // 角色篩選
-    if (selectedMember !== "all") {
-      filtered = filtered.filter((activity) => {
-        return activity.member && activity.member.some((member) => member === selectedMember)
-      })
-    }
+    
     return filtered
-  }, [sortedActivities, selectedYear, selectedCategory, selectedMember])
+  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, processedActivities.length])
 
+  // 篩選出規劃中的活動
   const filteredPlannedActivities = useMemo(() => {
-    let filtered = activities.filter((activity) => activity.status === "upcoming")
+    if (!activities.length) return []
 
-    // 年份篩選
-    if (selectedYear !== "all") {
-      filtered = filtered.filter((activity) => {
-        const startYear = new Date(activity.startDate).getFullYear()
-        const endYear = new Date(activity.endDate).getFullYear()
-        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-      })
+    try {
+      let filtered = activities.filter((activity) => activity.status === "upcoming")
+
+      // 類型篩選
+      if (selectedCategory !== "all") {
+        filtered = filtered.filter((activity) => activity.category === selectedCategory)
+      }
+      // 角色篩選
+      if (selectedMember !== "all") {
+        filtered = filtered.filter((activity) => {
+          return activity.member && activity.member.some((member) => member === selectedMember)
+        })
+      }
+
+      return filtered
+    } catch (err) {
+      console.error("Error filtering planned activities:", err)
+      return []
     }
+  }, [activities, selectedCategory, selectedMember])
 
-    // 類型篩選
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter((activity) => activity.category === selectedCategory)
+  const getActivitySegments = useCallback(
+    (activity: Activity, year: number) => {
+      try {
+        const startDate = new Date(activity.startDate)
+        const endDate = new Date(activity.endDate)
+        const yearStart = new Date(year, 0, 1)
+        const yearEnd = new Date(year, 11, 31)
+
+        const segmentStart = new Date(Math.max(startDate.getTime(), yearStart.getTime()))
+        const segmentEnd = new Date(Math.min(endDate.getTime(), yearEnd.getTime()))
+
+        const startMonth = segmentStart.getMonth()
+        const endMonth = segmentEnd.getMonth()
+        const startDay = segmentStart.getDate()
+        const endDay = segmentEnd.getDate()
+
+        const daysInStartMonth = new Date(year, startMonth + 1, 0).getDate()
+        const daysInEndMonth = new Date(year, endMonth + 1, 0).getDate()
+
+        // 計算在相關月份範圍內的位置
+        const startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
+        const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
+        const width = endPosition - startPosition
+
+        const isFirstSegment = startDate.getFullYear() === year
+        const isLastSegment = endDate.getFullYear() === year
+        const isMultiYear = startDate.getFullYear() !== endDate.getFullYear()
+
+        return {
+          startPosition,
+          width,
+          isFirstSegment,
+          isLastSegment,
+          isMultiYear,
+        }
+      } catch (err) {
+        console.error("Error calculating activity segments:", err)
+        return {
+          startPosition: 0,
+          width: 10,
+          isFirstSegment: true,
+          isLastSegment: true,
+          isMultiYear: false,
+        }
+      }
     }
-    // 角色篩選
-    if (selectedMember !== "all") {
-      filtered = filtered.filter((activity) => {
-        return activity.member && activity.member.some((member) => member === selectedMember)
-      })
-    }
-
-    return filtered
-  }, [activities, selectedYear, selectedCategory, selectedMember])
-
-  // 計算活動相關的月份（手機版用）
-  const getRelevantMonths = (activity: Activity, year: number) => {
-    const startDate = new Date(activity.startDate)
-    const endDate = new Date(activity.endDate)
-    const activityStartMonth = startDate.getFullYear() === year ? startDate.getMonth() : 0
-    const activityEndMonth = endDate.getFullYear() === year ? endDate.getMonth() : 11
-
-    // 找出活動涉及的月份
-    const involvedMonths = []
-    for (let month = activityStartMonth; month <= activityEndMonth; month++) {
-      involvedMonths.push(month)
-    }
-
-    // 如果活動跨越的月份少於2個，則包含相鄰月份
-    if (involvedMonths.length === 1) {
-      const month = involvedMonths[0]
-      if (month > 0) involvedMonths.unshift(month - 1)
-      if (month < 11 && involvedMonths.length < 2) involvedMonths.push(month + 1)
-    }
-
-    return involvedMonths.slice(0, 2) // 最多返回2個月份
-  }
-
-  const getActivitySegments = (activity: Activity, year: number, relevantMonths?: number[]) => {
-    const startDate = new Date(activity.startDate)
-    const endDate = new Date(activity.endDate)
-    const yearStart = new Date(year, 0, 1)
-    const yearEnd = new Date(year, 11, 31)
-
-    const segmentStart = new Date(Math.max(startDate.getTime(), yearStart.getTime()))
-    const segmentEnd = new Date(Math.min(endDate.getTime(), yearEnd.getTime()))
-
-    const startMonth = segmentStart.getMonth()
-    const endMonth = segmentEnd.getMonth()
-    const startDay = segmentStart.getDate()
-    const endDay = segmentEnd.getDate()
-
-    const daysInStartMonth = new Date(year, startMonth + 1, 0).getDate()
-    const daysInEndMonth = new Date(year, endMonth + 1, 0).getDate()
-
-    let startPosition, width
-
-    if (isMobile && relevantMonths) {
-      // 手機版：基於相關月份計算位置
-      const firstMonth = relevantMonths[0]
-      const lastMonth = relevantMonths[relevantMonths.length - 1]
-
-      // 計算在相關月份範圍內的位置
-      const relativeStartMonth = Math.max(startMonth, firstMonth)
-      const relativeEndMonth = Math.min(endMonth, lastMonth)
-
-      const monthRange = lastMonth - firstMonth + 1
-      startPosition =
-        ((relativeStartMonth - firstMonth) * 100) / monthRange +
-        ((relativeStartMonth === startMonth ? startDay - 1 : 0) / daysInStartMonth) * (100 / monthRange)
-
-      const endPosition =
-        ((relativeEndMonth - firstMonth) * 100) / monthRange +
-        ((relativeEndMonth === endMonth ? endDay : new Date(year, relativeEndMonth + 1, 0).getDate()) /
-          new Date(year, relativeEndMonth + 1, 0).getDate()) *
-          (100 / monthRange)
-
-      width = endPosition - startPosition
-    } else {
-      // 桌面版：原有邏輯
-      startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
-      const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
-      width = endPosition - startPosition
-    }
-
-    const isFirstSegment = startDate.getFullYear() === year
-    const isLastSegment = endDate.getFullYear() === year
-    const isMultiYear = startDate.getFullYear() !== endDate.getFullYear()
-
-    return {
-      startPosition,
-      width,
-      isFirstSegment,
-      isLastSegment,
-      isMultiYear,
-    }
-  }
+  )
 
   const handleActivityHover = (activity: Activity | null, event?: React.MouseEvent) => {
     if (!activity || !event) {
@@ -305,244 +348,301 @@ export default function Component() {
     setHoveredImage(imageSrc)
   }
 
-  const toggleSortOrder = () => {
+  const toggleSortOrder = useCallback(() => {
     setSortOrder(sortOrder === "desc" ? "asc" : "desc")
-  }
+  }, [sortOrder])
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setSelectedYear("all")
     setSelectedCategory("all")
     setSelectedMember("all")
-  }
+  }, [])
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+  }, [])
 
-  const scrollToPlanning = () => {
+  const scrollToPlanning = useCallback(() => {
     const planningSection = document.getElementById("planning-section")
     if (planningSection) {
       planningSection.scrollIntoView({ behavior: "smooth" })
     }
-  }
+  }, [])
 
-  const renderYearTimeline = (year: number) => {
-    // 計算剩餘時間的函數
-    const getRemainingTime = (endDate: string) => {
-      const now = new Date()
-      const end = new Date(endDate)
-      end.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
+  const renderYearTimeline = useCallback(
+  (year: number) => {
+    try {    
+      // 計算剩餘時間的函數
+      const getRemainingTime = (endDate: string) => {
+        try {
+          const now = new Date()
+          const end = new Date(endDate)
+          end.setHours(4, 0, 0, 0) // 設定為結束日期的早上4:00
 
-      const diffMs = end.getTime() - now.getTime()
+          const diffMs = end.getTime() - now.getTime()
 
-      if (diffMs <= 0) {
-        return null // 已結束
+          if (diffMs <= 0) {
+            return null // 已結束
+          }
+
+          const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+          const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+
+          return { days, hours }
+        } catch (err) {
+          console.error("Error calculating remaining time:", err)
+          return null
+        }
+      }
+      const yearActivities = filteredActivities.filter((activity) => {
+        const startYear = new Date(activity.startDate).getFullYear()
+        // 只在活動開始的年份顯示，避免跨年活動重複顯示
+        return startYear === year
+      })
+
+      const getStatusIcon = (iconName: string) => {
+        switch (iconName) {
+          case "CheckCircle":
+            return CheckCircle
+          case "PlayCircle":
+            return PlayCircle
+          case "Clock":
+            return Clock
+          case "PauseCircle":
+            return PauseCircle
+          default:
+            return Clock
+        }
+      }
+      
+      if (yearActivities.length === 0) {
+        return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
       }
 
-      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-
-      return { days, hours }
-    }
-    const yearActivities = filteredActivities.filter((activity) => {
-      const startYear = new Date(activity.startDate).getFullYear()
-      // 只在活動開始的年份顯示，避免跨年活動重複顯示
-      return startYear === year
-    })
-
-    const getStatusIcon = (iconName: string) => {
-      switch (iconName) {
-        case "CheckCircle":
-          return CheckCircle
-        case "PlayCircle":
-          return PlayCircle
-        case "Clock":
-          return Clock
-        case "PauseCircle":
-          return PauseCircle
-        default:
-          return Clock
-      }
-    }
-    
-    if (yearActivities.length === 0) {
-      return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
-    }
-
-    return (
-      <div key={year} className="mb-8 relative">
-        <div className="flex items-center gap-4 mb-4">
-          <h3 className="text-2xl font-bold text-white">{year}年</h3>
-          <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-            {yearActivities.length} 個活動
-          </Badge>
-        </div>
-
-        {/* 桌面版標題行 */}
-        {!isMobile && (
-        <div className="flex mb-4">
-          <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
-            活動資訊
+      return (
+        <div key={year} className="mb-8 relative">
+          <div className="flex items-center gap-4 mb-4">
+            <h3 className="text-2xl font-bold text-white">{year}年</h3>
+            <Badge variant="secondary" className="bg-gray-700 text-gray-300">
+              {yearActivities.length} 個活動
+            </Badge>
           </div>
-          <div className="flex-1 flex">
-            {months.map((month, index) => (
-              <div
-                key={index}
-                className="flex-1 text-center text-sm text-gray-300 border-r border-gray-600 last:border-r-0"
-              >
-                {month}
-              </div>
-            ))}
-          </div>
-        </div>
-        )}
 
-        {/* 活動列表 */}
-        <div className="space-y-3">
-          {yearActivities.map((activity) => {
-            const relevantMonths = isMobile ? getRelevantMonths(activity, year) : undefined
-            const segment = getActivitySegments(activity, year, relevantMonths)
-            const config = statusConfig[activity.calculatedStatus]
-            const Icon = getStatusIcon(config.icon)
-
-            return (
-              <div
-                key={`${activity.id}-${year}`} data-id={activity.id}
-                className="flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px]"
-              >
-                {/* 左側活動資訊欄 */}
+          {/* 桌面版標題行 */}
+          {!isMobile && (
+          <div className="flex mb-4">
+            <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
+              活動資訊
+            </div>
+            <div className="flex-1 flex">
+              {months.map((month, index) => (
                 <div
-                  className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
+                  key={index}
+                  className="flex-1 text-center text-sm text-gray-300 border-r border-gray-600 last:border-r-0"
                 >
-                  <div className="relative">
-                    <Image
-                      src={activity.image || "/placeholder.svg"}
-                      alt={activity.name}
-                      width={100}
-                      height={100}
-                      className={`${isMobile ? "w-20 h-20" : "w-12 h-12"} rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all`}
-                      onMouseEnter={(e) => handleImageHover(activity.image, e)}
-                      onMouseLeave={() => handleImageHover(null)}
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
-                      <div className="flex items-center gap-2 mb-1">
-                          <Icon className="w-4 h-4 text-white flex-shrink-0" />
-                          <h4 className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate`}>
-                            {activity.name}
-                          </h4>
-                      </div>
-                    </a>
-                    {/* 進行中活動的剩餘時間顯示 */}
-                    {isMobile && activity.calculatedStatus === "ongoing" &&
-                      (() => {
-                        const remaining = getRemainingTime(activity.endDate)
-                        return remaining ? (
-                          <div
-                            className="text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm flex items-center w-fit"
-                          >
-                            <span className="truncate">
-                              剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
-                              {remaining.hours}小時
-                            </span>
-                          </div>
-                        ) : null
-                      })()}
-                    <p
-                      className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2 mb-1`}
-                    >
-                      {new Date(activity.startDate).getMonth() + 1}/{new Date(activity.startDate).getDate()} -{" "}
-                      {new Date(activity.endDate).getMonth() + 1}/{new Date(activity.endDate).getDate()}
-                    </p>
-                    {/* 類別標籤 */}
-                    {activity.category && (
-                      <p
-                        className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2`}
-                      >{activity.category}</p>
-                    )}
-                    {/* 成員列表 */}
-                    {activity.member && (
-                      <p className="text-gray-400 text-xs">
-                        {activity.member ? `${activity.member.join(", ")}` : ""}
-                      </p>
-                    )}
-                    {/* 狀態標籤 */}
-                    {isMobile && (
-                      <div className="flex items-center gap-2 mt-1">
-                        <div
-                          className={`w-2 h-2 ${config.color} rounded-full flex-shrink-0 ${
-                            activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
-                          }`}
-                        ></div>
-                        <span className="text-gray-400 text-xs">{config.label}</span>
-                      </div>
-                    )}
-                  </div>
+                  {month}
                 </div>
-              
-                {/* 右側時間軸 */}
-                {!isMobile && (
-                <div className="flex-1 relative flex flex-col justify-center">
-                    <div className={`relative h-8 flex items-center justify-center`}>
-                      <div
-                        className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                          activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
-                        } ${
-                          segment.isMultiYear
-                            ? segment.isFirstSegment
-                              ? "rounded-r-none"
-                              : segment.isLastSegment
-                                ? "rounded-l-none"
-                                : "rounded-none"
-                            : ""
-                        }`}
-                        style={{
-                          left: `${segment.startPosition}%`,
-                          width: `${segment.width}%`,
+              ))}
+            </div>
+          </div>
+          )}
+
+          {/* 活動列表 */}
+          <div className="space-y-3">
+            {yearActivities.map((activity) => {
+              const segment = getActivitySegments(activity, year)
+              const config = statusConfig[activity.calculatedStatus]
+              const Icon = getStatusIcon(config.icon)
+
+              return (
+                <div
+                  key={`${activity.id}-${year}`} data-id={activity.id}
+                  className="flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px]"
+                >
+                  {/* 左側活動資訊欄 */}
+                  <div
+                    className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
+                  >
+                    <div className="relative">
+                      <Image
+                        src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
+                        alt={activity.name}
+                        width={100}
+                        height={100}
+                        className={`${isMobile ? "w-20 h-20" : "w-12 h-12"} rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all`}
+                        onMouseEnter={(e) => handleImageHover(activity.image, e)}
+                        onMouseLeave={() => handleImageHover(null)}
+                        onError={(e) => {
+                            // 圖片載入失敗時的處理
+                            const target = e.target as HTMLImageElement
+                            target.src = "/placeholder.svg?height=40&width=40&text=error"
                         }}
-                        onMouseEnter={(e) => handleActivityHover(activity, e)}
-                        onMouseLeave={() => handleActivityHover(null)}
-                      >
-                      </div>
+                        loading="lazy"
+                      />
                     </div>
-                    {/* 進行中活動的剩餘時間顯示 */}
-                    {activity.calculatedStatus === "ongoing" &&
-                      (() => {
-                        const remaining = getRemainingTime(activity.endDate)
-                        return remaining ? (
+                    <div className="flex-1 min-w-0">
+                      <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
+                        <div className="flex items-center gap-2 mb-1">
+                            <Icon className="w-4 h-4 text-white flex-shrink-0" />
+                            <h4 className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate`}>
+                              {activity.name}
+                            </h4>
+                        </div>
+                      </a>
+                      {/* 進行中活動的剩餘時間顯示 */}
+                      {isMobile && activity.calculatedStatus === "ongoing" &&
+                        (() => {
+                          const remaining = getRemainingTime(activity.endDate)
+                          return remaining ? (
+                            <div
+                              className="text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm flex items-center w-fit"
+                            >
+                              <span className="truncate">
+                                剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
+                                {remaining.hours}小時
+                              </span>
+                            </div>
+                          ) : null
+                        })()}
+                      <p
+                        className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2 mb-1`}
+                      >
+                        {new Date(activity.startDate).getMonth() + 1}/{new Date(activity.startDate).getDate()} -{" "}
+                        {new Date(activity.endDate).getMonth() + 1}/{new Date(activity.endDate).getDate()}
+                      </p>
+                      {/* 類別標籤 */}
+                      {activity.category && (
+                        <p
+                          className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2`}
+                        >{activity.category}</p>
+                      )}
+                      {/* 成員列表 */}
+                      {activity.member && (
+                        <p className="text-gray-400 text-xs">
+                          {activity.member ? `${activity.member.join(", ")}` : ""}
+                        </p>
+                      )}
+                      {/* 狀態標籤 */}
+                      {isMobile && (
+                        <div className="flex items-center gap-2 mt-1">
                           <div
-                            className="absolute text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm"
-                            style={{
-                              left: `${segment.startPosition}%`,
-                              width: `${segment.width}%`,
-                              top: isMobile ? "calc(50% + 20px)" : "calc(50% + 24px)",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              minWidth: "fit-content",
-                            }}
-                          >
-                            <Clock className="w-3 h-3 mr-1 flex-shrink-0" />
-                            <span className="truncate">
-                              剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
-                              {remaining.hours}小時
-                            </span>
-                          </div>
-                        ) : null
-                      })()}
+                            className={`w-2 h-2 ${config.color} rounded-full flex-shrink-0 ${
+                              activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
+                            }`}
+                          ></div>
+                          <span className="text-gray-400 text-xs">{config.label}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                
+                  {/* 右側時間軸 */}
+                  {!isMobile && (
+                  <div className="flex-1 relative flex flex-col justify-center">
+                      <div className={`relative h-8 flex items-center justify-center`}>
+                        <div
+                          className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
+                            activity.calculatedStatus === "ongoing" ? "animate-pulse" : ""
+                          } ${
+                            segment.isMultiYear
+                              ? segment.isFirstSegment
+                                ? "rounded-r-none"
+                                : segment.isLastSegment
+                                  ? "rounded-l-none"
+                                  : "rounded-none"
+                              : ""
+                          }`}
+                          style={{
+                            left: `${segment.startPosition}%`,
+                            width: `${segment.width}%`,
+                          }}
+                          onMouseEnter={(e) => handleActivityHover(activity, e)}
+                          onMouseLeave={() => handleActivityHover(null)}
+                        >
+                        </div>
+                      </div>
+                      {/* 進行中活動的剩餘時間顯示 */}
+                      {activity.calculatedStatus === "ongoing" &&
+                        (() => {
+                          const remaining = getRemainingTime(activity.endDate)
+                          return remaining ? (
+                            <div
+                              className="absolute text-xs text-orange-300 font-medium bg-gray-900/80 px-2 py-1 rounded backdrop-blur-sm"
+                              style={{
+                                left: `${segment.startPosition}%`,
+                                width: `${segment.width}%`,
+                                top: isMobile ? "calc(50% + 20px)" : "calc(50% + 24px)",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                minWidth: "fit-content",
+                              }}
+                            >
+                              <Clock className="w-3 h-3 mr-1 flex-shrink-0" />
+                              <span className="truncate">
+                                剩餘 {remaining.days > 0 ? `${remaining.days}日` : ""}
+                                {remaining.hours}小時
+                              </span>
+                            </div>
+                          ) : null
+                        })()}
+                  </div>
+                  )}
                 </div>
-                )}
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
+        </div>
+      )
+    } catch (err) {
+        console.error("Error rendering year timeline:", err)
+        return (
+          <div key={year} className="mb-8 relative">
+            <div className="text-red-400 text-center py-4">載入 {year} 年數據時發生錯誤</div>
+          </div>
+        )
+      }
+    },
+    [filteredActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover],
+  )
+
+
+  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
+  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
+
+  // Loading 狀態
+  if (isLoading) {
+    return (
+      <div className="min-h-screen p-2 md:p-4 flex items-center justify-center" style={{ backgroundColor: "#16192c" }}>
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-500 mx-auto mb-4" />
+          <div className="text-white text-lg mb-2">載入中...</div>
+          <div className="text-gray-400 text-sm">正在準備活動數據</div>
         </div>
       </div>
     )
   }
 
-  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
+  // 錯誤狀態
+  if (error) {
+    return (
+      <div className="min-h-screen p-2 md:p-4 flex items-center justify-center" style={{ backgroundColor: "#16192c" }}>
+        <div className="text-center">
+          <div className="text-red-400 text-lg mb-4">{error}</div>
+          <Button
+            onClick={() => {
+              setError(null)
+              setIsLoading(true)
+              window.location.reload()
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            重新載入
+          </Button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen p-4" style={{ backgroundColor: "#16192c" }}>
@@ -720,11 +820,17 @@ export default function Component() {
                     <div>
                       <a href={activity.url} target="_blank" className="flex items-center gap-3">
                         <Image
-                          src={activity.image || "/placeholder.svg"}
+                          src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
                           alt={activity.name}
                           className="w-16 h-16 rounded-full object-cover"
                           width={100}
                           height={100}
+                          onError={(e) => { 
+                            // 圖片載入失敗時的處理
+                            const target = e.target as HTMLImageElement
+                            target.src = "/placeholder.svg?height=40&width=40&text=error"
+                          }}
+                          loading="lazy"
                         />
                         <div>
                           <h4 className="text-white font-medium">{activity.name}</h4>
