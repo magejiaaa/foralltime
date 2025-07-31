@@ -471,7 +471,7 @@ export default function Component() {
                     className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
                   >
                     <div className="relative">
-                      <Image
+                      {/* <Image
                         src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
                         alt={activity.name}
                         width={100}
@@ -485,7 +485,7 @@ export default function Component() {
                             target.src = "/placeholder.svg?height=40&width=40&text=error"
                         }}
                         loading="lazy"
-                      />
+                      /> */}
                     </div>
                     <div className="flex-1 min-w-0">
                       <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
@@ -826,7 +826,7 @@ export default function Component() {
                   <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
                     <div>
                       <a href={activity.url} target="_blank" className="flex items-center gap-3">
-                        <Image
+                        {/* <Image
                           src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
                           alt={activity.name}
                           className="w-16 h-16 rounded-full object-cover"
@@ -838,7 +838,7 @@ export default function Component() {
                             target.src = "/placeholder.svg?height=40&width=40&text=error"
                           }}
                           loading="lazy"
-                        />
+                        /> */}
                         <div>
                           <h4 className="text-white font-medium">{activity.name}</h4>
                           <p className="text-gray-400 text-sm">
