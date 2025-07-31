@@ -1228,7 +1228,7 @@ export const activitiesData: Activity[] = [
     endDate: "",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%88%E5%A4%A9%E7%81%AF%E4%BC%9A",
-    image: "https://huiji-public.huijistatic.com/hlr1023/uploads/7/76/%E8%89%BE%E5%9B%A0-%E6%9C%9D%E7%84%B0%E8%BF%8E%E7%81%AF-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
+    image: "",
     category: "週年免費SSR",
     member: ["艾因"],
     description: "預計2025.10",
