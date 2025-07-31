@@ -896,10 +896,13 @@ export default function Component() {
           }}
         >
           <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg p-2 shadow-2xl">
-            <img
-              src={hoveredImage.replace("height=40&width=40", "height=auto&width=500") || "/placeholder.svg"}
+            <Image
+              src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
               alt="活動圖片預覽"
-              className="w-[500px] object-cover rounded-lg"
+              width={0}
+              height={0}
+              sizes="(max-width: 500px) 100vw, 500px"
+              className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
               style={{ maxWidth: "500px", maxHeight: "500px" }}
             />
           </div>
