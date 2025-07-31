@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'www.hlr1023.huijiwiki.com',
+        hostname: 'huiji-thumb.huijistatic.com',
       }
     ]
   }
