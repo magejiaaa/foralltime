@@ -292,7 +292,8 @@ export default function Component() {
           isMultiYear: false,
         }
       }
-    }
+    },
+    []
   )
 
   const handleActivityHover = (activity: Activity | null, event?: React.MouseEvent) => {
