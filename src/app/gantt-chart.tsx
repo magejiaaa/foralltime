@@ -247,107 +247,113 @@ export default function Component() {
     }
   }, [activities, selectedCategory, selectedMember])
 
-  const getActivitySegments = useCallback(
-    (activity: Activity, year: number) => {
-      try {
-        const startDate = new Date(activity.startDate)
-        const endDate = new Date(activity.endDate)
-        const yearStart = new Date(year, 0, 1)
-        const yearEnd = new Date(year, 11, 31)
+  const getActivitySegments = useCallback((activity: Activity, year: number) => {
+    try {
+      const startDate = new Date(activity.startDate)
+      const endDate = new Date(activity.endDate)
+      const yearStart = new Date(year, 0, 1)
+      const yearEnd = new Date(year, 11, 31)
 
-        const segmentStart = new Date(Math.max(startDate.getTime(), yearStart.getTime()))
-        const segmentEnd = new Date(Math.min(endDate.getTime(), yearEnd.getTime()))
+      const segmentStart = new Date(Math.max(startDate.getTime(), yearStart.getTime()))
+      const segmentEnd = new Date(Math.min(endDate.getTime(), yearEnd.getTime()))
 
-        const startMonth = segmentStart.getMonth()
-        const endMonth = segmentEnd.getMonth()
-        const startDay = segmentStart.getDate()
-        const endDay = segmentEnd.getDate()
+      const startMonth = segmentStart.getMonth()
+      const endMonth = segmentEnd.getMonth()
+      const startDay = segmentStart.getDate()
+      const endDay = segmentEnd.getDate()
 
-        const daysInStartMonth = new Date(year, startMonth + 1, 0).getDate()
-        const daysInEndMonth = new Date(year, endMonth + 1, 0).getDate()
+      const daysInStartMonth = new Date(year, startMonth + 1, 0).getDate()
+      const daysInEndMonth = new Date(year, endMonth + 1, 0).getDate()
 
-        // 計算在相關月份範圍內的位置
-        const startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
-        const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
-        const width = endPosition - startPosition
+      // 計算在相關月份範圍內的位置
+      const startPosition = (startMonth * 100) / 12 + ((startDay - 1) / daysInStartMonth) * (100 / 12)
+      const endPosition = (endMonth * 100) / 12 + (endDay / daysInEndMonth) * (100 / 12)
+      const width = endPosition - startPosition
 
-        const isFirstSegment = startDate.getFullYear() === year
-        const isLastSegment = endDate.getFullYear() === year
-        const isMultiYear = startDate.getFullYear() !== endDate.getFullYear()
+      const isFirstSegment = startDate.getFullYear() === year
+      const isLastSegment = endDate.getFullYear() === year
+      const isMultiYear = startDate.getFullYear() !== endDate.getFullYear()
 
-        return {
-          startPosition,
-          width,
-          isFirstSegment,
-          isLastSegment,
-          isMultiYear,
-        }
-      } catch (err) {
-        console.error("Error calculating activity segments:", err)
-        return {
-          startPosition: 0,
-          width: 10,
-          isFirstSegment: true,
-          isLastSegment: true,
-          isMultiYear: false,
-        }
+      return {
+        startPosition,
+        width,
+        isFirstSegment,
+        isLastSegment,
+        isMultiYear,
       }
-    },
-    []
-  )
-
-  const handleActivityHover = (activity: Activity | null, event?: React.MouseEvent) => {
-    if (!activity || !event) {
-      setHoveredActivity(null)
-      return
+    } catch (err) {
+      console.error("Error calculating activity segments:", err)
+      return {
+        startPosition: 0,
+        width: 10,
+        isFirstSegment: true,
+        isLastSegment: true,
+        isMultiYear: false,
+      }
     }
+  }, [])
 
-    const rect = event.currentTarget.getBoundingClientRect()
-    const viewportWidth = window.innerWidth
+  const handleActivityHover = useCallback((activity: Activity | null, event?: React.MouseEvent) => {
+    try {
+      if (!activity || !event) {
+        setHoveredActivity(null)
+        return
+      }
 
-    // 決定懸浮視窗顯示在左側還是右側
-    const side = rect.right > viewportWidth * 0.7 ? "left" : "right"
+      const rect = event.currentTarget.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
 
-    // 計算位置
-    const x = side === "right" ? rect.right + 10 : rect.left - 10
-    const y = rect.top + rect.height / 2
+      // 決定懸浮視窗顯示在左側還是右側
+      const side = rect.right > viewportWidth * 0.7 ? "left" : "right"
 
-    setTooltipPosition({ x, y, side })
-    setHoveredActivity(activity.id)
-  }
+      // 計算位置
+      const x = side === "right" ? rect.right + 10 : rect.left - 10
+      const y = rect.top + rect.height / 2
 
-  const handleImageHover = (imageSrc: string | null, event?: React.MouseEvent) => {
-    if (!imageSrc || !event || isMobile) {
-      setHoveredImage(null)
-      return
+      setTooltipPosition({ x, y, side })
+      setHoveredActivity(activity.id)
+    } catch (err) {
+      console.error("Error handling activity hover:", err)
     }
+  }, [])
 
-    const rect = event.currentTarget.getBoundingClientRect()
-    const viewportWidth = window.innerWidth
-    const viewportHeight = window.innerHeight
+  const handleImageHover = useCallback(
+    (imageSrc: string | null, event?: React.MouseEvent) => {
+      try {
+        if (!imageSrc || !event || isMobile) {
+          setHoveredImage(null)
+          return
+        }
 
-    // 計算懸浮視窗位置，確保不超出螢幕
-    let x = rect.right + 10
-    let y = rect.top
+        const rect = event.currentTarget.getBoundingClientRect()
+        const viewportWidth = window.innerWidth
+        const viewportHeight = window.innerHeight
 
-    // 如果右側空間不足，顯示在左側
-    if (x + 500 > viewportWidth) {
-      x = rect.left - 510
-    }
+        // 計算懸浮視窗位置，確保不超出螢幕
+        let x = rect.right + 10
+        let y = rect.top
 
-    // 如果下方空間不足，向上調整
-    if (y + 500 > viewportHeight) {
-      y = viewportHeight - 510
-    }
+        // 如果右側空間不足，顯示在左側
+        if (x + 500 > viewportWidth) {
+          x = rect.left - 510
+        }
 
-    // 確保不超出螢幕頂部
-    if (y < 10) {
-      y = 10
-    }
+        // 如果下方空間不足，向上調整
+        if (y + 500 > viewportHeight) {
+          y = viewportHeight - 510
+        }
 
-    setImageTooltipPosition({ x, y })
-    setHoveredImage(imageSrc)
-  }
+        // 確保不超出螢幕頂部
+        if (y < 10) {
+          y = 10
+        }
+
+        setImageTooltipPosition({ x, y })
+        setHoveredImage(imageSrc)
+      } catch (err) {
+        console.error("Error handling image hover:", err)
+      }
+    }, [isMobile])
 
   const toggleSortOrder = useCallback(() => {
     setSortOrder(sortOrder === "desc" ? "asc" : "desc")
