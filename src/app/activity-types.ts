@@ -4,7 +4,6 @@ export interface Activity {
   startDate: string
   endDate: string
   status: "completed" | "ongoing" | "upcoming"
-  calculatedStatus: "completed" | "ongoing" | "upcoming"
   url: string
   image: string
   category?: string

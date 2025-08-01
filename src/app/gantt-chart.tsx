@@ -570,7 +570,8 @@ export default function Component() {
           <div className="space-y-3">
             {yearDisplayActivities.map(({ activity, isChild, level }) => {
               const segment = getActivitySegments(activity, year)
-              const config = statusConfig[activity.calculatedStatus]
+              const status = activity.calculatedStatus || activity.status
+              const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.upcoming
               
               const Icon = getStatusIcon(config.icon)
 
