@@ -4,13 +4,13 @@ export interface Activity {
   startDate: string
   endDate: string
   status: "completed" | "ongoing" | "upcoming"
+  calculatedStatus: "completed" | "ongoing" | "upcoming"
   url: string
   image: string
   category?: string
   member?: Array<string>
   description?: string
   childrenActivities?: Array<string>
-  calculatedStatus?: string
   packageId?: string // 關聯的方案ID
 }
 
