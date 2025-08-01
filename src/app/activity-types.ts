@@ -9,6 +9,9 @@ export interface Activity {
   category?: string
   member?: Array<string>
   description?: string
+  childrenActivities?: Array<string>
+  calculatedStatus?: string
+  packageId?: string // 關聯的方案ID
 }
 
 export const statusConfig = {

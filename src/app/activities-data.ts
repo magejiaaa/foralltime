@@ -91,6 +91,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8B%E4%B8%80%E7%AB%99%EF%BC%8C%E4%B9%90%E5%9B%AD",
     image: "https://r.res.easebar.com/pic/20231219/90c892a8-53d7-4c27-a73e-cff7e088570b.jpg",
     category: "主線",
+    childrenActivities: ["9", "11"]
   },
   {
     id: "9",
@@ -133,6 +134,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B9%A6%E4%B8%AD%E7%AB%A5%E8%AF%9D",
     image: "https://r.res.easebar.com/pic/20240109/803873e6-b0ee-4877-b494-d52de7179fab.jpg",
+    childrenActivities: ["106"],
   },
   {
     id: "106",
@@ -191,6 +193,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E6%96%B0%E5%B9%B4%E6%B4%BB%E5%8A%A8",
     image: "https://r.res.easebar.com/pic/20240205/df36cb9a-4c18-4247-b3e7-030dd6b7497d.jpg",
+    childrenActivities: ["104"],
   },
   {
     id: "115",
@@ -347,6 +350,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%8A%E5%A4%95%E9%95%BF%E7%9B%B8%E5%AE%88",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/472685223_486439341141298_8365619791427437423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Em0tbfaLbkwQ7kNvwGJi4bY&_nc_oc=Adk_yV5tnc0ZFLeeYnPk0YP3165JNH-cKHN1vwYRD26yah6Cz97jerNTv5l2DQj174E&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=ioZQqD68chcfLrUxrJHArA&oh=00_AfQW0nVWtJyCATZLmFr2oP50Y5ss0KL0cvHddS2snqJLhA&oe=688D1F09",
     category: "七夕",
+    childrenActivities: ["107"],
   },
   {
     id: "107",
@@ -415,6 +419,7 @@ export const activitiesData: Activity[] = [
     image: "https://r.res.easebar.com/pic/20240625/86635b47-bf93-417d-946c-8f86db2ff2d3.png",
     category: "主線",
     member: ["艾因", "路辰", "司嵐"],
+    childrenActivities: ["36"]
   },
   {
     id: "38",
@@ -456,6 +461,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%BF%B7%E5%B1%80",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/472846401_488930964225469_1533186160116172242_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rqOo_Wsnn78Q7kNvwH2cV_b&_nc_oc=AdnWldxK8yRP5cY2y9zungB9ZmhLA24BZpkwnS3wnnjmJmy5C0oBcCbVVWPzq5S2b2c0rZga-yIN4-K5ZOgeozJK&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=3HIBBjECGTsFR1eUgmA0Zg&oh=00_AfQowfFGmi1eT0j8WJRVyy6q6O-LpENWxns0h12xHs3Hjw&oe=688D6662",
+    childrenActivities: ["114"]
   },
   {
     id: "114",
@@ -485,6 +491,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%87%E5%9C%A3%E5%A5%87%E5%B9%BB%E5%A4%9C",
     image: "https://r.res.easebar.com/pic/20240723/63879fab-0dfb-4023-ab0d-4f393aa9f322.png",
+    category: "萬聖",
   },
   {
     id: "44",
@@ -506,6 +513,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/472795245_490021164116449_187261042615931281_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vjFTMU4EVf0Q7kNvwHvzq5H&_nc_oc=AdlmdFB_k5YTw2Up1P99CG2SpSHChlRBJLFeNzuMS0Hy5BpWvKifZzqyBOmUaUbybsDp6Cxe5Voyg8C260C9VmLw&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=k4Q0vKW-zZ21r191OdO57g&oh=00_AfRVU4P-k_JTVvAcLCNQN_QGoRjDaQ4ZyT3dn47T3FL7MQ&oe=688D714A",
     category: "萬聖",
+    childrenActivities: ["110"],
   },
   {
     id: "110",
@@ -540,7 +548,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "48",
-    name: "闌珊長圖",
+    name: "闌珊長圖-今夕長相守服裝",
     startDate: "2024-09-12",
     endDate: "2024-09-26",
     status: "completed",
@@ -720,6 +728,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%96%E7%95%8C%E6%96%B0%E5%B9%B4",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/480572095_520998384352060_2133690300718876980_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1Y14Msp3R9oQ7kNvwEW5zW9&_nc_oc=AdlDOjDEYE6qSWu65XRr0oj-C7FlSMRqwic1BEPjyMTs2P1lSgBMLBFzAaWhFeGhwsJFgQ35fb5crjwiOGMt9bt2&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=IoIbzDVHkANudQJVycsCGw&oh=00_AfQy8KseOP0qeOttdmF2d_DC0cLxbo8aFJeRMw-ZcdHQkw&oe=688E5DDD",
+    childrenActivities: ["108"]
   }, // 2022開始
   {
     id: "108",
@@ -779,6 +788,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%9E%E9%99%A8%E7%BA%AA%E5%85%83%E4%B8%80%E6%9C%9F",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/480861774_521167031001862_8882777719918356902_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=yS29pZ-aROEQ7kNvwGCL8Tv&_nc_oc=AdnJGL1f6qD353-zn9qoSVibEBgLv6cr1owYRY68JLd1EuoqoN_js89Jzq_sXDb33PqeK1P0x1-UK5nZOT4DFWzt&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=YmIhF84vOuKsHhklRmz1JQ&oh=00_AfSiVC3Txa8uaC1DhzPNYtpTkH9VxnOEwGfGnkVc87GxJA&oe=688E4961",
     category: "主線",
+    childrenActivities: ["65", "66"],
   },
   {
     id: "117",
@@ -829,6 +839,7 @@ export const activitiesData: Activity[] = [
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/481061914_528772580241307_6192010993201706945_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=r7MBe_pIai4Q7kNvwHsaIKD&_nc_oc=AdnUNfEcJ6o4ib4WWpBTsjBVil7k4pbElO8VTycYB_UmMr2-cT_XeGyG5Fx0tCS-3oGz_texn8AgId9E_66Qf0Ji&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=wSTBRim1-9qakMk1VXA55A&oh=00_AfQEO8Yu4V0lyas9dkBBbWgwo9asC-KZtI9nwywaycbx3Q&oe=688E590E",
     category: "繾綣假日",
     member: ["葉瑄"],
+    childrenActivities: ["72"],
   },
   {
     id: "72",
@@ -921,6 +932,7 @@ export const activitiesData: Activity[] = [
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/486603660_544198302032068_5199655240419921786_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kGusNygzY6IQ7kNvwFBJrOV&_nc_oc=AdmFmlMG4hoaWoIfNWJmxkaUUi5GOchK6aB1h5tm2lfQi3mA_hcFMcarJy_lITqiw0TgqX-0wBaG1dVknsfIH3RM&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=0XuHnnSdM4gH2fmx-xPmZA&oh=00_AfQFsuKYHsi0o5gdhIQ5smDvuwnL6fRhrU3VGf6BrAnnQA&oe=688EAB8A",
     category: "繾綣假日",
     member: ["路辰"],
+    childrenActivities: ["86"],
   },
   {
     id: "81",
@@ -971,6 +983,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%AF%B8%E7%95%8C%E5%BD%92%E4%B8%80",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/494510867_569894252795806_7063750786066485885_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pOtBmrtggxoQ7kNvwGIEx37&_nc_oc=Admbh5ZushjxTIswg6UzoJlbTicSphs1wsqWCFk3uweoFwYXncxMa0fBU8GqNwsXqrI9sGAMQiLt1OWeBwMsAWbm&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=y__qrGtxKDpWKfzsxw-4JQ&oh=00_AfSCADI3mBu95-6I3QZzc-ZReJpb6kn4mFNFWGmG0YawKQ&oe=688EC54E",
     category: "主線",
+    childrenActivities: ["83", "84"],
   },
   {
     id: "86",
@@ -1118,7 +1131,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "100",
-    name: "羅夏·命定眷念服裝上架",
+    name: "羅夏·「命定眷念」服裝上架",
     startDate: "2025-07-17",
     endDate: "2025-07-24",
     status: "completed",
@@ -1136,6 +1149,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%8A%E5%A4%95%E9%95%BF%E7%9B%B8%E5%AE%88",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/523909667_632060769912487_2726905669391426888_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=k3OO0MxYW4EQ7kNvwGZD-XQ&_nc_oc=AdkZkJkcwLByT-5us75MdoSm0oX71knn1uwiZCW-sMXEYIJxmDmqJtt0xJ-83CT7bao8HXpac2GkhOb6Xasp_Z3J&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=6dyKX_AlgHjT4MiLEMxW6A&oh=00_AfRtKx6sZYVNoMRt-0VmPxP5cwlSkUbWwU_cd9GpQsZSLA&oe=688EC7C8",
     category: "七夕",
+    childrenActivities: ["116"],
+    packageId: "pkg001",
   },
   {
     id: "116",
@@ -1210,6 +1225,7 @@ export const activitiesData: Activity[] = [
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/500981713_591169600668271_3396256026400519720_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iBlrQvAx08YQ7kNvwG4CzzO&_nc_oc=AdkTc4U89VhjmhusIt46Sv93m8iLnoAKLrQ7tCTHROSQ9Ca08S-G_8HNpxC68vPhkDjGmMW5GZJck-PkktjjjQoc&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=avbc3JZVy-Vj7uzFbcSM0Q&oh=00_AfRMrc90C8wlIx2o5AoTer5DlODGYFkT0ox9LmHz8Uc9cQ&oe=688F2651",
     category: "繾綣假日",
     member: ["司嵐"],
+    childrenActivities: ["121"]
   },
   {
     id: "121",

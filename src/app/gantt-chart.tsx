@@ -13,6 +13,7 @@ import {
   Filter,
   User,
   Loader2,
+  ShoppingBag,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -22,13 +23,19 @@ import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
 import Image from 'next/image'
+import type { Package } from "./packages-types"
+import { packagesData } from "./packages-data"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 type SortOrder = "desc" | "asc"
+type ProcessedActivity = Activity & {
+  calculatedStatus?: Activity["status"]
+}
 
 export default function Component() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [packages, setPackages] = useState<Package[]>([])
   // 自動判斷活動狀態的函數 - 使用useCallback避免重複創建
   const getActivityStatus = useCallback((activity: Activity): Activity["status"] => {
     try {
@@ -68,6 +75,7 @@ export default function Component() {
         await new Promise((resolve) => setTimeout(resolve, 100))
 
         setActivities(activitiesData)
+        setPackages(packagesData)
         setIsLoading(false)
       } catch (err) {
         console.error("Error initializing data:", err)
@@ -80,7 +88,7 @@ export default function Component() {
   }, [])
 
   // 處理活動數據，添加計算出的狀態
-  const processedActivities = useMemo(() => {
+  const processedActivities = useMemo((): ProcessedActivity[] => {
     if (!activities.length) return []
 
     try {
@@ -93,6 +101,43 @@ export default function Component() {
       return activities.map((activity) => ({ ...activity, calculatedStatus: activity.status }))
     }
   }, [activities, getActivityStatus])
+
+  // 獲取活動關聯的禮包
+  const getActivityPackage = useCallback(
+    (activity: Activity) => {
+      if (!activity.packageId) return null
+      return packages.find((pkg) => pkg.id === activity.packageId) || null
+    },
+    [packages],
+  )
+
+  // 獲取子活動的函數
+  const getChildrenActivities = useCallback(
+    (parentActivity: Activity) => {
+      if (!parentActivity.childrenActivities?.length) return []
+
+      return parentActivity.childrenActivities
+        .map((childId) => processedActivities.find((activity) => activity.id === childId))
+        .filter(Boolean) as Activity[]
+    },
+    [processedActivities],
+  )
+
+  // 檢查是否為子活動
+  const isChildActivity = useCallback(
+    (activityId: string) => {
+      return processedActivities.some((activity) => activity.childrenActivities?.includes(activityId))
+    },
+    [processedActivities],
+  )
+
+  // 獲取父活動
+  const getParentActivity = useCallback(
+    (childId: string) => {
+      return processedActivities.find((activity) => activity.childrenActivities?.includes(childId))
+    },
+    [processedActivities],
+  )
 
   const [selectedYear, setSelectedYear] = useState<string>("all")
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
@@ -193,11 +238,12 @@ export default function Component() {
   const filteredActivities = useMemo(() => {
     if (!processedActivities.length) return []
 
-    let filtered = sortedActivities
+    // 先篩選所有活動（不區分父子）
+    let allFilteredActivities = sortedActivities
     try {
       // 年份篩選
       if (selectedYear !== "all") {
-        filtered = filtered.filter((activity) => {
+        allFilteredActivities = allFilteredActivities.filter((activity) => {
           const startYear = new Date(activity.startDate).getFullYear()
           const endYear = new Date(activity.endDate).getFullYear()
           return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
@@ -206,22 +252,87 @@ export default function Component() {
     
       // 類型篩選
       if (selectedCategory !== "all") {
-        filtered = filtered.filter((activity) => activity.category === selectedCategory)
+        allFilteredActivities = allFilteredActivities.filter((activity) => activity.category === selectedCategory)
       }
       // 角色篩選
       if (selectedMember !== "all") {
-        filtered = filtered.filter((activity) => {
+        allFilteredActivities = allFilteredActivities.filter((activity) => {
           return activity.member && activity.member.some((member) => member === selectedMember)
         })
       }
+      // 獲取符合條件的活動ID集合
+      const filteredActivityIds = new Set(allFilteredActivities.map((activity) => activity.id))
+
+      // 構建最終顯示的父活動列表
+      const finalParentActivities = new Set<string>()
+
+      allFilteredActivities.forEach((activity) => {
+        if (isChildActivity(activity.id)) {
+          // 如果是子活動符合條件，也要包含其父活動
+          const parent = getParentActivity(activity.id)
+          if (parent) {
+            finalParentActivities.add(parent.id)
+          }
+        } else {
+          // 如果是父活動符合條件，直接添加
+          finalParentActivities.add(activity.id)
+        }
+      })
+
+      // 返回所有需要顯示的父活動
+      return sortedActivities.filter(
+        (activity) => finalParentActivities.has(activity.id) && !isChildActivity(activity.id),
+      )
     } catch (err) {
       console.error("Error filtering activities:", err)
-      return []
+      return sortedActivities.filter((activity) => !isChildActivity(activity.id))
     }
-    
-    return filtered
-  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, processedActivities.length])
+  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, isChildActivity, getParentActivity, processedActivities.length])
 
+  
+  // 獲取要顯示的活動列表（包含父活動和子活動的層級結構）
+  const displayActivities = useMemo(() => {
+    const result: Array<{ activity: Activity; isChild: boolean; level: number }> = []
+
+    // 先篩選所有活動（不區分父子）
+    let allFilteredActivities = sortedActivities
+
+    // 年份篩選
+    if (selectedYear !== "all") {
+      allFilteredActivities = allFilteredActivities.filter((activity) => {
+        const startYear = new Date(activity.startDate).getFullYear()
+        const endYear = new Date(activity.endDate).getFullYear()
+        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
+      })
+    }
+
+    // 類型篩選
+    if (selectedCategory !== "all") {
+      allFilteredActivities = allFilteredActivities.filter((activity) => activity.category === selectedCategory)
+    }
+
+    // 獲取符合條件的活動ID集合
+    const filteredActivityIds = new Set(allFilteredActivities.map((activity) => activity.id))
+
+    filteredActivities.forEach((parentActivity) => {
+      // 添加父活動
+      result.push({ activity: parentActivity, isChild: false, level: 0 })
+
+      // 檢查子活動
+      const children = getChildrenActivities(parentActivity)
+      children.forEach((childActivity) => {
+        // 只顯示符合篩選條件的子活動，或者父活動符合條件時顯示所有子活動
+        const parentMatches = filteredActivityIds.has(parentActivity.id)
+        const childMatches = filteredActivityIds.has(childActivity.id)
+
+        if (parentMatches || childMatches) {
+          result.push({ activity: childActivity, isChild: true, level: 1 })
+        }
+      })
+    })
+
+    return result
+  }, [filteredActivities, getChildrenActivities, sortedActivities, selectedYear, selectedCategory])
   // 篩選出規劃中的活動
   const filteredPlannedActivities = useMemo(() => {
     if (!activities.length) return []
@@ -401,7 +512,8 @@ export default function Component() {
           return null
         }
       }
-      const yearActivities = filteredActivities.filter((activity) => {
+      // 獲取該年份的顯示活動（包含父子關係）
+      const yearDisplayActivities = displayActivities.filter(({ activity }) => {
         const startYear = new Date(activity.startDate).getFullYear()
         // 只在活動開始的年份顯示，避免跨年活動重複顯示
         return startYear === year
@@ -422,7 +534,7 @@ export default function Component() {
         }
       }
       
-      if (yearActivities.length === 0) {
+      if (yearDisplayActivities.length === 0) {
         return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
       }
 
@@ -431,7 +543,7 @@ export default function Component() {
           <div className="flex items-center gap-4 mb-4">
             <h3 className="text-2xl font-bold text-white">{year}年</h3>
             <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-              {yearActivities.length} 個活動
+              {yearDisplayActivities.length} 個活動
             </Badge>
           </div>
 
@@ -456,19 +568,22 @@ export default function Component() {
 
           {/* 活動列表 */}
           <div className="space-y-3">
-            {yearActivities.map((activity) => {
+            {yearDisplayActivities.map(({ activity, isChild, level }) => {
               const segment = getActivitySegments(activity, year)
               const config = statusConfig[activity.calculatedStatus]
+              
               const Icon = getStatusIcon(config.icon)
 
               return (
                 <div
                   key={`${activity.id}-${year}`} data-id={activity.id}
-                  className="flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px]"
+                  className={`flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px] ${
+                      isChild ? "ml-1 border-l-4 border-blue-400/50" : ""
+                    }`}
                 >
                   {/* 左側活動資訊欄 */}
                   <div
-                    className={`${isMobile ? "w-full" : "w-80"} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
+                    className={`${isMobile ? "w-full" : "w-80"} ${isChild ? "md:w-[312px]" : ""} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
                   >
                     <div className="relative">
                       <Image
@@ -491,7 +606,9 @@ export default function Component() {
                       <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
                         <div className="flex items-center gap-2 mb-1">
                             <Icon className="w-4 h-4 text-white flex-shrink-0" />
-                            <h4 className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate`}>
+                            <h4
+                              className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate ${isChild ? "text-gray-300" : ""}`}
+                            >
                               {activity.name}
                             </h4>
                         </div>
@@ -511,6 +628,7 @@ export default function Component() {
                             </div>
                           ) : null
                         })()}
+                        
                       <p
                         className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2 mb-1`}
                       >
@@ -610,7 +728,7 @@ export default function Component() {
         )
       }
     },
-    [filteredActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover],
   )
 
 
@@ -656,14 +774,14 @@ export default function Component() {
       <div className="max-w-7xl mx-auto">
         {/* 標題和篩選器 */}
         <div className="mb-8">
-          <img className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
+          <Image width={200} height={0} className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
           <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
-          <p className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2">
-            1.主線類別與全員不會有角色標籤<br />
-            2.活動類型參照中國服wiki分類<br />
-            3.活動目前新增到中國服2023年結束<br />
-            4.點擊活動名稱可直接連到wiki活動頁面
-          </p>
+          <ul className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2 list-decimal">
+            <li>全員活動不會有角色標籤</li>
+            <li>活動類型參照中國服wiki分類</li>
+            <li>點擊活動名稱可直接連到wiki活動頁面</li>
+            <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
+          </ul>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
               <div className="flex items-center gap-2">
@@ -789,12 +907,12 @@ export default function Component() {
                 {selectedMember}
               </Badge>
             )}
-            <span className="text-gray-400 text-sm">共 {filteredActivities.length} 個活動</span>
+            <span className="text-gray-400 text-sm">共 {displayActivities.length} 個活動</span>
           </div>
         )}
         {/* 甘特圖 */}
         <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 mb-8 relative">
-          {filteredActivities.length === 0 ? (
+          {displayActivities.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 text-lg mb-2">沒有找到符合條件的活動</div>
               <div className="text-gray-500 text-sm">請調整篩選條件或新增活動</div>
@@ -870,7 +988,7 @@ export default function Component() {
       {/* 活動詳情懸浮視窗 */}
       {hoveredActivity && hoveredActivityData && (
         <div
-          className="fixed z-[9999] bg-gray-900/95 backdrop-blur-sm text-white p-3 rounded-lg shadow-xl max-w-xs pointer-events-none"
+          className="fixed z-[9999] bg-gray-900/95 backdrop-blur-sm text-white p-4 rounded-lg shadow-xl max-w-sm pointer-events-none"
           style={{
             left: tooltipPosition.side === "right" ? `${tooltipPosition.x}px` : "auto",
             right: tooltipPosition.side === "left" ? `${window.innerWidth - tooltipPosition.x}px` : "auto",
@@ -883,6 +1001,73 @@ export default function Component() {
             {hoveredActivityData.startDate} ~ {hoveredActivityData.endDate} 04:00
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
+          {/* 關聯方案 */}
+          {hoveredActivityData.packageId &&
+            (() => {
+              const activityPackage = getActivityPackage(hoveredActivityData)
+              return activityPackage ? (
+                <div className="mt-4 pt-3 border-t border-gray-700">
+                  <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2">
+                    <ShoppingBag className="w-4 h-4" />
+                    活動商店: {activityPackage.name}
+                  </h5>
+                  <div className="bg-gray-800/50 rounded p-3">
+                    {/* <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p> */}
+                    <div className="space-y-2">
+                      {activityPackage.pricingOptions.map((option) => (
+                        <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium text-white">{option.name}</span>
+                            </div>
+                            {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
+                          </div>
+                          <div className="text-right">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-bold text-green-400">
+                                一抽${option.price}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : null
+            })()}
+          {/* 同期活動 */}
+          {hoveredActivityData.childrenActivities && hoveredActivityData.childrenActivities.length > 0 && (
+            <div className="mt-4 pt-3 border-t border-gray-700">
+              <h5 className="font-medium text-sm mb-2 text-blue-300">同期活動:</h5>
+              <div className="space-y-2">
+                {getChildrenActivities(hoveredActivityData).map((childActivity) => {
+                  const getStatusConfig = (status: string) => {
+                    const validStatuses = ['completed', 'ongoing', 'upcoming'] as const;
+                    return validStatuses.includes(status as typeof validStatuses[number]) 
+                      ? statusConfig[status as keyof typeof statusConfig]
+                      : statusConfig.upcoming;
+                  };
+                  const childConfig = getStatusConfig(childActivity.calculatedStatus || childActivity.status);
+
+                  return (
+                    <div key={childActivity.id} className="bg-gray-800/50 rounded p-2">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className={`w-2 h-2 ${childConfig.color} rounded-full flex-shrink-0`}></div>
+                        <span className="text-sm font-medium text-gray-200">{childActivity.name}</span>
+                      </div>
+                      <p className="text-xs text-gray-400 ml-4">
+                        {childActivity.startDate} ~ {childActivity.endDate}
+                      </p>
+                      {childActivity.member && childActivity.member.length > 0 && (
+                        <p className="text-xs text-gray-400 ml-4">{childActivity.member.join(", ")}</p>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
