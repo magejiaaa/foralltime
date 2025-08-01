@@ -3,7 +3,6 @@ import type React from "react"
 import { useState, useMemo, useEffect, useCallback } from "react"
 import {
   Calendar,
-  Plus,
   Clock,
   CheckCircle,
   PlayCircle,
@@ -86,7 +85,7 @@ export default function Component() {
 
     initializeData()
   }, [])
-
+  
   // 處理活動數據，添加計算出的狀態
   const processedActivities = useMemo((): ProcessedActivity[] => {
     if (!activities.length) return []
@@ -260,8 +259,6 @@ export default function Component() {
           return activity.member && activity.member.some((member) => member === selectedMember)
         })
       }
-      // 獲取符合條件的活動ID集合
-      const filteredActivityIds = new Set(allFilteredActivities.map((activity) => activity.id))
 
       // 構建最終顯示的父活動列表
       const finalParentActivities = new Set<string>()
@@ -570,9 +567,14 @@ export default function Component() {
           <div className="space-y-3">
             {yearDisplayActivities.map(({ activity, isChild, level }) => {
               const segment = getActivitySegments(activity, year)
-              const status = activity.calculatedStatus || activity.status
-              const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.upcoming
-              
+              const getStatusConfig = (status: string) => {
+                    const validStatuses = ['completed', 'ongoing', 'upcoming'] as const;
+                    return validStatuses.includes(status as typeof validStatuses[number]) 
+                      ? statusConfig[status as keyof typeof statusConfig]
+                      : statusConfig.upcoming;
+                  };
+              const config = getStatusConfig(activity.calculatedStatus || activity.status)
+
               const Icon = getStatusIcon(config.icon)
 
               return (
@@ -775,7 +777,7 @@ export default function Component() {
       <div className="max-w-7xl mx-auto">
         {/* 標題和篩選器 */}
         <div className="mb-8">
-          <Image width={200} height={0} className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
+          <Image width={200} height={80} priority={false} className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
           <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
           <ul className="text-gray-400 text-xs w-fit mx-auto mb-6 mt-2 list-decimal">
             <li>全員活動不會有角色標籤</li>

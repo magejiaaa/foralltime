@@ -10,6 +10,7 @@ export interface Activity {
   member?: Array<string>
   description?: string
   childrenActivities?: Array<string>
+  calculatedStatus?: string;
   packageId?: string // 關聯的方案ID
 }
 
