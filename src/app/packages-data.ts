@@ -52,5 +52,31 @@ export const packagesData: Package[] = [
                 description: "包含傳說道具和專屬稱號",
             },
         ],
-    }
+    },
+    {
+        id: "pkg003",
+        name: "重返葉塞",
+        description: "",
+        isActive: true,
+        pricingOptions: [
+            {
+                id: "price001",
+                name: "月卡特惠盒",
+                price: 28,
+                description: "顏料*6",
+            },
+            {
+                id: "price004",
+                name: "顏料鑽石箱",
+                price: 30,
+                description: "顏料*10、鑽石*980",
+            },
+            {
+                id: "price002",
+                name: "畫材大禮包",
+                price: 31,
+                description: "顏料*10、鑽石*68",
+            }
+        ],
+    },
 ]

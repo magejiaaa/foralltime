@@ -8,7 +8,7 @@ export interface PricingOption {
 export interface Package {
     id: string
     name: string
-    description: string
+    description?: string
     pricingOptions: PricingOption[]
     isActive: boolean
 }

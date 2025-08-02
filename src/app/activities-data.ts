@@ -214,7 +214,6 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B9%90%E5%9B%AD%E9%87%8D%E5%BB%BA",
     image: "https://r.res.easebar.com/pic/20240219/f8fac534-5eaa-4ea8-a3a9-6fe4600018ba.jpg",
-    category: "主線",
   },
   {
     id: "19",
@@ -348,7 +347,7 @@ export const activitiesData: Activity[] = [
     endDate: "2024-05-30",
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%8A%E5%A4%95%E9%95%BF%E7%9B%B8%E5%AE%88",
-    image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/472685223_486439341141298_8365619791427437423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Em0tbfaLbkwQ7kNvwGJi4bY&_nc_oc=Adk_yV5tnc0ZFLeeYnPk0YP3165JNH-cKHN1vwYRD26yah6Cz97jerNTv5l2DQj174E&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=ioZQqD68chcfLrUxrJHArA&oh=00_AfQW0nVWtJyCATZLmFr2oP50Y5ss0KL0cvHddS2snqJLhA&oe=688D1F09",
+    image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/472685223_486439341141298_8365619791427437423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zSDPrb7ZEKMQ7kNvwEmV8ZR&_nc_oc=AdkZc_2CNoQRTe8OBL0wWt8rICKSsuWLZu844tmCZ06p9zzEFt3LMKBeKbsZTAAojCcQJwkQehlMkuGeLskZAmU6&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=RsTsf590z8Lg9HMDVQ45Qg&oh=00_AfS1u9nUQBDvZ-eGxbj-ARPbOqz0bSOSoOWK2_8ottJBSA&oe=68930DC9",
     category: "七夕",
     childrenActivities: ["107"],
   },
@@ -1018,7 +1017,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "89",
-    name: "羈旅長歌",
+    name: "重返葉塞·羈旅長歌",
     startDate: "2025-05-22",
     endDate: "2025-06-02",
     status: "completed",
@@ -1038,7 +1037,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "91",
-    name: "溯洄長河",
+    name: "重返葉塞·溯洄長河",
     startDate: "2025-06-02",
     endDate: "2025-06-13",
     status: "completed",
@@ -1080,7 +1079,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "95",
-    name: "如夏生花",
+    name: "重返葉塞·如夏生花",
     startDate: "2025-06-26",
     endDate: "2025-07-07",
     status: "completed",
@@ -1101,7 +1100,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "97",
-    name: "明燈永晝",
+    name: "重返葉塞·明燈永晝",
     startDate: "2025-07-08",
     endDate: "2025-07-19",
     status: "completed",
@@ -1121,13 +1120,14 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "99",
-    name: "流光肇始",
+    name: "重返葉塞·流光肇始",
     startDate: "2025-07-19",
     endDate: "2025-07-30",
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E6%B5%81%E5%85%89%E8%82%87%E5%A7%8B",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/518389756_629036086881622_9019723963328886018_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eOMl3Nx6vHUQ7kNvwHhD-Io&_nc_oc=AdlmGXZY-biT7BaynA-XUc9GnSt_UNJOuHAI-HXMXtqjmoCYmCGq7gGyHkkRJy2tZKzlV13Vn-Pj5MPn4mfhI1fy&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=C3okVms9ZT3-szPPNzMgHA&oh=00_AfRwWuVoiVLwyvUI86DM9z3CFdWCQX9SKS6ulmAoPh2WBQ&oe=688E98CC",
     member: ["葉瑄"],
+    packageId: "pkg003"
   },
   {
     id: "100",
@@ -1303,7 +1303,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2022%E7%A7%8B%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "",
     category: "取材",
-    description: "新關卡",
+    description: "新關卡可能26.09",
   },
   {
     id: "128",
@@ -1324,6 +1324,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/a/ab/%E5%8F%B6%E7%91%84%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
     category: "服裝",
+    description: "2025會出",
   },
   {
     id: "130",
@@ -1391,6 +1392,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/135.png",
     category: "服裝",
+    description: "2026",
   },
   {
     id: "136",
@@ -1423,7 +1425,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/17/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
     category: "取材",
-    description: "新關卡",
+    description: "新關卡可能26.11",
   },
   {
     id: "139",
@@ -1574,6 +1576,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png",
     category: "帝國",
     member: ["路辰", "葉瑄"],
+    description: "可能2025.10"
   },
   {
     id: "153",
@@ -1646,6 +1649,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png",
     category: "主線",
+    description: "猜2025.11-12",
   },
   {
     id: "160",
@@ -1787,6 +1791,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b7/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png",
     category: "帝國",
     member: ["司嵐", "路辰"],
+    description: "可能2025.12"
   },
   {
     id: "174",
@@ -2286,6 +2291,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/4e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png",
     category: "帝國",
     member: ["司嵐", "羅夏"],
+    description: "可能2027.06"
   },
   {
     id: "221",
@@ -2680,6 +2686,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/78/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png",
     category: "帝國",
     member: ["葉瑄", "艾因"],
+    description: "可能2027.06",
   },
   {
     id: "259",
@@ -3043,6 +3050,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png",
     category: "帝國",
+    description: "可能2027.12",
   },
   {
     id: "295",

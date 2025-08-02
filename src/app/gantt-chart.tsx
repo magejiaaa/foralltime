@@ -932,7 +932,7 @@ export default function Component() {
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
-              未來會開的活動
+              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1005,7 +1005,7 @@ export default function Component() {
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
           {/* 關聯方案 */}
-          {hoveredActivityData.packageId &&
+          {hoveredActivityData.packageId && hoveredActivityData.calculatedStatus == "ongoing" &&
             (() => {
               const activityPackage = getActivityPackage(hoveredActivityData)
               return activityPackage ? (
@@ -1015,7 +1015,9 @@ export default function Component() {
                     活動商店: {activityPackage.name}
                   </h5>
                   <div className="bg-gray-800/50 rounded p-3">
-                    {/* <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p> */}
+                    {activityPackage.description && (
+                      <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
+                    )}
                     <div className="space-y-2">
                       {activityPackage.pricingOptions.map((option) => (
                         <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
