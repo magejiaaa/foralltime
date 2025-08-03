@@ -79,4 +79,66 @@ export const packagesData: Package[] = [
             }
         ],
     },
+    {
+        id: "pkg004",
+        name: "新年活動",
+        description: "根據中國服商店推算，實際以官方公告為準",
+        isActive: true,
+        pricingOptions: [
+            {
+                id: "price003",
+                name: "10元禮包",
+                price: 15,
+                description: "鑽石*100、體力*60",
+            },
+            {
+                id: "price001",
+                name: "鑽石連續包",
+                price: 20,
+                description: "鑽石*3280",
+            },
+            {
+                id: "price004",
+                name: "鑽石特惠包",
+                price: 23,
+                description: "鑽石*980",
+            },
+            {
+                id: "price005",
+                name: "鑽石大禮包",
+                price: 23,
+                description: "顏料*7、鑽石*450",
+            },
+            {
+                id: "price006",
+                name: "每日禮包連續包",
+                price: 25,
+                description: "顏料*23、鑽石*460",
+            },
+            {
+                id: "price007",
+                name: "預購禮包",
+                price: 27,
+                description: "顏料*1、鑽石*100",
+            },
+            {
+                id: "price008",
+                name: "顏料預購包",
+                price: 27,
+                description: "顏料*6、體力*60",
+            },
+            {
+                id: "price009",
+                name: "33元禮包",
+                price: 29,
+                description: "顏料*1、鑽石*20",
+            },
+            {
+                id: "price002",
+                name: "畫材大禮包",
+                price: 31,
+                description: "顏料*10、鑽石*68",
+            }
+        ],
+    },
 ]

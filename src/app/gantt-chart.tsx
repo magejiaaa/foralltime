@@ -229,6 +229,17 @@ export default function Component() {
     const sorted = [...processedActivities].sort((a, b) => {
       const dateA = new Date(a.startDate).getTime()
       const dateB = new Date(b.startDate).getTime()
+      const today = new Date().getTime()
+      
+      // 檢查是否為未來活動
+      const aIsFuture = dateA > today
+      const bIsFuture = dateB > today
+      
+      // 未來活動優先
+      if (aIsFuture && !bIsFuture) return -1
+      if (!aIsFuture && bIsFuture) return 1
+      
+      // 在同類型內按照原有排序邏輯
       return sortOrder === "desc" ? dateB - dateA : dateA - dateB
     })
     return sorted
@@ -335,7 +346,7 @@ export default function Component() {
     if (!activities.length) return []
 
     try {
-      let filtered = activities.filter((activity) => activity.status === "upcoming")
+      let filtered = activities.filter((activity) => activity.status === "upcoming" && !activity.startDate && !activity.endDate)
 
       // 類型篩選
       if (selectedCategory !== "all") {
@@ -1005,7 +1016,7 @@ export default function Component() {
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
           {/* 關聯方案 */}
-          {hoveredActivityData.packageId && hoveredActivityData.calculatedStatus == "ongoing" &&
+          {hoveredActivityData.packageId && (hoveredActivityData.calculatedStatus == "ongoing" || hoveredActivityData.calculatedStatus == "upcoming") &&
             (() => {
               const activityPackage = getActivityPackage(hoveredActivityData)
               return activityPackage ? (
