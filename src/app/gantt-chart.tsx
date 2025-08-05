@@ -1100,8 +1100,8 @@ export default function Component() {
             <Image
               src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
               alt="活動圖片預覽"
-              width={0}
-              height={0}
+              width={500}
+              height={500}
               sizes="(max-width: 500px) 100vw, 500px"
               className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
               style={{ maxWidth: "500px", maxHeight: "500px" }}
