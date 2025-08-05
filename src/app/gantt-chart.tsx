@@ -13,6 +13,7 @@ import {
   User,
   Loader2,
   ShoppingBag,
+  Plus,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -151,6 +152,7 @@ export default function Component() {
     side: "right",
   })
   const [isMobile, setIsMobile] = useState(false)
+  const [expandedPackages, setExpandedPackages] = useState<Set<string>>(new Set())
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -484,6 +486,19 @@ export default function Component() {
     setSelectedMember("all")
   }, [])
 
+  // 手機版活動禮包收合
+  const togglePackageDetails = useCallback((packageId: string) => {
+    setExpandedPackages(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(packageId)) {
+        newSet.delete(packageId)  // 如果已展開，則收合
+      } else {
+        newSet.add(packageId)     // 如果已收合，則展開
+      }
+      return newSet
+    })
+  }, [])
+
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
@@ -672,6 +687,47 @@ export default function Component() {
                           <span className="text-gray-400 text-xs">{config.label}</span>
                         </div>
                       )}
+                      {/* 關聯方案 */}
+                      {isMobile && (activity.calculatedStatus === "ongoing" || activity.calculatedStatus === "upcoming") &&
+                        activity.packageId && (
+                          () => {
+                            const activityPackage = getActivityPackage(activity)
+                            const isExpanded = expandedPackages.has(activity.packageId!)
+                            
+                            return activityPackage ? (
+                              <div className="mt-4 pt-3 border-t border-gray-700">
+                                <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2 cursor-pointer" onClick={() => togglePackageDetails(activity.packageId!)}>
+                                  <ShoppingBag className="w-4 h-4" />
+                                  活動商店: {activityPackage.name}
+                                  <Plus className="w-4 h-4" />
+                                </h5>
+                                <div className={`bg-gray-800/50 rounded p-3 ${isExpanded ? "" : "hidden"}`}>
+                                  {activityPackage.description && (
+                                    <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
+                                  )}
+                                  <div className="space-y-2">
+                                    {activityPackage.pricingOptions.map((option) => (
+                                      <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
+                                        <div className="flex-1">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-sm font-medium text-white">{option.name}</span>
+                                          </div>
+                                          {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
+                                        </div>
+                                        <div className="text-right">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-sm font-bold text-green-400">
+                                              一抽${option.price}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                            </div>
+                          ) : null
+                        })()}
                     </div>
                   </div>
                 
@@ -742,7 +798,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, togglePackageDetails, getActivityPackage],
   )
 
 
