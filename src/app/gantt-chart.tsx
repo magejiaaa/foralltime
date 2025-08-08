@@ -531,7 +531,7 @@ export default function Component() {
     const diamonds = parseFloat(calculatorInputs.diamonds) || 0
     const stamina = parseFloat(calculatorInputs.stamina) || 0
 
-    if (draws === 0) return 0
+    if (draws === 0 && diamonds === 0 ) return 0
 
     // 計算總價值（鑽石）
     const totalDiamondValue = diamonds + (draws * 150) + (stamina * 0.5)
@@ -934,6 +934,8 @@ export default function Component() {
                       <Input
                         id="packagePrice"
                         type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         placeholder="例：990"
                         value={calculatorInputs.packagePrice}
                         onChange={(e) => handleCalculatorInputChange('packagePrice', e.target.value)}
@@ -949,6 +951,8 @@ export default function Component() {
                         id="totalDraws"
                         type="number"
                         placeholder="例：30"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         value={calculatorInputs.totalDraws}
                         onChange={(e) => handleCalculatorInputChange('totalDraws', e.target.value)}
                         className="bg-gray-800 border-gray-600 text-white"
@@ -968,6 +972,8 @@ export default function Component() {
                         type="number"
                         placeholder="例：3000"
                         value={calculatorInputs.diamonds}
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         onChange={(e) => handleCalculatorInputChange('diamonds', e.target.value)}
                         className="bg-gray-800 border-gray-600 text-white"
                       />
@@ -981,6 +987,8 @@ export default function Component() {
                         id="stamina"
                         type="number"
                         placeholder="例：500"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         value={calculatorInputs.stamina}
                         onChange={(e) => handleCalculatorInputChange('stamina', e.target.value)}
                         className="bg-gray-800 border-gray-600 text-white"
