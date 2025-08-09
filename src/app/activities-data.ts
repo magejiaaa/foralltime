@@ -9,7 +9,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%87%E5%9C%A3%E5%A5%87%E5%B9%BB%E5%A4%9C",
     image: "https://r.res.easebar.com/pic/20231025/9fbe8f0d-fbaf-4a37-a2e2-355316db5a01.jpg",
-    category: "萬聖",
+    category: ["萬聖"],
     member: ["艾因", "路辰", "羅夏", "司嵐"],
   },
   {
@@ -20,7 +20,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/20-21%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://r.res.easebar.com/pic/20231106/b89cb2ae-c0ed-4911-9e13-6ab52733e38c.jpg",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "3",
@@ -60,7 +60,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/20-21%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://r.res.easebar.com/pic/20231211/4119bc6b-c406-4349-b753-aea556091a23.jpg",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "7",
@@ -70,7 +70,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9C%A3%E8%AF%9E%E7%81%AF%E7%81%AB",
     image: "https://r.res.easebar.com/pic/20231211/2b2ca65c-b978-4b18-a46f-89a497440907.jpg",
-    category: "聖誕",
+    category: ["聖誕"],
   },
   {
     id: "11",
@@ -80,7 +80,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B1%82%E6%95%91",
     image: "/activity_img/11.jpg",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "8",
@@ -90,7 +90,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8B%E4%B8%80%E7%AB%99%EF%BC%8C%E4%B9%90%E5%9B%AD",
     image: "https://r.res.easebar.com/pic/20231219/90c892a8-53d7-4c27-a73e-cff7e088570b.jpg",
-    category: "主線",
+    category: ["主線"],
+    member: ["五人大活動"],
     childrenActivities: ["9", "11"]
   },
   {
@@ -101,7 +102,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8B%E4%B8%80%E7%AB%99%EF%BC%8C%E4%B9%90%E5%9B%AD#%E5%90%8C%E6%9C%9F%E6%B4%BB%E5%8A%A8",
     image: "https://r.res.easebar.com/pic/20231219/81cec811-e825-460f-9173-2c868288b0ee.jpg",
-    category: "異色",
+    category: ["異色"],
     member: ["艾因", "路辰", "羅夏", "司嵐"],
   },
   {
@@ -112,7 +113,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://www.foralltime.com.tw/news/update/20231219/39164_1126821.html",
     image: "https://r.res.easebar.com/pic/20231219/ad9a2cd4-8ffc-47f3-bcf0-d1a46253bbff.jpg",
-    category: "聖誕",
+    category: ["聖誕"],
     member: ["艾因", "路辰", "羅夏", "司嵐"],
   },
   {
@@ -123,12 +124,12 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2020%E5%8F%B6%E7%91%84%E7%94%9F%E6%97%A5",
     image: "https://r.res.easebar.com/pic/20231219/4cf6f76a-21bd-4c58-b147-1fa4e8aa9131.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["葉瑄"],
   },
   {
     id: "13",
-    name: "書中童話",
+    name: "書中童話：魔女的冒險",
     startDate: "2024-01-11",
     endDate: "2024-01-25",
     status: "completed",
@@ -144,7 +145,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92/%E7%AB%A5%E8%AF%9D%E5%B9%BB%E6%83%B3%E8%AE%A1%E5%88%92",
     image: "https://r.res.easebar.com/pic/20240109/803873e6-b0ee-4877-b494-d52de7179fab.jpg",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "14",
@@ -173,7 +174,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%B0%E8%B1%A1%E5%9B%9E%E6%BA%AF_Valentine_2021",
     image: "/activity_img/73.jpg",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "104",
@@ -183,7 +184,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/20-21%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "17",
@@ -203,7 +204,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
     member: ["葉瑄"],
   },
   {
@@ -223,7 +224,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%99%BD%E8%89%B2%E6%83%85%E4%BA%BA%E8%8A%82",
     image: "/activity_img/19.jpg",
-    category: "白情",
+    category: ["白情"],
   },
   {
     id: "20",
@@ -233,7 +234,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%99%A2",
     image: "https://r.res.easebar.com/pic/20240304/46c32667-45b3-477a-842f-5048e8fe5127.jpg",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "21",
@@ -243,7 +244,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%A7%89%E9%86%92%E4%B9%8B%E7%AB%A0",
     image: "https://r.res.easebar.com/pic/20240311/5bfb57c5-f40f-447e-9dd9-8535efb65b54.jpg",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "105",
@@ -262,7 +263,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E8%B7%AF%E8%BE%B0%E7%94%9F%E6%97%A5",
     image: "/activity_img/22.jpg",
-    category: "生日",
+    category: ["生日"],
   },
   {
     id: "23",
@@ -291,7 +292,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%A2%A6%E7%BC%9D%E7%BA%AB%E5%BA%97",
     image: "https://r.res.easebar.com/pic/20240401/0a9bc41b-784e-469a-a820-29470c7e74a2.png",
-    category: "裁縫店",
+    category: ["裁縫店"],
   },
   {
     id: "26",
@@ -319,7 +320,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B9%9B%E8%93%9D%E6%B5%B7%E5%B2%9B",
     image: "/activity_img/67.jpg",
-    category: "夏活",
+    category: ["夏活"],
+    member: ["五人大活動"],
   },
   {
     id: "29",
@@ -338,7 +340,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/20-21%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://r.res.easebar.com/pic/20240506/68b78aff-eb1c-47ef-beaa-716a87cd2f6a.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "31",
@@ -348,7 +350,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%8A%E5%A4%95%E9%95%BF%E7%9B%B8%E5%AE%88",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/472685223_486439341141298_8365619791427437423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zSDPrb7ZEKMQ7kNvwEmV8ZR&_nc_oc=AdkZc_2CNoQRTe8OBL0wWt8rICKSsuWLZu844tmCZ06p9zzEFt3LMKBeKbsZTAAojCcQJwkQehlMkuGeLskZAmU6&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=RsTsf590z8Lg9HMDVQ45Qg&oh=00_AfS1u9nUQBDvZ-eGxbj-ARPbOqz0bSOSoOWK2_8ottJBSA&oe=68930DC9",
-    category: "七夕",
+    category: ["七夕"],
     childrenActivities: ["107"],
   },
   {
@@ -359,7 +361,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "32",
@@ -369,7 +371,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92/%E6%B6%88%E6%9A%91%E8%AE%A1%E5%88%92",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "33",
@@ -406,7 +408,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://r.res.easebar.com/pic/20240618/6d1de791-c8a2-4684-8595-10328a5711c0.png",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "37",
@@ -416,8 +418,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%81%97%E8%90%BD%E7%9A%84%E8%A1%80%E8%84%89",
     image: "https://r.res.easebar.com/pic/20240625/86635b47-bf93-417d-946c-8f86db2ff2d3.png",
-    category: "主線",
-    member: ["艾因", "路辰", "司嵐"],
+    category: ["主線", "週年慶"],
+    member: ["艾因", "路辰", "司嵐", "五人大活動"],
     childrenActivities: ["36"]
   },
   {
@@ -428,7 +430,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%81%97%E8%90%BD%E7%9A%84%E8%A1%80%E8%84%89#%E6%9E%AB%E8%89%B2%E7%BB%98%E5%BF%86",
     image: "/activity_img/38.jpg",
-    category: "週年免費SSR",
+    category: ["週年免費SSR"],
     member: ["司嵐"],
   },
   {
@@ -439,7 +441,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0%E5%85%B3%E5%8D%A1%E5%85%A8%E5%BC%80",
     image: "https://r.res.easebar.com/pic/20240708/d2a01e5c-bcc6-4175-aece-31c2f3fb8aa7.jpg",
-    category: "關卡全開",
+    category: ["關卡全開"],
   },
   {
     id: "40",
@@ -449,7 +451,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://r.res.easebar.com/pic/20231219/81cec811-e825-460f-9173-2c868288b0ee.jpg",
-    category: "異色",
+    category: ["異色"],
     member: ["艾因", "路辰", "羅夏", "司嵐"],
   },
   {
@@ -470,7 +472,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92/%E4%B8%8D%E5%A4%9C",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "42",
@@ -490,7 +492,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%87%E5%9C%A3%E5%A5%87%E5%B9%BB%E5%A4%9C",
     image: "https://r.res.easebar.com/pic/20240723/63879fab-0dfb-4023-ab0d-4f393aa9f322.png",
-    category: "萬聖",
+    category: ["萬聖"],
   },
   {
     id: "44",
@@ -500,7 +502,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
     image: "/activity_img/44.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["羅夏"],
   },
   {
@@ -511,7 +513,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "/activity_img/45.jpg",
-    category: "萬聖",
+    category: ["萬聖"],
     childrenActivities: ["110"],
   },
   {
@@ -522,7 +524,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "46",
@@ -532,7 +534,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%81%97%E8%90%BD%E7%9A%84%E8%A1%80%E8%84%89",
     image: "/activity_img/46.jpg",
-    category: "主線",
+    category: ["主線"],
     member: ["葉瑄"],
   },
   {
@@ -543,7 +545,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%91%BD%E8%BF%90%E5%9B%9E%E5%BB%8A",
     image: "/activity_img/47.jpg",
-    category: "新年",
+    category: ["新年"],
+    member: ["五人大活動"],
   },
   {
     id: "48",
@@ -553,7 +556,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92/%E9%98%91%E7%8F%8A%E9%95%BF%E5%9B%BE",
     image: "/activity_img/48.png",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "49",
@@ -563,7 +566,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%86%89%E6%A2%A6%E6%B5%AE%E6%B1%A4",
     image: "/activity_img/49.jpg",
-    category: "情人節",
+    category: ["情人節"],
+    member: ["五人大活動"],
   },
   {
     id: "50",
@@ -573,7 +577,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%81%97%E8%90%BD%E7%9A%84%E8%A1%80%E8%84%89",
     image: "/activity_img/50.jpg",
-    category: "主線",
+    category: ["主線"],
     member: ["羅夏"],
   },
   {
@@ -584,7 +588,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2022%E5%86%AC%E6%98%A5%E9%87%87%E9%A3%8E",
     image: "https://r.res.easebar.com/pic/20240930/0d881307-f58b-4a61-93fb-11ffc8862e35.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "52",
@@ -594,7 +598,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%81%87%E9%9D%A2%E8%88%9E%E4%BC%9AMasquerade",
     image: "https://r.res.easebar.com/pic/20240930/fc7f7320-8c8d-4d12-92b0-e406ed52b48a.png",
-    category: "白情",
+    category: ["白情"],
   },
   {
     id: "53",
@@ -604,7 +608,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5",
     image: "/activity_img/53.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["司嵐"],
   },
   {
@@ -624,7 +628,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%97%B6%E5%85%89%E7%94%B5%E5%BD%B1%E9%99%A2#%E5%85%A8%E6%96%B0%E5%B1%95%E6%98%A0",
     image: "",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "56",
@@ -643,7 +647,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "58",
@@ -653,7 +657,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E8%89%BE%E5%9B%A0%E7%94%9F%E6%97%A5",
     image: "/activity_img/58.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["艾因"],
   },
   {
@@ -664,7 +668,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2",
     image: "/activity_img/59.jpg",
-    category: "帝國",
+    category: ["帝國"],
     member: ["路辰", "葉瑄"],
   },
   {
@@ -675,7 +679,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "/activity_img/60.jpg",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["艾因"],
   },
   {
@@ -686,7 +690,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2022%E5%86%AC%E6%98%A5%E9%87%87%E9%A3%8E",
     image: "/activity_img/61.jpg",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "111",
@@ -696,7 +700,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%B5%AE%E8%AF%AD",
     image: "/activity_img/111.jpg",
-    category: "日常絮語",
+    category: ["日常絮語"],
   },
   {
     id: "62",
@@ -706,7 +710,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%86%AC%E9%9B%AA%E5%A4%9C%E6%9C%AA%E7%9C%A0",
     image: "/activity_img/62.jpg",
-    category: "聖誕"
+    category: ["聖誕"]
   },
   {
     id: "63",
@@ -716,7 +720,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2021%E5%8F%B6%E7%91%84%E7%94%9F%E6%97%A5",
     image: "/activity_img/63.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["葉瑄"],
   },
   {
@@ -755,7 +759,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0%E5%85%B3%E5%8D%A1%E5%85%A8%E5%BC%80",
     image: "https://r.res.easebar.com/pic/20240708/d2a01e5c-bcc6-4175-aece-31c2f3fb8aa7.jpg",
-    category: "關卡全開",
+    category: ["關卡全開"],
   },
   {
     id: "66",
@@ -765,7 +769,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/66.jpg",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "67",
@@ -775,8 +779,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/67.jpg",
-    category: "夏活",
-
+    category: ["夏活"],
+    member: ["五人大活動"],
   },
   {
     id: "68",
@@ -786,7 +790,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%9E%E9%99%A8%E7%BA%AA%E5%85%83%E4%B8%80%E6%9C%9F",
     image: "/activity_img/68.jpg",
-    category: "主線",
+    category: ["主線"],
     childrenActivities: ["65", "66"],
   },
   {
@@ -797,7 +801,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%B5%AE%E8%AF%AD",
     image: "/activity_img/117.jpg",
-    category: "日常絮語",
+    category: ["日常絮語"],
   },
   {
     id: "112",
@@ -807,7 +811,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%9B%9B%E5%A4%8F%E6%9C%AA%E6%9D%A5",
     image: "/activity_img/112.jpg",
-    category: "繪卷",
+    category: ["繪卷"],
   },
   {
     id: "69",
@@ -817,7 +821,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%9E%E9%99%A8%E7%BA%AA%E5%85%83%E4%BA%8C%E6%9C%9F",
     image: "/activity_img/69.jpg",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "70",
@@ -836,7 +840,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/481061914_528772580241307_6192010993201706945_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=r7MBe_pIai4Q7kNvwHsaIKD&_nc_oc=AdnUNfEcJ6o4ib4WWpBTsjBVil7k4pbElO8VTycYB_UmMr2-cT_XeGyG5Fx0tCS-3oGz_texn8AgId9E_66Qf0Ji&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=wSTBRim1-9qakMk1VXA55A&oh=00_AfQEO8Yu4V0lyas9dkBBbWgwo9asC-KZtI9nwywaycbx3Q&oe=688E590E",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["葉瑄"],
     childrenActivities: ["72"],
   },
@@ -848,7 +852,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B5%81%E8%90%A4%E6%98%A5%E6%97%B6%E9%9B%A8",
     image: "/activity_img/72.jpg",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["葉瑄"],
   },
   {
@@ -859,7 +863,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%B0%E8%B1%A1%E5%9B%9E%E6%BA%AF_Valentine_2021",
     image: "/activity_img/73.jpg",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "74",
@@ -878,7 +882,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BB%98%E6%A2%A6%E5%B9%B3%E5%AE%89%E4%BA%AC",
     image: "/activity_img/75.jpg",
-    category: "聯動",
+    category: ["聯動"],
+    member: ["五人大活動"],
   },
   {
     id: "76",
@@ -888,7 +893,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E8%B7%AF%E8%BE%B0%E7%94%9F%E6%97%A5",
     image: "/activity_img/76.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["路辰"],
   },
   {
@@ -899,7 +904,8 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8E%E5%8D%BF%E4%B9%A6",
     image: "/activity_img/77.jpg",
-    category: "七夕",
+    category: ["七夕"],
+    member: ["五人大活動"],
   },
   {
     id: "78",
@@ -909,7 +915,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "79",
@@ -919,7 +925,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%B5%AE%E8%AF%AD",
     image: "/activity_img/79.jpg",
-    category: "日常絮語",
+    category: ["日常絮語"],
   },
   {
     id: "80",
@@ -929,7 +935,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/486603660_544198302032068_5199655240419921786_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kGusNygzY6IQ7kNvwFBJrOV&_nc_oc=AdmFmlMG4hoaWoIfNWJmxkaUUi5GOchK6aB1h5tm2lfQi3mA_hcFMcarJy_lITqiw0TgqX-0wBaG1dVknsfIH3RM&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=0XuHnnSdM4gH2fmx-xPmZA&oh=00_AfQFsuKYHsi0o5gdhIQ5smDvuwnL6fRhrU3VGf6BrAnnQA&oe=688EAB8A",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["路辰"],
     childrenActivities: ["86"],
   },
@@ -941,7 +947,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%81%97%E8%90%BD%E7%9A%84%E8%A1%80%E8%84%89",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/488026492_548840988234466_2178565331658710048_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=CUSYsWzQz-kQ7kNvwGYPpqm&_nc_oc=AdmHHiSNY6C-yGxHGLhHEo2Y-2ESX4phbfgH1KzpK3obhLEb_Kh_90xc4M8b27iRPaaGVQxXY1AMtIduyExMB0jE&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=z0mtHwdg7MytvfsCbAMJ1A&oh=00_AfS47eMEUftEzl79niqsAJ-nzy_Sk1qTB-R-g0z4rKD4Uw&oe=688EB4EA",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "82",
@@ -951,7 +957,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2022%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/490807974_559377630514135_8194848672708014379_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HK6hw-CsXFEQ7kNvwGfHsRM&_nc_oc=AdnYQFJ7ee7YLxjckaCmKHZui9r_L3mL-UypeTQ6WHT5Zq9WqDOWpiyX2VaZDyH4P7Yan6KX9mKydrMjm4X0BjX4&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=M270PO992yTPqcGyetIiaQ&oh=00_AfTyLFAEjK334aACXtpJH9KiHapzXjS9qSVFdMsTaw5LpA&oe=688EBBFD",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "83",
@@ -961,7 +967,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%BF%B7%E9%9B%BE%E6%8E%A2%E7%B4%A2",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/491939396_561636963621535_5224183723318646194_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=D0GAnGgf7uEQ7kNvwHI-bbo&_nc_oc=AdmdMRFARdjNYB_yBhjecSzyd8O76nfLdM6cWSc6gDvEmQImPixj_NIF7ZElPuRprCP4wxqVcEQagKtjrtAwtHfu&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=BWlvDiuzb78bG1VqHgK_fA&oh=00_AfQrtETfZNxBStB9M3C8ZH7Cn08MXshBli4KTIULYNFiVA&oe=688EB915",
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "84",
@@ -971,7 +977,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/491353538_561635866954978_885615054273087104_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=q0Iab30zMuIQ7kNvwGli15V&_nc_oc=AdnrhOxjlt-W35ERiEi8niu9H92Tw7ESeugiWVUQpT81IkZwO4v2A9jdVZg377mIFAZ3zPKebIQgMv_YQ_Fos9kE&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=idsxJ6DYVQDrbKMgCLkf2Q&oh=00_AfQhAcxLx8meuiNNN4bPDHTNpHvfomaMvVPLm15X92awYQ&oe=688EAB87",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "85",
@@ -981,8 +987,9 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%AF%B8%E7%95%8C%E5%BD%92%E4%B8%80",
     image: "/activity_img/85.jpg",
-    category: "主線",
+    category: ["主線", "週年慶"],
     childrenActivities: ["83", "84"],
+    member: ["五人大活動"],
   },
   {
     id: "86",
@@ -992,7 +999,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%8B%9F%E5%89%A7%E8%AE%BA",
     image: "/activity_img/86.jpg",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["路辰"],
   },
   {
@@ -1003,7 +1010,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "",
     image: "/activity_img/87.jpg",
-    category: "私語",
+    category: ["私語"],
   },
   {
     id: "88",
@@ -1013,7 +1020,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%AA%E5%85%83%E8%BF%9C%E8%A1%8C",
     image: "/activity_img/88.jpg",
-    category: "繪卷",
+    category: ["繪卷"],
   },
   {
     id: "89",
@@ -1053,7 +1060,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%81%E6%97%A5%E8%B0%88",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/506140055_600807356371162_8438148767829960115_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xKJuz6wNR5MQ7kNvwFoHzHB&_nc_oc=Adm5rzYHhuKlG8B9efOInliQVgOHgTa7OMpCp4hzrjvV2X78C8eXTicpoPL-NKhyUZQkoHDpRU4lTRvPY0A1H_QS&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=y0zYFC6kNY6GunEeU8_9Cg&oh=00_AfRy2_uX9u_-lqjQn9GmAwTKuxuDa7dktsepqlipICex1Q&oe=688EA9E4",
-    category: "帝國",
+    category: ["帝國"],
     member: ["艾因", "羅夏"],
   },
   {
@@ -1064,7 +1071,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/93.jpg",
-    category: "服裝",
+    category: ["服裝"],
     member: ["路辰", "葉瑄"],
   },
   {
@@ -1075,7 +1082,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%86%AC%E6%97%A5%E5%BA%8F%E6%9B%B2",
     image: "/activity_img/94.jpg",
-    category: "好感提升",
+    category: ["好感提升"],
   },
   {
     id: "95",
@@ -1096,7 +1103,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/96.png",
     member: ["司嵐"],
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "97",
@@ -1116,7 +1123,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/486301361_1173896097841435_3232261757001254046_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-m7J7F86zrMQ7kNvwEjTpxh&_nc_oc=Adkh-YXr4yChk8JSmYVFKSa1m-S4kg0XrU0sbuFJtwwHqpuj3gIB_eB1jpZajE35gzI&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=BOb7BvUj68lW6qZMLZfuRw&oh=00_AfS-Fw80gAHZQlv6XHnLitybDy2mFZz9mC_3Agxd7LfqHw&oe=68909C31",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "99",
@@ -1138,7 +1145,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/100.png",
     member: ["羅夏"],
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "101",
@@ -1148,7 +1155,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%8A%E5%A4%95%E9%95%BF%E7%9B%B8%E5%AE%88",
     image: "/activity_img/101.jpg",
-    category: "七夕",
+    category: ["七夕"],
     childrenActivities: ["116"],
     packageId: "pkg001",
   },
@@ -1160,7 +1167,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "102",
@@ -1170,7 +1177,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%A2%A6%E7%BC%9D%E7%BA%AB%E5%BA%97",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/518228606_631213656663865_9088322837039603674_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vUiJgfHC_eAQ7kNvwH2mEB3&_nc_oc=Adn6VwL7JiZ-rzfbbWdcbiUZYM-VPSnbSb3WjS4k8miyIMNhWXCZBRvkNWUsYc_3l29P3EzaRTLvYZe3p2OdSBaY&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=uvAgefpLqd9CQ47VGZJgww&oh=00_AfTGFIWVA3hUq1NPNHaE5AD0DpQb5zGssUSObQxPW32H8w&oe=688ECE52",
-    category: "裁縫店",
+    category: ["裁縫店"],
   },
   {
     id: "103",
@@ -1180,7 +1187,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
     image: "/activity_img/103.jpg",
-    category: "生日",
+    category: ["生日"],
     member: ["羅夏"],
   },
   {
@@ -1201,7 +1208,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/118.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["路辰"],
   },
   {
@@ -1212,7 +1219,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/119.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["艾因"],
   },
   {
@@ -1223,7 +1230,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "/activity_img/120.jpg",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["司嵐"],
     childrenActivities: ["121"]
   },
@@ -1235,7 +1242,7 @@ export const activitiesData: Activity[] = [
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9F%8E%E4%B8%BB%E6%89%8B%E5%86%8C",
     image: "/activity_img/121.jpg",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["司嵐"],
   },
   {
@@ -1246,7 +1253,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%88%E5%A4%A9%E7%81%AF%E4%BC%9A",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/486094530_1173409981223380_4404738106423713164_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=n78QXvMl870Q7kNvwGmVYK1&_nc_oc=AdlgCL97aOgwOgTbIMcpdb9TywQWIZo4RCqR2CqH8ccqQHq5YmXqzi7MnFBGL8yKzds&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=7ngcVlxsSJ4-zsvc6tcxWg&oh=00_AfSBFg5vlQ4fz6pHdW4KN7vm64PhkpuyhTNXK-4lMee22Q&oe=6890C298",
-    category: "週年免費SSR",
+    category: ["週年免費SSR"],
     member: ["艾因"],
     description: "預計2025.10",
   },
@@ -1258,7 +1265,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/5/5e/%E6%B4%BB%E5%8A%A8-2022%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5.png",
-    category: "生日",
+    category: ["生日"],
     member: ["司嵐"],
     description: "2025.10",
   },
@@ -1270,7 +1277,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/5/50/%E5%86%B0%E9%9B%95%E7%8E%89%E7%90%A2.jpg",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "125",
@@ -1280,7 +1287,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/486036883_1173907011173677_4446030076521212416_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=g6P3eB23JvoQ7kNvwEH0EPK&_nc_oc=AdmIrPDLgAoZHzctEVEZgaopRHZGOTYD27Vp0pZc0YyfjGantL0RuWpfAfRyeYJlA5Q&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=PMupIt0u3Xat9GOHmkCPgw&oh=00_AfTNBaI607nV2u2n8rcNsh1RUnRuLg4xDikzMIihHZ1_TA&oe=6890A888",
-    category: "萬聖",
+    category: ["萬聖"],
     description: "根據去年萬聖可能是2025.08",
   },
   {
@@ -1291,7 +1298,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/472795245_490021164116449_187261042615931281_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vjFTMU4EVf0Q7kNvwHvzq5H&_nc_oc=AdlmdFB_k5YTw2Up1P99CG2SpSHChlRBJLFeNzuMS0Hy5BpWvKifZzqyBOmUaUbybsDp6Cxe5Voyg8C260C9VmLw&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=k4Q0vKW-zZ21r191OdO57g&oh=00_AfRVU4P-k_JTVvAcLCNQN_QGoRjDaQ4ZyT3dn47T3FL7MQ&oe=688D714A",
-    category: "萬聖",
+    category: ["萬聖"],
     description: "根據去年萬聖可能是2025.08",
   },
   {
@@ -1302,7 +1309,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2022%E7%A7%8B%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡可能26.09",
   },
   {
@@ -1313,7 +1320,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B4%BB%E5%8A%A8221110",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/486382116_1174023041162074_6035084612495924749_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IZYvaXGNUkQQ7kNvwHe-5QC&_nc_oc=AdmFDuU7ucNlHE8pGjokw8t3s-vHkRCXFtl3MNQQPOP9yJ5khpF14DCoMKPTn8--dsk&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=f4b8az9HyB7dmXr-IiHUcQ&oh=00_AfSDcpSTP7-giKYhQMlvuzubPYK9rw98D1sv1YNjl3SPNw&oe=6890BDAC",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "129",
@@ -1323,7 +1330,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/a/ab/%E5%8F%B6%E7%91%84%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
-    category: "服裝",
+    category: ["服裝"],
     description: "2025會出",
   },
   {
@@ -1334,7 +1341,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E8%89%BE%E5%9B%A0%E7%94%9F%E6%97%A5",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/485944945_1174035787827466_6603149901486958574_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=TXh5GRhK82UQ7kNvwFz9Blv&_nc_oc=AdkWTj7smUKFS8uI0pVcUpFn2Rp3gnofAa0L23d6wX4XpMaHVm3AvEOu7OTq3GKyifM&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=B38ZdfP1xpIQQDnL0UfOvw&oh=00_AfQYb3Q6t8JlQ3xdP-1CvaxXXhZUWktpxznpoM64YsPkuA&oe=6890CCE5",
-    category: "生日",
+    category: ["生日"],
     description: "2025.11",
     member: ["艾因"],
   },
@@ -1346,7 +1353,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "/activity_img/131.jpg",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["羅夏"],
   },
   {
@@ -1357,7 +1364,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BD%99%E7%94%9F%E5%85%B1%E6%97%A5%E5%87%BA",
     image: "https://i0.hdslb.com/bfs/new_dyn/ca8d9e72612239abbc103750188e5f16441833336.jpg@1052w_!web-dynamic.webp",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["羅夏"],
   },
   {
@@ -1368,7 +1375,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9C%A3%E8%AF%9E%E7%94%9C%E5%93%81%E7%AB%99",
     image: "",
-    category: "聖誕",
+    category: ["聖誕"],
     description: "2025聖誕",
   },
   {
@@ -1379,7 +1386,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2022%E5%8F%B6%E7%91%84%E7%94%9F%E6%97%A5",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/486270766_1174601621104216_4022561958348243894_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mATjeZoToKoQ7kNvwH4HblC&_nc_oc=AdlLayVACTzhjpC6itqMb-S_BnFBKHm3-IoYT2qMe_pjqABVvHXxMerKNdzQrowMIog&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=KL_ixp9LCR7Nk3l3HNQrCg&oh=00_AfSZRuJU8VTfStUDVwkwu6S6iCjPB3rBFE42eHkH5xpXuA&oe=6890B875",
-    category: "生日",
+    category: ["生日"],
     member: ["葉瑄"],
     description: "2025.12",
   }, // 2023開始
@@ -1391,7 +1398,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
     description: "2026",
   },
   {
@@ -1402,8 +1409,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%91%BD%E8%BF%90%E5%9B%9E%E5%BB%8A",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/475271292_501600676291831_4545662064287778038_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zTKOFCetRSsQ7kNvwGkxMaC&_nc_oc=Adng9r3rMGXhTdMPs0OC_ZjJHC4Nty0wAcPEhDAXUcSqSImkiU7AdeD2_pjOESRCwv0kAlUlMM4zd3LacrylYV46&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=SJDrkzbqtSqFxijWRRLw6w&oh=00_AfRB5DCrz58OlB0LgVSRByshEzzx2wvkAZqpv_uFAc65OQ&oe=688F38E8",
-    category: "新年",
+    category: ["新年"],
     description: "新年復刻預計8/6",
+    member: ["五人大活動"],
   },
   {
     id: "137",
@@ -1413,8 +1421,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%95%E5%BC%82%E8%AE%B0",
     image: "/activity_img/137.jpg",
-    category: "新年",
+    category: ["新年"],
     packageId: "pkg004",
+    member: ["五人大活動"],
   },
   {
     id: "138",
@@ -1424,7 +1433,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/17/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡可能26.11",
   },
   {
@@ -1435,7 +1444,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%B0%E8%B1%A1%E5%9B%9E%E6%BA%AF_Valentine_2021",
     image: "/activity_img/73.jpg",
-    category: "情人節",
+    category: ["情人節"],
     description: "第二次復刻，maybe 2026 2-3月",
   },
   {
@@ -1446,7 +1455,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/4/4c/%E8%89%BE%E5%9B%A0%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["艾因"],
   },
   {
@@ -1457,7 +1466,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/486671567_1175106411053737_1151509071302019744_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BzVbwlsx7_cQ7kNvwH1WE5D&_nc_oc=AdlDE4rW1K3ZH_jzO2aBcF0IsEN_L0fiQ_NDJXSSZGZEw0ul-JVTI3RYmHhAUlps4cA&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=jBt-oaWQYiOr3lEaX56tYw&oh=00_AfSkZv7qZptarTqp0sNeezJOCzQRqzRXWgRL21nicCgsjA&oe=6890EFC6",
-    category: "情人節",
+    category: ["情人節"],
     description: "2025情人節預計落在9-10月",
   },
   {
@@ -1468,7 +1477,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/8/8d/%E8%B7%AF%E8%BE%B0%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A51.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["路辰"],
   },
   {
@@ -1479,7 +1488,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/486689450_1175223944375317_2142942631188663121_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=fqX2g_v-i0sQ7kNvwF4lwMJ&_nc_oc=AdkOh73kkjZ5Ep6MqLNf5sx9b7Mwc-B3I7xlaq6oik5Vrried8AkYXrMPNzQ3_OQmaU&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=ksZmp0DL-95EHVA9BYSYoQ&oh=00_AfQe_ZSxtKw2PGNCP6wsW8Q07-tVEQkvKYiKTeSM5IiXDw&oe=6890E1A5",
-    category: "白情",
+    category: ["白情"],
     description: "2025白色情人節預計落在10月",
   },
   {
@@ -1490,7 +1499,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486421209_1175227114375000_2762998003324790933_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=2HJiU_Mkrn4Q7kNvwHF-Y_d&_nc_oc=Adn2P2Vuy6MximoBzfPEZjB1aOvZFv7RLnojJiJrh7753Wciav8mCD7tfM-6byl0NmM&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=96jquoZV2iuD_LBqhJSlTg&oh=00_AfTbQAnYQ5A2BCfx1OhQKaMk1NGSLutk7yiBgf39ZyI3Kg&oe=6890C6EB",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["艾因"],
   },
   {
@@ -1501,7 +1510,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%AE%89%E4%B8%80%E9%9A%85",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486421209_1175227114375000_2762998003324790933_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=2HJiU_Mkrn4Q7kNvwHF-Y_d&_nc_oc=Adn2P2Vuy6MximoBzfPEZjB1aOvZFv7RLnojJiJrh7753Wciav8mCD7tfM-6byl0NmM&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=96jquoZV2iuD_LBqhJSlTg&oh=00_AfTbQAnYQ5A2BCfx1OhQKaMk1NGSLutk7yiBgf39ZyI3Kg&oe=6890C6EB",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["艾因"],
   },
   {
@@ -1512,7 +1521,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E8%B7%AF%E8%BE%B0%E7%94%9F%E6%97%A5",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/486953687_1175702957660749_4091345185141761732_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=uilCqDaREZYQ7kNvwE0nxb8&_nc_oc=Adk8TxiXwqDyB38RjFWo6lwNuEoamLDGk6Mh13xaJ3lc9y-C8Iym1XwzEzVBhUExxJM&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=sdeAdnpEZ5cFKmrK8QmlwA&oh=00_AfTWNx9MRJ7kuv3waV-fdUhn9-2h5qwiBhAdOY41EIYmfQ&oe=6890CD58",
-    category: "生日",
+    category: ["生日"],
     member: ["路辰"],
     description: "2026.03",
   },
@@ -1524,7 +1533,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/fe/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡2023.03",
   },
   {
@@ -1535,7 +1544,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486577834_1175710647659980_5400105789455160819_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=3PI9ccetZQwQ7kNvwGwNzJn&_nc_oc=AdkCghTlbMRDBf1hUCWL_ZDlFtr5k0E_p_2C5_XgwRRcSozMSxbXJOnkBMNeu2vCjOI&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=THJxIELlfnXznMgTK-y4Cw&oh=00_AfR0K6CV6ktv2O9g5p3frmJAbN5Lr1GEEXLv9Gq_6nH2yg&oe=6890BF8E",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "149",
@@ -1574,7 +1583,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["路辰", "葉瑄"],
     description: "可能2025.10"
   },
@@ -1586,7 +1595,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/f/f8/%E7%BD%97%E5%A4%8F%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A51.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["羅夏"],
   },
   {
@@ -1606,7 +1615,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/486545847_1175768257654219_5956286184307521768_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=sC5ZZurRf_gQ7kNvwFjDfK4&_nc_oc=AdnUnAxNoRYDFdim5HnFVjxupPe5MPmSVHy4kt1VMoRvNtzRq8NzeS7bvSI7Kak_9SQ&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=FLgJLnlI0GwqqgjDlZ5aFg&oh=00_AfQ0v7hnnogfNBx657dzBxtHkavSsnWvFtJs9Q_9c6_C3A&oe=6890EF3A",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "156",
@@ -1627,7 +1636,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486762263_1175768360987542_4931989499742930725_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CpZEbYPTCK4Q7kNvwG47SX-&_nc_oc=AdmWsmIZ9qpbaPggp3HYwYSYY6mbdxM_HW4hs0hpSBC4w6-D2YnWGelSIYmbGo324fk&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=TV8yc0Nk2s2jiPUqhsyYFw&oh=00_AfQCWcEnKT3NAtSREzUGjPCo_q6rfM21OJV7gsnQog857Q&oe=689102A0",
     member: ["葉瑄"],
-    category: "繾綣假日",
+    category: ["繾綣假日"],
   },
   {
     id: "158",
@@ -1638,7 +1647,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9C%AA%E6%88%90%E4%B9%8B%E4%BD%9C",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486762263_1175768360987542_4931989499742930725_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CpZEbYPTCK4Q7kNvwG47SX-&_nc_oc=AdmWsmIZ9qpbaPggp3HYwYSYY6mbdxM_HW4hs0hpSBC4w6-D2YnWGelSIYmbGo324fk&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=TV8yc0Nk2s2jiPUqhsyYFw&oh=00_AfQCWcEnKT3NAtSREzUGjPCo_q6rfM21OJV7gsnQog857Q&oe=689102A0",
     member: ["葉瑄"],
-    category: "好感提升",
+    category: ["好感提升"],
   },
   {
     id: "159",
@@ -1648,8 +1657,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png",
-    category: "主線",
+    category: ["主線"],
     description: "猜2025.11-12",
+    member: ["五人大活動"],
   },
   {
     id: "160",
@@ -1659,7 +1669,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82#%E5%90%8C%E5%BF%83%E8%AE%A1%E5%88%92",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/487008244_1175772580987120_8754168775349959527_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eSkLtCsDVWsQ7kNvwGTRdvi&_nc_oc=AdmoXhGgNRdbCTVqlkXfFinCPi6Xhtbr8hLMqLMsq-KrqzeWcZyWJQ6uAVZkcPUDFDg&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=ud1UraJUw_ZLzoFyglqWBQ&oh=00_AfSDzTzGeSkgUwKt-kc4PvzLezUsTX4XnYqis0Qpd-mLyQ&oe=68911BF1",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "161",
@@ -1669,7 +1679,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/486767063_1175774757653569_1128972926515212295_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=iSaFggFmBccQ7kNvwFYKeG6&_nc_oc=AdnwqzJfXAI7jgmnTjHswH2EboJbbDrSvGbb_OKe3Uzd1oNl801J0vXI7J1sO9sRc2g&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=mVbs7Yxnjv4_9ynyWhA67g&oh=00_AfQjGAseltj_f6jDt5oxRPQFj9zsN8xlXDU6L-g2L5bKKQ&oe=68911658",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "162",
@@ -1708,7 +1718,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%8A%E9%86%92%E4%BA%BA%E7%94%9F#%E5%8D%83%E5%8D%83%E5%BF%83%E6%84%BF",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/486559192_1175974954300216_3250432487637082479_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JtIplq24SaQQ7kNvwGwVREx&_nc_oc=AdlwJsuBh5ploNXl_dmIg2MLw5XO__pdnTS-Tt_csb2MjcAdCL872lTQZnWT_KOfffE&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=bCubiMdTCK6o7Z85GSxvog&oh=00_AfQbLdGSLW2AWJIM-rYqAOZPt2cQs4QDd2AcgXFXuRROVg&oe=689104FF",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "166",
@@ -1757,7 +1767,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/9/93/%E5%8F%B8%E5%B2%9A%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["司嵐"],
   },
   {
@@ -1768,7 +1778,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%9F%E8%88%AA%E4%B9%8B%E6%A2%A6",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/487083025_1176346857596359_3858064227107244656_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WwUAD317u3MQ7kNvwF2cwMZ&_nc_oc=AdlyQLXRxAGFEq_ls3HiMi-tIcyiuW_FnviySd89O8SBz5YgkdIkRHOjhtWaOoKdAzg&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=-gMCbeOpu4LuEnjx4gtNhQ&oh=00_AfSveveqi1nmrnQWtB55h9mhKyqdJe5ZbogD3IYs1nSb_Q&oe=6890FB54",
-    category: "聯動",
+    category: ["聯動"],
   },
   {
     id: "172",
@@ -1778,7 +1788,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/486654761_1176351387595906_4997598524059787192_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=f4vpZXpXvXsQ7kNvwGGuqEQ&_nc_oc=Adl7qh9cVcBdWDuGpvQ8Icko7b-VpKVk60ZR3Y7Pxn5-riYLEB8Hyvq0yKOyO3xrYhY&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=SXQqkpTT3LXY8YmGU73q-g&oh=00_AfRifx2-T86Q944PL4322zMjpHzRkp9j9j96PsUUE2itpA&oe=68911668",
-    category: "服裝",
+    category: ["服裝"],
     member: ["艾因", "羅夏"],
   },
   {
@@ -1789,7 +1799,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b7/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["司嵐", "路辰"],
     description: "可能2025.12"
   },
@@ -1811,7 +1821,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/4/42/%E5%8F%B6%E7%91%84%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A51.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["葉瑄"],
   },
   {
@@ -1822,7 +1832,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486631487_1176401300924248_8952614419786308596_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CaaeIaKtDAkQ7kNvwEavNmQ&_nc_oc=AdnK0JpXo02aTL63yyiVpHLDtnSyTLx7Dcc2ZPOCcTyz2tmq4EZbThv-fhOK3syf2Lo&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=oiKxMPgTmY65lS6HD5qbYw&oh=00_AfRsXm7N0O-ZVpOWrYNTsbf2aMbiJhbEV-bH37y_BlRI1g&oe=68910BDB",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["羅夏"],
   },
   {
@@ -1833,7 +1843,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A7%E6%97%A5%E5%A1%94%E5%A3%B0",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/486631487_1176401300924248_8952614419786308596_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CaaeIaKtDAkQ7kNvwEavNmQ&_nc_oc=AdnK0JpXo02aTL63yyiVpHLDtnSyTLx7Dcc2ZPOCcTyz2tmq4EZbThv-fhOK3syf2Lo&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=oiKxMPgTmY65lS6HD5qbYw&oh=00_AfRsXm7N0O-ZVpOWrYNTsbf2aMbiJhbEV-bH37y_BlRI1g&oe=68910BDB",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["羅夏"],
   },
   {
@@ -1853,7 +1863,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/cd/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡2023.07",
   },
   {
@@ -1864,7 +1874,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/486602080_1176408430923535_5017110327804945475_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=xobFKscFBeYQ7kNvwGjLJp5&_nc_oc=AdlKOF1tpclJHdZ54MW3tFDEWEGhJZtLzJj6T6gUAUuydS4LgW6KzbvOU7LTQ2ZCzJw&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=vQgXl0eKiq2kR9HXQhKAKw&oh=00_AfTp9T21iy6sAjajI7vhxC4tfzQqMdwzlkPdL8_hYn2Shw&oe=68911DD7",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "181",
@@ -1874,8 +1884,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/2/22/%E6%B4%BB%E5%8A%A8-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83.jpg/1050px-%E6%B4%BB%E5%8A%A8-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83.jpg",
-    category: "夏活",
+    category: ["夏活", "聯動"],
     description: "2026年夏活",
+    member: ["五人大活動"],
   },
   {
     id: "182",
@@ -1885,7 +1896,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/486514746_1176413814256330_3431876752479478678_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=j5BYzo2k0ZEQ7kNvwGQJyag&_nc_oc=Adm1xlBU7M3qzDEyw9SAVU0spVpGb_OxJOg5_WfxM20Xt2fa0_vKqzv4jJl_qZjVGt8&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=OQld3Km3WIrRZGwOSjdRuA&oh=00_AfRtWd0d8o-WTpmsOkSoo_ThhOGcpgXqVczcEWlRP0TzZA&oe=689119C7",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "183",
@@ -1913,7 +1924,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["羅夏"],
     description: "預計2026.08",
   },
@@ -1925,7 +1936,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/482029075_1042494701258547_3013051141648152913_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=93yMomH1QOIQ7kNvwFZUx4T&_nc_oc=AdnYut8fbcASKW2y3n1K0YEyfnA3dHJhSWZMEZT4bZ40c839AK61_XHSRyrZvPsMFgo&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=Ei2W9dlFkJBuk4jrEx5bYw&oh=00_AfS5I5ozv05Lvm-2VUiWJtWISY1OQ9pi0_esbxoP9dBMag&oe=689115B2",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["司嵐"],
   },
   {
@@ -1936,7 +1947,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B9%90%E4%B9%90%E9%99%B6%E9%99%B6",
     image: "https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/482029075_1042494701258547_3013051141648152913_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=93yMomH1QOIQ7kNvwFZUx4T&_nc_oc=AdnYut8fbcASKW2y3n1K0YEyfnA3dHJhSWZMEZT4bZ40c839AK61_XHSRyrZvPsMFgo&_nc_zt=23&_nc_ht=scontent.ftpe7-4.fna&_nc_gid=Ei2W9dlFkJBuk4jrEx5bYw&oh=00_AfS5I5ozv05Lvm-2VUiWJtWISY1OQ9pi0_esbxoP9dBMag&oe=689115B2",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["司嵐"],
   },
   {
@@ -1947,7 +1958,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/481962621_1042620654579285_4049976337300430388_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=zP4zOO0zQ-oQ7kNvwHWFHfm&_nc_oc=Adl6TeyHAhmbV99kEu_ryGLGDs27hBVfgOn1MH7V5dkvMmDbe9Cv-M8CE-V1TWve9UQ&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=_6ts2Nw06LIz2EP4UpIKVw&oh=00_AfRSEjqH0dKRLfreqB2ihqWGIeRBTjBxVLMK9SwuyX7fxw&oe=68911A7F",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["艾因"],
   },
   {
@@ -1958,7 +1969,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/472669280_486440017807897_2953753092566931100_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJ9qkTqiVGgQ7kNvwHZJAbo&_nc_oc=AdmXK3nzuq4vvplingsVTDQRMJrGDtj-mJPCtdVMRvOUHoDkhG_c0LYOmm-2P63TEKAZygDU9wa535-tLfBFB85d&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=55vI8j7ujA-yQPL4kNo4uw&oh=00_AfRrADRPAAjLNFj_WsmFOerrzUCRfSJCrZhI8qnlJjpXng&oe=688F5A95",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "190",
@@ -1968,7 +1979,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%A2%E7%BA%BF%E7%89%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png",
-    category: "七夕",
+    category: ["七夕"],
     description: "可能2026.03或07"
   },
   {
@@ -1979,8 +1990,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8E%E5%8D%BF%E4%B9%A6",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/481959617_531714809947084_228437217056709673_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_ltf7LwF2XoQ7kNvwGZgOcZ&_nc_oc=Admm4DZMQ8OwdgtjPiZT-4K6FFfz2JHV_AoRwXDVqcmCMUjWmjMfIvRQiJt2WTzevSiYLGCC6MgzOfyw9amWgbhI&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=UMjeorvw96BR8xcpBW_pXQ&oh=00_AfQLH8cJXhem4qIqvZAgvflEY9LeC0S5Z7aP-OPbhIY-Dg&oe=688EAD89",
-    category: "七夕",
-    description: "可能2026.03或07"
+    category: ["七夕"],
+    description: "可能2026.03或07",
+    member: ["五人大活動"],
   },
   {
     id: "192",
@@ -1990,7 +2002,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8E%E5%8D%BF%E4%B9%A6#%E4%BA%91%E4%BD%9C%E6%B8%A1%E6%B2%B3%E6%A1%A5",
     image: "",
-    category: "七夕",
+    category: ["七夕"],
     description: "可能2026.03或07"
   },
   {
@@ -2001,7 +2013,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/d/dc/%E8%B7%AF%E8%BE%B0%E7%AB%8B%E7%BB%98-%E6%B5%81%E5%85%89%E5%AE%9A%E6%A0%BC.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["路辰"],
   },
   {
@@ -2022,7 +2034,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E8%87%AA%E8%8A%B3%E8%8F%B2#%E6%A2%A7%E7%B3%BB%E5%90%8C%E5%BF%83",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/482198980_1043310947843589_3431836067401098049_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Q75pqLHVfdcQ7kNvwHIDxvO&_nc_oc=AdkBaNrAm1ahgAaGNGYM49Dbjo9RSvTgXj8fkmerp4d5cMzz1aN2nyz3cIeVVh2vZVg&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=rD0Bv1zlYfeVFPzJz3J3zQ&oh=00_AfR5MDwaR-HwiF1hBmVbr6mFYsSwiMOL0h3K7vbireIkWA&oe=6890F53F",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "196",
@@ -2032,7 +2044,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/482054986_1043403244501026_1472586986757365466_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=UPyOeMWkxjYQ7kNvwGzDwJd&_nc_oc=AdmYTHNh4t9Q1TdoNSTw_-lbQPcCaJx3XHty9palL-8xVCK9qZ74kgJkA7LcofiIZs4&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&_nc_gid=sS3Sf7mSb0cdsPIfYfCmcQ&oh=00_AfSi85XbdQRRJyMZeSJpSV9nhR-YXFRYrF_Kov6E0aJAYQ&oe=6890F379",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "197",
@@ -2042,7 +2054,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/db/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85.png",
-    category: "取材",
+    category: ["取材"],
     description: "2023.09",
   },
   {
@@ -2053,7 +2065,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/6/6f/%E5%8F%B8%E5%B2%9A%E7%AB%8B%E7%BB%98-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%833.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["司嵐"],
   },
   {
@@ -2064,7 +2076,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%91%BD%E8%BF%90%E5%9B%9E%E7%8E%AF",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/d8/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%91%BD%E8%BF%90%E5%9B%9E%E7%8E%AF.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%91%BD%E8%BF%90%E5%9B%9E%E7%8E%AF.png",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "200",
@@ -2074,7 +2086,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/482081872_1043420327832651_4961645549810255857_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9c4qDrS8bRAQ7kNvwG5jTFJ&_nc_oc=AdmE2o-Y9meQ1QWOZyIvsJAkKX7BbxSscXfsZeXb4fvhgzXgZBqzoCLbJKvu-vgAB2U&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=KmdfeG4lhN4mIamMzEXwhA&oh=00_AfTIGTLIb4LWLlRRmdJGjOKCtpu6zA7m0aaNO3cSI8bWgg&oe=6890FD11",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["路辰"],
   },
   {
@@ -2085,7 +2097,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B5%B7%E5%B9%95%E5%85%89%E5%BD%B1",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/482081872_1043420327832651_4961645549810255857_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9c4qDrS8bRAQ7kNvwG5jTFJ&_nc_oc=AdmE2o-Y9meQ1QWOZyIvsJAkKX7BbxSscXfsZeXb4fvhgzXgZBqzoCLbJKvu-vgAB2U&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=KmdfeG4lhN4mIamMzEXwhA&oh=00_AfTIGTLIb4LWLlRRmdJGjOKCtpu6zA7m0aaNO3cSI8bWgg&oe=6890FD11",
-    category: "好感提升",
+    category: ["好感提升"],
     member: ["路辰"],
   },
   {
@@ -2096,7 +2108,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E5%91%A8%E5%B9%B4%E7%9B%9B%E5%85%B8",
     image: "",
-    category: "週年慶",
+    category: ["週年慶"],
     description: "2026周年慶10月",
   },
   {
@@ -2107,7 +2119,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/473312139_1120381586526220_267981910849815117_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=EzVHtjhmwf4Q7kNvwFidhAl&_nc_oc=AdkeEJ73yH5JavxrW3wqjdL04nsMOTREylgVI2Jm7oPeG1ZgKEELY7bwndIbinuec38opzy1nP_fQGxvUp9grXwY&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=aefu1vOYYrpvppARiB-3rg&oh=00_AfQ5Bvuaj2c5UeuGKExF-O5p35h6Rad5OnuhS5dTtf9vdA&oe=68911023",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "204",
@@ -2117,7 +2129,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png/900px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png",
-    category: "週年慶",
+    category: ["週年慶"],
+    member: ["五人大活動"],
   },
   {
     id: "205",
@@ -2127,7 +2140,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%9B%9B%E5%A4%8F%E6%9C%AA%E6%9D%A5",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/481264980_521169801001585_6285666613489570502_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=aL2UWBKMwdsQ7kNvwHuht-Z&_nc_oc=Adl2GBvQrZuZibKHFwxIGl-rqwynatlUr3mntvTKk2ZGPCP3zmMKapfs9FDz4mNRodygZFYOakWUYFAs8bSjfp64&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=k0VieNLSrjGozQZkjDmTYw&oh=00_AfR6LpwgWosj_GpH4jZwH6yZxAl-ZwpTtxxrVN7SX83edg&oe=688F3948",
-    category: "繪卷",
+    category: ["繪卷"],
   },
   {
     id: "206",
@@ -2137,7 +2150,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BC%E7%BF%BC%E9%A3%9E%E9%B8%BE",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/483469527_1044795737695110_1703662956617176361_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=0pz8FFhXtu0Q7kNvwEPe-nC&_nc_oc=Admb70fS4S8NpHuv6CuHA5RA635-hTM84kflarqFdy_2K2pNMQVjpgiSVd7cS1oS9ek&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=Xf91jPNTnYwm1ZE3_dxgrQ&oh=00_AfT3NCPqw53jjc-9lxEagYsQD3GwIzL9IoLaG_bVki1Qqw&oe=6890F733",
-    category: "週年免費SSR",
+    category: ["週年免費SSR"],
     description: "2026周年慶10月",
     member: ["葉瑄"],
   },
@@ -2149,7 +2162,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e8/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%8F%B8%E5%B2%9A%E7%94%9F%E8%B4%BA.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%8F%B8%E5%B2%9A%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["司嵐"],
     description: "預計2026.10",
   },
@@ -2161,7 +2174,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%99%B6%E9%83%BD%E5%B8%82%E4%B8%AA%E4%BA%BA%E7%BA%BF/%E6%99%A8%E6%98%8F%E4%B9%8B%E7%AB%A0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/56/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%99%A8%E6%98%8F%E4%B9%8B%E7%AB%A0.png/900px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%99%A8%E6%98%8F%E4%B9%8B%E7%AB%A0.png",
-    category: "主線",
+    category: ["主線"],
     member: ["羅夏"],
   },
   {
@@ -2172,7 +2185,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98%C2%B72023",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/78/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98.png",
-    category: "萬聖",
+    category: ["萬聖"],
   },
   {
     id: "210",
@@ -2192,7 +2205,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "/activity_img/211.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["艾因"],
   },
   {
@@ -2223,7 +2236,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E8%89%BE%E5%9B%A0%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/90/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["艾因"],
     description: "預計2026.11",
   },
@@ -2235,7 +2248,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%B5%AE%E8%AF%AD",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484221106_1047026837472000_352604848947695580_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=cId9CjHAZTQQ7kNvwEKElq2&_nc_oc=AdkGhGld-723K0IGgFSLscM_l2wxg7EwG94n8rpAeglaxLn77nDeApofXEDVZBcLmZhxLxX4_RuE5M3QX3mhDnDO&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=hdfjtAxMLPZAEyKLYOgoqQ&oh=00_AfSaWKV083twOYI36C56y4GuSZ6NXXj_qxAa3HYfAECrbg&oe=68911547",
-    category: "日常絮語",
+    category: ["日常絮語"],
   },
   {
     id: "216",
@@ -2245,7 +2258,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484627338_1047031147471569_6423507790127446881_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QbsORvhOX_IQ7kNvwHfr54X&_nc_oc=AdkV28MP51enM_IbYx1sgOPmq-scYedJb08cJ2suYx_E0ISnkAKRSYw6kLhkXv-rZ5my60zuYYwVYgC7bh5PSRDq&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=6Ve8giOIYQvzlQwV6gohjA&oh=00_AfQtQ7qy56S2p-W1QpxpjdP1r7wHJIBB-N14-bsN-tYNvw&oe=6891291A",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["葉瑄"],
   },
   {
@@ -2256,7 +2269,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%99%B6%E9%83%BD%E5%B8%82%E4%B8%AA%E4%BA%BA%E7%BA%BF/%E8%A3%81%E5%86%B3%E4%B9%8B%E7%AB%A0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/31/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A3%81%E5%86%B3%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A3%81%E5%86%B3%E4%B9%8B%E7%AB%A0.png",
-    category: "主線",
+    category: ["主線"],
     member: ["路辰"],
   },
   {
@@ -2267,7 +2280,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/202311%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/a/a2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-202311%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-202311%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡2023.11",
   },
   {
@@ -2278,7 +2291,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%81%E6%97%A5%E8%B0%88",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/506140055_600807356371162_8438148767829960115_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xKJuz6wNR5MQ7kNvwFoHzHB&_nc_oc=Adm5rzYHhuKlG8B9efOInliQVgOHgTa7OMpCp4hzrjvV2X78C8eXTicpoPL-NKhyUZQkoHDpRU4lTRvPY0A1H_QS&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=y0zYFC6kNY6GunEeU8_9Cg&oh=00_AfRy2_uX9u_-lqjQn9GmAwTKuxuDa7dktsepqlipICex1Q&oe=688EA9E4",
-    category: "帝國",
+    category: ["帝國"],
     member: ["艾因", "羅夏"],
   },
   {
@@ -2289,7 +2302,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/4e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["司嵐", "羅夏"],
     description: "可能2027.06"
   },
@@ -2301,7 +2314,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%82%80%E9%9B%AA%E7%A7%B0%E5%BA%86",
     image: "",
-    category: "聖誕",
+    category: ["聖誕"],
     description: "2026聖誕",
   },
   {
@@ -2312,7 +2325,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A53",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/483947168_1047755264065824_6207420175873897540_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=UzOcebSToRYQ7kNvwH9vFZp&_nc_oc=AdlFpojwplADpHDZvxeghVTlV8d-BNKOrL0Go60n30Gf2DpaXbQgPER8XLaRrfn2sEy5pjLhczaLQvvGNlniNgSS&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=ymHYeR1RrphQ50thknp4nA&oh=00_AfS_9ZfrJY0-XZzP90M35EZMNW0US7Z0ULEhhwDHfNh26w&oe=689128B1",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["路辰"],
   },
   {
@@ -2323,7 +2336,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E5%8F%B6%E7%91%84%E7%94%9F%E6%97%A5",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/484024137_1047993600708657_524711592050670837_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=qdp3ffnrdEEQ7kNvwHgwTsr&_nc_oc=AdmGaRxDZOKlw43s-18rARAAQpX8hOdLBOKpSpHu3dt4WHuHhz1aZXkYTpuUTIOxrFahsSu2IDjZ60b7ArBuYE6a&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=9V7kzMybMa0bEhePzEtfmQ&oh=00_AfQ2ybvg2WLIgTw5lHdeKs8IftjJJX1zluqp1aM5sQMjyA&oe=68913CAC",
-    category: "生日",
+    category: ["生日"],
     member: ["葉瑄"],
   },
   {
@@ -2334,7 +2347,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%A2%A6%E7%BC%9D%E7%BA%AB%E5%BA%97",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/518228606_631213656663865_9088322837039603674_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vUiJgfHC_eAQ7kNvwH2mEB3&_nc_oc=Adn6VwL7JiZ-rzfbbWdcbiUZYM-VPSnbSb3WjS4k8miyIMNhWXCZBRvkNWUsYc_3l29P3EzaRTLvYZe3p2OdSBaY&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=uvAgefpLqd9CQ47VGZJgww&oh=00_AfTGFIWVA3hUq1NPNHaE5AD0DpQb5zGssUSObQxPW32H8w&oe=688ECE52",
-    category: "裁縫店",
+    category: ["裁縫店"],
   }, // 2024開始
   {
     id: "225",
@@ -2354,7 +2367,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%AF%B8%E7%95%8C%E5%BD%92%E4%B8%80",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/494510867_569894252795806_7063750786066485885_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pOtBmrtggxoQ7kNvwGIEx37&_nc_oc=Admbh5ZushjxTIswg6UzoJlbTicSphs1wsqWCFk3uweoFwYXncxMa0fBU8GqNwsXqrI9sGAMQiLt1OWeBwMsAWbm&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=y__qrGtxKDpWKfzsxw-4JQ&oh=00_AfSCADI3mBu95-6I3QZzc-ZReJpb6kn4mFNFWGmG0YawKQ&oe=688EC54E",
-    category: "主線",
+    category: ["主線"],
+    member: ["五人大活動"],
   },
   {
     id: "227",
@@ -2375,7 +2389,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%99%B6%E9%83%BD%E5%B8%82%E4%B8%AA%E4%BA%BA%E7%BA%BF/%E9%97%A8%E6%89%89%E4%B9%8B%E7%AB%A0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c4/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%97%A8%E6%89%89%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%97%A8%E6%89%89%E4%B9%8B%E7%AB%A0.png",
     member: ["司嵐"],
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "229",
@@ -2385,7 +2399,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "230",
@@ -2395,8 +2409,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c4/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7.png",
-    category: "新年",
+    category: ["新年"],
     description: "2026.09",
+    member: ["五人大活動"],
   },
   {
     id: "231",
@@ -2406,7 +2421,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7#%E5%A5%87%E5%A2%83%E8%AE%A1%E5%88%92",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "232",
@@ -2416,7 +2431,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7#%E4%B8%8E%E4%BB%96%E5%85%B1%E5%BA%A6",
     image: "",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "233",
@@ -2426,7 +2441,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/472669280_486440017807897_2953753092566931100_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJ9qkTqiVGgQ7kNvwHZJAbo&_nc_oc=AdmXK3nzuq4vvplingsVTDQRMJrGDtj-mJPCtdVMRvOUHoDkhG_c0LYOmm-2P63TEKAZygDU9wa535-tLfBFB85d&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=55vI8j7ujA-yQPL4kNo4uw&oh=00_AfRrADRPAAjLNFj_WsmFOerrzUCRfSJCrZhI8qnlJjpXng&oe=688F5A95",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "234",
@@ -2455,8 +2470,9 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%95%E5%BC%82%E8%AE%B0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6b/%E6%B4%BB%E5%8A%A8-%E5%BD%95%E5%BC%82%E8%AE%B0.jpg/1050px-%E6%B4%BB%E5%8A%A8-%E5%BD%95%E5%BC%82%E8%AE%B0.jpg",
-    category: "新年",
+    category: ["新年"],
     description: "2026.09",
+    member: ["五人大活動"],
   },
   {
     id: "237",
@@ -2466,7 +2482,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A5%E5%A3%B0%E8%8E%BA%E6%97%B6",
     image: "",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "238",
@@ -2476,7 +2492,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/1/13/%E7%BD%97%E5%A4%8F%E7%AB%8B%E7%BB%98-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%832.png",
-    category: "服裝",
+    category: ["服裝"],
     member: ["羅夏"],
   },
   {
@@ -2487,7 +2503,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A53",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484400498_1050134743827876_5671014686923628958_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9-LF84hvp2kQ7kNvwFrdZzq&_nc_oc=AdmbkDtAuBHO1Q1Ocz0od3FEBxtnWTIIo5UmQIJC1Xx3dWAcMBYlHxjIZxirNjCKvLG32LPWlg2iCKZIkT5w1n7W&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=Ulof7pm6VxwmR5AIi-Ncrg&oh=00_AfTRiRJVdLWgDg0qQRtH5S26Tl_0yIsYKIDrLZTkaWGWvA&oe=6891444A",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["艾因"],
   },
   {
@@ -2498,7 +2514,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%BC%E9%9B%A8%E6%99%B4%E5%A4%9C",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/9e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%BC%E9%9B%A8%E6%99%B4%E5%A4%9C.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%BC%E9%9B%A8%E6%99%B4%E5%A4%9C.png",
-    category: "白情",
+    category: ["白情"],
     description: "2026.10",
   },
   {
@@ -2509,7 +2525,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E8%B7%AF%E8%BE%B0%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/36/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["路辰"],
   },
   {
@@ -2520,7 +2536,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2024%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/7d/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
     description: "新關卡2024.03",
   },
   {
@@ -2542,7 +2558,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%99%B6%E9%83%BD%E5%B8%82%E4%B8%AA%E4%BA%BA%E7%BA%BF/%E5%88%86%E5%8C%96%E4%B9%8B%E7%AB%A0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/90/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%88%86%E5%8C%96%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%88%86%E5%8C%96%E4%B9%8B%E7%AB%A0.png",
     member: ["葉瑄"],
-    category: "主線",
+    category: ["主線"],
   },
   {
     id: "245",
@@ -2563,7 +2579,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484797759_1051162547058429_451644067917535457_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Bijg_xrLiskQ7kNvwE5Vcce&_nc_oc=AdlT77LT7IVSCPT7bi_OjvHztvXfNGgMwKaYbzA5BdGtdMuKnhkqaHpb6KnToR20zYrq6A--hZIRY0kxQnnbGWuI&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=FLKIINi0YZgDuEUXiIYyHQ&oh=00_AfQlPvW7wd4HKIrw-NVQP3E3TF0APpA90hZiLA5rA2oh2Q&oe=68913A4E",
     member: ["路辰"],
-    category: "翻牌",
+    category: ["翻牌"],
   },
   {
     id: "247",
@@ -2573,7 +2589,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/485739671_1051168690391148_6356147912109210402_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=kjgHkAy4oJ0Q7kNvwFq3Kte&_nc_oc=AdkiitSZ55vnZFtl5UqKm1MZse4G1vb9m0v5Rq99a9XXyzuvjtv83LZlosqgsA3jeVIp7Ah7Os7MTQh6XuNPK0ym&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=-fqGCTKattstFmXqgi4_QA&oh=00_AfT3NajNCQ_xwGK4cYeywKceX5mXDjBq8wHk66-2DsGHnA&oe=68915B63",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "248",
@@ -2592,7 +2608,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/99/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "250",
@@ -2602,7 +2618,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%99%B6%E9%83%BD%E5%B8%82%E4%B8%AA%E4%BA%BA%E7%BA%BF/%E5%AD%98%E5%9C%A8%E4%B9%8B%E7%AB%A0",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%AD%98%E5%9C%A8%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%AD%98%E5%9C%A8%E4%B9%8B%E7%AB%A0.png",
-    category: "主線",
+    category: ["主線"],
     member: ["艾因"],
   },
   {
@@ -2613,7 +2629,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A53",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/485766838_1051714600336557_8370051121371139873_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ZLh7kVnwnYcQ7kNvwETK-HP&_nc_oc=AdlyMQho9KQ2bxJ1s6CgzClTrYrPmffrG8Fav1tLuuLsTHwC3FHYyyRMm-nRnJ7BNVOkH7R0npck9XVAKjBqHrKz&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=XUgjSyGDwh0El2aiXlSpew&oh=00_AfSgNa3kvcz_BVVWDgAgwaD4y58jz5tHRbR2QPyb8ZWYOw&oe=68914066",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["葉瑄"],
   },
   {
@@ -2624,7 +2640,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BA%94%E4%B8%80%E5%81%87%E6%97%A5",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484827213_1167205108510534_8621890579493946948_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4X-CzBOFagkQ7kNvwEpPCAt&_nc_oc=AdlnNu-pbYtGw0yvoxtDciwK1IngGLg7jmwjM2qiyTCuWW2EQL4c1BmdLEDJWqa0c-wPbp40rXNn1BOF0uzBYqPU&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=5tMvasTMxRGyMxD4F7bOjA&oh=00_AfRQZVwPHy-XdIZ3A3RMZ1ZbU_Tpy-d1ii5GWsTRB8MIWw&oe=68912D4E",
-    category: "關卡全開",
+    category: ["關卡全開"],
   },
   {
     id: "253",
@@ -2662,7 +2678,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b7/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["司嵐", "路辰"],
   },
   {
@@ -2673,7 +2689,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/485908521_1052023966972287_663058385559212751_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-j0mXzpwCeQQ7kNvwH6_ESN&_nc_oc=AdkHgi4UqtSC1u9IjZC6Y5tOXwyL8k013mxZr-PbZA9sNm_wEGCpEWFYJY7qesKkIHamfIQvXqMNNd7rdZpHceRW&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=yUwewu3RTPoPRoSUXfGENw&oh=00_AfTXBbOBJqvAq_USxWkFZAzK0gxHN0kwdDnLjTGMCmwjjg&oe=6891531A",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["羅夏"],
   },
   {
@@ -2684,7 +2700,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/78/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["葉瑄", "艾因"],
     description: "可能2027.06",
   },
@@ -2705,7 +2721,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A53",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/485404532_1052040066970677_8197323354002429643_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pUR4zUXHPBAQ7kNvwGtjcOf&_nc_oc=AdnBN7d2PQAHnfCqtzeK1h6JBv1t7S4HjEkojNsvE7LfjP6BT8G9wx2Dbd4Yb2Hq0fXgadiJ7fLdMCOtWyYOG83r&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=0tAYb15ZIGAsxkWyLpTrnw&oh=00_AfSfgDjnq-GyNV1YaytKMhibwDw888xVR36UPl_Et7Hhxw&oe=68915F37",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["羅夏"],
   },
   {
@@ -2716,7 +2732,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/2/22/%E6%B4%BB%E5%8A%A8-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83.jpg/700px-%E6%B4%BB%E5%8A%A8-%E7%8F%A0%E5%AE%9D%E4%B9%8B%E5%BF%83.jpg",
-    category: "夏活",
+    category: ["夏活"],
+    member: ["五人大活動"],
   },
   {
     id: "262",
@@ -2726,7 +2743,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85%C2%B7%E5%9B%9B%E6%97%B6%E6%99%AF",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3a/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9B%E6%97%B6%E6%99%AF1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9B%E6%97%B6%E6%99%AF1.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "263",
@@ -2746,7 +2763,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/dd/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png",
-    category: "夏活",
+    category: ["夏活"],
+    member: ["五人大活動"],
   },
   {
     id: "265",
@@ -2765,7 +2783,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/66/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["羅夏"],
   },
   {
@@ -2776,7 +2794,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/13/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png",
-    category: "七夕",
+    category: ["七夕"],
+    member: ["五人大活動"],
   },
   {
     id: "268",
@@ -2786,7 +2805,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/482264282_1044097461098271_6177668370042800672_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pK9FJMdahysQ7kNvwF6bTvS&_nc_oc=AdnNXo5xxCBYRro-5edT5HcGQAnBMzu_qGoNOYbnnxZDPHeVXTFErRZvWi46UDpw0SMRQRmI_RXdshzlrONS5fNV&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=yhtnXIclpbWD_5OJuoekxA&oh=00_AfRgFS53r5N9wxpBNe2s3A8N_5Qt94y3-wRdtN1o9ME_Fw&oe=6891622A",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "269",
@@ -2796,7 +2815,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2024%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/f6/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "270",
@@ -2815,7 +2834,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A53",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/486295359_1053307706843913_5656946391932665758_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=f5m9bm1vKfEQ7kNvwFWQTax&_nc_oc=AdlxFxipcEEzQFoeEfjG0TU2nkKMbNSk2mbRiTsaZmn8VOkWz1UK3gEiirQ9XjelUYtQ2tuAHSM1Iv95mHHi6r_1&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=JUJ6Y23TmtnRywr4oDLAHw&oh=00_AfSGNRTCxVihNN31SWkYF73OKe736ODqjXrJV-D3mu7QBA&oe=68913844",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["司嵐"],
   },
   {
@@ -2826,7 +2845,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%A2%E7%BA%BF%E7%89%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png",
-    category: "七夕",
+    category: ["七夕"],
   },
   {
     id: "273",
@@ -2836,7 +2855,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BB%A1%E8%BD%BD%E6%98%8E%E6%9C%88%E6%97%B6",
     image: "",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "274",
@@ -2856,17 +2875,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png",
-    category: "週年慶",
-  },
-  {
-    id: "276",
-    name: "漫長的箴言·復刻",
-    startDate: "",
-    endDate: "",
-    status: "upcoming",
-    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80",
-    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png",
-    category: "週年慶",
+    category: ["週年慶"],
+    member: ["五人大活動"],
   },
   {
     id: "277",
@@ -2876,7 +2886,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/485360635_1053461590161858_8522456940063558956_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=gy5i0X0fWs0Q7kNvwHGFGSP&_nc_oc=Adn6YgRaX-J4dXhSU9MnUDi-lN6ZObedh60-GAP9VKUC-UMehMKz8TG7GWzdNZFancuwE5lxhbms4T6X4SFO3izn&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=qPhgM_Uv8ZX6hSutoxhUFw&oh=00_AfRFfIsHkZkTabQwuPoikxHK-UMeR8p8LLdzt3LcubBRkA&oe=68916A08",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["司嵐"],
   },
   {
@@ -2896,7 +2906,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/485134960_1053466396828044_5716310740741996104_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Lgq1kKD_jCMQ7kNvwEb8Ni2&_nc_oc=AdlM5xFlNyvoutqhaqD8T-u47cqtameHCUjgbcL-Qa9kGKwMQEdWAkkDWROWcEC-N8j9IAxgmdH16eOSmzZhvMed&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=WY8w1OvlHfx1JWJ1fQaMtA&oh=00_AfRjwt6d2QYbO5T-axEWlbSsHbTK-TkjGNAPW0Zjs-WyGg&oe=6891516B",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "280",
@@ -2906,7 +2916,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E5%91%A8%E5%B9%B4%E7%9B%9B%E5%85%B8",
     image: "",
-    category: "週年慶",
+    category: ["週年慶"],
   },
   {
     id: "281",
@@ -2916,7 +2926,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/486057384_1173905907840454_4952372805166130085_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=N_kgnnME3OgQ7kNvwEjFklR&_nc_oc=AdkNNj-h28LGcDnycYIte9_0wv_t8kU28gcMyLbU4c3qQkrVbuPrCUBVNt2OXvsFmr-PIq0f3Hi12fGLQecotzmP&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=J_S7ZJ06JocH4EU5lld9Rw&oh=00_AfT2f7ekd_ZrKEVY9ikXXHFtX_wXDeUwJimV190uSThoNQ&oe=68913CD0",
-    category: "異色",
+    category: ["異色"],
   },
   {
     id: "282",
@@ -2926,7 +2936,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "283",
@@ -2936,7 +2946,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0a/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png",
-    category: "主線",
+    category: ["主線", "週年慶"],
+    member: ["五人大活動"],
   },
   {
     id: "284",
@@ -2946,7 +2957,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E5%91%A8%E5%B9%B4%E7%9B%9B%E5%85%B8#%E7%91%9E%E7%8B%AE%E4%BC%A0%E5%93%8D",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/485053190_1053479096826774_1433198475996430600_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=bj86NPZiZ6oQ7kNvwGhJJty&_nc_oc=AdkxcCmVJHyrRYShcbBPtPmZqkV8aTfapr28jKZGWOfn5Apm0_Tj9Yw2jOmv71ul8GnGfvKX3GLTLlojDqdX3Uc5&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=sX9mkiXXfCqig-sNu6pkSA&oh=00_AfTNlSIMYiObaI1O5OyEas8jEfZpK0X6LWudJvgnThwEdg&oe=68914F3C",
-    category: "週年免費SSR",
+    category: ["週年免費SSR"],
   },
   {
     id: "285",
@@ -2956,7 +2967,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A54",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/486325321_1053660976808586_6741679802982476489_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vmGrrvJSSzEQ7kNvwFitHrh&_nc_oc=Adm6uHuSaa7bRatS03Yplt-0tkvrQLfYHa3rcIIqy_mzVFTkh_eVSgHpdRh4_TkI0myCjs2ghhx4v7GpCD3gGGQ_&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=WWrD3dJbHMgxuCnB2lDtLg&oh=00_AfRHhOxsRuOUPjuw7owqJ5-BaUM3TH4rzcIiTloVl3hlNQ&oe=689145D4",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["葉瑄"],
   },
   {
@@ -2967,7 +2978,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/8/8f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%8F%B8%E5%B2%9A%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%8F%B8%E5%B2%9A%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["司嵐"],
   },
   {
@@ -2987,7 +2998,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2024%E7%A7%8B%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E7%A7%8B%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E7%A7%8B%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "289",
@@ -3007,7 +3018,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/4e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["司嵐", "羅夏"],
   },
   {
@@ -3018,7 +3029,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%AA%E5%85%83%E8%BF%9C%E8%A1%8C",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/496943764_577287608723137_37071181021231856_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=XvVDUhMJhE0Q7kNvwHRyLTM&_nc_oc=AdnnKbkSxNhLS97Tgf9L0lDyXQ22snDyGxTFmAk7fcyrqTWjrJ_CBL5csyClapLY_0ylvlrZTLLOG4hH_iqhL30J&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=iHen1vA2ninWIIKwgayNUA&oh=00_AfQogxDUpTzJXOmlA6wrezoKNVTjjzDnSEOip2L11XyKfg&oe=688EB85F",
-    category: "繪卷",
+    category: ["繪卷"],
   },
   {
     id: "292",
@@ -3028,7 +3039,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E8%89%BE%E5%9B%A0%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/40/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["艾因"],
   },
   {
@@ -3039,7 +3050,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/508261665_1119261740248509_1606322796934403443_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QhxK5WsAJwUQ7kNvwGm8FvZ&_nc_oc=Adn2uQDHAyLgi2SuUVsrS8xp0DShdm2E73SqY1A_TkD3uabFmvCaoZ8cv7OE3By2lcRHhN1AISseDHZUgHrJbzWe&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=QI_O7rpZZ60KiG3rDq1kkA&oh=00_AfRbaKl1uqGqruHaltPVCbWtFF7DL71A8syyVlgOBI9AfQ&oe=68915F6B",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "294",
@@ -3049,7 +3060,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png",
-    category: "帝國",
+    category: ["帝國"],
     description: "可能2027.12",
   },
   {
@@ -3060,7 +3071,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A54",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/486376652_1054241613417189_1218088604483857586_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=3BvRAqmW8gYQ7kNvwG5GLxd&_nc_oc=AdmbeVju6OqPeH2-pMRNTZF8_IMnKPEafK_czDWlgFgE0o3EW5gaeggdHYgtE1Rchs2VTWF_AZmmjnlY_rUJ6mMy&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=Q8LwPbZlZGJnqpJWW2qoVg&oh=00_AfSFS03sduFlPQ5JnjGF2TV_TD_ItmsPaxB3hNZyuTB-HQ&oe=6891E6D8",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["司嵐"],
   },
   {
@@ -3100,7 +3111,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E5%8F%B6%E7%91%84%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/d3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%8F%B6%E7%91%84%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2024%E5%8F%B6%E7%91%84%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["葉瑄"],
   }, // 2025開始
   {
@@ -3121,7 +3132,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B9%BB%E6%A2%A6%E7%BC%9D%E7%BA%AB%E5%BA%97",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/518228606_631213656663865_9088322837039603674_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vUiJgfHC_eAQ7kNvwH2mEB3&_nc_oc=Adn6VwL7JiZ-rzfbbWdcbiUZYM-VPSnbSb3WjS4k8miyIMNhWXCZBRvkNWUsYc_3l29P3EzaRTLvYZe3p2OdSBaY&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=uvAgefpLqd9CQ47VGZJgww&oh=00_AfTGFIWVA3hUq1NPNHaE5AD0DpQb5zGssUSObQxPW32H8w&oe=688ECE52",
-    category: "裁縫店",
+    category: ["裁縫店"],
   },
   {
     id: "302",
@@ -3131,7 +3142,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%B6%E7%A9%97%E5%B9%B4%E5%B9%B4",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6d/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%97%B6%E7%A9%97%E5%B9%B4%E5%B9%B4.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%97%B6%E7%A9%97%E5%B9%B4%E5%B9%B4.png",
-    category: "聯動",
+    category: ["聯動"],
   },
   {
     id: "303",
@@ -3141,7 +3152,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c4/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%86%E7%81%AF%E5%A4%9C%E7%85%A7.png",
-    category: "新年",
+    category: ["新年"],
+    member: ["五人大活動"],
   },
   {
     id: "304",
@@ -3151,7 +3163,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A54",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/486300953_1054575266717157_6845907287761197944_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Y6PJ3Iu2l-UQ7kNvwEOyOkF&_nc_oc=AdnAiTuBBpSBWP7Bc_LNgwx9Czr83OZHTSiD0HxORjZOEH47YOEkYWaN9OmbGonuvytCIYwx8xepmct6gxycB5UY&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=y1jL5KAqLUnXa76UkoE2YA&oh=00_AfS3HKSvXcAiwAJaq_KCHiRBrTd6hUVvv0AZQGaTPRjsjw&oe=6891EF9E",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["路辰"],
   },
   {
@@ -3171,7 +3183,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%83%E7%A7%8B%E6%B8%A1",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b8/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%83%E7%A7%8B%E6%B8%A1.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%83%E7%A7%8B%E6%B8%A1.png",
-    category: "新年",
+    category: ["新年"],
+    member: ["五人大活動"],
   },
   {
     id: "307",
@@ -3181,7 +3194,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2025%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/d1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "308",
@@ -3191,7 +3204,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/32/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6.png",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "309",
@@ -3211,7 +3224,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A5%E5%AD%A3%E8%BF%90%E5%8A%A8%E8%AE%A1%E5%88%92",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/486050933_1054825680025449_9031919186473729858_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lobg9kiomGgQ7kNvwFWuoqc&_nc_oc=AdmV8164YIDRqrTUQJgR1EzP564qb7H9O4Fu27M5M684hLw7mH1suS5-6XXgVK0K4u8CwsHcfvEqWWumAESK9iQq&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=HxzAReDbXNZltfUbtwrg8A&oh=00_AfQscFCuqupFngudtH1XApYTLX48kF84M2gOCB_aKYBfcQ&oe=6891D879",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "311",
@@ -3231,7 +3244,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "",
     image: "",
-    category: "私語",
+    category: ["私語"],
   },
   {
     id: "313",
@@ -3241,7 +3254,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A54",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/487325929_1059189042922446_1229884953002604945_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=nfyb1AQAlB8Q7kNvwGpzYyF&_nc_oc=AdknojRCHXd-HgshJny4ju5biRaZZDbO5rLNJ1IV6U2Speu_oIA4rAdUEtqbNt4AaWnRCdg9vUDwOl19bRgkiH7e&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=m7P4UocxIeiM47OhTzXC8Q&oh=00_AfTjjN7j0Jdi_tR4iZXAGfup_WI_tNsI-ExI3DbjDF1y3A&oe=6891E5EA",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["羅夏"],
   },
   {
@@ -3252,7 +3265,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/38/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5.png",
-    category: "白情",
+    category: ["白情"],
   },
   {
     id: "315",
@@ -3262,7 +3275,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2025%E8%B7%AF%E8%BE%B0%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/1f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["路辰"],
   },
   {
@@ -3273,7 +3286,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/492245598_1075503737957643_7342101935575072576_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KX8UgozQ_iAQ7kNvwGFtqMx&_nc_oc=AdkKrooY67ZnPFsWllhVufl9DZ81WEzWHluP2HMGnWdfwfaoANVHQgIzQxpttiXDIlxb4pXK3dT6LRtQKJZeDCJX&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=xRdA7VwgadFMG-gqsf9cbw&oh=00_AfTtmBcQrH8QB1zCtQL9BNFZ6JziJrLlfghKPbUAZPo1Cw&oe=6891FDFF",
-    category: "減半",
+    category: ["減半"],
   },
   {
     id: "317",
@@ -3283,7 +3296,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%972",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/491918830_1076317981209552_1336719753305863322_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=arc3TY9P5woQ7kNvwFknSoa&_nc_oc=AdlyMl_ox4hSn49jettkgpkgWcV8NnKsD_dg7TKr9_jpo88J0rEsJqGTijjWXxu3cJIe1Yls_wLSNjoLQyB-etlp&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=DKg_lcHwZw9hjX6j5Yf-bA&oh=00_AfTG9sbfWZswq37bze2GVdWmyFs4QNYpusicEP1N8nfOtg&oe=6891DECA",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["司嵐"],
   },
   {
@@ -3294,7 +3307,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BA%8C%E5%88%86%E7%9A%84%E8%8D%86%E6%A3%98%E8%B7%AF",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/75/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%8C%E5%88%86%E7%9A%84%E8%8D%86%E6%A3%98%E8%B7%AF.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%8C%E5%88%86%E7%9A%84%E8%8D%86%E6%A3%98%E8%B7%AF.png",
-    category: "主線",
+    category: ["主線"],
     member: ["羅夏", "艾因"],
   },
   {
@@ -3305,7 +3318,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "320",
@@ -3335,7 +3348,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%A2%E7%BA%BF%E7%89%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png",
-    category: "七夕",
+    category: ["七夕"],
   },
   {
     id: "323",
@@ -3345,7 +3358,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/99/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png",
-    category: "情人節",
+    category: ["情人節"],
   },
   {
     id: "324",
@@ -3364,7 +3377,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/481962621_1042620654579285_4049976337300430388_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=zP4zOO0zQ-oQ7kNvwHWFHfm&_nc_oc=Adl6TeyHAhmbV99kEu_ryGLGDs27hBVfgOn1MH7V5dkvMmDbe9Cv-M8CE-V1TWve9UQ&_nc_zt=23&_nc_ht=scontent.ftpe7-3.fna&_nc_gid=_6ts2Nw06LIz2EP4UpIKVw&oh=00_AfRSEjqH0dKRLfreqB2ihqWGIeRBTjBxVLMK9SwuyX7fxw&oe=68911A7F",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["艾因"],
   },
   {
@@ -3375,7 +3388,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2025%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ef/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "327",
@@ -3385,6 +3398,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA.png",
+    member: ["五人大活動"],
   },
   {
     id: "328",
@@ -3394,7 +3408,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484627338_1047031147471569_6423507790127446881_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QbsORvhOX_IQ7kNvwHfr54X&_nc_oc=AdkV28MP51enM_IbYx1sgOPmq-scYedJb08cJ2suYx_E0ISnkAKRSYw6kLhkXv-rZ5my60zuYYwVYgC7bh5PSRDq&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=6Ve8giOIYQvzlQwV6gohjA&oh=00_AfQtQ7qy56S2p-W1QpxpjdP1r7wHJIBB-N14-bsN-tYNvw&oe=6891291A",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["葉瑄"],
   },
   {
@@ -3415,7 +3429,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%83%AD%E7%88%B1%E7%BA%AA%E5%BF%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%83%AD%E7%88%B1%E6%97%A5%E7%BA%AA%E5%BF%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%83%AD%E7%88%B1%E6%97%A5%E7%BA%AA%E5%BF%B5.png",
-    category: "關卡全開",
+    category: ["關卡全開"],
   },
   {
     id: "331",
@@ -3455,7 +3469,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%972",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/499765682_1100318235476193_492904208639419030_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=R6uy7geRxdMQ7kNvwEg1iDb&_nc_oc=Admo6Ns7BEnteenjzDo2dyBHMzYVGtm2ciG4yujM5XQZrJOy1pqx9sA1b3mU6_LhvbH46P9VfHtrFlEoyYEgN0CY&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=sHTRcn232RFAAU5DIBDvwg&oh=00_AfTH0HbUvP1JUZjpzkRvV2HzAujRl6AzvuhNFN4bwjiXSA&oe=6891FDC7",
     member: ["路辰"],
-    category: "翻牌",
+    category: ["翻牌"],
   },
   {
     id: "335",
@@ -3465,7 +3479,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A7%E5%BF%86%E7%AB%A5%E5%BF%83",
     image: "",
-    category: "簽到",
+    category: ["簽到"],
   },
   {
     id: "336",
@@ -3475,7 +3489,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/dd/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png",
-    category: "夏活",
+    category: ["夏活"],
+    member: ["五人大活動"],
   },
   {
     id: "337",
@@ -3485,7 +3500,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A54",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/501137528_1104043178437032_6330109823615516330_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=elM6eoQSC4kQ7kNvwFOQexE&_nc_oc=Adm0vm2tSWuUbBR3vU7_kHltsBGdjy9dimI37Ny2VIlaTnsuiF0_JKanz_oWhY6k0GVY3pgknIh_BXro9USm6g0S&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=hTp7a4cOzzGyGQyc3kFVzA&oh=00_AfRzwUD1iCWqcwDjDNaRtPr0kPrhd_RafUtPGI28scXk2Q&oe=6891FCA4",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["艾因"],
   },
   {
@@ -3505,7 +3520,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85%C2%B7%E5%9B%9B%E6%97%B6%E6%99%AF",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3a/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9B%E6%97%B6%E6%99%AF1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9B%E6%97%B6%E6%99%AF1.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "340",
@@ -3525,7 +3540,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/78/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%B0%98%E5%B0%81%E7%9A%84%E6%9E%9C%E5%A3%B3.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["葉瑄", "艾因"],
   },
   {
@@ -3536,7 +3551,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/508261665_1119261740248509_1606322796934403443_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QhxK5WsAJwUQ7kNvwGm8FvZ&_nc_oc=Adn2uQDHAyLgi2SuUVsrS8xp0DShdm2E73SqY1A_TkD3uabFmvCaoZ8cv7OE3By2lcRHhN1AISseDHZUgHrJbzWe&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=QI_O7rpZZ60KiG3rDq1kkA&oh=00_AfRbaKl1uqGqruHaltPVCbWtFF7DL71A8syyVlgOBI9AfQ&oe=68915F6B",
-    category: "服裝",
+    category: ["服裝"],
   },
   {
     id: "343",
@@ -3546,7 +3561,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%89%8D%E8%A1%8C%E8%80%85%E6%81%92%E5%B8%B8%E5%89%8D%E8%A1%8C",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ec/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%A1%8C%E8%80%85%E6%81%92%E5%B8%B8%E5%89%8D%E8%A1%8C.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%A1%8C%E8%80%85%E6%81%92%E5%B8%B8%E5%89%8D%E8%A1%8C.png",
-    category: "帝國",
+    category: ["帝國"],
     member: ["路辰", "艾因", "司嵐"],
   },
   {
@@ -3558,7 +3573,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/484797759_1051162547058429_451644067917535457_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Bijg_xrLiskQ7kNvwE5Vcce&_nc_oc=AdlT77LT7IVSCPT7bi_OjvHztvXfNGgMwKaYbzA5BdGtdMuKnhkqaHpb6KnToR20zYrq6A--hZIRY0kxQnnbGWuI&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=FLKIINi0YZgDuEUXiIYyHQ&oh=00_AfQlPvW7wd4HKIrw-NVQP3E3TF0APpA90hZiLA5rA2oh2Q&oe=68913A4E",
     member: ["路辰"],
-    category: "翻牌",
+    category: ["翻牌"],
   },
   {
     id: "345",
@@ -3578,7 +3593,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/2/24/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F.png",
-    category: "夏活",
+    category: ["夏活", "聯動"],
+    member: ["五人大活動"]
   },
   {
     id: "347",
@@ -3588,7 +3604,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A55",
     image: "https://scontent.ftpe4-2.fna.fbcdn.net/v/t39.30808-6/518096810_1142421981265818_5822793636712395588_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=oUfxLMOktbcQ7kNvwGBFAvD&_nc_oc=AdnisZp0q3rAb0SDj86WT2z3X5lD00hUyB30RmE-RJe90i71U8Wzvm_e6MvWXn8bzTnDxSc6mVJvpmZjzMzZLzqc&_nc_zt=23&_nc_ht=scontent.ftpe4-2.fna&_nc_gid=MszzLDhUA_w36M3KOxf1Nw&oh=00_AfS_gKhy2naCz0PftfNla45-5APiyiE3w-_krHqE3m4lHw&oe=6891F6B9",
-    category: "繾綣假日",
+    category: ["繾綣假日"],
     member: ["葉瑄"],
   },
   {
@@ -3599,7 +3615,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2025%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/8/89/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E5%A4%8F%E6%97%A5%E9%87%87%E9%A3%8E.png",
-    category: "取材",
+    category: ["取材"],
   },
   {
     id: "349",
@@ -3609,7 +3625,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
     image: "https://scontent.ftpe4-1.fna.fbcdn.net/v/t39.30808-6/485908521_1052023966972287_663058385559212751_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-j0mXzpwCeQQ7kNvwH6_ESN&_nc_oc=AdkHgi4UqtSC1u9IjZC6Y5tOXwyL8k013mxZr-PbZA9sNm_wEGCpEWFYJY7qesKkIHamfIQvXqMNNd7rdZpHceRW&_nc_zt=23&_nc_ht=scontent.ftpe4-1.fna&_nc_gid=yUwewu3RTPoPRoSUXfGENw&oh=00_AfTXBbOBJqvAq_USxWkFZAzK0gxHN0kwdDnLjTGMCmwjjg&oe=6891531A",
-    category: "翻牌",
+    category: ["翻牌"],
     member: ["羅夏"],
   },
   {
@@ -3620,7 +3636,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2025%E7%BD%97%E5%A4%8F%E7%94%9F%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/1b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2025%E7%BD%97%E5%A4%8F%E7%94%9F%E8%B4%BA.png",
-    category: "生日",
+    category: ["生日"],
     member: ["羅夏"],
   },
 ]

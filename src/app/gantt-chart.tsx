@@ -212,7 +212,11 @@ export default function Component() {
       const categories = new Set<string>()
       processedActivities.forEach((activity) => {
         if (activity.category) {
-          categories.add(activity.category)
+          if (Array.isArray(activity.category)) {
+            activity.category.forEach((cat) => categories.add(cat))
+          } else {
+            categories.add(activity.category)
+          }
         }
       })
       return Array.from(categories).sort()
@@ -278,7 +282,13 @@ export default function Component() {
     
       // 類型篩選
       if (selectedCategory !== "all") {
-        allFilteredActivities = allFilteredActivities.filter((activity) => activity.category === selectedCategory)
+        allFilteredActivities = allFilteredActivities.filter((activity) => {
+          if (!activity.category) return false
+          if (Array.isArray(activity.category)) {
+            return activity.category.includes(selectedCategory)
+          }
+          return activity.category === selectedCategory
+        })
       }
       // 角色篩選
       if (selectedMember !== "all") {
@@ -332,7 +342,13 @@ export default function Component() {
 
     // 類型篩選
     if (selectedCategory !== "all") {
-      allFilteredActivities = allFilteredActivities.filter((activity) => activity.category === selectedCategory)
+      allFilteredActivities = allFilteredActivities.filter((activity) => {
+        if (!activity.category) return false
+        if (Array.isArray(activity.category)) {
+          return activity.category.includes(selectedCategory)
+        }
+        return activity.category === selectedCategory
+      })
     }
 
     // 獲取符合條件的活動ID集合
@@ -366,7 +382,13 @@ export default function Component() {
 
       // 類型篩選
       if (selectedCategory !== "all") {
-        filtered = filtered.filter((activity) => activity.category === selectedCategory)
+        filtered = filtered.filter((activity) => {
+          if (!activity.category) return false
+          if (Array.isArray(activity.category)) {
+            return activity.category.includes(selectedCategory)
+          }
+          return activity.category === selectedCategory
+        })
       }
       // 角色篩選
       if (selectedMember !== "all") {
@@ -718,12 +740,12 @@ export default function Component() {
                       {activity.category && (
                         <p
                           className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2`}
-                        >{activity.category}</p>
+                        >{activity.category ? `${activity.category.join("、")}` : ""}</p>
                       )}
                       {/* 成員列表 */}
                       {activity.member && (
                         <p className="text-gray-400 text-xs">
-                          {activity.member ? `${activity.member.join(", ")}` : ""}
+                          {activity.member ? `${activity.member.join("、")}` : ""}
                         </p>
                       )}
                       {/* 狀態標籤 */}
@@ -896,9 +918,9 @@ export default function Component() {
         <div className="mb-8">
           <Image width={200} height={80} priority={false} className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
           <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
-          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 mx-auto w-fit items-center">
-            <ul className="text-gray-400 text-xs list-decimal">
-              <li>全員活動不會有角色標籤</li>
+          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 mx-auto justify-center relative md:px-[120px]">
+            <ul className="text-gray-400 text-xs list-decimal pl-4">
+              <li>五人大活動的定義為全員SSR，小活動雖然有兩三個人SSR但不會有角色標籤</li>
               <li>活動類型參照中國服wiki分類</li>
               <li>點擊活動名稱可直接連到wiki活動頁面</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
@@ -906,7 +928,7 @@ export default function Component() {
             {/* 禮包CP值計算機按鈕 */}
             <Dialog open={isCalculatorOpen} onOpenChange={setIsCalculatorOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-gray-800/30 text-gray-400 flex items-center gap-2 flex-col h-auto hover:bg-gray-800/50 text-xs">
+                <Button className="bg-gray-800/30 text-gray-400 flex items-center gap-2 flex-col h-auto hover:bg-gray-800/50 text-xs md:absolute right-0">
                   <Image src="/com_icon_146.png" alt="" className="w-10 h-10"  width={40} height={40}  />
                   禮包CP值計算機
                 </Button>
@@ -1206,11 +1228,11 @@ export default function Component() {
                             {activity.description}
                           </p>
                           <p className="text-gray-400 text-sm">
-                            {activity.category}
+                            {activity.category ? activity.category.join("、") : ""}
                           </p>
                           {activity.member && activity.member.length > 0 && (
                             <p className="text-gray-400 text-sm">
-                              {activity.member ? activity.member.join(", ") : ""}
+                              {activity.member ? activity.member.join("、") : ""}
                             </p>
                           )}
                         </div>
@@ -1305,7 +1327,7 @@ export default function Component() {
                         {childActivity.startDate} ~ {childActivity.endDate}
                       </p>
                       {childActivity.member && childActivity.member.length > 0 && (
-                        <p className="text-xs text-gray-400 ml-4">{childActivity.member.join(", ")}</p>
+                        <p className="text-xs text-gray-400 ml-4">{childActivity.member.join("、")}</p>
                       )}
                     </div>
                   )

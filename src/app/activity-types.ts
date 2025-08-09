@@ -6,7 +6,7 @@ export interface Activity {
   status: "completed" | "ongoing" | "upcoming"
   url: string
   image: string
-  category?: string
+  category?: Array<string>
   member?: Array<string>
   description?: string
   childrenActivities?: Array<string>
