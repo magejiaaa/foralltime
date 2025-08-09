@@ -945,7 +945,8 @@ export default function Component() {
                     <p className="mb-2">計算公式：</p>
                     <p>• 1顏料 = 150鑽石</p>
                     <p>• 1體力 = 0.5鑽石</p>
-                    <p className="mt-2">每抽價值 = 禮包價格 ÷ 總價值以顏料為單位，只計算顏料鑽石與體力</p>
+                    <p>• 顏料與鑽石需擇一填寫，如果只填體力不計算</p>
+                    <p className="mt-2">每抽價值 = 禮包價格 ÷ 總價值以顏料為單位</p>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
