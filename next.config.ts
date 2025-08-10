@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       new URL('https://huiji-public.huijistatic.com/**'),
       new URL('https://i0.hdslb.com/**'),
+      new URL('https://*.fbcdn.net/**'),
       {
         protocol: 'https',
         hostname: 'r.res.easebar.com',
