@@ -1264,7 +1264,11 @@ export default function Component() {
         >
           <h4 className="font-bold mb-1">{hoveredActivityData.name}</h4>
           <p className="text-xs text-gray-400">
-            {hoveredActivityData.startDate} ~ {hoveredActivityData.endDate} 04:00
+            繁中服：{hoveredActivityData.startDate} ~ {hoveredActivityData.endDate}
+            <br />
+            {hoveredActivityData.cnStartDate && hoveredActivityData.cnEndDate && (
+              <span>中國服：{hoveredActivityData.cnStartDate} ~ {hoveredActivityData.cnEndDate}</span>
+            )}
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
           {/* 關聯方案 */}
@@ -1357,6 +1361,7 @@ export default function Component() {
               sizes="(max-width: 500px) 100vw, 500px"
               className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
               style={{ maxWidth: "500px", maxHeight: "500px" }}
+              loading="lazy"
             />
           </div>
         </div>

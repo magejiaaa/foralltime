@@ -5,25 +5,17 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       new URL('https://huiji-public.huijistatic.com/**'),
+      new URL('https://r.res.easebar.com/**'),
+      new URL('https://**.fbcdn.net/**'),
+      new URL('https://www.foralltime.com.tw/**'),
       new URL('https://i0.hdslb.com/**'),
-      new URL('https://*.fbcdn.net/**'),
+      new URL('https://huiji-thumb.huijistatic.com/**'),
       {
         protocol: 'https',
-        hostname: 'r.res.easebar.com',
+        hostname: '**.fbcdn.net',
       },
-      {
-        protocol: 'https',
-        hostname: '*.fbcdn.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.foralltime.com.tw',
-      },
-      {
-        protocol: 'https',
-        hostname: 'huiji-thumb.huijistatic.com',
-      }
-    ]
+    ],
+    minimumCacheTTL: 2678400, // 31 days
   }
 };
 

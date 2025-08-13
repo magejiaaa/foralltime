@@ -3,6 +3,8 @@ export interface Activity {
   name: string
   startDate: string
   endDate: string
+  cnStartDate?: string
+  cnEndDate?: string
   status: "completed" | "ongoing" | "upcoming"
   url: string
   image: string
