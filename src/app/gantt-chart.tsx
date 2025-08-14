@@ -246,20 +246,17 @@ export default function Component() {
 
   // 排序活動
   const sortedActivities = useMemo(() => {
+    const statusPriority = { upcoming: 0, ongoing: 1, completed: 2 }
     const sorted = [...processedActivities].sort((a, b) => {
+      // 狀態優先排序
+      const aStatus = a.calculatedStatus || a.status
+      const bStatus = b.calculatedStatus || b.status
+      if (statusPriority[aStatus] !== statusPriority[bStatus]) {
+        return statusPriority[aStatus] - statusPriority[bStatus]
+      }
+      // 同狀態內依照日期排序
       const dateA = new Date(a.startDate).getTime()
       const dateB = new Date(b.startDate).getTime()
-      const today = new Date().getTime()
-      
-      // 檢查是否為未來活動
-      const aIsFuture = dateA > today
-      const bIsFuture = dateB > today
-      
-      // 未來活動優先
-      if (aIsFuture && !bIsFuture) return -1
-      if (!aIsFuture && bIsFuture) return 1
-      
-      // 在同類型內按照原有排序邏輯
       return sortOrder === "desc" ? dateB - dateA : dateA - dateB
     })
     return sorted
