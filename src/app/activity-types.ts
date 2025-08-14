@@ -5,6 +5,8 @@ export interface Activity {
   endDate: string
   cnStartDate?: string
   cnEndDate?: string
+  jpName?: string
+  enName?: string
   status: "completed" | "ongoing" | "upcoming"
   url: string
   image: string

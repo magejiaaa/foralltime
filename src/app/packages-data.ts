@@ -92,6 +92,12 @@ export const packagesData: Package[] = [
                 description: "鑽石*100、體力*60",
             },
             {
+                id: "price011",
+                name: "季旅專列",
+                price: 17,
+                description: "鑽石*7960",
+            },
+            {
                 id: "price001",
                 name: "鑽石連續包",
                 price: 20,

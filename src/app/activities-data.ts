@@ -4,6 +4,7 @@ export const activitiesData: Activity[] = [
   {
     id: "1",
     name: "萬聖奇幻夜",
+    jpName: "トリックナイト",
     startDate: "2023-10-26",
     endDate: "2023-11-09",
     cnStartDate: "2020-10-29",
@@ -17,6 +18,7 @@ export const activitiesData: Activity[] = [
   {
     id: "2",
     name: "取材之旅",
+    jpName: "周遊の旅",
     startDate: "2023-11-09",
     endDate: "2023-11-16",
     cnStartDate: "2020-11-12",
@@ -29,6 +31,7 @@ export const activitiesData: Activity[] = [
   {
     id: "3",
     name: "聖塞西爾公主節",
+    jpName: "プリンセスデー",
     startDate: "2023-11-16",
     endDate: "2023-11-30",
     cnStartDate: "2020-11-26",
@@ -41,6 +44,7 @@ export const activitiesData: Activity[] = [
   {
     id: "4",
     name: "四季圍獵",
+    jpName: "四季狩場",
     startDate: "2023-11-30",
     endDate: "2023-12-14",
     cnStartDate: "2020-12-24",
@@ -53,6 +57,7 @@ export const activitiesData: Activity[] = [
   {
     id: "5",
     name: "野餐出遊．美味記憶",
+    jpName: "ピクニック・美味しい思い出",
     startDate: "2023-12-07",
     endDate: "2023-12-21",
     status: "completed",
@@ -63,6 +68,7 @@ export const activitiesData: Activity[] = [
   {
     id: "6",
     name: "取材之旅．難度升級",
+    jpName: "取材の旅・難易度アップ",
     startDate: "2023-12-14",
     endDate: "2023-12-21",
     status: "completed",
@@ -73,6 +79,7 @@ export const activitiesData: Activity[] = [
   {
     id: "7",
     name: "聖誕燈火",
+    jpName: "クリスマスの灯火",
     startDate: "2023-12-18",
     endDate: "2024-01-01",
     status: "completed",
@@ -83,6 +90,7 @@ export const activitiesData: Activity[] = [
   {
     id: "11",
     name: "下一站，樂園 - 主線預熱",
+    jpName: "次は、エデン - メインストーリー予熱",
     startDate: "2023-12-14",
     endDate: "2023-12-20",
     status: "completed",
@@ -93,6 +101,7 @@ export const activitiesData: Activity[] = [
   {
     id: "8",
     name: "下一站，樂園",
+    jpName: "次は、エデン",
     startDate: "2023-12-21",
     endDate: "2024-01-11",
     status: "completed",
@@ -105,6 +114,7 @@ export const activitiesData: Activity[] = [
   {
     id: "9",
     name: "葉塞大陸 - 異色慶典",
+    jpName: "忘れ去られぬ絵本",
     startDate: "2023-12-21",
     endDate: "2024-01-11",
     status: "completed",
@@ -114,19 +124,9 @@ export const activitiesData: Activity[] = [
     member: ["艾因", "路辰", "羅夏", "司嵐"],
   },
   {
-    id: "10",
-    name: "雙旦福利",
-    startDate: "2023-12-24",
-    endDate: "2024-01-01",
-    status: "completed",
-    url: "https://www.foralltime.com.tw/news/update/20231219/39164_1126821.html",
-    image: "https://r.res.easebar.com/pic/20231219/ad9a2cd4-8ffc-47f3-bcf0-d1a46253bbff.jpg",
-    category: ["聖誕"],
-    member: ["艾因", "路辰", "羅夏", "司嵐"],
-  },
-  {
     id: "12",
     name: "葉瑄生日",
+    jpName: "ヨウケン生誕祭",
     startDate: "2023-12-26",
     endDate: "2024-01-05",
     status: "completed",
@@ -138,6 +138,7 @@ export const activitiesData: Activity[] = [
   {
     id: "13",
     name: "書中童話：魔女的冒險",
+    jpName: "本にあるおとぎ話_魔女の冒険",
     startDate: "2024-01-11",
     endDate: "2024-01-25",
     status: "completed",
@@ -148,6 +149,7 @@ export const activitiesData: Activity[] = [
   {
     id: "106",
     name: "童話幻想計畫",
+    jpName: "おとぎ話・幻想計画",
     startDate: "2024-01-11",
     endDate: "2024-01-25",
     status: "completed",
@@ -158,6 +160,7 @@ export const activitiesData: Activity[] = [
   {
     id: "14",
     name: "野餐出遊．和光同塵",
+    jpName: "ピクニック・光射す中に",
     startDate: "2024-01-25",
     endDate: "2024-02-08",
     status: "completed",
@@ -168,6 +171,7 @@ export const activitiesData: Activity[] = [
   {
     id: "15",
     name: "私人假期",
+    jpName: "君との休日",
     startDate: "2024-02-01",
     endDate: "2024-02-15",
     status: "completed",
@@ -177,6 +181,7 @@ export const activitiesData: Activity[] = [
   {
     id: "16",
     name: "印象回溯 Valentine 2024",
+    jpName: "遡る思い出 アモーレ 2024",
     startDate: "2024-02-08",
     endDate: "2024-02-22",
     status: "completed",
@@ -187,6 +192,7 @@ export const activitiesData: Activity[] = [
   {
     id: "104",
     name: "新年取材•特別關卡",
+    jpName: "新年周遊・特別ステージ",
     startDate: "2024-02-15",
     endDate: "2024-02-29",
     status: "completed",
@@ -197,6 +203,7 @@ export const activitiesData: Activity[] = [
   {
     id: "17",
     name: "新年活動",
+    jpName: "新春イベント",
     startDate: "2024-02-08",
     endDate: "2024-02-22",
     status: "completed",
@@ -207,6 +214,7 @@ export const activitiesData: Activity[] = [
   {
     id: "115",
     name: "葉瑄 ·「馴養契約」服裝上架",
+    jpName: "ヨウケン ·「馴養契約」",
     startDate: "2024-02-20",
     endDate: "2024-02-26",
     status: "completed",
@@ -392,7 +400,8 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "34",
-    name: "戰爭都市",
+    name: "目標：戰爭都市",
+    jpName: "目標：戦争都市",
     startDate: "2024-06-06",
     endDate: "2024-06-20",
     status: "completed",
@@ -1095,7 +1104,8 @@ export const activitiesData: Activity[] = [
   {
     id: "95",
     name: "重返葉塞·如夏生花",
-    startDate: "2025-06-26",
+    jpName: "イエセイ大陸への帰還 ・夏の花の如く",
+    startDate: "2025-06-26",     
     endDate: "2025-07-07",
     status: "completed",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E5%A6%82%E5%A4%8F%E7%94%9F%E8%8A%B1",
@@ -1116,6 +1126,7 @@ export const activitiesData: Activity[] = [
   {
     id: "97",
     name: "重返葉塞·明燈永晝",
+    jpName: "イエセイ大陸への帰還 ・永日の灯火",
     startDate: "2025-07-08",
     endDate: "2025-07-19",
     status: "completed",
@@ -1136,6 +1147,7 @@ export const activitiesData: Activity[] = [
   {
     id: "99",
     name: "重返葉塞·流光肇始",
+    jpName: "イエセイ大陸への帰還・始まりの流光",
     startDate: "2025-07-19",
     endDate: "2025-07-30",
     status: "completed",
@@ -1147,6 +1159,7 @@ export const activitiesData: Activity[] = [
   {
     id: "100",
     name: "羅夏·「命定眷念」服裝上架",
+    jpName: "ロカ・「運命の思い」衣装販売",
     startDate: "2025-07-17",
     endDate: "2025-07-24",
     status: "completed",
@@ -1194,6 +1207,7 @@ export const activitiesData: Activity[] = [
   {
     id: "103",
     name: "羅夏生日",
+    jpName: "ロカ誕生日",
     startDate: "2025-07-29",
     endDate: "2025-08-12",
     cnStartDate: "2022-07-29",
@@ -1329,6 +1343,7 @@ export const activitiesData: Activity[] = [
   {
     id: "128",
     name: "七天簽到·詩意旅途",
+    jpName: "詩情の旅路・7日間ログインイベント",
     startDate: "2025-08-14",
     endDate: "2025-08-21",
     cnStartDate: "2022-11-10",
@@ -1432,6 +1447,7 @@ export const activitiesData: Activity[] = [
   {
     id: "137",
     name: "錄異記",
+    jpName: "山海異獣録",
     startDate: "2025-08-14",
     endDate: "2025-09-04",
     cnStartDate: "2023-01-17",
