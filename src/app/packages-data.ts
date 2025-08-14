@@ -82,7 +82,7 @@ export const packagesData: Package[] = [
     {
         id: "pkg004",
         name: "新年活動",
-        description: "根據中國服商店推算，實際以官方公告為準",
+        description: "[特惠顏料箱]僅可在網頁端購買，限購1次。[特惠顏料箱]與[限定超值百連]共享限購次數",
         isActive: true,
         pricingOptions: [
             {
@@ -105,25 +105,25 @@ export const packagesData: Package[] = [
             },
             {
                 id: "price005",
-                name: "鑽石大禮包",
+                name: "顏料連續包",
                 price: 23,
                 description: "顏料*7、鑽石*450",
             },
             {
                 id: "price006",
                 name: "每日禮包連續包",
-                price: 25,
-                description: "顏料*23、鑽石*460",
+                price: 23,
+                description: "顏料*21、鑽石*420",
             },
             {
                 id: "price007",
-                name: "預購禮包",
+                name: "印鑑禮包",
                 price: 27,
                 description: "顏料*1、鑽石*100",
             },
             {
                 id: "price008",
-                name: "顏料預購包",
+                name: "顏料包",
                 price: 27,
                 description: "顏料*6、體力*60",
             },
@@ -134,10 +134,22 @@ export const packagesData: Package[] = [
                 description: "顏料*1、鑽石*20",
             },
             {
+                id: "price010",
+                name: "特惠顏料箱",
+                price: 30,
+                description: "顏料*66、鑽石*6480",
+            },
+            {
                 id: "price002",
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
+            },
+            {
+                id: "price011",
+                name: "限定超值百連",
+                price: 33,
+                description: "顏料*100",
             }
         ],
     },

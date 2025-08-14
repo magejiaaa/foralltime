@@ -1284,7 +1284,7 @@ export default function Component() {
                     )}
                     <div className="space-y-2">
                       {activityPackage.pricingOptions.map((option) => (
-                        <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
+                        <div key={option.id} className="flex items-center gap-2 justify-between bg-gray-700/50 rounded p-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
                               <span className="text-sm font-medium text-white">{option.name}</span>
@@ -1292,11 +1292,9 @@ export default function Component() {
                             {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
                           </div>
                           <div className="text-right">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-bold text-green-400">
-                                一抽${option.price}
-                              </span>
-                            </div>
+                            <p className="text-sm font-bold text-green-400">
+                              ${option.price}<span className="text-xs">/抽</span>
+                            </p>
                           </div>
                         </div>
                       ))}
