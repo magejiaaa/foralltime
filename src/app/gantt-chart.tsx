@@ -913,7 +913,7 @@ export default function Component() {
       <div className="max-w-7xl mx-auto">
         {/* 標題和篩選器 */}
         <div className="mb-8">
-          <Image width={200} height={80} priority={false} className="mx-auto" src="https://www.foralltime.com.tw/pc/gw/20230606115905/img/logo_c18e726.png" alt="" />
+          <Image width={200} height={166} priority={true} className="mx-auto w-[200px] h-[166px]" src="/logo.png" alt="" />
           <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
           <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 mx-auto justify-center relative md:px-[120px]">
             <ul className="text-gray-400 text-xs list-decimal pl-4">
