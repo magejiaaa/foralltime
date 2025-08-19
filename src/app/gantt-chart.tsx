@@ -1204,8 +1204,7 @@ export default function Component() {
                 </div>
               ) : (
                 filteredPlannedActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-center justify-between bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
-                    <div>
+                  <div key={activity.id} className="flex bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
                       <a href={activity.url} target="_blank" className="flex items-center gap-3">
                         <Image
                           src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
@@ -1220,14 +1219,19 @@ export default function Component() {
                           }}
                           loading="lazy"
                         />
-                        <div>
+                        <div className="h-full">
                           <h4 className="text-white font-medium">{activity.name}</h4>
+                          {activity.cnStartDate && activity.cnEndDate && (
+                          <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
+                          )}
                           <p className="text-gray-400 text-sm">
                             {activity.description}
                           </p>
-                          <p className="text-gray-400 text-sm">
-                            {activity.category ? activity.category.join("、") : ""}
-                          </p>
+                          {activity.category && (
+                            <p className="text-gray-400 text-sm">
+                              {activity.category ? activity.category.join("、") : ""}
+                            </p>
+                          )}
                           {activity.member && activity.member.length > 0 && (
                             <p className="text-gray-400 text-sm">
                               {activity.member ? activity.member.join("、") : ""}
@@ -1235,7 +1239,6 @@ export default function Component() {
                           )}
                         </div>
                       </a>
-                    </div>
                   </div>
                 ))
               )}
@@ -1351,8 +1354,8 @@ export default function Component() {
             <Image
               src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
               alt="活動圖片預覽"
-              width={500}
-              height={500}
+              width={0}
+              height={0}
               sizes="(max-width: 500px) 100vw, 500px"
               className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
               style={{ maxWidth: "500px", maxHeight: "500px" }}
