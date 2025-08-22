@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       new URL('https://www.foralltime.com.tw/**'),
       new URL('https://i0.hdslb.com/**'),
       new URL('https://huiji-thumb.huijistatic.com/**'),
+      new URL('https://nie.res.netease.com/**'),
       {
         protocol: 'https',
         hostname: '**.fbcdn.net',
