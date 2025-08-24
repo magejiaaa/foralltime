@@ -1207,8 +1207,8 @@ export const activitiesData: Activity[] = [
   {
     id: "113",
     name: "粽子馬拉松",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-05-31",
+    endDate: "2025-06-03",
     cnStartDate: "2022-06-01",
     cnEndDate: "2022-06-06",
     status: "upcoming",
