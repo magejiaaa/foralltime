@@ -248,11 +248,13 @@ export default function Component() {
   const sortedActivities = useMemo(() => {
     const statusPriority = { upcoming: 0, ongoing: 1, completed: 2 }
     const sorted = [...processedActivities].sort((a, b) => {
-      // 狀態優先排序
-      const aStatus = a.calculatedStatus || a.status
-      const bStatus = b.calculatedStatus || b.status
-      if (statusPriority[aStatus] !== statusPriority[bStatus]) {
-        return statusPriority[aStatus] - statusPriority[bStatus]
+      if (sortOrder === "desc") {
+        // 狀態優先排序
+        const aStatus = a.calculatedStatus || a.status
+        const bStatus = b.calculatedStatus || b.status
+        if (statusPriority[aStatus] !== statusPriority[bStatus]) {
+          return statusPriority[aStatus] - statusPriority[bStatus]
+        }
       }
       // 同狀態內依照日期排序
       const dateA = new Date(a.startDate).getTime()
