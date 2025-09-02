@@ -1402,8 +1402,8 @@ export const activitiesData: Activity[] = [
   {
     id: "131",
     name: "繾綣假日第五期",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-09-04",
+    endDate: "2025-10-16",
     cnStartDate: "2022-12-08",
     cnEndDate: "2023-01-19",
     status: "upcoming",
@@ -1415,8 +1415,8 @@ export const activitiesData: Activity[] = [
   {
     id: "132",
     name: "餘生共日出",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-09-04",
+    endDate: "2025-09-18",
     cnStartDate: "2022-12-08",
     cnEndDate: "2022-12-22",
     status: "upcoming",
