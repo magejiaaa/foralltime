@@ -1411,6 +1411,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/131.jpg",
     category: ["繾綣假日"],
     member: ["羅夏"],
+    childrenActivities: ["132"],
   },
   {
     id: "132",
