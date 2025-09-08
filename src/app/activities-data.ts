@@ -1334,7 +1334,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E9%AD%82%E5%A4%9C%E6%8E%A2%E7%A7%98",
     image: "",
     category: ["萬聖"],
-    description: "可能是2025.08/10",
+    description: "可能是2025.10",
   },
   {
     id: "126",
@@ -1347,7 +1347,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "/activity_img/45.jpg",
     category: ["萬聖"],
-    description: "可能是2025.08/10",
+    description: "可能是2025.10",
   },
   {
     id: "127",
@@ -1543,7 +1543,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/99/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png",
     category: ["情人節"],
-    description: "2025情人節預計落在9-10月",
+    description: "2025情人節預計落在10月or3月",
   },
   {
     id: "142",
@@ -1569,7 +1569,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png",
     category: ["白情"],
-    description: "2025白色情人節預計落在10月",
+    description: "2025白色情人節預計落在10月或26年3月",
   },
   {
     id: "144",
@@ -1711,8 +1711,8 @@ export const activitiesData: Activity[] = [
   {
     id: "155",
     name: "主線預熱·體力減半",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-09-10",
+    endDate: "2025-09-25",
     cnStartDate: "2023-04-20",
     cnEndDate: "2023-05-04",
     status: "upcoming",
