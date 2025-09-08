@@ -1762,16 +1762,16 @@ export const activitiesData: Activity[] = [
   {
     id: "159",
     name: "霧隱都市",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-09-25",
+    endDate: "2025-10-17",
     cnStartDate: "2023-04-27",
     cnEndDate: "2023-05-11",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png",
     category: ["主線"],
-    description: "猜2025.11-12",
     member: ["五人大活動"],
+    childrenActivities: ["155", "160"]
   },
   {
     id: "160",
