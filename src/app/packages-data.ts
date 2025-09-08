@@ -159,4 +159,35 @@ export const packagesData: Package[] = [
             }
         ],
     },
+    {
+        id: "pkg005",
+        name: "瑰夢",
+        isActive: true,
+        pricingOptions: [
+            {
+                id: "price001",
+                name: "10元禮包",
+                price: 15,
+                description: "鑽石*100、體力*60"
+            },
+            {
+                id: "price002",
+                name: "特殊顏料兌換券",
+                price: 26,
+                description: "顏料*84"
+            },
+            {
+                id: "price003",
+                name: "月卡特惠盒",
+                price: 28,
+                description: "顏料*6",
+            },
+            {
+                id: "price004",
+                name: "畫材大禮包",
+                price: 31,
+                description: "顏料*10、鑽石*68",
+            }
+        ]
+    }
 ]
