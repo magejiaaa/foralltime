@@ -1376,8 +1376,8 @@ export const activitiesData: Activity[] = [
   {
     id: "129",
     name: "葉瑄·[雪夜銘心]服裝上架",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-09-19",
+    endDate: "2025-09-25",
     cnStartDate: "2022-11-10",
     cnEndDate: "2022-11-17",
     status: "upcoming",
