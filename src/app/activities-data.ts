@@ -2344,7 +2344,6 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "",
     category: ["異色"],
-    isSpecificDate: true,
   },
   {
     id: "204",

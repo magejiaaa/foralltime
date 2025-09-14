@@ -372,6 +372,20 @@ export default function Component() {
 
     return result
   }, [filteredActivities, getChildrenActivities, sortedActivities, selectedYear, selectedCategory])
+
+  // 取得目前最新活動的 cnStartDate
+  const latestCnStartDate = useMemo(() => {
+    if (!displayActivities.length) return null
+    // 過濾有 cnStartDate 的活動
+    const activitiesWithDate = displayActivities.filter(a => a.activity.cnStartDate && a.activity.startDate)
+    if (!activitiesWithDate.length) return null
+    // 找出最大日期
+    const latest = activitiesWithDate.reduce((max, curr) => {
+      return new Date(curr.activity.cnStartDate!) > new Date(max.activity.cnStartDate!) ? curr : max
+    })
+    return latest.activity.cnStartDate
+  }, [displayActivities])
+
   // 篩選出規劃中的活動
   const filteredPlannedActivities = useMemo(() => {
     if (!activities.length) return []
@@ -1194,7 +1208,12 @@ export default function Component() {
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
-              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準，時鐘icon為特定日期或delay的活動</span>
+              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準，時鐘icon為特定日期或delay的活動{latestCnStartDate && (
+                <span className="text-gray-400 text-xs ml-2">
+                  目前活動進行到：{latestCnStartDate}
+                </span>
+              )}
+              </span>
             </CardTitle>
           </CardHeader>
           <CardContent>
