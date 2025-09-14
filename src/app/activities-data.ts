@@ -1297,6 +1297,7 @@ export const activitiesData: Activity[] = [
     category: ["週年免費SSR"],
     member: ["艾因"],
     description: "預計2025.10",
+    isSpecificDate: true,
   },
   {
     id: "123",
@@ -1310,6 +1311,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/5/5e/%E6%B4%BB%E5%8A%A8-2022%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5.png",
     category: ["生日"],
     member: ["司嵐"],
+    isSpecificDate: true,
   },
   {
     id: "124",
@@ -1322,6 +1324,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/5/50/%E5%86%B0%E9%9B%95%E7%8E%89%E7%90%A2.jpg",
     category: ["異色"],
+    isSpecificDate: true,
   },
   {
     id: "125",
@@ -1335,6 +1338,7 @@ export const activitiesData: Activity[] = [
     image: "",
     category: ["萬聖"],
     description: "可能是2025.10",
+    isSpecificDate: true,
   },
   {
     id: "126",
@@ -1348,6 +1352,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/45.jpg",
     category: ["萬聖"],
     description: "可能是2025.10",
+    isSpecificDate: true,
   },
   {
     id: "127",
@@ -1375,7 +1380,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "129",
-    name: "葉瑄·[雪夜銘心]服裝上架",
+    name: "葉瑄·「雪夜銘心」服裝上架",
     startDate: "2025-09-19",
     endDate: "2025-09-25",
     cnStartDate: "2022-11-10",
@@ -1398,6 +1403,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2022%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2022%E8%89%BE%E5%9B%A0%E7%94%9F%E8%B4%BA.png",
     category: ["生日"],
     member: ["艾因"],
+    isSpecificDate: true,
   },
   {
     id: "131",
@@ -1438,6 +1444,7 @@ export const activitiesData: Activity[] = [
     image: "",
     category: ["聖誕"],
     description: "2025聖誕",
+    isSpecificDate: true,
   },
   {
     id: "134",
@@ -1451,6 +1458,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/60/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2022%E5%8F%B6%E7%91%84%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2022%E5%8F%B6%E7%91%84%E7%94%9F%E8%B4%BA.png",
     category: ["生日"],
     member: ["葉瑄"],
+    isSpecificDate: true,
   }, // 2023開始
   {
     id: "135",
@@ -1463,7 +1471,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "",
     category: ["服裝"],
-    description: "2026",
+    isSpecificDate: true,
   },
   {
     id: "136",
@@ -1476,8 +1484,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%91%BD%E8%BF%90%E5%9B%9E%E5%BB%8A",
     image: "/activity_img/47.jpg",
     category: ["新年"],
-    description: "復刻預計9月",
     member: ["五人大活動"],
+    isSpecificDate: true,
   },
   {
     id: "137",
@@ -1505,6 +1513,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/17/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
     category: ["取材"],
     description: "新關卡可能26.11",
+    isSpecificDate: true,
   },
   {
     id: "139",
@@ -1517,7 +1526,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%B0%E8%B1%A1%E5%9B%9E%E6%BA%AF_Valentine_2021",
     image: "/activity_img/73.jpg",
     category: ["情人節"],
-    description: "第二次復刻，maybe 2026 2-3月",
+    description: "第二次復刻",
+    isSpecificDate: true,
   },
   {
     id: "140",
@@ -1531,6 +1541,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/4/4c/%E8%89%BE%E5%9B%A0%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
     category: ["服裝"],
     member: ["艾因"],
+    isSpecificDate: true,
   },
   {
     id: "141",
@@ -1543,7 +1554,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/99/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png",
     category: ["情人節"],
-    description: "2025情人節預計落在10月or3月",
+    description: "2025情人節預計落在10月or26.2月",
+    isSpecificDate: true,
   },
   {
     id: "142",
@@ -1557,6 +1569,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/8/8d/%E8%B7%AF%E8%BE%B0%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A51.png",
     category: ["服裝"],
     member: ["路辰"],
+    isSpecificDate: true,
   },
   {
     id: "143",
@@ -1569,7 +1582,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png",
     category: ["白情"],
-    description: "2025白色情人節預計落在10月或26年3月",
+    description: "2025白色情人節預計落在10月或26.3",
+    isSpecificDate: true,
   },
   {
     id: "144",
@@ -1583,6 +1597,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/e/eb/%E8%89%BE%E5%9B%A0-%E8%AE%B0%E5%BF%86%E5%A4%8D%E5%86%99-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["繾綣假日"],
     member: ["艾因"],
+    isSpecificDate: true,
   },
   {
     id: "145",
@@ -1596,6 +1611,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/e/eb/%E8%89%BE%E5%9B%A0-%E8%AE%B0%E5%BF%86%E5%A4%8D%E5%86%99-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["好感提升"],
     member: ["艾因"],
+    isSpecificDate: true,
   },
   {
     id: "146",
@@ -1609,6 +1625,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ee/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E8%B7%AF%E8%BE%B0%E7%94%9F%E8%B4%BA.png",
     category: ["生日"],
     member: ["路辰"],
+    isSpecificDate: true,
   },
   {
     id: "147",
@@ -1621,6 +1638,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/fe/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png",
     category: ["取材"],
+    isSpecificDate: true,
   },
   {
     id: "148",
@@ -1633,6 +1651,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://r.res.easebar.com/pic/20240109/803873e6-b0ee-4877-b494-d52de7179fab.jpg",
     category: ["服裝"],
+    isSpecificDate: true,
   },
   {
     id: "149",
@@ -1643,7 +1662,7 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2023-04-13",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%91%B0%E6%A2%A6%E5%A5%87%E5%A2%83%C2%B7%E4%B8%8A%E7%AF%87",
-    image: "/activity_img/149.jpg",
+    image: "/activity_img/149.webp",
     member: ["司嵐", "艾因"],
     childrenActivities: ['150'],
     packageId: "pkg005"
@@ -1669,7 +1688,8 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2023-04-01",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2023%E6%84%9A%E4%BA%BA%E8%8A%82",
-    image: "https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/486795367_1175717794325932_3567246144718998118_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=iaQcb0pH_6EQ7kNvwF6rnpa&_nc_oc=Adk93nlIBy5GOSCFv0eX6coNKwxqo1Jq5s6x_bgUmLK4SEA3-1AwnsbqtRAk0RG4eck&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&_nc_gid=VfTp66fZGbxnHIL4djyRCw&oh=00_AfTrdliv3Eqt5NHDLfEfXWs1VOD9-wp0rOFxxBtoBEq9Og&oe=6890BDD6",
+    image: "https://nie.res.netease.com/r/pic/20230417/7f3e1078-7fb5-4f27-8de5-c461cad85aac.jpg",
+    isSpecificDate: true,
   },
   {
     id: "152",
@@ -1683,7 +1703,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png",
     category: ["帝國"],
     member: ["路辰", "葉瑄"],
-    description: "可能2025.10"
+    isSpecificDate: true,
   },
   {
     id: "153",
@@ -1697,6 +1717,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/f/f8/%E7%BD%97%E5%A4%8F%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A51.png",
     category: ["服裝"],
     member: ["羅夏"],
+    isSpecificDate: true,
   },
   {
     id: "154",
@@ -1708,6 +1729,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B4%BB%E5%8A%A8230413",
     image: "/activity_img/154.jpg",
+    isSpecificDate: true,
   },
   {
     id: "155",
@@ -1732,6 +1754,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0c/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png",
     member: ["羅夏"],
+    isSpecificDate: true,
   },
   {
     id: "157",
@@ -1745,6 +1768,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/d/d5/%E5%8F%B6%E7%91%84-%E9%86%89%E5%A5%A2%E8%BF%B7%E5%8D%8E-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     member: ["葉瑄"],
     category: ["繾綣假日"],
+    isSpecificDate: true,
   },
   {
     id: "158",
@@ -1758,6 +1782,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/d/d5/%E5%8F%B6%E7%91%84-%E9%86%89%E5%A5%A2%E8%BF%B7%E5%8D%8E-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     member: ["葉瑄"],
     category: ["好感提升"],
+    isSpecificDate: true,
   },
   {
     id: "159",
@@ -2319,6 +2344,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E5%BC%82%E8%89%B2%E7%94%BB%E5%8D%B7",
     image: "",
     category: ["異色"],
+    isSpecificDate: true,
   },
   {
     id: "204",
@@ -3270,7 +3296,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "281",
-    name: "異色繪卷復刻",
+    name: "葉塞異色繪卷復刻",
     startDate: "",
     endDate: "",
     cnStartDate: "2024-09-19",
@@ -3393,7 +3419,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "291",
-    name: "紀元遠行·禮包返場",
+    name: "紀元遠行·繪卷復刻",
     startDate: "",
     endDate: "",
     cnStartDate: "2024-11-14",
@@ -3418,7 +3444,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "293",
-    name: "帝國來客&源起之時·返場",
+    name: "帝國來客&源起之時·復刻",
     startDate: "",
     endDate: "",
     cnStartDate: "2024-11-26",
@@ -4034,7 +4060,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "344",
-    name: "繁照春星·返場",
+    name: "繁照春星·復刻",
     startDate: "",
     endDate: "",
     cnStartDate: "2025-06-26",
@@ -4178,7 +4204,7 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2025-08-31",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC",
-    image: "",
+    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/44/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC.png",
     category: ["七夕"],
   },
   {
@@ -4192,6 +4218,81 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/13/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png",
     category: ["七夕"],
+  },
+  {
+    id: "357",
+    name: "繾綣假日第二十二期",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-08-28",
+    cnEndDate: "2025-10-09",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A55",
+    image: "https://huiji-public.huijistatic.com/hlr1023/uploads/6/6c/%E8%B7%AF%E8%BE%B0-%E6%88%8F%E6%A2%A6%E6%B5%AE%E7%94%9F-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
+    category: ["繾綣假日"],
+    member: ["路辰"],
+  },
+  {
+    id: "358",
+    name: "罪印殘響·復刻",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-08-31",
+    cnEndDate: "2025-09-14",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D",
+    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0a/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png",
+    category: ["主線", "週年慶"],
+    member: ["五人大活動"],
+  },
+  {
+    id: "359",
+    name: "迷霧尋蹤",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-09-04",
+    cnEndDate: "2025-09-18",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%BF%B7%E9%9B%BE%E5%AF%BB%E8%B8%AA",
+    image: "",
+  },
+  {
+    id: "360",
+    name: "異度之旅·復刻",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-09-06",
+    cnEndDate: "2025-09-13",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85",
+    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/db/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BC%82%E5%BA%A6%E4%B9%8B%E6%97%85.png",
+    category: ["取材"],
+  },
+  {
+    id: "361",
+    name: "萬物門匙·復刻",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-09-06",
+    cnEndDate: "2025-09-13",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%97",
+    image: "https://nie.res.netease.com/r/pic/20240909/ab4420cf-2f39-4fc4-aa32-9d99de95f6f5.jpg",
+    category: ["翻牌"],
+    member: ["司嵐"],
+  },
+  {
+    id: "362",
+    name: "幕敘心事",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-09-14",
+    cnEndDate: "2025-09-19",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BF%BB%E7%89%8CCR%E7%B3%BB%E5%88%972",
+    image: "",
+    category: ["翻牌"],
+    member: ["羅夏"],
   },
 ]
 

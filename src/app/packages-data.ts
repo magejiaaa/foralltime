@@ -183,11 +183,55 @@ export const packagesData: Package[] = [
                 description: "顏料*6",
             },
             {
+                id: "price005",
+                name: "每日禮包",
+                price: 29,
+                description: "顏料*1、鑽石*10",
+            },
+            {
                 id: "price004",
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
             }
         ]
-    }
+    },
+    {
+        id: "pkg006",
+        name: "霧隱都市",
+        description: "",
+        isActive: true,
+        pricingOptions: [
+            {
+                id: "price003",
+                name: "10元禮包",
+                price: 15,
+                description: "鑽石*100、體力*60",
+            },
+            {
+                id: "price004",
+                name: "鑽石特惠包",
+                price: 23,
+                description: "鑽石*980",
+            },
+            {
+                id: "price005",
+                name: "鑽石大禮包",
+                price: 23,
+                description: "顏料*7、鑽石*450",
+            },
+            {
+                id: "price009",
+                name: "33元禮包",
+                price: 29,
+                description: "顏料*1、鑽石*20",
+            },
+            {
+                id: "price002",
+                name: "畫材大禮包",
+                price: 31,
+                description: "顏料*10、鑽石*68",
+            }
+        ],
+    },
 ]

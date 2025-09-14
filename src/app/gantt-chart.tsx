@@ -921,7 +921,7 @@ export default function Component() {
             <ul className="text-gray-400 text-xs list-decimal pl-4">
               <li>五人大活動的定義為全員SSR，小活動雖然有兩三個人SSR但不會有角色標籤</li>
               <li>活動類型參照中國服wiki分類</li>
-              <li>點擊活動名稱可直接連到wiki活動頁面</li>
+              <li>點擊活動名稱可直接連到wiki活動頁面，電腦版滑鼠移到時間軸可查看詳細資訊</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
             </ul>
             {/* 禮包CP值計算機按鈕 */}
@@ -1194,7 +1194,7 @@ export default function Component() {
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
-              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準</span>
+              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準，時鐘icon為特定日期或delay的活動</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1222,7 +1222,12 @@ export default function Component() {
                           loading="lazy"
                         />
                         <div className="h-full">
-                          <h4 className="text-white font-medium">{activity.name}</h4>
+                          <h4 className={`${activity.isSpecificDate ? "flex items-center gap-1 text-blue-500" : "text-white"} font-medium`}>
+                            {activity.isSpecificDate && (
+                              <Clock className="w-3 h-3"/>
+                            )}
+                            {activity.name}
+                            </h4>
                           {activity.cnStartDate && activity.cnEndDate && (
                           <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
                           )}

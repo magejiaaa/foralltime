@@ -14,6 +14,7 @@ export interface Activity {
   childrenActivities?: Array<string>
   calculatedStatus?: string;
   packageId?: string // 關聯的方案ID
+  isSpecificDate?: boolean // 特定日期不照順序
 }
 
 export const statusConfig = {
