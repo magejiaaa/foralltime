@@ -1783,7 +1783,7 @@ export const activitiesData: Activity[] = [
     id: "159",
     name: "霧隱都市",
     startDate: "2025-09-25",
-    endDate: "2025-10-17",
+    endDate: "2025-10-07",
     cnStartDate: "2023-04-27",
     cnEndDate: "2023-05-11",
     status: "upcoming",
