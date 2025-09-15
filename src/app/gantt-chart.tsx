@@ -24,6 +24,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
@@ -166,7 +167,8 @@ export default function Component() {
     diamonds: '',     // 鑽石數量
     stamina: '',      // 體力數量
   })
-
+  // 未來活動列表視窗狀態
+  const [isFutureActivitiesOpen, setIsFutureActivitiesOpen] = useState(false)
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -292,6 +294,14 @@ export default function Component() {
       // 角色篩選
       if (selectedMember !== "all") {
         allFilteredActivities = allFilteredActivities.filter((activity) => {
+          // 判斷是否為五人大活動
+          const isFiveMemberActivity =
+            Array.isArray(activity.member) && activity.member.includes("五人大活動")
+
+          // 如果是五人大活動且不是風硯，則通過篩選
+          if (isFiveMemberActivity && selectedMember !== "風硯") {
+            return true
+          }
           return activity.member && activity.member.some((member) => member === selectedMember)
         })
       }
@@ -386,7 +396,7 @@ export default function Component() {
     return latest.activity.cnStartDate
   }, [displayActivities])
 
-  // 篩選出規劃中的活動
+  // 未來會開的活動
   const filteredPlannedActivities = useMemo(() => {
     if (!activities.length) return []
 
@@ -410,12 +420,24 @@ export default function Component() {
         })
       }
 
+      // 根據 latestCnStartDate 標記 isSpecificDate
+      if (latestCnStartDate) {
+        filtered = filtered.map((activity) => {
+          if (
+            activity.cnStartDate &&
+            new Date(activity.cnStartDate) < new Date(latestCnStartDate)
+          ) {
+            return { ...activity, isSpecificDate: true }
+          }
+          return activity
+        })
+      }
       return filtered
     } catch (err) {
-      console.error("Error filtering planned activities:", err)
+      console.error("Error filtering upcoming activities:", err)
       return []
     }
-  }, [activities, selectedCategory, selectedMember])
+  }, [activities, selectedCategory, selectedMember, latestCnStartDate])
 
   const getActivitySegments = useCallback((activity: Activity, year: number) => {
     try {
@@ -552,13 +574,6 @@ export default function Component() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
 
-  const scrollToPlanning = useCallback(() => {
-    const planningSection = document.getElementById("planning-section")
-    if (planningSection) {
-      planningSection.scrollIntoView({ behavior: "smooth" })
-    }
-  }, [])
-
   // 計算每抽價值的函數
   const calculateValuePerDraw = useCallback(() => {
     const price = parseFloat(calculatorInputs.packagePrice) || 0
@@ -595,6 +610,8 @@ export default function Component() {
     }))
   }, [])
 
+  const [showAll, setShowAll] = useState(false)
+  const defaultCount = 10
   const renderYearTimeline = useCallback(
   (year: number) => {
     try {    
@@ -626,6 +643,10 @@ export default function Component() {
         // 只在活動開始的年份顯示，避免跨年活動重複顯示
         return startYear === year
       })
+      // 控制顯示筆數
+      const activitiesToShow = hasActiveFilters
+        ? yearDisplayActivities
+        : (showAll ? yearDisplayActivities : yearDisplayActivities.slice(0, defaultCount))
 
       const getStatusIcon = (iconName: string) => {
         switch (iconName) {
@@ -657,7 +678,7 @@ export default function Component() {
 
           {/* 桌面版標題行 */}
           {!isMobile && (
-          <div className="flex mb-4">
+          <div className="flex mb-4 sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
             <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
               活動資訊
             </div>
@@ -676,7 +697,7 @@ export default function Component() {
 
           {/* 活動列表 */}
           <div className="space-y-3">
-            {yearDisplayActivities.map(({ activity, isChild, level }) => {
+            {activitiesToShow.map(({ activity, isChild }) => {
               const segment = getActivitySegments(activity, year)
               const getStatusConfig = (status: string) => {
                     const validStatuses = ['completed', 'ongoing', 'upcoming'] as const;
@@ -749,18 +770,21 @@ export default function Component() {
                         {new Date(activity.startDate).getMonth() + 1}/{new Date(activity.startDate).getDate()} -{" "}
                         {new Date(activity.endDate).getMonth() + 1}/{new Date(activity.endDate).getDate()}
                       </p>
-                      {/* 類別標籤 */}
-                      {activity.category && (
-                        <p
-                          className={`text-gray-300 ${isMobile ? "text-xs" : "text-xs"} leading-relaxed line-clamp-2`}
-                        >{activity.category ? `${activity.category.join("、")}` : ""}</p>
-                      )}
-                      {/* 成員列表 */}
-                      {activity.member && (
-                        <p className="text-gray-400 text-xs">
-                          {activity.member ? `${activity.member.join("、")}` : ""}
-                        </p>
-                      )}
+                      <p className="flex items-center gap-2 text-xs">
+                        {/* 類別標籤 */}
+                        {activity.category && (
+                          <span
+                            className={`text-gray-300`}
+                          >{activity.category ? `${activity.category.join("、")}` : null}</span>
+                        )}
+                        {activity.category && activity.member && <span className="text-gray-400">|</span>}
+                        {/* 成員列表 */}
+                        {activity.member && (
+                          <span className="text-gray-400">
+                            {activity.member ? `${activity.member.join("、")}` : null}
+                          </span>
+                        )}
+                      </p>
                       {/* 狀態標籤 */}
                       {isMobile && (
                         <div className="flex items-center gap-2 mt-1">
@@ -872,6 +896,17 @@ export default function Component() {
               )
             })}
           </div>
+          {/* 顯示更多按鈕 */}
+          {!hasActiveFilters && !showAll && yearDisplayActivities.length > defaultCount && (
+            <div className="flex justify-center mt-4">
+              <Button
+                onClick={() => setShowAll(true)}
+                className="border border-blue-600 bg-transparent text-blue-600"
+              >
+                顯示全部
+              </Button>
+            </div>
+          )}
         </div>
       )
     } catch (err) {
@@ -883,7 +918,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, togglePackageDetails, getActivityPackage],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, togglePackageDetails, getActivityPackage, showAll],
   )
 
 
@@ -933,7 +968,7 @@ export default function Component() {
           <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
           <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 mx-auto justify-center relative md:px-[120px]">
             <ul className="text-gray-400 text-xs list-decimal pl-4">
-              <li>五人大活動的定義為全員SSR，小活動雖然有兩三個人SSR但不會有角色標籤</li>
+              <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
               <li>點擊活動名稱可直接連到wiki活動頁面，電腦版滑鼠移到時間軸可查看詳細資訊</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
@@ -1063,10 +1098,10 @@ export default function Component() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-auto">
                 <Calendar className="w-5 h-5 text-white" />
                 <Select value={selectedYear} onValueChange={setSelectedYear}>
-                  <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white">
+                  <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
                     <SelectValue placeholder="選擇年份" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-600">
@@ -1081,10 +1116,10 @@ export default function Component() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-auto">
                 <Filter className="w-5 h-5 text-white" />
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white">
+                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
                     <SelectValue placeholder="選擇類型" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-600">
@@ -1101,10 +1136,10 @@ export default function Component() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-auto">
                 <User className="w-5 h-5 text-white" />
                 <Select value={selectedMember} onValueChange={setSelectedMember}>
-                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white">
+                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
                     <SelectValue placeholder="選擇成員" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-600">
@@ -1125,7 +1160,7 @@ export default function Component() {
                 onClick={toggleSortOrder}
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 flex items-center gap-2"
+                className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 flex items-center gap-2 flex-auto"
               >
                 {sortOrder === "desc" ? (
                   <>
@@ -1202,75 +1237,6 @@ export default function Component() {
             renderYearTimeline(Number.parseInt(selectedYear))
           )}
         </div>
-
-        {/* 未來會開的活動 */}
-        <Card id="planning-section" className="bg-gray-900/30 backdrop-blur-sm border-gray-600">
-          <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
-              <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
-              未來會開的活動<span className="text-gray-400 text-sm">日期只是猜的以官方為準，時鐘icon為特定日期或delay的活動{latestCnStartDate && (
-                <span className="text-gray-400 text-xs ml-2">
-                  目前活動進行到：{latestCnStartDate}
-                </span>
-              )}
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* 規劃中的活動列表 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredPlannedActivities.length === 0 ? (
-                <div className="text-center py-8">
-                  <div className="text-gray-400 text-sm mb-2">沒有符合篩選條件的規劃活動</div>
-                </div>
-              ) : (
-                filteredPlannedActivities.map((activity) => (
-                  <div key={activity.id} className="flex bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
-                      <a href={activity.url} target="_blank" className="flex items-center gap-3">
-                        <Image
-                          src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
-                          alt={activity.name}
-                          className="w-16 h-16 rounded-full object-cover"
-                          width={100}
-                          height={100}
-                          onError={(e) => { 
-                            // 圖片載入失敗時的處理
-                            const target = e.target as HTMLImageElement
-                            target.src = "/placeholder.svg?height=40&width=40&text=error"
-                          }}
-                          loading="lazy"
-                        />
-                        <div className="h-full">
-                          <h4 className={`${activity.isSpecificDate ? "flex items-center gap-1 text-blue-500" : "text-white"} font-medium`}>
-                            {activity.isSpecificDate && (
-                              <Clock className="w-3 h-3"/>
-                            )}
-                            {activity.name}
-                            </h4>
-                          {activity.cnStartDate && activity.cnEndDate && (
-                          <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
-                          )}
-                          <p className="text-gray-400 text-sm">
-                            {activity.description}
-                          </p>
-                          {activity.category && (
-                            <p className="text-gray-400 text-sm">
-                              {activity.category ? activity.category.join("、") : ""}
-                            </p>
-                          )}
-                          {activity.member && activity.member.length > 0 && (
-                            <p className="text-gray-400 text-sm">
-                              {activity.member ? activity.member.join("、") : ""}
-                            </p>
-                          )}
-                        </div>
-                      </a>
-                  </div>
-                ))
-              )}
-            </div>
-          </CardContent>
-        </Card>
         
         <p className="text-gray-400 text-center text-xs mt-4">
           所有素材與活動資訊均來自官網，版權為時空中的繪旅人官方所有。<br />
@@ -1392,14 +1358,88 @@ export default function Component() {
       )}
 
       {/* 底部導航按鈕 */}
-      <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-50">
-        <Button
-          onClick={scrollToPlanning}
-          className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg rounded-full w-12 h-12 p-0 flex items-center justify-center"
-          title="跳至未來活動"
-        >
-          <Clock className="w-5 h-5" />
-        </Button>
+      <div className="fixed bottom-5 md:bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-50">
+        <Dialog open={isFutureActivitiesOpen} onOpenChange={setIsFutureActivitiesOpen}>
+          <DialogTrigger asChild>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg rounded-full py-3 px-4 h-auto flex gap-1 items-center justify-center"
+              title="未來活動列表"
+            >未來活動列表
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="bg-gray-900/80 backdrop-blur-sm border-gray-600 h-4/5 w-11/12 md:max-w-7xl flex flex-col text-white">
+            <DialogHeader>
+              <DialogTitle className="text-left">
+                <p className=" flex items-center gap-2 mb-1">
+                  <Clock className="w-5 h-5" style={{ color: "#3e6cc3" }} />
+                  未來會開的活動
+                </p>
+                <p className="text-gray-400 text-sm">
+                  日期只是猜的以官方為準，時鐘icon為特定日期或delay的活動
+                </p>
+                {latestCnStartDate && (
+                  <p className="text-gray-400 text-xs">
+                    目前活動進行到：{latestCnStartDate}
+                  </p>
+                )}
+              </DialogTitle>
+            </DialogHeader>
+            <ScrollArea className="h-40 flex-auto">
+              {/* 規劃中的活動列表 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredPlannedActivities.length === 0 ? (
+                  <div className="text-center py-8">
+                    <div className="text-gray-400 text-sm mb-2">沒有符合篩選條件的規劃活動</div>
+                  </div>
+                ) : (
+                  filteredPlannedActivities.map((activity) => (
+                    <div key={activity.id} className="flex bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
+                        <a href={activity.url} target="_blank" className="flex items-center gap-3">
+                          <Image
+                            src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
+                            alt={activity.name}
+                            className="w-16 h-16 rounded-full object-cover"
+                            width={100}
+                            height={100}
+                            onError={(e) => { 
+                              // 圖片載入失敗時的處理
+                              const target = e.target as HTMLImageElement
+                              target.src = "/placeholder.svg?height=40&width=40&text=error"
+                            }}
+                            loading="lazy"
+                          />
+                          <div className="h-full">
+                            <h4 className={`${activity.isSpecificDate ? "flex items-center gap-1 text-blue-500" : "text-white"} font-medium`}>
+                              {activity.isSpecificDate && (
+                                <Clock className="w-3 h-3"/>
+                              )}
+                              {activity.name}
+                              </h4>
+                            {activity.cnStartDate && activity.cnEndDate && (
+                            <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
+                            )}
+                            <p className="text-gray-400 text-sm">
+                              {activity.description}
+                            </p>
+                            {activity.category && (
+                              <p className="text-gray-400 text-sm">
+                                {activity.category ? activity.category.join("、") : ""}
+                              </p>
+                            )}
+                            {activity.member && activity.member.length > 0 && (
+                              <p className="text-gray-400 text-sm">
+                                {activity.member ? activity.member.join("、") : ""}
+                              </p>
+                            )}
+                          </div>
+                        </a>
+                    </div>
+                  ))
+                )}
+              </div>
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
         <Button
           onClick={scrollToTop}
           className="bg-gray-600 hover:bg-gray-700 text-white shadow-lg rounded-full w-12 h-12 p-0 flex items-center justify-center"

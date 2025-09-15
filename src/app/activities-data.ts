@@ -1389,7 +1389,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/a/ab/%E5%8F%B6%E7%91%84%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
     category: ["服裝"],
-    description: "2025會出",
+    member: ["葉瑄"],
   },
   {
     id: "130",
@@ -1597,7 +1597,6 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/e/eb/%E8%89%BE%E5%9B%A0-%E8%AE%B0%E5%BF%86%E5%A4%8D%E5%86%99-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["繾綣假日"],
     member: ["艾因"],
-    isSpecificDate: true,
   },
   {
     id: "145",
@@ -1611,7 +1610,6 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/e/eb/%E8%89%BE%E5%9B%A0-%E8%AE%B0%E5%BF%86%E5%A4%8D%E5%86%99-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["好感提升"],
     member: ["艾因"],
-    isSpecificDate: true,
   },
   {
     id: "146",
@@ -1638,7 +1636,6 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E6%98%A5%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/fe/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E6%98%A5%E5%AD%A3%E9%87%87%E9%A3%8E.png",
     category: ["取材"],
-    isSpecificDate: true,
   },
   {
     id: "148",
@@ -1651,7 +1648,6 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E9%87%87%E8%B4%AD/%E6%9C%8D%E8%A3%85%E7%9B%B4%E8%B4%AD",
     image: "https://r.res.easebar.com/pic/20240109/803873e6-b0ee-4877-b494-d52de7179fab.jpg",
     category: ["服裝"],
-    isSpecificDate: true,
   },
   {
     id: "149",
@@ -1703,7 +1699,6 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png",
     category: ["帝國"],
     member: ["路辰", "葉瑄"],
-    isSpecificDate: true,
   },
   {
     id: "153",
