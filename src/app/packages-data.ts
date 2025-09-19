@@ -7,24 +7,24 @@ export const packagesData: Package[] = [
         description: "",
         isActive: true,
         pricingOptions: [
-            {
-                id: "price001",
-                name: "月卡特惠盒",
-                price: 28,
-                description: "顏料*6",
-            },
+            // {
+            //     id: "price001",
+            //     name: "月卡特惠盒",
+            //     price: 28,
+            //     description: "顏料*6",
+            // },
             {
                 id: "price002",
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
             },
-            {
-                id: "price003",
-                name: "畫廊禮包",
-                price: 33,
-                description: "顏料*1、鴿子券*1",
-            },
+            // {
+            //     id: "price003",
+            //     name: "畫廊禮包",
+            //     price: 33,
+            //     description: "顏料*1、鴿子券*1",
+            // },
         ],
     },
     {   // 新手限定+累充用
@@ -231,6 +231,20 @@ export const packagesData: Package[] = [
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
+            }
+        ],
+    },
+    {
+        id: "pkg007",
+        name: "主線預購禮包",
+        description: "",
+        isActive: true,
+        pricingOptions: [
+            {
+                id: "price001",
+                name: "主線預購顏料禮包",
+                price: 23,
+                description: "顏料*10",
             }
         ],
     },

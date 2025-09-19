@@ -1351,7 +1351,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9A%97%E5%A4%9C%E7%BB%88%E7%AB%A0",
     image: "/activity_img/126.jpg",
     category: ["萬聖"],
-    description: "可能是2025.10",
+    packageId: "pkg001",
     isSpecificDate: true,
   },
   {
@@ -1737,6 +1737,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/155.jpg",
     category: ["減半"],
+    packageId: "pkg007",
   },
   {
     id: "156",
