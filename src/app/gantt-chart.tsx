@@ -15,16 +15,21 @@ import {
   ShoppingBag,
   Plus,
   Calculator,
-  X,
+  Minus,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
@@ -158,7 +163,6 @@ export default function Component() {
     side: "right",
   })
   const [isMobile, setIsMobile] = useState(false)
-  const [expandedPackages, setExpandedPackages] = useState<Set<string>>(new Set())
   // 新增計算機相關狀態
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false)
   const [calculatorInputs, setCalculatorInputs] = useState({
@@ -169,6 +173,8 @@ export default function Component() {
   })
   // 未來活動列表視窗狀態
   const [isFutureActivitiesOpen, setIsFutureActivitiesOpen] = useState(false)
+  // 禮包折疊狀態
+  const [expandedPackages, setExpandedPackages] = useState<Record<string, boolean>>({});
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -557,19 +563,6 @@ export default function Component() {
     setSelectedMember("all")
   }, [])
 
-  // 手機版活動禮包收合
-  const togglePackageDetails = useCallback((packageId: string) => {
-    setExpandedPackages(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(packageId)) {
-        newSet.delete(packageId)  // 如果已展開，則收合
-      } else {
-        newSet.add(packageId)     // 如果已收合，則展開
-      }
-      return newSet
-    })
-  }, [])
-
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
@@ -712,13 +705,13 @@ export default function Component() {
               return (
                 <div
                   key={`${activity.id}-${year}`} data-id={activity.id}
-                  className={`flex flex-col md:flex-row bg-gray-800/30 rounded-lg backdrop-blur-sm min-h-[80px] ${
+                  className={`flex flex-col md:flex-row rounded-lg backdrop-blur-sm min-h-[80px] ${
                       isChild ? "ml-1 border-l-4 border-blue-400/50" : ""
-                    }`}
+                    } ${activity.calculatedStatus === "ongoing" ? "bg-gray-700/50" : "bg-gray-800/30"}`}
                 >
                   {/* 左側活動資訊欄 */}
                   <div
-                    className={`${isMobile ? "w-full" : "w-80"} ${isChild ? "md:w-[312px]" : ""} flex-shrink-0 p-4 ${!isMobile ? "border-r border-gray-600/50" : ""} flex items-center gap-4`}
+                    className={`w-full md:w-80 ${isChild ? "md:w-[312px]" : ""} flex-shrink-0 p-4 md:border-r md:border-gray-600/50 flex md:items-center gap-4`}
                   >
                     <div className="relative">
                       <Image
@@ -801,39 +794,52 @@ export default function Component() {
                         activity.packageId && (
                           () => {
                             const activityPackage = getActivityPackage(activity)
-                            const isExpanded = expandedPackages.has(activity.packageId!)
                             
                             return activityPackage ? (
                               <div className="mt-4 pt-3 border-t border-gray-700">
-                                <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2 cursor-pointer" onClick={() => togglePackageDetails(activity.packageId!)}>
-                                  <ShoppingBag className="w-4 h-4" />
-                                  活動商店: {activityPackage.name}
-                                  <Plus className="w-4 h-4" />
-                                </h5>
-                                <div className={`bg-gray-800/50 rounded p-3 ${isExpanded ? "" : "hidden"}`}>
-                                  {activityPackage.description && (
-                                    <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
-                                  )}
-                                  <div className="space-y-2">
-                                    {activityPackage.pricingOptions.map((option) => (
-                                      <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
-                                        <div className="flex-1">
-                                          <div className="flex items-center gap-2">
-                                            <span className="text-sm font-medium text-white">{option.name}</span>
+                                <Collapsible open={!!expandedPackages[activity.packageId ?? ""]} 
+                                  onOpenChange={(open) =>
+                                    setExpandedPackages(prev => ({
+                                      ...prev,
+                                      [activity.packageId ?? ""]: open
+                                    }))
+                                  }
+                                >
+                                  <CollapsibleTrigger asChild>
+                                    <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2 cursor-pointer">
+                                      <ShoppingBag className="w-4 h-4" />
+                                      活動商店: {activityPackage.name}
+                                      {expandedPackages[activity.packageId ?? ""] ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                                    </h5>
+                                  </CollapsibleTrigger>
+                                  <CollapsibleContent className={`
+                                        data-[state=open]:animate-[collapseHeight_0.5s_ease-in-out]
+                                        data-[state=closed]:animate-[expandHeight_0.5s_ease-in-out]
+                                    overflow-hidden`}>
+                                    {activityPackage.description && (
+                                      <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
+                                    )}
+                                    <div className="space-y-2">
+                                      {activityPackage.pricingOptions.map((option) => (
+                                        <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
+                                          <div className="flex-1">
+                                            <div className="flex items-center gap-2">
+                                              <span className="text-sm font-medium text-white">{option.name}</span>
+                                            </div>
+                                            {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
                                           </div>
-                                          {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
-                                        </div>
-                                        <div className="text-right">
-                                          <div className="flex items-center gap-2">
-                                            <span className="text-sm font-bold text-green-400">
-                                              一抽${option.price}
-                                            </span>
+                                          <div className="text-right">
+                                            <div className="flex items-center gap-2">
+                                              <span className="text-sm font-bold text-green-400">
+                                                一抽${option.price}
+                                              </span>
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
+                                      ))}
+                                    </div>
+                                  </CollapsibleContent>
+                                </Collapsible>
                             </div>
                           ) : null
                         })()}
@@ -918,7 +924,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, togglePackageDetails, getActivityPackage, showAll],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, getActivityPackage, showAll],
   )
 
 
@@ -960,13 +966,15 @@ export default function Component() {
   }
 
   return (
-    <div className="min-h-screen p-4" style={{ backgroundColor: "#16192c" }}>
+    <div className="min-h-screen p-4 pb-20 md:pb-4" style={{ backgroundColor: "#16192c" }}>
       <div className="max-w-7xl mx-auto">
         {/* 標題和篩選器 */}
-        <div className="mb-8">
-          <Image width={200} height={166} priority={true} className="mx-auto w-[200px] h-[166px]" src="/logo.png" alt="" />
-          <h1 className="text-4xl font-bold text-white text-center">繁中服活動列表</h1>
-          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 mx-auto justify-center relative md:px-[120px]">
+        <div className="mb-8 flex flex-wrap justify-center md:justify-between md:mx-6">
+          <div className="flex flex-wrap justify-center items-center">
+            <Image width={200} height={166} priority={true} className="w-[100px] h-[83px]" src="/logo.png" alt="" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white text-center">繁中服活動列表</h1>
+          </div>
+          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 justify-center relative md:pr-[130px]">
             <ul className="text-gray-400 text-xs list-decimal pl-4">
               <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
@@ -1096,109 +1104,109 @@ export default function Component() {
               </DialogContent>
             </Dialog>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
-              <div className="flex items-center gap-2 flex-auto">
-                <Calendar className="w-5 h-5 text-white" />
-                <Select value={selectedYear} onValueChange={setSelectedYear}>
-                  <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                    <SelectValue placeholder="選擇年份" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-600">
-                    <SelectItem value="all" className="text-white">
-                      所有年份
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between md:mx-6">
+          <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
+            <div className="flex items-center gap-2 flex-auto">
+              <Calendar className="w-5 h-5 text-white" />
+              <Select value={selectedYear} onValueChange={setSelectedYear}>
+                <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
+                  <SelectValue placeholder="選擇年份" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-600">
+                  <SelectItem value="all" className="text-white">
+                    所有年份
+                  </SelectItem>
+                  {availableYears.map((year) => (
+                    <SelectItem key={year} value={year.toString()} className="text-white">
+                      {year}年
                     </SelectItem>
-                    {availableYears.map((year) => (
-                      <SelectItem key={year} value={year.toString()} className="text-white">
-                        {year}年
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center gap-2 flex-auto">
+              <Filter className="w-5 h-5 text-white" />
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
+                  <SelectValue placeholder="選擇類型" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-600">
+                  <SelectItem value="all" className="text-white">
+                    所有類型
+                  </SelectItem>
+                  {availableCategories.map((category) => {
+                    return (
+                      <SelectItem key={category} value={category} className="text-white">
+                        {category}
                       </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex items-center gap-2 flex-auto">
-                <Filter className="w-5 h-5 text-white" />
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                    <SelectValue placeholder="選擇類型" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-600">
-                    <SelectItem value="all" className="text-white">
-                      所有類型
-                    </SelectItem>
-                    {availableCategories.map((category) => {
-                      return (
-                        <SelectItem key={category} value={category} className="text-white">
-                          {category}
-                        </SelectItem>
-                      )
-                    })}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex items-center gap-2 flex-auto">
-                <User className="w-5 h-5 text-white" />
-                <Select value={selectedMember} onValueChange={setSelectedMember}>
-                  <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                    <SelectValue placeholder="選擇成員" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-600">
-                    <SelectItem value="all" className="text-white">
-                      所有成員
-                    </SelectItem>
-                    {availableMembers.map((member) => {
-                      return (
-                        <SelectItem key={member} value={member} className="text-white">
-                          {member}
-                        </SelectItem>
-                      )
-                    })}
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button
-                onClick={toggleSortOrder}
-                variant="outline"
-                size="sm"
-                className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 flex items-center gap-2 flex-auto"
-              >
-                {sortOrder === "desc" ? (
-                  <>
-                    <ArrowDown className="w-4 h-4" />
-                    最新在前
-                  </>
-                ) : (
-                  <>
-                    <ArrowUp className="w-4 h-4" />
-                    最舊在前
-                  </>
-                )}
-              </Button>
-
-              {hasActiveFilters && (
-                <Button
-                  onClick={clearFilters}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-400 hover:text-white hover:bg-gray-700/50"
-                >
-                  清除篩選
-                </Button>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center gap-2 flex-auto">
+              <User className="w-5 h-5 text-white" />
+              <Select value={selectedMember} onValueChange={setSelectedMember}>
+                <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
+                  <SelectValue placeholder="選擇成員" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-600">
+                  <SelectItem value="all" className="text-white">
+                    所有成員
+                  </SelectItem>
+                  {availableMembers.map((member) => {
+                    return (
+                      <SelectItem key={member} value={member} className="text-white">
+                        {member}
+                      </SelectItem>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
+            </div>
+            <Button
+              onClick={toggleSortOrder}
+              variant="outline"
+              size="sm"
+              className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 flex items-center gap-2 flex-auto"
+            >
+              {sortOrder === "desc" ? (
+                <>
+                  <ArrowDown className="w-4 h-4" />
+                  最新在前
+                </>
+              ) : (
+                <>
+                  <ArrowUp className="w-4 h-4" />
+                  最舊在前
+                </>
               )}
-            </div>
-            <div className="flex gap-2 flex-wrap">
-              {/* 狀態圖例 */}
-              {Object.entries(statusConfig).map(([status, config]) => {
-                const Icon = getStatusIcon(config.icon)
-                return (
-                  <div key={status} className="flex items-center gap-1 text-sm text-gray-300">
-                    <div className={`w-3 h-3 ${config.color} rounded`}></div>
-                    <Icon className="w-4 h-4" />
-                    <span>{config.label}</span>
-                  </div>
-                )
-              })}
-            </div>
+            </Button>
+
+            {hasActiveFilters && (
+              <Button
+                onClick={clearFilters}
+                variant="ghost"
+                size="sm"
+                className="text-gray-400 hover:text-white hover:bg-gray-700/50"
+              >
+                清除篩選
+              </Button>
+            )}
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            {/* 狀態圖例 */}
+            {Object.entries(statusConfig).map(([status, config]) => {
+              const Icon = getStatusIcon(config.icon)
+              return (
+                <div key={status} className="flex items-center gap-1 text-sm text-gray-300">
+                  <div className={`w-3 h-3 ${config.color} rounded`}></div>
+                  <Icon className="w-4 h-4" />
+                  <span>{config.label}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -1225,7 +1233,7 @@ export default function Component() {
           </div>
         )}
         {/* 甘特圖 */}
-        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 mb-8 relative">
+        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">
           {displayActivities.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 text-lg mb-2">沒有找到符合條件的活動</div>
@@ -1358,13 +1366,13 @@ export default function Component() {
       )}
 
       {/* 底部導航按鈕 */}
-      <div className="fixed bottom-5 md:bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-50">
+      <div className="fixed bottom-5 md:bottom-16 left-1/2 -translate-x-1/2 w-11/12 md:w-xs flex z-50 border-2 border-blue-600 rounded-full">
         <Dialog open={isFutureActivitiesOpen} onOpenChange={setIsFutureActivitiesOpen}>
           <DialogTrigger asChild>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg rounded-full py-3 px-4 h-auto flex gap-1 items-center justify-center"
+              className="bg-[#16192ce0] hover:bg-[#16192c] text-white rounded-l-full shadow-lg w-1/2 py-3 px-4 h-auto flex gap-1 items-center justify-center transition"
               title="未來活動列表"
-            >未來活動列表
+            ><Clock className="w-5 h-5" />未來活動列表
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-gray-900/80 backdrop-blur-sm border-gray-600 h-4/5 w-11/12 md:max-w-7xl flex flex-col text-white">
@@ -1418,9 +1426,11 @@ export default function Component() {
                             {activity.cnStartDate && activity.cnEndDate && (
                             <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
                             )}
-                            <p className="text-gray-400 text-sm">
-                              {activity.description}
-                            </p>
+                            {activity.description && (
+                              <p className="text-gray-400 text-sm">
+                                {activity.description}
+                              </p>
+                            )}
                             {activity.category && (
                               <p className="text-gray-400 text-sm">
                                 {activity.category ? activity.category.join("、") : ""}
@@ -1442,10 +1452,10 @@ export default function Component() {
         </Dialog>
         <Button
           onClick={scrollToTop}
-          className="bg-gray-600 hover:bg-gray-700 text-white shadow-lg rounded-full w-12 h-12 p-0 flex items-center justify-center"
+          className="bg-[#16192ce0] hover:bg-[#16192c] border-l-1 border-l-blue-600 text-white rounded-r-full shadow-lg w-1/2 h-12 p-0 flex items-center justify-center"
           title="返回最上方"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-5 h-5" />回頂部
         </Button>
       </div>
     </div>
