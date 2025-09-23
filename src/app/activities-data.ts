@@ -1803,7 +1803,7 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2023-05-11",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82#%E5%90%8C%E5%BF%83%E8%AE%A1%E5%88%92",
-    image: "",
+    image: "/activity_img/160.jpg",
     category: ["服裝"],
   },
   {
