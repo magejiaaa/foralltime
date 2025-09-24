@@ -1798,7 +1798,7 @@ export const activitiesData: Activity[] = [
     id: "160",
     name: "同心計劃",
     startDate: "2025-09-25",
-    endDate: "2025-10-17",
+    endDate: "2025-10-09",
     cnStartDate: "2023-04-27",
     cnEndDate: "2023-05-11",
     status: "upcoming",
