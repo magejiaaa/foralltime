@@ -16,6 +16,8 @@ import {
   Plus,
   Calculator,
   Minus,
+  SquareArrowOutUpRight,
+  Pointer
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -23,7 +25,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Collapsible,
@@ -731,15 +733,17 @@ export default function Component() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate">
-                        <div className="flex items-center gap-2 mb-1">
-                            <Icon className="w-4 h-4 text-white flex-shrink-0" />
-                            <h4
-                              className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate ${isChild ? "text-gray-300" : ""}`}
-                            >
-                              {activity.name}
-                            </h4>
-                        </div>
+                      <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate flex items-center gap-2 mb-1">
+                          <Icon className="w-4 h-4 text-white flex-shrink-0" />
+                          <h4
+                            className={`text-white font-medium ${isMobile ? "text-sm" : "text-sm"} truncate ${isChild ? "text-gray-300" : ""}`}
+                          >
+                            {activity.name}
+                          </h4>
+                          <div className="text-gray-400 text-xs border border-gray-400 px-1 py-0.5 rounded-full flex-shrink-0 flex items-center gap-1">
+                            wiki
+                            <SquareArrowOutUpRight className="w-3 h-3 " />
+                          </div>
                       </a>
                       {/* 進行中活動的剩餘時間顯示 */}
                       {isMobile && activity.calculatedStatus === "ongoing" &&
@@ -869,6 +873,7 @@ export default function Component() {
                           onMouseEnter={(e) => handleActivityHover(activity, e)}
                           onMouseLeave={() => handleActivityHover(null)}
                         >
+                          <Pointer className="w-3 h-3 text-white flex-shrink-0" />
                         </div>
                       </div>
                       {/* 進行中活動的剩餘時間顯示 */}
@@ -978,7 +983,6 @@ export default function Component() {
             <ul className="text-gray-400 text-xs list-decimal pl-4">
               <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
-              <li>點擊活動名稱可直接連到wiki活動頁面，電腦版滑鼠移到時間軸可查看詳細資訊</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
             </ul>
             {/* 禮包CP值計算機按鈕 */}
@@ -995,6 +999,9 @@ export default function Component() {
                     <Calculator className="w-5 h-5" />
                     禮包CP值計算機
                   </DialogTitle>
+                  <DialogDescription className="text-gray-400">
+                    計算禮包的性價比，幫助你做出最佳購買決策
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
                   <div className="text-xs text-gray-400 bg-gray-800/50 p-3 rounded">
@@ -1391,6 +1398,9 @@ export default function Component() {
                   </p>
                 )}
               </DialogTitle>
+              <DialogDescription className="sr-only">
+                查看即將到來的活動列表，包含預估開放時間和活動詳情
+              </DialogDescription>
             </DialogHeader>
             <ScrollArea className="h-40 flex-auto">
               {/* 規劃中的活動列表 */}
@@ -1417,12 +1427,15 @@ export default function Component() {
                             loading="lazy"
                           />
                           <div className="h-full">
-                            <h4 className={`${activity.isSpecificDate ? "flex items-center gap-1 text-blue-500" : "text-white"} font-medium`}>
+                            <h4 className={`${activity.isSpecificDate ? "text-blue-500" : "text-white"} flex items-center gap-1 font-medium`}>
                               {activity.isSpecificDate && (
                                 <Clock className="w-3 h-3"/>
                               )}
                               {activity.name}
-                              </h4>
+                              <div className="text-xs flex-shrink-0">
+                                <SquareArrowOutUpRight className="w-3 h-3 " />
+                              </div>
+                            </h4>
                             {activity.cnStartDate && activity.cnEndDate && (
                             <p className="text-gray-400 text-xs">{activity.cnStartDate} ~ {activity.cnEndDate}</p>
                             )}
