@@ -1789,10 +1789,11 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2023-05-11",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82",
-    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9B%BE%E9%9A%90%E9%83%BD%E5%B8%82.png",
+    image: "/activity_img/159.jpg",
     category: ["主線"],
     member: ["五人大活動"],
-    childrenActivities: ["155", "160"]
+    childrenActivities: ["155", "160"],
+    packageId: "pkg006"
   },
   {
     id: "160",

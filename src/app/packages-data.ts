@@ -193,7 +193,7 @@ export const packagesData: Package[] = [
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
-            }
+            },
         ]
     },
     {
@@ -207,6 +207,18 @@ export const packagesData: Package[] = [
                 name: "10元禮包",
                 price: 15,
                 description: "鑽石*100、體力*60",
+            },
+            {
+                id: "price008",
+                name: "顏料特惠包",
+                price: 20,
+                description: "顏料*14、鑽石*880、體力*280",
+            },
+            {
+                id: "price006",
+                name: "顏料連續包",
+                price: 23,
+                description: "顏料*7、鑽石*450",
             },
             {
                 id: "price004",
@@ -231,6 +243,18 @@ export const packagesData: Package[] = [
                 name: "畫材大禮包",
                 price: 31,
                 description: "顏料*10、鑽石*68",
+            },
+            {
+                id: "price007",
+                name: "顏料特惠周禮包",
+                price: 31,
+                description: "顏料*10、鑽石*68",
+            },
+            {
+                id: "price011",
+                name: "限定超值百連",
+                price: 33,
+                description: "顏料*100",
             }
         ],
     },
