@@ -1573,9 +1573,9 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "143",
-    name: "迴旋的奇想劇團",
-    startDate: "",
-    endDate: "",
+    name: "回旋的奇想劇團",
+    startDate: "2025-10-02",
+    endDate: "2025-10-12",
     cnStartDate: "2023-03-05",
     cnEndDate: "2023-03-15",
     status: "upcoming",
