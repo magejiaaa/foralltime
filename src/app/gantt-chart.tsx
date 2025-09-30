@@ -14,7 +14,6 @@ import {
   Loader2,
   ShoppingBag,
   Plus,
-  Calculator,
   Minus,
   SquareArrowOutUpRight,
   Pointer
@@ -23,8 +22,6 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -38,6 +35,7 @@ import { statusConfig } from "./activity-types"
 import Image from 'next/image'
 import type { Package } from "./packages-types"
 import { packagesData } from "./packages-data"
+import PackageCalculator from "@/components/PackageCalculator"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 type SortOrder = "desc" | "asc"
@@ -393,16 +391,18 @@ export default function Component() {
 
   // 取得目前最新活動的 cnStartDate
   const latestCnStartDate = useMemo(() => {
-    if (!displayActivities.length) return null
-    // 過濾有 cnStartDate 的活動
-    const activitiesWithDate = displayActivities.filter(a => a.activity.cnStartDate && a.activity.startDate)
+    if (!processedActivities.length) return null
+    // 過濾有 cnStartDate 的活動（使用所有活動，不受篩選影響）
+    const activitiesWithDate = processedActivities.filter(activity => 
+      activity.cnStartDate && activity.startDate
+    )
     if (!activitiesWithDate.length) return null
     // 找出最大日期
     const latest = activitiesWithDate.reduce((max, curr) => {
-      return new Date(curr.activity.cnStartDate!) > new Date(max.activity.cnStartDate!) ? curr : max
+      return new Date(curr.cnStartDate!) > new Date(max.cnStartDate!) ? curr : max
     })
-    return latest.activity.cnStartDate
-  }, [displayActivities])
+    return latest.cnStartDate
+  }, [processedActivities]) 
 
   // 未來會開的活動
   const filteredPlannedActivities = useMemo(() => {
@@ -567,42 +567,6 @@ export default function Component() {
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
-
-  // 計算每抽價值的函數
-  const calculateValuePerDraw = useCallback(() => {
-    const price = parseFloat(calculatorInputs.packagePrice) || 0
-    const draws = parseFloat(calculatorInputs.totalDraws) || 0
-    const diamonds = parseFloat(calculatorInputs.diamonds) || 0
-    const stamina = parseFloat(calculatorInputs.stamina) || 0
-
-    if (draws === 0 && diamonds === 0 ) return 0
-
-    // 計算總價值（鑽石）
-    const totalDiamondValue = diamonds + (draws * 150) + (stamina * 0.5)
-    
-    // 計算每抽價值
-    const valuePerDraw = price / totalDiamondValue * 150
-
-    return Math.max(0, valuePerDraw)
-  }, [calculatorInputs])
-
-  // 重置計算機
-  const resetCalculator = useCallback(() => {
-    setCalculatorInputs({
-      packagePrice: '',
-      totalDraws: '',
-      diamonds: '',
-      stamina: '',
-    })
-  }, [])
-
-  // 處理輸入變更
-  const handleCalculatorInputChange = useCallback((field: string, value: string) => {
-    setCalculatorInputs(prev => ({
-      ...prev,
-      [field]: value
-    }))
   }, [])
 
   const [showAll, setShowAll] = useState(false)
@@ -974,142 +938,18 @@ export default function Component() {
     <div className="min-h-screen p-4 pb-20 md:pb-4" style={{ backgroundColor: "#16192c" }}>
       <div className="max-w-7xl mx-auto">
         {/* 標題和篩選器 */}
-        <div className="mb-8 flex flex-wrap justify-center md:justify-between md:mx-6">
+        <div className="md:mb-8 flex flex-wrap justify-center md:justify-between md:mx-6">
           <div className="flex flex-wrap justify-center items-center">
             <Image width={200} height={166} priority={true} className="w-[100px] h-[83px]" src="/logo.png" alt="" />
             <h1 className="text-3xl md:text-4xl font-bold text-white text-center">繁中服活動列表</h1>
           </div>
-          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 justify-center relative md:pr-[130px]">
+          <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-10 my-6 justify-center">
             <ul className="text-gray-400 text-xs list-decimal pl-4">
               <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
             </ul>
-            {/* 禮包CP值計算機按鈕 */}
-            <Dialog open={isCalculatorOpen} onOpenChange={setIsCalculatorOpen}>
-              <DialogTrigger asChild>
-                <Button className="bg-gray-800/30 text-gray-400 flex items-center gap-2 flex-col h-auto hover:bg-gray-800/50 text-xs md:absolute right-0">
-                  <Image src="/com_icon_146.png" alt="" className="w-10 h-10"  width={40} height={40}  />
-                  禮包CP值計算機
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="bg-gray-900 border-gray-600 text-white max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2 text-green-400">
-                    <Calculator className="w-5 h-5" />
-                    禮包CP值計算機
-                  </DialogTitle>
-                  <DialogDescription className="text-gray-400">
-                    計算禮包的性價比，幫助你做出最佳購買決策
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="space-y-4">
-                  <div className="text-xs text-gray-400 bg-gray-800/50 p-3 rounded">
-                    <p className="mb-2">計算公式：</p>
-                    <p>• 1顏料 = 150鑽石</p>
-                    <p>• 1體力 = 0.5鑽石</p>
-                    <p>• 顏料與鑽石需擇一填寫，如果只填體力不計算</p>
-                    <p className="mt-2">每抽價值 = 禮包價格 ÷ 總價值以顏料為單位</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="packagePrice" className="text-white text-sm">
-                        禮包價格 ($)
-                      </Label>
-                      <Input
-                        id="packagePrice"
-                        type="number"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="例：990"
-                        value={calculatorInputs.packagePrice}
-                        onChange={(e) => handleCalculatorInputChange('packagePrice', e.target.value)}
-                        className="bg-gray-800 border-gray-600 text-white"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="totalDraws" className="text-white text-sm">
-                        顏料數量
-                      </Label>
-                      <Input
-                        id="totalDraws"
-                        type="number"
-                        placeholder="例：30"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        value={calculatorInputs.totalDraws}
-                        onChange={(e) => handleCalculatorInputChange('totalDraws', e.target.value)}
-                        className="bg-gray-800 border-gray-600 text-white"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-medium text-gray-300">額外道具（可選）</h4>
-                    
-                    <div>
-                      <Label htmlFor="diamonds" className="text-white text-sm">
-                        鑽石數量
-                      </Label>
-                      <Input
-                        id="diamonds"
-                        type="number"
-                        placeholder="例：3000"
-                        value={calculatorInputs.diamonds}
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        onChange={(e) => handleCalculatorInputChange('diamonds', e.target.value)}
-                        className="bg-gray-800 border-gray-600 text-white"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="stamina" className="text-white text-sm">
-                        體力數量
-                      </Label>
-                      <Input
-                        id="stamina"
-                        type="number"
-                        placeholder="例：500"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        value={calculatorInputs.stamina}
-                        onChange={(e) => handleCalculatorInputChange('stamina', e.target.value)}
-                        className="bg-gray-800 border-gray-600 text-white"
-                      />
-                    </div>
-                  </div>
-
-                  {/* 計算結果 */}
-                  <div className="bg-gray-800/50 p-4 rounded">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-green-400 mb-2">
-                        ${calculateValuePerDraw().toFixed(1)}
-                      </div>
-                      <div className="text-sm text-gray-300">每抽價值</div>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Button
-                      onClick={resetCalculator}
-                      variant="outline"
-                      className="flex-1 bg-gray-800 border-gray-600 text-white hover:bg-gray-700"
-                    >
-                      重置
-                    </Button>
-                    <Button
-                      onClick={() => setIsCalculatorOpen(false)}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
-                    >
-                      確定
-                    </Button>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
+            <PackageCalculator />
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between md:mx-6">
@@ -1219,7 +1059,7 @@ export default function Component() {
 
         {/* 篩選狀態顯示 */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="flex flex-wrap gap-2 md:mx-6 mt-6 items-center">
             <span className="text-gray-400 text-sm">目前篩選：</span>
             {selectedYear !== "all" && (
               <Badge variant="secondary" className="bg-blue-900/50 text-blue-300">
