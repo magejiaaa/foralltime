@@ -1580,7 +1580,7 @@ export const activitiesData: Activity[] = [
     cnEndDate: "2023-03-15",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2",
-    image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%9B%9E%E6%97%8B%E7%9A%84%E5%A5%87%E6%83%B3%E5%89%A7%E5%9B%A2.png",
+    image: "/activity_img/143.jpg",
     category: ["白情"],
     description: "2025白色情人節預計落在10月或26.3",
     isSpecificDate: true,
