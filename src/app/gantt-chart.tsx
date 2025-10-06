@@ -163,14 +163,6 @@ export default function Component() {
     side: "right",
   })
   const [isMobile, setIsMobile] = useState(false)
-  // 新增計算機相關狀態
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false)
-  const [calculatorInputs, setCalculatorInputs] = useState({
-    packagePrice: '', // 禮包價格
-    totalDraws: '',   // 總抽數
-    diamonds: '',     // 鑽石數量
-    stamina: '',      // 體力數量
-  })
   // 未來活動列表視窗狀態
   const [isFutureActivitiesOpen, setIsFutureActivitiesOpen] = useState(false)
   // 禮包折疊狀態
@@ -258,8 +250,8 @@ export default function Component() {
     const sorted = [...processedActivities].sort((a, b) => {
       if (sortOrder === "desc") {
         // 狀態優先排序
-        const aStatus = a.calculatedStatus || a.status
-        const bStatus = b.calculatedStatus || b.status
+        const aStatus = a.calculatedStatus ? a.calculatedStatus : a.status
+        const bStatus = b.calculatedStatus ? b.calculatedStatus : b.status
         if (statusPriority[aStatus] !== statusPriority[bStatus]) {
           return statusPriority[aStatus] - statusPriority[bStatus]
         }
@@ -681,7 +673,7 @@ export default function Component() {
                   >
                     <div className="relative">
                       <Image
-                        src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
+                        src={activity.image || "/placeholder.svg"}
                         alt={activity.name}
                         width={100}
                         height={100}
@@ -691,7 +683,7 @@ export default function Component() {
                         onError={(e) => {
                             // 圖片載入失敗時的處理
                             const target = e.target as HTMLImageElement
-                            target.src = "/placeholder.svg?height=40&width=40&text=error"
+                            target.src = "/placeholder.svg"
                         }}
                         loading="lazy"
                       />
@@ -1254,7 +1246,7 @@ export default function Component() {
                     <div key={activity.id} className="flex bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
                         <a href={activity.url} target="_blank" className="flex items-center gap-3">
                           <Image
-                            src={activity.image || "/placeholder.svg?height=40&width=40&text=activity"}
+                            src={activity.image || "/placeholder.svg"}
                             alt={activity.name}
                             className="w-16 h-16 rounded-full object-cover"
                             width={100}
@@ -1262,7 +1254,7 @@ export default function Component() {
                             onError={(e) => { 
                               // 圖片載入失敗時的處理
                               const target = e.target as HTMLImageElement
-                              target.src = "/placeholder.svg?height=40&width=40&text=error"
+                              target.src = "/placeholder.svg"
                             }}
                             loading="lazy"
                           />
