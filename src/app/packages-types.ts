@@ -1,8 +1,10 @@
 export interface PricingOption {
-    id: string
     name: string
     price: number
-    description?: string
+    totalDraws?: number
+    diamonds?: number
+    stamina?: number
+    oneDrawValue?: number
 }
 
 export interface Package {

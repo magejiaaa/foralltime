@@ -1747,7 +1747,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/136.jpg",
     category: ["新年"],
     member: ["五人大活動"],
-    isSpecificDate: true,
+    packageId: "pkg001",
   },
   {
     id: "137",

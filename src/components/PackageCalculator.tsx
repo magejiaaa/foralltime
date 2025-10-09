@@ -7,13 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import Image from 'next/image'
-
-interface CalculatorInputs {
-    packagePrice: string
-    totalDraws: string
-    diamonds: string
-    stamina: string
-}
+import { calculateValuePerDraw as utilCalculateValuePerDraw } from "@/utils/packageCalculator"
 
 interface PackageCalculatorProps {
     className?: string
@@ -37,15 +31,7 @@ export default function PackageCalculator({ className }: PackageCalculatorProps)
         const diamonds = parseFloat(calculatorInputs.diamonds) || 0
         const stamina = parseFloat(calculatorInputs.stamina) || 0
 
-        if (draws === 0 && diamonds === 0 ) return 0
-
-        // 計算總價值（鑽石）
-        const totalDiamondValue = diamonds + (draws * 150) + (stamina * 0.5)
-        
-        // 計算每抽價值
-        const valuePerDraw = price / totalDiamondValue * 150
-
-        return Math.max(0, valuePerDraw)
+        return utilCalculateValuePerDraw(price, draws, diamonds, stamina)
     }, [calculatorInputs])
 
     // 重置計算機

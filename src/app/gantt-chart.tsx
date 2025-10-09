@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import { useState, useMemo, useEffect, useCallback } from "react"
+// icon
 import {
   Calendar,
   Clock,
@@ -18,9 +19,9 @@ import {
   SquareArrowOutUpRight,
   Pointer
 } from "lucide-react"
+// UI元件
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -29,13 +30,16 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+
+// 其他元件與工具
 import type { Activity } from "./activity-types"
 import { activitiesData } from "./activities-data"
 import { statusConfig } from "./activity-types"
 import Image from 'next/image'
-import type { Package } from "./packages-types"
+import type { Package, PricingOption } from "./packages-types"
 import { packagesData } from "./packages-data"
 import PackageCalculator from "@/components/PackageCalculator"
+import { calculateValuePerDraw } from "@/utils/packageCalculator"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 type SortOrder = "desc" | "asc"
@@ -113,14 +117,46 @@ export default function Component() {
     }
   }, [activities, getActivityStatus])
 
+  // 根據每抽價值排序禮包資料
+  const sortedPackages = useMemo(() => {
+    const oneDrawValue = (option: PricingOption) => {
+      return calculateValuePerDraw(option.price, option.totalDraws || 0, option.diamonds || 0, option.stamina || 0)
+    }
+
+    // 先找出所有在活動中使用的禮包ID
+    const usedPackageIds = new Set(
+      processedActivities
+        .filter(activity => activity.packageId)
+        .map(activity => activity.packageId)
+        .filter(Boolean)
+    )
+
+    // 只處理有被使用的禮包
+    return packages
+      .filter(pkg => usedPackageIds.has(pkg.id))
+      .map(pkg => ({
+        ...pkg,
+        pricingOptions: pkg.pricingOptions
+          .map(option => ({
+            ...option,
+            oneDrawValue: oneDrawValue(option) // 儲存計算結果
+          }))
+          .sort((a, b) => (a.oneDrawValue || 0) - (b.oneDrawValue || 0))
+      }))
+      .sort((a, b) => {
+        // 根據每個禮包中最便宜選項排序禮包
+        const aMinValue = Math.min(...a.pricingOptions.map(option => option.oneDrawValue || Infinity))
+        const bMinValue = Math.min(...b.pricingOptions.map(option => option.oneDrawValue || Infinity))
+        return aMinValue - bMinValue
+      })
+  }, [packages, processedActivities])
+
   // 獲取活動關聯的禮包
-  const getActivityPackage = useCallback(
-    (activity: Activity) => {
-      if (!activity.packageId) return null
-      return packages.find((pkg) => pkg.id === activity.packageId) || null
-    },
-    [packages],
-  )
+  const getActivityPackage = useCallback((activity: Activity) => {
+    if (!activity.packageId) return null
+    
+    return sortedPackages.find(pkg => pkg.id === activity.packageId)
+  }, [sortedPackages])
 
   // 獲取子活動的函數
   const getChildrenActivities = useCallback(
@@ -563,6 +599,10 @@ export default function Component() {
 
   const [showAll, setShowAll] = useState(false)
   const defaultCount = 10
+  
+  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
+  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
+  
   const renderYearTimeline = useCallback(
   (year: number) => {
     try {    
@@ -750,13 +790,13 @@ export default function Component() {
                         </div>
                       )}
                       {/* 關聯方案 */}
-                      {isMobile && (activity.calculatedStatus === "ongoing" || activity.calculatedStatus === "upcoming") &&
+                      {(activity.calculatedStatus === "ongoing" || activity.calculatedStatus === "upcoming") &&
                         activity.packageId && (
                           () => {
                             const activityPackage = getActivityPackage(activity)
                             
                             return activityPackage ? (
-                              <div className="mt-4 pt-3 border-t border-gray-700">
+                              <div className="mt-2 pt-2 border-t border-gray-700">
                                 <Collapsible open={!!expandedPackages[activity.packageId ?? ""]} 
                                   onOpenChange={(open) =>
                                     setExpandedPackages(prev => ({
@@ -766,32 +806,43 @@ export default function Component() {
                                   }
                                 >
                                   <CollapsibleTrigger asChild>
-                                    <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2 cursor-pointer">
+                                    <h5 className="font-medium text-sm text-green-300 flex items-center gap-2 cursor-pointer">
                                       <ShoppingBag className="w-4 h-4" />
-                                      活動商店: {activityPackage.name}
+                                      禮包推薦: {activityPackage.name}
                                       {expandedPackages[activity.packageId ?? ""] ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                                     </h5>
                                   </CollapsibleTrigger>
                                   <CollapsibleContent className={`
                                         data-[state=open]:animate-[collapseHeight_0.5s_ease-in-out]
                                         data-[state=closed]:animate-[expandHeight_0.5s_ease-in-out]
-                                    overflow-hidden`}>
+                                    overflow-hidden mt-2`}>
                                     {activityPackage.description && (
                                       <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
                                     )}
                                     <div className="space-y-2">
-                                      {activityPackage.pricingOptions.map((option) => (
-                                        <div key={option.id} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
+                                      {activityPackage.pricingOptions.map((option, index) => (
+                                        <div key={index} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
                                           <div className="flex-1">
                                             <div className="flex items-center gap-2">
                                               <span className="text-sm font-medium text-white">{option.name}</span>
                                             </div>
-                                            {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
+                                            <p className="text-xs text-gray-400 mt-1">
+                                                {[
+                                                  option.totalDraws && `顏料*${option.totalDraws}`,
+                                                  option.diamonds && `鑽石*${option.diamonds}`,
+                                                  option.stamina && `體力*${option.stamina}`
+                                                ].filter(Boolean).join("、")}
+                                            </p>
                                           </div>
                                           <div className="text-right">
                                             <div className="flex items-center gap-2">
                                               <span className="text-sm font-bold text-green-400">
-                                                一抽${option.price}
+                                                一抽${calculateValuePerDraw(
+                                                    option.price, 
+                                                    option.totalDraws || 0, 
+                                                    option.diamonds || 0, 
+                                                    option.stamina || 0
+                                                ).toFixed(1)}
                                               </span>
                                             </div>
                                           </div>
@@ -885,12 +936,9 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, getActivityPackage, showAll],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, getActivityPackage, showAll, hasActiveFilters],
   )
 
-
-  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
 
   // Loading 狀態
   if (isLoading) {
@@ -1110,73 +1158,6 @@ export default function Component() {
             )}
           </p>
           <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
-          {/* 關聯方案 */}
-          {hoveredActivityData.packageId && (hoveredActivityData.calculatedStatus == "ongoing" || hoveredActivityData.calculatedStatus == "upcoming") &&
-            (() => {
-              const activityPackage = getActivityPackage(hoveredActivityData)
-              return activityPackage ? (
-                <div className="mt-4 pt-3 border-t border-gray-700">
-                  <h5 className="font-medium text-sm mb-2 text-green-300 flex items-center gap-2">
-                    <ShoppingBag className="w-4 h-4" />
-                    活動商店: {activityPackage.name}
-                  </h5>
-                  <div className="bg-gray-800/50 rounded p-3">
-                    {activityPackage.description && (
-                      <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
-                    )}
-                    <div className="space-y-2">
-                      {activityPackage.pricingOptions.map((option) => (
-                        <div key={option.id} className="flex items-center gap-2 justify-between bg-gray-700/50 rounded p-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-medium text-white">{option.name}</span>
-                            </div>
-                            {option.description && <p className="text-xs text-gray-400 mt-1">{option.description}</p>}
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-bold text-green-400">
-                              ${option.price}<span className="text-xs">/抽</span>
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : null
-            })()}
-          {/* 同期活動 */}
-          {hoveredActivityData.childrenActivities && hoveredActivityData.childrenActivities.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-gray-700">
-              <h5 className="font-medium text-sm mb-2 text-blue-300">同期活動:</h5>
-              <div className="space-y-2">
-                {getChildrenActivities(hoveredActivityData).map((childActivity) => {
-                  const getStatusConfig = (status: string) => {
-                    const validStatuses = ['completed', 'ongoing', 'upcoming'] as const;
-                    return validStatuses.includes(status as typeof validStatuses[number]) 
-                      ? statusConfig[status as keyof typeof statusConfig]
-                      : statusConfig.upcoming;
-                  };
-                  const childConfig = getStatusConfig(childActivity.calculatedStatus || childActivity.status);
-
-                  return (
-                    <div key={childActivity.id} className="bg-gray-800/50 rounded p-2">
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className={`w-2 h-2 ${childConfig.color} rounded-full flex-shrink-0`}></div>
-                        <span className="text-sm font-medium text-gray-200">{childActivity.name}</span>
-                      </div>
-                      <p className="text-xs text-gray-400 ml-4">
-                        {childActivity.startDate} ~ {childActivity.endDate}
-                      </p>
-                      {childActivity.member && childActivity.member.length > 0 && (
-                        <p className="text-xs text-gray-400 ml-4">{childActivity.member.join("、")}</p>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
         </div>
       )}
 
