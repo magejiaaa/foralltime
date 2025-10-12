@@ -15,6 +15,7 @@ export interface Activity {
   calculatedStatus?: string;
   packageId?: string // 關聯的方案ID
   isSpecificDate?: boolean // 特定日期不照順序
+  isMajorEvent?: boolean // 是否為大活動
 }
 
 export const statusConfig = {

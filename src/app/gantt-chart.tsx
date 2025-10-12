@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import { useState, useMemo, useEffect, useCallback } from "react"
+import Image from 'next/image'
 // icon
 import {
   Calendar,
@@ -13,9 +14,6 @@ import {
   Filter,
   User,
   Loader2,
-  ShoppingBag,
-  Plus,
-  Minus,
   SquareArrowOutUpRight,
   Pointer
 } from "lucide-react"
@@ -23,22 +21,18 @@ import {
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-
-// 其他元件與工具
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+// 型別與資料
 import type { Activity } from "./activity-types"
-import { activitiesData } from "./activities-data"
+import type { Package } from "./packages-types"
 import { statusConfig } from "./activity-types"
-import Image from 'next/image'
-import type { Package, PricingOption } from "./packages-types"
+import { activitiesData } from "./activities-data"
 import { packagesData } from "./packages-data"
+// 元件
 import PackageCalculator from "@/components/PackageCalculator"
-import BottomNav from "@/components/ButtomNav"
-import { calculateValuePerDraw } from "@/utils/packageCalculator"
+import BottomNav from "@/components/BottomNav"
+import ActivityPackageBox from "@/components/ActivityPackageBox"
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 type SortOrder = "desc" | "asc"
@@ -116,46 +110,6 @@ export default function Component() {
     }
   }, [activities, getActivityStatus])
 
-  // 根據每抽價值排序禮包資料
-  const sortedPackages = useMemo(() => {
-    const oneDrawValue = (option: PricingOption) => {
-      return calculateValuePerDraw(option.price, option.totalDraws || 0, option.diamonds || 0, option.stamina || 0)
-    }
-
-    // 先找出所有在活動中使用的禮包ID
-    const usedPackageIds = new Set(
-      processedActivities
-        .filter(activity => activity.packageId)
-        .map(activity => activity.packageId)
-        .filter(Boolean)
-    )
-
-    // 只處理有被使用的禮包
-    return packages
-      .filter(pkg => usedPackageIds.has(pkg.id))
-      .map(pkg => ({
-        ...pkg,
-        pricingOptions: pkg.pricingOptions
-          .map(option => ({
-            ...option,
-            oneDrawValue: oneDrawValue(option) // 儲存計算結果
-          }))
-          .sort((a, b) => (a.oneDrawValue || 0) - (b.oneDrawValue || 0))
-      }))
-      .sort((a, b) => {
-        // 根據每個禮包中最便宜選項排序禮包
-        const aMinValue = Math.min(...a.pricingOptions.map(option => option.oneDrawValue || Infinity))
-        const bMinValue = Math.min(...b.pricingOptions.map(option => option.oneDrawValue || Infinity))
-        return aMinValue - bMinValue
-      })
-  }, [packages, processedActivities])
-
-  // 獲取活動關聯的禮包
-  const getActivityPackage = useCallback((activity: Activity) => {
-    if (!activity.packageId) return null
-    
-    return sortedPackages.find(pkg => pkg.id === activity.packageId)
-  }, [sortedPackages])
 
   // 獲取子活動的函數
   const getChildrenActivities = useCallback(
@@ -188,6 +142,8 @@ export default function Component() {
   const [selectedYear, setSelectedYear] = useState<string>("all")
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedMember, setSelectedMember] = useState<string>("all")
+  // 大活動狀態勾選
+  const [showMajorEventsOnly, setShowMajorEventsOnly] = useState(false)
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc") // 預設最新在前
   const [hoveredActivity, setHoveredActivity] = useState<string | null>(null)
   const [hoveredImage, setHoveredImage] = useState<string | null>(null)
@@ -198,8 +154,6 @@ export default function Component() {
     side: "right",
   })
   const [isMobile, setIsMobile] = useState(false)
-  // 禮包折疊狀態
-  const [expandedPackages, setExpandedPackages] = useState<Record<string, boolean>>({});
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -336,6 +290,10 @@ export default function Component() {
           return activity.member && activity.member.some((member) => member === selectedMember)
         })
       }
+      // 大活動篩選
+      if (showMajorEventsOnly) {
+        allFilteredActivities = allFilteredActivities.filter((activity) => activity.isMajorEvent)
+      }
 
       // 構建最終顯示的父活動列表
       const finalParentActivities = new Set<string>()
@@ -361,7 +319,7 @@ export default function Component() {
       console.error("Error filtering activities:", err)
       return sortedActivities.filter((activity) => !isChildActivity(activity.id))
     }
-  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, isChildActivity, getParentActivity, processedActivities.length])
+  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, isChildActivity, getParentActivity, processedActivities.length, showMajorEventsOnly])
 
   
   // 獲取要顯示的活動列表（包含父活動和子活動的層級結構）
@@ -413,21 +371,6 @@ export default function Component() {
 
     return result
   }, [filteredActivities, getChildrenActivities, sortedActivities, selectedYear, selectedCategory])
-
-  // 取得目前最新活動的 cnStartDate
-  const latestCnStartDate = useMemo(() => {
-    if (!processedActivities.length) return null
-    // 過濾有 cnStartDate 的活動（使用所有活動，不受篩選影響）
-    const activitiesWithDate = processedActivities.filter(activity => 
-      activity.cnStartDate && activity.startDate
-    )
-    if (!activitiesWithDate.length) return null
-    // 找出最大日期
-    const latest = activitiesWithDate.reduce((max, curr) => {
-      return new Date(curr.cnStartDate!) > new Date(max.cnStartDate!) ? curr : max
-    })
-    return latest.cnStartDate
-  }, [processedActivities]) 
 
   const getActivitySegments = useCallback((activity: Activity, year: number) => {
     try {
@@ -545,6 +488,7 @@ export default function Component() {
     setSelectedYear("all")
     setSelectedCategory("all")
     setSelectedMember("all")
+    setShowMajorEventsOnly(false)
   }, [])
 
 
@@ -552,7 +496,7 @@ export default function Component() {
   const defaultCount = 10
   
   const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all"
+  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all" || showMajorEventsOnly
   
   const renderYearTimeline = useCallback(
   (year: number) => {
@@ -741,70 +685,11 @@ export default function Component() {
                         </div>
                       )}
                       {/* 關聯方案 */}
-                      {(activity.calculatedStatus === "ongoing" || activity.calculatedStatus === "upcoming") &&
-                        activity.packageId && (
-                          () => {
-                            const activityPackage = getActivityPackage(activity)
-                            
-                            return activityPackage ? (
-                              <div className="mt-2 pt-2 border-t border-gray-700">
-                                <Collapsible open={!!expandedPackages[activity.packageId ?? ""]} 
-                                  onOpenChange={(open) =>
-                                    setExpandedPackages(prev => ({
-                                      ...prev,
-                                      [activity.packageId ?? ""]: open
-                                    }))
-                                  }
-                                >
-                                  <CollapsibleTrigger asChild>
-                                    <h5 className="font-medium text-sm text-green-300 flex items-center gap-2 cursor-pointer">
-                                      <ShoppingBag className="w-4 h-4" />
-                                      禮包推薦: {activityPackage.name}
-                                      {expandedPackages[activity.packageId ?? ""] ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                                    </h5>
-                                  </CollapsibleTrigger>
-                                  <CollapsibleContent className={`
-                                        data-[state=open]:animate-[collapseHeight_0.5s_ease-in-out]
-                                        data-[state=closed]:animate-[expandHeight_0.5s_ease-in-out]
-                                    overflow-hidden mt-2`}>
-                                    {activityPackage.description && (
-                                      <p className="text-xs text-gray-300 mb-3">{activityPackage.description}</p>
-                                    )}
-                                    <div className="space-y-2">
-                                      {activityPackage.pricingOptions.map((option, index) => (
-                                        <div key={index} className="flex items-center justify-between bg-gray-700/50 rounded p-2">
-                                          <div className="flex-1">
-                                            <div className="flex items-center gap-2">
-                                              <span className="text-sm font-medium text-white">{option.name}</span>
-                                            </div>
-                                            <p className="text-xs text-gray-400 mt-1">
-                                                {[
-                                                  option.totalDraws && `顏料*${option.totalDraws}`,
-                                                  option.diamonds && `鑽石*${option.diamonds}`,
-                                                  option.stamina && `體力*${option.stamina}`
-                                                ].filter(Boolean).join("、")}
-                                            </p>
-                                          </div>
-                                          <div className="text-right">
-                                            <div className="flex items-center gap-2">
-                                              <span className="text-sm font-bold text-green-400">
-                                                一抽${calculateValuePerDraw(
-                                                    option.price, 
-                                                    option.totalDraws || 0, 
-                                                    option.diamonds || 0, 
-                                                    option.stamina || 0
-                                                ).toFixed(1)}
-                                              </span>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </CollapsibleContent>
-                                </Collapsible>
-                            </div>
-                          ) : null
-                        })()}
+                      <ActivityPackageBox 
+                        activity={activity} 
+                        processedActivities={processedActivities}
+                        packages={packages}
+                      />
                     </div>
                   </div>
                 
@@ -887,7 +772,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, expandedPackages, getActivityPackage, showAll, hasActiveFilters],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, hasActiveFilters, processedActivities, packages],
   )
 
 
@@ -945,7 +830,7 @@ export default function Component() {
         </div>
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between md:mx-6">
           <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
-            <div className="flex items-center gap-2 flex-auto">
+            <div className="flex items-center gap-2 flex-1">
               <Calendar className="w-5 h-5 text-white" />
               <Select value={selectedYear} onValueChange={setSelectedYear}>
                 <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
@@ -963,7 +848,7 @@ export default function Component() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center gap-2 flex-auto">
+            <div className="flex items-center gap-2 flex-1">
               <Filter className="w-5 h-5 text-white" />
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
@@ -983,7 +868,7 @@ export default function Component() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center gap-2 flex-auto">
+            <div className="flex items-center gap-2 flex-1">
               <User className="w-5 h-5 text-white" />
               <Select value={selectedMember} onValueChange={setSelectedMember}>
                 <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
@@ -1003,11 +888,18 @@ export default function Component() {
                 </SelectContent>
               </Select>
             </div>
+            <Label className="text-white bg-gray-800/50 border border-gray-600 hover:bg-gray-700/50 h-9 px-4 rounded-md">
+              <Checkbox checked={showMajorEventsOnly} onCheckedChange={(checked) => setShowMajorEventsOnly(!!checked)} />
+              <p>
+                只顯示
+                <a className="underline" href="https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88" target="_blank">大活動</a>
+              </p>
+            </Label>
             <Button
               onClick={toggleSortOrder}
               variant="outline"
               size="sm"
-              className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 flex items-center gap-2 flex-auto"
+              className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 hover:text-white flex items-center gap-2 flex-auto h-9"
             >
               {sortOrder === "desc" ? (
                 <>
@@ -1021,7 +913,6 @@ export default function Component() {
                 </>
               )}
             </Button>
-
             {hasActiveFilters && (
               <Button
                 onClick={clearFilters}
@@ -1033,7 +924,7 @@ export default function Component() {
               </Button>
             )}
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-none">
             {/* 狀態圖例 */}
             {Object.entries(statusConfig).map(([status, config]) => {
               const Icon = getStatusIcon(config.icon)
@@ -1142,6 +1033,7 @@ export default function Component() {
         activities={activities}
         selectedCategory={selectedCategory}
         selectedMember={selectedMember}
+        showMajorEventsOnly={showMajorEventsOnly}
       />
     </div>
   )

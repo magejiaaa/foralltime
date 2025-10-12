@@ -11,19 +11,21 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
 
-interface ButtomNavProps {
+interface BottomNavProps {
   processedActivities: Activity[]  // 從父元件傳入
   activities: Activity[]          // 從父元件傳入
   selectedCategory: string   // 從父元件傳入
   selectedMember: string     // 從父元件傳入
+  showMajorEventsOnly: boolean // 從父元件傳入
 }
 
-export default function ButtomNav({
+export default function BottomNav({
   processedActivities, 
   activities, 
   selectedCategory, 
-  selectedMember 
-}: ButtomNavProps) {
+  selectedMember,
+  showMajorEventsOnly
+}: BottomNavProps) {
   // 未來活動列表視窗狀態
   const [isFutureActivitiesOpen, setIsFutureActivitiesOpen] = useState(false)
   
@@ -69,6 +71,10 @@ export default function ButtomNav({
           return activity.member && activity.member.some((member) => member === selectedMember)
         })
       }
+      // 大活動篩選
+      if (showMajorEventsOnly) {
+        filtered = filtered.filter((activity) => activity.isMajorEvent)
+      }
 
       // 根據 latestCnStartDate 標記 isSpecificDate
       if (latestCnStartDate) {
@@ -87,7 +93,7 @@ export default function ButtomNav({
       console.error("Error filtering upcoming activities:", err)
       return []
     }
-  }, [activities, selectedCategory, selectedMember, latestCnStartDate])
+  }, [activities, selectedCategory, selectedMember, latestCnStartDate, showMajorEventsOnly])
 
   return (
     <>

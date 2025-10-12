@@ -13,6 +13,7 @@ export const activitiesData: Activity[] = [
     image: "https://r.res.easebar.com/pic/20231025/9fbe8f0d-fbaf-4a37-a2e2-355316db5a01.jpg",
     category: ["萬聖"],
     member: ["艾因", "路辰", "羅夏", "司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "2",
@@ -50,6 +51,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9C%A3%E5%A1%9E%E8%A5%BF%E5%B0%94%E5%85%AC%E4%B8%BB%E8%8A%82",
     image: "https://r.res.easebar.com/pic/20231114/13f41d0c-f93c-4167-9291-6a5f490ecd3a.jpg",
     member: ["艾因", "路辰", "羅夏", "司嵐", "風硯"],
+    isMajorEvent: true,
   },
   {
     id: "4",
@@ -62,6 +64,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9B%9B%E5%AD%A3%E7%8C%8E%E5%9C%BA",
     image: "https://r.res.easebar.com/pic/20231128/e91c7f49-a9a3-427d-8399-01a51b43331f.jpg",
     member: ["艾因", "路辰", "羅夏", "司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "5",
@@ -123,7 +126,8 @@ export const activitiesData: Activity[] = [
     image: "https://r.res.easebar.com/pic/20231219/90c892a8-53d7-4c27-a73e-cff7e088570b.jpg",
     category: ["主線"],
     member: ["五人大活動"],
-    childrenActivities: ["9", "11"]
+    childrenActivities: ["9", "11"],
+    isMajorEvent: true,
   },
   {
     id: "9",
@@ -173,6 +177,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B9%A6%E4%B8%AD%E7%AB%A5%E8%AF%9D",
     image: "https://r.res.easebar.com/pic/20240109/803873e6-b0ee-4877-b494-d52de7179fab.jpg",
     childrenActivities: ["106"],
+    isMajorEvent: true,
   },
   {
     id: "106",
@@ -208,6 +213,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A7%81%E5%B1%9E%E5%81%87%E6%97%A5",
     image: "/activity_img/15.jpg",
+    isMajorEvent: true,
   },
   {
     id: "16",
@@ -220,6 +226,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%B0%E8%B1%A1%E5%9B%9E%E6%BA%AF_Valentine_2021",
     image: "/activity_img/73.jpg",
     category: ["情人節"],
+    isMajorEvent: true,
   },
   {
     id: "104",
@@ -268,6 +275,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B9%90%E5%9B%AD%E9%87%8D%E5%BB%BA",
     image: "https://r.res.easebar.com/pic/20240219/f8fac534-5eaa-4ea8-a3a9-6fe4600018ba.jpg",
+    isMajorEvent: true,
   },
   {
     id: "19",
@@ -280,6 +288,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%99%BD%E8%89%B2%E6%83%85%E4%BA%BA%E8%8A%82",
     image: "/activity_img/19.jpg",
     category: ["白情"],
+    isMajorEvent: true,
   },
   {
     id: "20",
@@ -304,6 +313,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%A7%89%E9%86%92%E4%B9%8B%E7%AB%A0",
     image: "https://r.res.easebar.com/pic/20240311/5bfb57c5-f40f-447e-9dd9-8535efb65b54.jpg",
     category: ["主線"],
+    isMajorEvent: true,
   },
   {
     id: "105",
@@ -350,6 +360,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%91%BD%E8%BF%90%E9%80%89%E6%8B%A9%E6%B8%B8%E6%88%8F",
     image: "/activity_img/24.jpg",
+    isMajorEvent: true,
   },
   {
     id: "25",
@@ -397,6 +408,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/67.jpg",
     category: ["夏活"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "29",
@@ -444,6 +456,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/101.jpg",
     category: ["七夕"],
     childrenActivities: ["107"],
+    isMajorEvent: true,
   },
   {
     id: "107",
@@ -468,6 +481,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AB%98%E7%BA%A7%E8%AE%A1%E5%88%92/%E6%B6%88%E6%9A%91%E8%AE%A1%E5%88%92",
     image: "/activity_img/32.jpg",
     category: ["服裝"],
+    isMajorEvent: true,
   },
   {
     id: "33",
@@ -490,6 +504,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%9B%AE%E6%A0%87%EF%BC%9A%E6%88%98%E4%BA%89%E9%83%BD%E5%B8%82",
     image: "/activity_img/34.jpg",
+    isMajorEvent: true,
   },
   {
     id: "35",
@@ -512,7 +527,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://r.res.easebar.com/pic/20240618/6d1de791-c8a2-4684-8595-10328a5711c0.png",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "37",
@@ -526,7 +541,8 @@ export const activitiesData: Activity[] = [
     image: "https://r.res.easebar.com/pic/20240625/86635b47-bf93-417d-946c-8f86db2ff2d3.png",
     category: ["主線", "週年慶"],
     member: ["五人大活動"],
-    childrenActivities: ["36"]
+    childrenActivities: ["36"],
+    isMajorEvent: true,
   },
   {
     id: "38",
@@ -576,7 +592,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%BF%B7%E5%B1%80",
     image: "/activity_img/41.jpg",
-    childrenActivities: ["114"]
+    childrenActivities: ["114"],
+    isMajorEvent: true,
   },
   {
     id: "114",
@@ -637,6 +654,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/45.jpg",
     category: ["萬聖"],
     childrenActivities: ["110"],
+    isMajorEvent: true,
   },
   {
     id: "110",
@@ -675,6 +693,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/47.jpg",
     category: ["新年"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "48",
@@ -700,6 +719,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/49.jpg",
     category: ["情人節"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "50",
@@ -738,6 +758,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%81%87%E9%9D%A2%E8%88%9E%E4%BC%9AMasquerade",
     image: "https://r.res.easebar.com/pic/20240930/fc7f7320-8c8d-4d12-92b0-e406ed52b48a.png",
     category: ["白情"],
+    isMajorEvent: true,
   },
   {
     id: "53",
@@ -797,6 +818,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%AD%94%E5%A5%B3%E7%9A%84%E5%A4%8D%E8%8B%8F",
     image: "https://r.res.easebar.com/pic/20241104/2b90abd1-0c09-4b04-968b-551253c2c403.png",
+    isMajorEvent: true,
   },
   {
     id: "57",
@@ -835,6 +857,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/59.jpg",
     category: ["帝國"],
     member: ["路辰", "葉瑄"],
+    isMajorEvent: true,
   },
   {
     id: "60",
@@ -884,7 +907,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%86%AC%E9%9B%AA%E5%A4%9C%E6%9C%AA%E7%9C%A0",
     image: "/activity_img/62.jpg",
-    category: ["聖誕"]
+    category: ["聖誕"],
+    isMajorEvent: true,
   },
   {
     id: "63",
@@ -955,7 +979,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/66.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "67",
@@ -982,6 +1006,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/68.jpg",
     category: ["主線"],
     childrenActivities: ["65", "66"],
+    isMajorEvent: true,
   },
   {
     id: "117",
@@ -1019,6 +1044,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%A5%9E%E9%99%A8%E7%BA%AA%E5%85%83%E4%BA%8C%E6%9C%9F",
     image: "/activity_img/69.jpg",
     category: ["主線"],
+    isMajorEvent: true,
   },
   {
     id: "70",
@@ -1093,6 +1119,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/75.jpg",
     category: ["聯動"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "76",
@@ -1119,6 +1146,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/77.jpg",
     category: ["七夕"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "78",
@@ -1149,8 +1177,8 @@ export const activitiesData: Activity[] = [
     name: "繾綣假日第三期",
     startDate: "2025-04-03",
     endDate: "2025-05-15",
-    // cnStartDate: "2022-08-11",
-    // cnEndDate: "2022-09-22",
+    cnStartDate: "2022-08-11",
+    cnEndDate: "2022-09-22",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A5",
     image: "/activity_img/80.jpg",
@@ -1216,7 +1244,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/84.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "85",
@@ -1231,6 +1259,7 @@ export const activitiesData: Activity[] = [
     category: ["主線", "週年慶"],
     childrenActivities: ["83", "84"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "86",
@@ -1280,6 +1309,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E7%BE%81%E6%97%85%E9%95%BF%E6%AD%8C",
     image: "/activity_img/89.jpg",
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "90",
@@ -1304,6 +1334,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E6%BA%AF%E6%B4%84%E9%95%BF%E6%B2%B3",
     image: "/activity_img/91.jpg",
     member: ["司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "92",
@@ -1317,6 +1348,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/92.jpg",
     category: ["帝國"],
     member: ["艾因", "羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "93",
@@ -1354,6 +1386,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E5%A6%82%E5%A4%8F%E7%94%9F%E8%8A%B1",
     image: "/activity_img/95.jpg",
     member: ["羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "96",
@@ -1379,6 +1412,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E6%98%8E%E7%81%AF%E6%B0%B8%E6%98%BC",
     image: "/activity_img/97.jpg",
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "98",
@@ -1403,7 +1437,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%8D%E8%BF%94%E5%8F%B6%E5%A1%9E/%E6%B5%81%E5%85%89%E8%82%87%E5%A7%8B",
     image: "/activity_img/99.jpg",
     member: ["葉瑄"],
-    packageId: "pkg003"
+    packageId: "pkg003",
+    isMajorEvent: true,
   },
   {
     id: "100",
@@ -1762,6 +1797,7 @@ export const activitiesData: Activity[] = [
     category: ["新年"],
     packageId: "pkg004",
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "138",
@@ -1774,8 +1810,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85/2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E%E4%B9%8B%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/17/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-2023%E5%86%AC%E6%97%A5%E9%87%87%E9%A3%8E.png",
     category: ["取材"],
-    description: "新關卡可能26.11",
-    isSpecificDate: true,
+    description: "新關卡可能25.11",
   },
   {
     id: "139",
@@ -1789,7 +1824,6 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/73.jpg",
     category: ["情人節"],
     description: "第二次復刻",
-    isSpecificDate: true,
   },
   {
     id: "140",
@@ -1803,7 +1837,6 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/4/4c/%E8%89%BE%E5%9B%A0%E7%AB%8B%E7%BB%98-%E6%96%B0%E6%98%A52.png",
     category: ["服裝"],
     member: ["艾因"],
-    isSpecificDate: true,
   },
   {
     id: "141",
@@ -1817,7 +1850,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/99/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E4%B8%8E%E5%8F%99%E4%BA%8B%E8%AF%97.png",
     category: ["情人節"],
     description: "2025情人節預計落在10月or26.2月",
-    isSpecificDate: true,
+    isMajorEvent: true,
   },
   {
     id: "142",
@@ -1845,7 +1878,7 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/143.jpg",
     category: ["白情"],
     description: "2025白色情人節預計落在10月或26.3",
-    isSpecificDate: true,
+    isMajorEvent: true,
   },
   {
     id: "144",
@@ -1859,6 +1892,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/e/eb/%E8%89%BE%E5%9B%A0-%E8%AE%B0%E5%BF%86%E5%A4%8D%E5%86%99-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["繾綣假日"],
     member: ["艾因"],
+    description: "可能25.12"
   },
   {
     id: "145",
@@ -1923,7 +1957,8 @@ export const activitiesData: Activity[] = [
     image: "/activity_img/149.webp",
     member: ["司嵐", "艾因"],
     childrenActivities: ['150'],
-    packageId: "pkg005"
+    packageId: "pkg005",
+    isMajorEvent: true,
   },
   {
     id: "150",
@@ -1961,6 +1996,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/e3/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%B7%AF%E8%BF%A2%E8%BF%A2%E5%A4%8D%E5%88%BB.png",
     category: ["帝國"],
     member: ["路辰", "葉瑄"],
+    description: "可能25.11",
   },
   {
     id: "153",
@@ -1998,12 +2034,12 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "/activity_img/155.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
     packageId: "pkg007",
   },
   {
     id: "156",
-    name: "心動時光",
+    name: "特殊邀約．心動時光",
     startDate: "",
     endDate: "",
     cnStartDate: "2023-04-20",
@@ -2012,7 +2048,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0c/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png",
     member: ["羅夏"],
-    isSpecificDate: true,
+    isMajorEvent: true,
   },
   {
     id: "157",
@@ -2055,7 +2091,8 @@ export const activitiesData: Activity[] = [
     category: ["主線"],
     member: ["五人大活動"],
     childrenActivities: ["155", "160"],
-    packageId: "pkg006"
+    packageId: "pkg006",
+    isMajorEvent: true,
   },
   {
     id: "160",
@@ -2118,7 +2155,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "164",
-    name: "半醒人生",
+    name: "特殊邀約．半醒人生",
     startDate: "",
     endDate: "",
     cnStartDate: "2023-05-18",
@@ -2127,6 +2164,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%8D%8A%E9%86%92%E4%BA%BA%E7%94%9F",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/8/82/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%8A%E9%86%92%E4%BA%BA%E7%94%9F.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%8A%E9%86%92%E4%BA%BA%E7%94%9F.png",
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "165",
@@ -2163,6 +2201,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%91%B0%E6%A2%A6%E5%A5%87%E5%A2%83%C2%B7%E4%B8%8B%E7%AF%87",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/53/%E6%B4%BB%E5%8A%A8-%E7%91%B0%E6%A2%A6%E5%A5%87%E5%A2%83%E4%B8%8B.jpg/1050px-%E6%B4%BB%E5%8A%A8-%E7%91%B0%E6%A2%A6%E5%A5%87%E5%A2%83%E4%B8%8B.jpg",
     member: ["路辰", "葉瑄", "羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "168",
@@ -2237,7 +2276,8 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b7/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BD%AE%E6%B1%90%E7%93%A6%E8%A7%A3.png",
     category: ["帝國"],
     member: ["司嵐", "路辰"],
-    description: "可能2025.12"
+    description: "可能2025.12",
+    isMajorEvent: true,
   },
   {
     id: "174",
@@ -2339,6 +2379,7 @@ export const activitiesData: Activity[] = [
     category: ["夏活", "聯動"],
     description: "2026年夏活",
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "182",
@@ -2449,7 +2490,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%A2%E7%BA%BF%E7%89%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png",
     category: ["七夕"],
-    description: "可能2026.03或07"
+    description: "可能2026.03或07",
+    isMajorEvent: true,
   },
   {
     id: "191",
@@ -2493,7 +2535,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "194",
-    name: "花自芳菲",
+    name: "特殊邀約．花自芳菲",
     startDate: "",
     endDate: "",
     cnStartDate: "2023-08-31",
@@ -2502,6 +2544,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8A%B1%E8%87%AA%E8%8A%B3%E8%8F%B2",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/17/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E8%87%AA%E8%8A%B3%E8%8F%B2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8A%B1%E8%87%AA%E8%8A%B3%E8%8F%B2.png",
     member: ["葉瑄"],
+    isMajorEvent: true,
   },
   {
     id: "195",
@@ -2525,7 +2568,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://nie.res.netease.com/r/pic/20230908/07f29b05-9594-4361-84ab-270dcc080edf.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "197",
@@ -2603,6 +2646,7 @@ export const activitiesData: Activity[] = [
     image: "",
     category: ["週年慶"],
     description: "2026周年慶10月",
+    isMajorEvent: true,
   },
   {
     id: "203",
@@ -2628,6 +2672,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png/900px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png",
     category: ["週年慶"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "205",
@@ -2680,6 +2725,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/56/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%99%A8%E6%98%8F%E4%B9%8B%E7%AB%A0.png/900px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%99%A8%E6%98%8F%E4%B9%8B%E7%AB%A0.png",
     category: ["主線"],
     member: ["羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "209",
@@ -2695,7 +2741,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "210",
-    name: "長日為伴",
+    name: "特殊邀約．長日為伴",
     startDate: "",
     endDate: "",
     cnStartDate: "2023-10-28",
@@ -2704,6 +2750,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%95%BF%E6%97%A5%E4%B8%BA%E4%BC%B4",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/a/a4/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%95%BF%E6%97%A5%E4%B8%BA%E4%BC%B4.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%95%BF%E6%97%A5%E4%B8%BA%E4%BC%B4.png",
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "211",
@@ -2732,7 +2779,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "213",
-    name: "隨心休憩",
+    name: "特殊邀約．隨心休憩",
     startDate: "",
     endDate: "",
     cnStartDate: "2023-11-09",
@@ -2741,6 +2788,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E9%9A%8F%E5%BF%83%E4%BC%91%E6%86%A9",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/a/a9/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9A%8F%E5%BF%83%E4%BC%91%E6%86%A9.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%9A%8F%E5%BF%83%E4%BC%91%E6%86%A9.png",
     member: ["司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "214",
@@ -2794,6 +2842,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/31/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A3%81%E5%86%B3%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A3%81%E5%86%B3%E4%B9%8B%E7%AB%A0.png",
     category: ["主線"],
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "218",
@@ -2833,7 +2882,8 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/4e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%BB%91%E6%9A%97%E7%9A%84%E8%BF%9C%E5%B1%B1.png",
     category: ["帝國"],
     member: ["司嵐", "羅夏"],
-    description: "可能2027.06"
+    description: "可能2027.06",
+    isMajorEvent: true,
   },
   {
     id: "221",
@@ -2935,6 +2985,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c4/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%97%A8%E6%89%89%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%97%A8%E6%89%89%E4%B9%8B%E7%AB%A0.png",
     member: ["司嵐"],
     category: ["主線"],
+    isMajorEvent: true,
   },
   {
     id: "229",
@@ -2961,6 +3012,7 @@ export const activitiesData: Activity[] = [
     category: ["新年"],
     description: "2026.08",
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "231",
@@ -3085,6 +3137,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/9e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%BC%E9%9B%A8%E6%99%B4%E5%A4%9C.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%BC%E9%9B%A8%E6%99%B4%E5%A4%9C.png",
     category: ["白情"],
     description: "2026.10",
+    isMajorEvent: true,
   },
   {
     id: "241",
@@ -3136,6 +3189,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/90/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%88%86%E5%8C%96%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%88%86%E5%8C%96%E4%B9%8B%E7%AB%A0.png",
     member: ["葉瑄"],
     category: ["主線"],
+    isMajorEvent: true,
   },
   {
     id: "245",
@@ -3148,6 +3202,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9C%A3%E5%A1%9E%E8%A5%BF%E5%B0%94%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%C2%B7%E4%B8%8A%E7%AF%87",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/d9/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%E4%B8%8A.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%E4%B8%8A.png",
     member: ["艾因", "羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "246",
@@ -3172,7 +3227,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://nie.res.netease.com/r/pic/20240417/712dd77c-603b-4382-8e9b-174c8c52e4b3.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "248",
@@ -3209,6 +3264,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%AD%98%E5%9C%A8%E4%B9%8B%E7%AB%A0.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%AD%98%E5%9C%A8%E4%B9%8B%E7%AB%A0.png",
     category: ["主線"],
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "251",
@@ -3246,6 +3302,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%9C%A3%E5%A1%9E%E8%A5%BF%E5%B0%94%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%C2%B7%E4%B8%8B%E7%AF%87",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/7f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%E4%B8%8B.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E9%AD%94%E6%B3%95%E5%AD%A6%E9%99%A2%E4%B8%8B.png",
     member: ["路辰", "葉瑄", "司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "254",
@@ -3257,6 +3314,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%82%99%E6%83%85%E6%8B%AD%E8%89%B2",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/01/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%82%99%E6%83%85%E6%8B%AD%E8%89%B2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%82%99%E6%83%85%E6%8B%AD%E8%89%B2.png",
+    isMajorEvent: true,
   },
   {
     id: "255",
@@ -3308,6 +3366,7 @@ export const activitiesData: Activity[] = [
     category: ["帝國"],
     member: ["葉瑄", "艾因"],
     description: "可能2027.06",
+    isMajorEvent: true,
   },
   {
     id: "259",
@@ -3368,7 +3427,8 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C/%E9%A3%8E%E4%B9%8B%E7%81%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/9c/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C.png",
-    member: ["司嵐"]
+    member: ["司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "264",
@@ -3382,6 +3442,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/d/dd/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%BA%E9%97%B4%E7%94%BB%E5%A4%96.png",
     category: ["夏活"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "265",
@@ -3419,6 +3480,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/1/13/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%B9%81%E8%8A%B1%E4%B9%8B%E5%90%BB.png",
     category: ["七夕"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "268",
@@ -3503,6 +3565,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C/%E6%A3%AE%E4%B9%8B%E7%81%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/41/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E6%A3%AE%E4%B9%8B%E7%81%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E6%A3%AE%E4%B9%8B%E7%81%B5.png",
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "275",
@@ -3551,7 +3614,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://nie.res.netease.com/r/pic/20241010/ab00add9-a981-4568-b744-8ca594c6c535.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "280",
@@ -3564,6 +3627,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2024%E5%91%A8%E5%B9%B4%E7%9B%9B%E5%85%B8",
     image: "",
     category: ["週年慶"],
+    isMajorEvent: true,
   },
   {
     id: "281",
@@ -3601,6 +3665,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0a/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BD%AA%E5%8D%B0%E6%AE%8B%E5%93%8D.png",
     category: ["主線", "週年慶"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "284",
@@ -3650,6 +3715,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%90%B3%E7%90%85%E7%8F%8D%E9%A6%90",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/9/9d/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%90%B3%E7%90%85%E7%8F%8D%E9%A6%90.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%90%B3%E7%90%85%E7%8F%8D%E9%A6%90.png",
+    isMajorEvent: true,
   },
   {
     id: "288",
@@ -3674,6 +3740,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E6%82%9A%E7%94%B5%E5%BD%B1%E7%B3%BB%E5%88%97",
     image: "https://nie.res.netease.com/r/pic/20241031/61b50d6f-1736-4c0d-b890-fff0c3862d7a.jpg",
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "290",
@@ -3737,6 +3804,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/6/6b/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BB%A3%E5%8F%B7%EF%BC%9A%E5%BD%92%E9%9B%B6.png",
     category: ["帝國"],
     description: "可能2027.12",
+    isMajorEvent: true,
   },
   {
     id: "295",
@@ -3785,6 +3853,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C/%E5%A4%9C%E4%B9%8B%E7%81%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/5d/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E5%A4%9C%E4%B9%8B%E7%81%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E5%A4%9C%E4%B9%8B%E7%81%B5.png",
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "299",
@@ -3810,6 +3879,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E6%82%9A%E7%94%B5%E5%BD%B1%E7%B3%BB%E5%88%97",
     image: "https://nie.res.netease.com/r/pic/20250120/a76a6f4b-5d0e-4417-9650-5207c38e3ba3.jpg",
     member: ["司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "301",
@@ -3880,6 +3950,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b8/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%83%E7%A7%8B%E6%B8%A1.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%8D%83%E7%A7%8B%E6%B8%A1.png",
     category: ["新年"],
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "307",
@@ -3900,6 +3971,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/32/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E7%83%AD%E7%A0%82%E5%9B%BD%E5%BA%A6.png",
     category: ["情人節"],
+    isMajorEvent: true,
   },
   {
     id: "309",
@@ -3912,6 +3984,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E6%82%9A%E7%94%B5%E5%BD%B1%E7%B3%BB%E5%88%97",
     image: "https://nie.res.netease.com/r/pic/20250306/ed10b72c-1781-4978-a7fc-1742e616f94d.jpg",
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "310",
@@ -3936,6 +4009,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C/%E7%BA%AA%E5%85%83%E6%97%85%E8%80%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ee/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E7%BA%AA%E5%85%83%E6%97%85%E8%80%85.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E7%BA%AA%E5%85%83%E6%97%85%E8%80%85.png",
     member: ["葉瑄"],
+    isMajorEvent: true,
   },
   {
     id: "312",
@@ -3973,6 +4047,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/38/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A5%E8%89%B2%E8%B8%8F%E6%83%85%E6%97%A5.png",
     category: ["白情"],
+    isMajorEvent: true,
   },
   {
     id: "315",
@@ -3989,15 +4064,15 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "316",
-    name: "主線體力減半活動",
+    name: "主線減負活動",
     startDate: "",
     endDate: "",
     cnStartDate: "2025-03-22",
-    cnEndDate: "2025-03-29",
+    cnEndDate: "2025-04-30",
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
     image: "https://nie.res.netease.com/r/pic/20250328/cb8a0fb6-3799-4231-9e93-34f9f8937250.jpg",
-    category: ["減半"],
+    category: ["主線減負"],
   },
   {
     id: "317",
@@ -4024,6 +4099,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/75/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%8C%E5%88%86%E7%9A%84%E8%8D%86%E6%A3%98%E8%B7%AF.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E4%BA%8C%E5%88%86%E7%9A%84%E8%8D%86%E6%A3%98%E8%B7%AF.png",
     category: ["主線"],
     member: ["羅夏", "艾因"],
+    isMajorEvent: true,
   },
   {
     id: "319",
@@ -4060,6 +4136,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E6%82%9A%E7%94%B5%E5%BD%B1%E7%B3%BB%E5%88%97",
     image: "https://nie.res.netease.com/r/pic/20250411/7ed75475-a4b6-40d1-9a7b-05f9b67ad2d0.jpg",
     member: ["葉瑄"],
+    isMajorEvent: true,
   },
   {
     id: "322",
@@ -4132,6 +4209,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/c/c2/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%98%A8%E6%97%A5%E6%99%B4%E7%A9%BA.png",
     member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "328",
@@ -4157,6 +4235,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C/%E5%85%89%E4%B9%8B%E7%81%B5",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/2/2d/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E5%85%89%E4%B9%8B%E7%81%B5.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BD%93%E7%A5%9E%E6%98%8E%E8%BF%9C%E8%A1%8C%C2%B7%E5%85%89%E4%B9%8B%E7%81%B5.png",
     member: ["羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "330",
@@ -4192,6 +4271,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA/%E5%B7%A7%E6%81%8B%E6%A2%A6%E6%97%85",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/f6/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA.png",
     member: ["艾因"],
+    isMajorEvent: true,
   },
   {
     id: "333",
@@ -4204,6 +4284,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA/%E6%BA%9F%E6%81%8B%E5%8F%8C%E6%BA%AF",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/f/f6/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA.png",
     member: ["葉瑄"],
+    isMajorEvent: true,
   },
   {
     id: "334",
@@ -4290,6 +4371,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%83%8A%E6%82%9A%E7%94%B5%E5%BD%B1%E7%B3%BB%E5%88%97",
     image: "https://nie.res.netease.com/r/pic/20250609/b9412a12-8388-48de-8795-0c0b403d9f28.jpg",
     member: ["羅夏"],
+    isMajorEvent: true,
   },
   {
     id: "341",
@@ -4328,6 +4410,7 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ec/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%A1%8C%E8%80%85%E6%81%92%E5%B8%B8%E5%89%8D%E8%A1%8C.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%89%8D%E8%A1%8C%E8%80%85%E6%81%92%E5%B8%B8%E5%89%8D%E8%A1%8C.png",
     category: ["帝國"],
     member: ["路辰", "艾因", "司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "344",
@@ -4365,7 +4448,8 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/2/24/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F.png/600px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BA%84%E5%9B%AD%E8%AF%A1%E6%88%8F.png",
     category: ["夏活", "聯動"],
-    member: ["五人大活動"]
+    member: ["五人大活動"],
+    isMajorEvent: true,
   },
   {
     id: "347",
@@ -4429,6 +4513,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA/%E6%98%9F%E6%81%8B%E8%8A%B1%E5%BA%8F",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/52/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA2.png",
     member: ["路辰"],
+    isMajorEvent: true,
   },
   {
     id: "352",
@@ -4453,6 +4538,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA/%E9%A3%8E%E6%81%8B%E9%BE%99%E9%87%8E",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/5/52/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA2.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%81%8B%E6%81%8B%E5%A5%87%E8%B8%AA2.png",
     member: ["司嵐"],
+    isMajorEvent: true,
   },
   {
     id: "354",
@@ -4477,6 +4563,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/4/44/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E7%A7%98%E7%A4%BC.png",
     category: ["七夕"],
+    isMajorEvent: true,
   },
   {
     id: "356",
@@ -4502,6 +4589,18 @@ export const activitiesData: Activity[] = [
     image: "https://huiji-public.huijistatic.com/hlr1023/uploads/6/6c/%E8%B7%AF%E8%BE%B0-%E6%88%8F%E6%A2%A6%E6%B5%AE%E7%94%9F-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
     category: ["繾綣假日"],
     member: ["路辰"],
+  },
+  {
+    id: "375",
+    name: "主線減負活動",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-08-31",
+    cnEndDate: "2025-09-19",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
+    image: "",
+    category: ["主線減負"],
   },
   {
     id: "358",
@@ -4575,6 +4674,7 @@ export const activitiesData: Activity[] = [
     status: "upcoming",
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2025%E5%91%A8%E5%B9%B4",
     image: "",
+    isMajorEvent: true,
   },
   {
     id: "371",
@@ -4598,6 +4698,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ec/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD.png",
     category: ["週年慶"],
+    isMajorEvent: true,
   },
   {
     id: "365",
@@ -4644,5 +4745,30 @@ export const activitiesData: Activity[] = [
     image: "",
     category: ["繾綣假日"],
     member: ["艾因"],
+  },
+  {
+    id: "373",
+    name: "駒光過隙",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-10-13",
+    cnEndDate: "2025-10-22",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2025%E5%8F%B8%E5%B2%9A%E7%94%9F%E6%97%A5",
+    image: "",
+    category: ["生日"],
+    member: ["司嵐"],
+  },
+  {
+    id: "374",
+    name: "主線減負活動",
+    startDate: "",
+    endDate: "",
+    cnStartDate: "2025-10-23",
+    cnEndDate: "2025-11-05",
+    status: "upcoming",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
+    image: "",
+    category: ["主線減負"],
   },
 ]
