@@ -1572,8 +1572,8 @@ export const activitiesData: Activity[] = [
   {
     id: "122",
     name: "祈天燈會",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-10-16",
+    endDate: "2025-10-30",
     cnStartDate: "2022-10-13",
     cnEndDate: "2022-10-27",
     status: "upcoming",
@@ -1582,7 +1582,6 @@ export const activitiesData: Activity[] = [
     category: ["週年免費SSR"],
     member: ["艾因"],
     description: "預計2025.10",
-    isSpecificDate: true,
   },
   {
     id: "123",
