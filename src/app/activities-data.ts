@@ -1946,7 +1946,7 @@ export const activitiesData: Activity[] = [
   },
   {
     id: "149",
-    name: "瑰夢奇境上篇",
+    name: "瑰夢奇境．上篇",
     startDate: "2025-09-04",
     endDate: "2025-09-18",
     cnStartDate: "2023-03-30",
@@ -2192,8 +2192,8 @@ export const activitiesData: Activity[] = [
   {
     id: "167",
     name: "瑰夢奇境．下篇",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-10-23",
+    endDate: "2025-11-06",
     cnStartDate: "2023-05-25",
     cnEndDate: "2023-06-08",
     status: "upcoming",
