@@ -130,9 +130,10 @@ export const packagesData: Package[] = [
         pricingOptions: [
             commonPackages.tenYuanGiftPack,
             {
-                name: "特殊顏料兌換券",
-                price: 2180,
-                totalDraws: 84,
+                name: "Q版裝扮連續禮包",
+                price: 230,
+                totalDraws: 5,
+                diamonds: 450,
             },
             commonPackages.monthlySpecialBox,
             {
@@ -141,7 +142,12 @@ export const packagesData: Package[] = [
                 totalDraws: 1,
                 diamonds: 20,
             },
-            commonPackages.artMaterialGiftPack
+            commonPackages.artMaterialGiftPack,
+            {
+                name: "服裝優惠折扣包(330-270)",
+                price: 60,
+                totalDraws: 4,
+            },
         ]
     },
     {
