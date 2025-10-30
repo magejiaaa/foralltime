@@ -1680,8 +1680,8 @@ export const activitiesData: Activity[] = [
   {
     id: "130",
     name: "2025艾因生日．酣甜二重奏",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-11-17",
+    endDate: "2025-11-28",
     cnStartDate: "2022-11-17",
     cnEndDate: "2022-11-28",
     status: "upcoming",
@@ -2270,8 +2270,8 @@ export const activitiesData: Activity[] = [
   {
     id: "173",
     name: "潮汐瓦解",
-    startDate: "",
-    endDate: "",
+    startDate: "2025-11-06",
+    endDate: "2025-11-20",
     cnStartDate: "2023-06-15",
     cnEndDate: "2023-06-29",
     status: "upcoming",
