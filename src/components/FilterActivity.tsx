@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useMemo, useCallback, useEffect, useState } from "react"
+import { useMemo, useCallback, useEffect } from "react"
 // icon
 import {
   Calendar,
@@ -31,6 +31,8 @@ interface FilterActivityProps {
   setSelectedMember: (member: string) => void
   statusConfig: Record<string, { label: string; color: string; icon: string }>
   getStatusIcon: (iconName: string) => React.ComponentType<React.SVGProps<SVGSVGElement>>
+  showMajorEventsOnly: boolean
+  setShowMajorEventsOnly: (show: boolean) => void
   availableYears: number[]
   processedActivities: ProcessedActivity[]
   onDisplayActivitiesChange: (activities: DisplayActivityItem[]) => void
@@ -56,6 +58,8 @@ export default function FilterActivity({
   setSelectedMember,
   statusConfig,
   getStatusIcon,
+  showMajorEventsOnly,
+  setShowMajorEventsOnly,
   availableYears,
   processedActivities,
   isChildActivity,
@@ -63,8 +67,6 @@ export default function FilterActivity({
   getChildrenActivities,
   onDisplayActivitiesChange
 }: FilterActivityProps) {
-  // 大活動狀態勾選
-  const [showMajorEventsOnly, setShowMajorEventsOnly] = useState(false)
   // 活動類別列表
   const availableCategories = useMemo(() => {
     if (!processedActivities.length) return []
