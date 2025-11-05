@@ -36,9 +36,6 @@ interface FilterActivityProps {
   availableYears: number[]
   processedActivities: ProcessedActivity[]
   onDisplayActivitiesChange: (activities: DisplayActivityItem[]) => void
-  showAll: boolean
-  setShowAll: (show: boolean) => void
-  defaultCount?: number
   // 篩選相關的函數
   isChildActivity: (id: string) => boolean
   getParentActivity: (id: string) => Activity | undefined
@@ -397,7 +394,6 @@ export default function FilterActivity({
               {selectedMember}
             </Badge>
           )}
-          <span className="text-gray-400 text-sm">共 {displayActivities.length} 個活動</span>
         </div>
       )}
     </>

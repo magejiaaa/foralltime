@@ -304,7 +304,16 @@ export default function Component() {
   const defaultCount = 10
   const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all" || showMajorEventsOnly
   const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  
+  // 當篩選條件改變時，重置 showAll 狀態
+  useEffect(() => {
+    if (hasActiveFilters) {
+      // 有篩選條件時，顯示全部符合條件的活動
+      setShowAll(true)
+    } else {
+      // 沒有篩選條件時，重置為只顯示前10個
+      setShowAll(false)
+    }
+  }, [selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, hasActiveFilters])
   const renderYearTimeline = useCallback(
   (year: number) => {
     try {    
@@ -337,9 +346,9 @@ export default function Component() {
         return startYear === year
       })
       // 控制顯示筆數
-      const activitiesToShow = hasActiveFilters
-        ? yearDisplayActivities
-        : (showAll ? yearDisplayActivities : yearDisplayActivities.slice(0, defaultCount))
+      const activitiesToShow = showAll 
+        ? yearDisplayActivities 
+        : yearDisplayActivities.slice(0, defaultCount)
 
       if (yearDisplayActivities.length === 0) {
         return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
@@ -350,7 +359,10 @@ export default function Component() {
           <div className="flex items-center gap-4 mb-4">
             <h3 className="text-2xl font-bold text-white">{year}年</h3>
             <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-              {yearDisplayActivities.length} 個活動
+              {!showAll && yearDisplayActivities.length > defaultCount
+                ? `${defaultCount} / ${yearDisplayActivities.length} 個活動`
+                : `${yearDisplayActivities.length} 個活動`
+              }
             </Badge>
           </div>
 
@@ -543,13 +555,13 @@ export default function Component() {
             })}
           </div>
           {/* 顯示更多按鈕 */}
-          {!hasActiveFilters && !showAll && yearDisplayActivities.length > defaultCount && (
+          {!showAll && yearDisplayActivities.length > defaultCount && (
             <div className="flex justify-center mt-4">
               <Button
-                onClick={() => setShowAll(true)}
+                onClick={() => { setShowAll(true) }}
                 className="border border-blue-600 bg-transparent text-blue-600"
               >
-                顯示全部
+                顯示剩餘 {yearDisplayActivities.length - defaultCount} 個活動
               </Button>
             </div>
           )}
@@ -564,7 +576,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, hasActiveFilters, processedActivities, packages],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, processedActivities, packages],
   )
 
   // Loading 狀態
@@ -639,9 +651,6 @@ export default function Component() {
           getParentActivity={getParentActivity}
           getChildrenActivities={getChildrenActivities}
           onDisplayActivitiesChange={handleDisplayActivitiesChange}
-          showAll={showAll}
-          setShowAll={setShowAll}
-          defaultCount={defaultCount}
         />
         {/* 甘特圖 */}
         <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">
