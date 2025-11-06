@@ -98,6 +98,7 @@ export default function BottomNav({
         // 有 cnStartDate 的排在沒有的前面
         if (a.cnStartDate && !b.cnStartDate) return -1
         if (!a.cnStartDate && b.cnStartDate) return 1
+        return 0 // 都沒有 cnStartDate 時視為相等
       })
     } catch (err) {
       console.error("Error filtering upcoming activities:", err)
