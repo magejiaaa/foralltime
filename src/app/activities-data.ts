@@ -2281,6 +2281,7 @@ export const activitiesData: Activity[] = [
     member: ["司嵐", "路辰"],
     description: "可能2025.11.06開始",
     isMajorEvent: true,
+    packageId: "pkg003",
   },
   {
     id: "174",

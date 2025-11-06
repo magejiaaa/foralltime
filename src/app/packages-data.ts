@@ -56,17 +56,13 @@ export const packagesData: Package[] = [
     },
     {
         id: "pkg003",
-        name: "重返葉塞",
+        name: "潮汐瓦解",
         description: "",
         isActive: true,
         pricingOptions: [
+            commonPackages.tenYuanGiftPack,
             commonPackages.monthlySpecialBox,
-            {
-                name: "顏料鑽石箱",
-                price: 490,
-                totalDraws: 10,
-                diamonds: 980
-            },
+            commonPackages.thirtyThreeYuanGiftPack,
             commonPackages.artMaterialGiftPack,
         ],
     },
