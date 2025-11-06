@@ -88,7 +88,17 @@ export default function BottomNav({
           return activity
         })
       }
-      return filtered
+      // 新增：根據開始日期排序
+      return filtered.sort((a, b) => {
+        // 有 cnStartDate 的活動優先，按日期升序排列
+        if (a.cnStartDate && b.cnStartDate) {
+          return new Date(a.cnStartDate).getTime() - new Date(b.cnStartDate).getTime()
+        }
+        
+        // 有 cnStartDate 的排在沒有的前面
+        if (a.cnStartDate && !b.cnStartDate) return -1
+        if (!a.cnStartDate && b.cnStartDate) return 1
+      })
     } catch (err) {
       console.error("Error filtering upcoming activities:", err)
       return []
