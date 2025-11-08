@@ -1,4 +1,4 @@
-import type { Package } from "./packages-types"
+import type { Package } from "../types/packages-types"
 
 // 定義共用的禮包配置
 const commonPackages = {

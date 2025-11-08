@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useMemo, useEffect, useCallback } from "react"
+import { useMemo, useEffect, useCallback } from "react"
 import Image from 'next/image'
 // icon
 import {
@@ -13,9 +13,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 // 型別與資料
-import type { Activity, SortOrder, ProcessedActivity, DisplayActivityItem } from "./activity-types"
-import type { Package } from "./packages-types"
-import { statusConfig } from "./activity-types"
+import type { Activity } from "../types/activity-types"
+import { statusConfig } from "../types/activity-types"
 import { activitiesData } from "./activities-data"
 import { packagesData } from "./packages-data"
 // 元件
@@ -25,18 +24,36 @@ import BottomNav from "@/components/BottomNav"
 import ActivityPackageBox from "@/components/ActivityPackageBox"
 import FilterActivity from "@/components/FilterActivity"
 
+// Redux imports
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import {
+  setActivities,
+  setProcessedActivities,
+  setPackages,
+  setLoading,
+  setError,
+} from '@/store/slices/activitiesSlice'
+import { setShowAll } from '@/store/slices/filtersSlice'
+import {
+  setHoveredActivity,
+  setHoveredImage,
+  setImageTooltipPosition,
+  setTooltipPosition,
+  setIsMobile,
+} from '@/store/slices/uiSlice'
+import { selectAvailableYears } from '@/store/selectors/activitySelectors'
+
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 
 export default function Component() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [packages, setPackages] = useState<Package[]>([])
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc") // 預設最新在前
-  const [selectedYear, setSelectedYear] = useState<string>("all")
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
-  const [selectedMember, setSelectedMember] = useState<string>("all")
-  // 大活動狀態勾選
-  const [showMajorEventsOnly, setShowMajorEventsOnly] = useState(false)
+  const dispatch = useAppDispatch()
+  
+  // 從 store 獲取所有必要的資料
+  const { activities, processedActivities, packages, isLoading, error } = useAppSelector(state => state.activities)
+  const { selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, displayActivities, showAll } = useAppSelector(state => state.filters)
+  const availableYears = useAppSelector(selectAvailableYears)
+  const { hoveredActivity, hoveredImage, imageTooltipPosition, tooltipPosition, isMobile } = useAppSelector(state => state.ui)
+  const defaultCount = 10
 
   // 自動判斷活動狀態的函數 - 使用useCallback避免重複創建
   const getActivityStatus = useCallback((activity: Activity): Activity["status"] => {
@@ -65,57 +82,42 @@ export default function Component() {
     }
   }, [])
 
-  const [activities, setActivities] = useState<Activity[]>([])
   // 初始化數據
   useEffect(() => {
     const initializeData = async () => {
       try {
-        setIsLoading(true)
-        setError(null)
+        dispatch(setLoading(true))
+        dispatch(setError(null))
 
-        // 模擬異步載入，避免阻塞UI
         await new Promise((resolve) => setTimeout(resolve, 100))
 
-        setActivities(activitiesData)
-        setPackages(packagesData)
-        setIsLoading(false)
+        dispatch(setActivities(activitiesData))
+        dispatch(setPackages(packagesData))
+        dispatch(setLoading(false))
       } catch (err) {
         console.error("Error initializing data:", err)
-        setError("載入數據時發生錯誤")
-        setIsLoading(false)
+        dispatch(setError("載入數據時發生錯誤"))
+        dispatch(setLoading(false))
       }
     }
 
     initializeData()
-  }, [])
+  }, [dispatch])
 
   // 處理活動數據，添加計算出的狀態
-  const processedActivities = useMemo((): ProcessedActivity[] => {
-    if (!activities.length) return []
+  useEffect(() => {
+    if (!activities.length) return
 
     try {
-      return activities.map((activity) => ({
+      const processed = activities.map((activity) => ({
         ...activity,
         calculatedStatus: getActivityStatus(activity),
       }))
+      dispatch(setProcessedActivities(processed))
     } catch (err) {
       console.error("Error processing activities:", err)
-      return activities.map((activity) => ({ ...activity, calculatedStatus: activity.status }))
     }
-  }, [activities, getActivityStatus])
-
-
-  // 獲取子活動的函數
-  const getChildrenActivities = useCallback(
-    (parentActivity: Activity) => {
-      if (!parentActivity.childrenActivities?.length) return []
-
-      return parentActivity.childrenActivities
-        .map((childId) => processedActivities.find((activity) => activity.id === childId))
-        .filter(Boolean) as Activity[]
-    },
-    [processedActivities],
-  )
+  }, [activities, getActivityStatus, dispatch])
 
   // 檢查是否為子活動
   const isChildActivity = useCallback(
@@ -125,32 +127,13 @@ export default function Component() {
     [processedActivities],
   )
 
-  // 獲取父活動
-  const getParentActivity = useCallback(
-    (childId: string) => {
-      return processedActivities.find((activity) => activity.childrenActivities?.includes(childId))
-    },
-    [processedActivities],
-  )
-
-
-  const [hoveredActivity, setHoveredActivity] = useState<string | null>(null)
-  const [hoveredImage, setHoveredImage] = useState<string | null>(null)
-  const [imageTooltipPosition, setImageTooltipPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
-  const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number; side: "left" | "right" }>({
-    x: 0,
-    y: 0,
-    side: "right",
-  })
-  const [isMobile, setIsMobile] = useState(false)
-
   // 檢測是否為手機版
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
     const checkMobile = () => {
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768)
+        dispatch(setIsMobile(window.innerWidth < 768))
       }, 100)
     }
 
@@ -161,33 +144,7 @@ export default function Component() {
       window.removeEventListener("resize", checkMobile)
       clearTimeout(timeoutId)
     }
-  }, [])
-  // 可用年份列表
-  const availableYears = useMemo(() => {
-    if (!processedActivities.length) return []
-
-    try {
-      const years = new Set<number>()
-      processedActivities.forEach((activity) => {
-        if (!activity.startDate || !activity.endDate) return
-        years.add(new Date(activity.startDate).getFullYear())
-        years.add(new Date(activity.endDate).getFullYear())
-      })
-      const sortedYears = Array.from(years).sort()
-      return sortOrder === "desc" ? sortedYears.reverse() : sortedYears
-    } catch (err) {
-      console.error("Error calculating available years:", err)
-      return []
-    }
-  }, [processedActivities, sortOrder])
-
-
-  // 從子元件接收的篩選結果
-  const [displayActivities, setDisplayActivities] = useState<DisplayActivityItem[]>([])
-
-  const handleDisplayActivitiesChange = useCallback((activities: DisplayActivityItem[]) => {
-    setDisplayActivities(activities)
-  }, [])
+  }, [dispatch])
 
 
 
@@ -240,80 +197,67 @@ export default function Component() {
   const handleActivityHover = useCallback((activity: Activity | null, event?: React.MouseEvent) => {
     try {
       if (!activity || !event) {
-        setHoveredActivity(null)
+        dispatch(setHoveredActivity(null))
         return
       }
 
       const rect = event.currentTarget.getBoundingClientRect()
       const viewportWidth = window.innerWidth
-
-      // 決定懸浮視窗顯示在左側還是右側
       const side = rect.right > viewportWidth * 0.7 ? "left" : "right"
-
-      // 計算位置
       const x = side === "right" ? rect.right + 10 : rect.left - 10
       const y = rect.top + rect.height / 2
 
-      setTooltipPosition({ x, y, side })
-      setHoveredActivity(activity.id)
+      dispatch(setTooltipPosition({ x, y, side }))
+      dispatch(setHoveredActivity(activity.id))
     } catch (err) {
       console.error("Error handling activity hover:", err)
     }
-  }, [])
+  }, [dispatch])
 
-  const handleImageHover = useCallback(
-    (imageSrc: string | null, event?: React.MouseEvent) => {
-      try {
-        if (!imageSrc || !event || isMobile) {
-          setHoveredImage(null)
-          return
-        }
-
-        const rect = event.currentTarget.getBoundingClientRect()
-        const viewportWidth = window.innerWidth
-        const viewportHeight = window.innerHeight
-
-        // 計算懸浮視窗位置，確保不超出螢幕
-        let x = rect.right + 10
-        let y = rect.top
-
-        // 如果右側空間不足，顯示在左側
-        if (x + 500 > viewportWidth) {
-          x = rect.left - 510
-        }
-
-        // 如果下方空間不足，向上調整
-        if (y + 500 > viewportHeight) {
-          y = viewportHeight - 510
-        }
-
-        // 確保不超出螢幕頂部
-        if (y < 10) {
-          y = 10
-        }
-
-        setImageTooltipPosition({ x, y })
-        setHoveredImage(imageSrc)
-      } catch (err) {
-        console.error("Error handling image hover:", err)
+  const handleImageHover = useCallback((imageSrc: string | null, event?: React.MouseEvent) => {
+    try {
+      if (!imageSrc || !event || isMobile) {
+        dispatch(setHoveredImage(null))
+        return
       }
-    }, [isMobile])
 
+      const rect = event.currentTarget.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
+      const viewportHeight = window.innerHeight
 
-  const [showAll, setShowAll] = useState(false)
-  const defaultCount = 10
+      let x = rect.right + 10
+      let y = rect.top
+
+      if (x + 500 > viewportWidth) {
+        x = rect.left - 510
+      }
+
+      if (y + 500 > viewportHeight) {
+        y = viewportHeight - 510
+      }
+
+      if (y < 10) {
+        y = 10
+      }
+
+      dispatch(setImageTooltipPosition({ x, y }))
+      dispatch(setHoveredImage(imageSrc))
+    } catch (err) {
+      console.error("Error handling image hover:", err)
+    }
+  }, [isMobile, dispatch])
+
   const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all" || showMajorEventsOnly
   const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
   // 當篩選條件改變時，重置 showAll 狀態
   useEffect(() => {
     if (hasActiveFilters) {
-      // 有篩選條件時，顯示全部符合條件的活動
-      setShowAll(true)
+      dispatch(setShowAll(true))
     } else {
-      // 沒有篩選條件時，重置為只顯示前10個
-      setShowAll(false)
+      dispatch(setShowAll(false))
     }
-  }, [selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, hasActiveFilters])
+  }, [selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, hasActiveFilters, dispatch])
+
   const renderYearTimeline = useCallback(
   (year: number) => {
     try {    
@@ -558,7 +502,9 @@ export default function Component() {
           {!showAll && yearDisplayActivities.length > defaultCount && (
             <div className="flex justify-center mt-4">
               <Button
-                onClick={() => { setShowAll(true) }}
+                onClick={() => { 
+                  dispatch(setShowAll(true)) 
+                }}
                 className="border border-blue-600 bg-transparent text-blue-600"
               >
                 顯示剩餘 {yearDisplayActivities.length - defaultCount} 個活動
@@ -576,7 +522,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, processedActivities, packages],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, processedActivities, packages, dispatch],
   )
 
   // Loading 狀態
@@ -600,8 +546,8 @@ export default function Component() {
           <div className="text-red-400 text-lg mb-4">{error}</div>
           <Button
             onClick={() => {
-              setError(null)
-              setIsLoading(true)
+              dispatch(setError(null))
+              dispatch(setLoading(true))
               window.location.reload()
             }}
             className="bg-blue-600 hover:bg-blue-700 text-white"
@@ -633,24 +579,9 @@ export default function Component() {
         </div>
         <FilterActivity
           hasActiveFilters={hasActiveFilters}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          selectedMember={selectedMember}
-          setSelectedMember={setSelectedMember}
-          showMajorEventsOnly={showMajorEventsOnly}
-          setShowMajorEventsOnly={setShowMajorEventsOnly}
           statusConfig={statusConfig}
           getStatusIcon={getStatusIcon}
-          availableYears={availableYears}
-          processedActivities={processedActivities}
           isChildActivity={isChildActivity}
-          getParentActivity={getParentActivity}
-          getChildrenActivities={getChildrenActivities}
-          onDisplayActivitiesChange={handleDisplayActivitiesChange}
         />
         {/* 甘特圖 */}
         <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">

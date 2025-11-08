@@ -10,8 +10,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import type { Activity } from "../app/activity-types"
-import type { Package, PricingOption } from "../app/packages-types"
+import type { Activity } from "../types/activity-types"
+import type { Package, PricingOption } from "../types/packages-types"
 
 import { calculateValuePerDraw } from "@/utils/packageCalculator"
 

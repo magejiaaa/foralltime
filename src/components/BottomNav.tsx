@@ -5,11 +5,14 @@ import { useState, useMemo, useCallback } from "react"
 import {
   Clock, ArrowUp, SquareArrowOutUpRight
 } from "lucide-react"
-import type { Activity } from "../app/activity-types"
+import type { Activity } from "../types/activity-types"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
+
+// store
+import {}
 
 interface BottomNavProps {
   processedActivities: Activity[]  // 從父元件傳入
