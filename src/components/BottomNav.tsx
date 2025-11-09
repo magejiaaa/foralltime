@@ -5,30 +5,19 @@ import { useState, useMemo, useCallback } from "react"
 import {
   Clock, ArrowUp, SquareArrowOutUpRight
 } from "lucide-react"
-import type { Activity } from "../types/activity-types"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
 
-// store
-import {}
+// Redux imports
+import { useAppSelector } from '@/store/hooks'
 
-interface BottomNavProps {
-  processedActivities: Activity[]  // 從父元件傳入
-  activities: Activity[]          // 從父元件傳入
-  selectedCategory: string   // 從父元件傳入
-  selectedMember: string     // 從父元件傳入
-  showMajorEventsOnly: boolean // 從父元件傳入
-}
 
-export default function BottomNav({
-  processedActivities, 
-  activities, 
-  selectedCategory, 
-  selectedMember,
-  showMajorEventsOnly
-}: BottomNavProps) {
+export default function BottomNav() {
+  const { activities, processedActivities } = useAppSelector(state => state.activities)
+  const { selectedCategory, selectedMember, showMajorEventsOnly } = useAppSelector(state => state.filters)
+
   // 未來活動列表視窗狀態
   const [isFutureActivitiesOpen, setIsFutureActivitiesOpen] = useState(false)
   

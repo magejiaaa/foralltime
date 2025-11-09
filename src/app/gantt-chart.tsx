@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useMemo, useEffect, useCallback } from "react"
+import { useEffect, useCallback } from "react"
 import Image from 'next/image'
 // icon
 import {
@@ -434,9 +434,7 @@ export default function Component() {
                       )}
                       {/* 關聯方案 */}
                       <ActivityPackageBox 
-                        activity={activity} 
-                        processedActivities={processedActivities}
-                        packages={packages}
+                        activity={activity}
                       />
                     </div>
                   </div>
@@ -650,13 +648,7 @@ export default function Component() {
       )}
 
       {/* 底部導航按鈕 */}
-      <BottomNav
-        processedActivities={processedActivities}
-        activities={activities}
-        selectedCategory={selectedCategory}
-        selectedMember={selectedMember}
-        showMajorEventsOnly={showMajorEventsOnly}
-      />
+      <BottomNav/>
     </div>
   )
 }
