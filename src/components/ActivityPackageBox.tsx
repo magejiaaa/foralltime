@@ -10,18 +10,18 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import type { Activity } from "../app/activity-types"
-import type { Package, PricingOption } from "../app/packages-types"
+import type { Activity } from "../types/activity-types"
+import type { PricingOption } from "../types/packages-types"
 
 import { calculateValuePerDraw } from "@/utils/packageCalculator"
+import { useAppSelector } from '@/store/hooks'
 
 interface ActivityPackageBoxProps {
   activity: Activity
-  processedActivities: Activity[] // 用於篩選有使用的禮包
-  packages: Package[] // 從父元件傳入所有禮包資料
 }
 
-export default function ActivityPackageBox({ activity, processedActivities, packages }: ActivityPackageBoxProps) {
+export default function ActivityPackageBox({ activity }: ActivityPackageBoxProps) {
+  const { packages, processedActivities } = useAppSelector(state => state.activities)
   // 禮包折疊狀態
   const [expandedPackages, setExpandedPackages] = useState<Record<string, boolean>>({});
 

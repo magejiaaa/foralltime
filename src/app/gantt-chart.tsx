@@ -1,50 +1,69 @@
 "use client"
 import type React from "react"
-import { useState, useMemo, useEffect, useCallback } from "react"
+import { useEffect, useCallback } from "react"
 import Image from 'next/image'
 // icon
 import {
-  Calendar,
   Clock,
-  CheckCircle,
-  PlayCircle,
-  PauseCircle,
-  ArrowUp,
-  ArrowDown,
-  Filter,
-  User,
   Loader2,
   SquareArrowOutUpRight,
   Pointer
 } from "lucide-react"
 // UI元件
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 // 型別與資料
-import type { Activity } from "./activity-types"
-import type { Package } from "./packages-types"
-import { statusConfig } from "./activity-types"
+import type { Activity } from "../types/activity-types"
+import { statusConfig } from "../types/activity-types"
 import { activitiesData } from "./activities-data"
 import { packagesData } from "./packages-data"
+import { cardDataList } from "./card-data"
 // 元件
 import PackageCalculator from "@/components/PackageCalculator"
+import { getStatusIcon } from "@/utils/getStatusIcon"
 import BottomNav from "@/components/BottomNav"
 import ActivityPackageBox from "@/components/ActivityPackageBox"
+import FilterActivity from "@/components/FilterActivity"
+import FloatingWindow from "@/components/FloatingWindow"
+
+// Redux imports
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import {
+  setActivities,
+  setProcessedActivities,
+  setPackages,
+  setLoading,
+  setError,
+} from '@/store/slices/activitiesSlice'
+import {
+  setHoveredActivity,
+  setHoveredImage,
+  setImageTooltipPosition,
+  setTooltipPosition,
+  setIsMobile,
+  setShowAll
+} from '@/store/slices/uiSlice'
+import { 
+  selectAvailableYears, 
+  hasChildActivitiesSelector 
+} from '@/store/selectors/activitySelectors'
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
-type SortOrder = "desc" | "asc"
-type ProcessedActivity = Activity & {
-  calculatedStatus?: Activity["status"]
-}
 
 export default function Component() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [packages, setPackages] = useState<Package[]>([])
-  // 自動判斷活動狀態的函數 - 使用useCallback避免重複創建
+  const dispatch = useAppDispatch()
+  
+  // 從 store 獲取所有必要的資料
+  const { activities, isLoading, error } = useAppSelector(state => state.activities)
+  const { selectedYear } = useAppSelector(state => state.filters)
+  const availableYears = useAppSelector(selectAvailableYears)
+  // 最終篩選活動顯示
+  const displayActivities = useAppSelector(hasChildActivitiesSelector)
+  const { isMobile, showAll } = useAppSelector(state => state.ui)
+
+  const defaultCount = 10
+
+  // 根據日期自動判斷活動狀態 - 使用useCallback避免重複創建
   const getActivityStatus = useCallback((activity: Activity): Activity["status"] => {
     try {
       const today = new Date()
@@ -71,89 +90,41 @@ export default function Component() {
     }
   }, [])
 
-  const [activities, setActivities] = useState<Activity[]>([])
-  // 初始化數據
+  // 初始化數據，丟資料進store
   useEffect(() => {
     const initializeData = async () => {
       try {
-        setIsLoading(true)
-        setError(null)
+        dispatch(setLoading(true))
+        dispatch(setError(null))
 
-        // 模擬異步載入，避免阻塞UI
         await new Promise((resolve) => setTimeout(resolve, 100))
 
-        setActivities(activitiesData)
-        setPackages(packagesData)
-        setIsLoading(false)
+        dispatch(setActivities(activitiesData))
+        dispatch(setPackages(packagesData))
       } catch (err) {
         console.error("Error initializing data:", err)
-        setError("載入數據時發生錯誤")
-        setIsLoading(false)
+        dispatch(setError("載入數據時發生錯誤"))
       }
     }
 
     initializeData()
-  }, [])
-  
-  // 處理活動數據，添加計算出的狀態
-  const processedActivities = useMemo((): ProcessedActivity[] => {
-    if (!activities.length) return []
+    dispatch(setLoading(false))
+  }, [dispatch])
+
+  // 根據日期並設定每個活動的計算後狀態 getActivityStatus
+  useEffect(() => {
+    if (!activities.length) return
 
     try {
-      return activities.map((activity) => ({
+      const processed = activities.map((activity) => ({
         ...activity,
         calculatedStatus: getActivityStatus(activity),
       }))
+      dispatch(setProcessedActivities(processed))
     } catch (err) {
       console.error("Error processing activities:", err)
-      return activities.map((activity) => ({ ...activity, calculatedStatus: activity.status }))
     }
-  }, [activities, getActivityStatus])
-
-
-  // 獲取子活動的函數
-  const getChildrenActivities = useCallback(
-    (parentActivity: Activity) => {
-      if (!parentActivity.childrenActivities?.length) return []
-
-      return parentActivity.childrenActivities
-        .map((childId) => processedActivities.find((activity) => activity.id === childId))
-        .filter(Boolean) as Activity[]
-    },
-    [processedActivities],
-  )
-
-  // 檢查是否為子活動
-  const isChildActivity = useCallback(
-    (activityId: string) => {
-      return processedActivities.some((activity) => activity.childrenActivities?.includes(activityId))
-    },
-    [processedActivities],
-  )
-
-  // 獲取父活動
-  const getParentActivity = useCallback(
-    (childId: string) => {
-      return processedActivities.find((activity) => activity.childrenActivities?.includes(childId))
-    },
-    [processedActivities],
-  )
-
-  const [selectedYear, setSelectedYear] = useState<string>("all")
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
-  const [selectedMember, setSelectedMember] = useState<string>("all")
-  // 大活動狀態勾選
-  const [showMajorEventsOnly, setShowMajorEventsOnly] = useState(false)
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc") // 預設最新在前
-  const [hoveredActivity, setHoveredActivity] = useState<string | null>(null)
-  const [hoveredImage, setHoveredImage] = useState<string | null>(null)
-  const [imageTooltipPosition, setImageTooltipPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
-  const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number; side: "left" | "right" }>({
-    x: 0,
-    y: 0,
-    side: "right",
-  })
-  const [isMobile, setIsMobile] = useState(false)
+  }, [activities, getActivityStatus, dispatch])
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -161,7 +132,7 @@ export default function Component() {
     const checkMobile = () => {
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768)
+        dispatch(setIsMobile(window.innerWidth < 768))
       }, 100)
     }
 
@@ -172,206 +143,10 @@ export default function Component() {
       window.removeEventListener("resize", checkMobile)
       clearTimeout(timeoutId)
     }
-  }, [])
-  // 可用年份列表
-  const availableYears = useMemo(() => {
-    if (!processedActivities.length) return []
+  }, [dispatch])
 
-    try {
-      const years = new Set<number>()
-      processedActivities.forEach((activity) => {
-        if (!activity.startDate || !activity.endDate) return
-        years.add(new Date(activity.startDate).getFullYear())
-        years.add(new Date(activity.endDate).getFullYear())
-      })
-      const sortedYears = Array.from(years).sort()
-      return sortOrder === "desc" ? sortedYears.reverse() : sortedYears
-    } catch (err) {
-      console.error("Error calculating available years:", err)
-      return []
-    }
-  }, [processedActivities, sortOrder])
-  // 活動類別列表
-  const availableCategories = useMemo(() => {
-    if (!processedActivities.length) return []
 
-    try {
-      const categories = new Set<string>()
-      processedActivities.forEach((activity) => {
-        if (activity.category) {
-          if (Array.isArray(activity.category)) {
-            activity.category.forEach((cat) => categories.add(cat))
-          } else {
-            categories.add(activity.category)
-          }
-        }
-      })
-      return Array.from(categories).sort()
-    } catch (err) {
-      console.error("Error calculating available categories:", err)
-      return []
-    }
-  }, [processedActivities])
-
-  // 角色列表
-  const availableMembers = useMemo(() => {
-    if (!processedActivities.length) return []
-
-    try {
-      const members = new Set<string>()
-      processedActivities.forEach((activity) => {
-        if (activity.member) {
-          activity.member.forEach((member) => members.add(member))
-        }
-      })
-      return Array.from(members).sort()
-    } catch (err) {
-      console.error("Error calculating available members:", err)
-      return []
-    }
-  }, [processedActivities])
-
-  // 排序活動
-  const sortedActivities = useMemo(() => {
-    const statusPriority = { upcoming: 0, ongoing: 1, completed: 2 }
-    const sorted = [...processedActivities].sort((a, b) => {
-      if (sortOrder === "desc") {
-        // 狀態優先排序
-        const aStatus = a.calculatedStatus ? a.calculatedStatus : a.status
-        const bStatus = b.calculatedStatus ? b.calculatedStatus : b.status
-        if (statusPriority[aStatus] !== statusPriority[bStatus]) {
-          return statusPriority[aStatus] - statusPriority[bStatus]
-        }
-      }
-      // 同狀態內依照日期排序
-      const dateA = new Date(a.startDate).getTime()
-      const dateB = new Date(b.startDate).getTime()
-      return sortOrder === "desc" ? dateB - dateA : dateA - dateB
-    })
-    return sorted
-  }, [processedActivities, sortOrder])
-
-  const filteredActivities = useMemo(() => {
-    if (!processedActivities.length) return []
-
-    // 先篩選所有活動（不區分父子）
-    let allFilteredActivities = sortedActivities
-    try {
-      // 年份篩選
-      if (selectedYear !== "all") {
-        allFilteredActivities = allFilteredActivities.filter((activity) => {
-          const startYear = new Date(activity.startDate).getFullYear()
-          const endYear = new Date(activity.endDate).getFullYear()
-          return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-        })
-      }    
-    
-      // 類型篩選
-      if (selectedCategory !== "all") {
-        allFilteredActivities = allFilteredActivities.filter((activity) => {
-          if (!activity.category) return false
-          if (Array.isArray(activity.category)) {
-            return activity.category.includes(selectedCategory)
-          }
-          return activity.category === selectedCategory
-        })
-      }
-      // 角色篩選
-      if (selectedMember !== "all") {
-        allFilteredActivities = allFilteredActivities.filter((activity) => {
-          // 判斷是否為五人大活動
-          const isFiveMemberActivity =
-            Array.isArray(activity.member) && activity.member.includes("五人大活動")
-
-          // 如果是五人大活動且不是風硯，則通過篩選
-          if (isFiveMemberActivity && selectedMember !== "風硯") {
-            return true
-          }
-          return activity.member && activity.member.some((member) => member === selectedMember)
-        })
-      }
-      // 大活動篩選
-      if (showMajorEventsOnly) {
-        allFilteredActivities = allFilteredActivities.filter((activity) => activity.isMajorEvent)
-      }
-
-      // 構建最終顯示的父活動列表
-      const finalParentActivities = new Set<string>()
-
-      allFilteredActivities.forEach((activity) => {
-        if (isChildActivity(activity.id)) {
-          // 如果是子活動符合條件，也要包含其父活動
-          const parent = getParentActivity(activity.id)
-          if (parent) {
-            finalParentActivities.add(parent.id)
-          }
-        } else {
-          // 如果是父活動符合條件，直接添加
-          finalParentActivities.add(activity.id)
-        }
-      })
-
-      // 返回所有需要顯示的父活動
-      return sortedActivities.filter(
-        (activity) => finalParentActivities.has(activity.id) && !isChildActivity(activity.id),
-      )
-    } catch (err) {
-      console.error("Error filtering activities:", err)
-      return sortedActivities.filter((activity) => !isChildActivity(activity.id))
-    }
-  }, [sortedActivities, selectedYear, selectedCategory, selectedMember, isChildActivity, getParentActivity, processedActivities.length, showMajorEventsOnly])
-
-  
-  // 獲取要顯示的活動列表（包含父活動和子活動的層級結構）
-  const displayActivities = useMemo(() => {
-    const result: Array<{ activity: Activity; isChild: boolean; level: number }> = []
-
-    // 先篩選所有活動（不區分父子）
-    let allFilteredActivities = sortedActivities
-
-    // 年份篩選
-    if (selectedYear !== "all") {
-      allFilteredActivities = allFilteredActivities.filter((activity) => {
-        const startYear = new Date(activity.startDate).getFullYear()
-        const endYear = new Date(activity.endDate).getFullYear()
-        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-      })
-    }
-
-    // 類型篩選
-    if (selectedCategory !== "all") {
-      allFilteredActivities = allFilteredActivities.filter((activity) => {
-        if (!activity.category) return false
-        if (Array.isArray(activity.category)) {
-          return activity.category.includes(selectedCategory)
-        }
-        return activity.category === selectedCategory
-      })
-    }
-
-    // 獲取符合條件的活動ID集合
-    const filteredActivityIds = new Set(allFilteredActivities.map((activity) => activity.id))
-
-    filteredActivities.forEach((parentActivity) => {
-      // 添加父活動
-      result.push({ activity: parentActivity, isChild: false, level: 0 })
-
-      // 檢查子活動
-      const children = getChildrenActivities(parentActivity)
-      children.forEach((childActivity) => {
-        // 只顯示符合篩選條件的子活動，或者父活動符合條件時顯示所有子活動
-        const parentMatches = filteredActivityIds.has(parentActivity.id)
-        const childMatches = filteredActivityIds.has(childActivity.id)
-
-        if (parentMatches || childMatches) {
-          result.push({ activity: childActivity, isChild: true, level: 1 })
-        }
-      })
-    })
-
-    return result
-  }, [filteredActivities, getChildrenActivities, sortedActivities, selectedYear, selectedCategory])
-
+  // 創建活動時間軸段落
   const getActivitySegments = useCallback((activity: Activity, year: number) => {
     try {
       const startDate = new Date(activity.startDate)
@@ -421,83 +196,57 @@ export default function Component() {
   const handleActivityHover = useCallback((activity: Activity | null, event?: React.MouseEvent) => {
     try {
       if (!activity || !event) {
-        setHoveredActivity(null)
+        dispatch(setHoveredActivity(null))
         return
       }
 
       const rect = event.currentTarget.getBoundingClientRect()
       const viewportWidth = window.innerWidth
-
-      // 決定懸浮視窗顯示在左側還是右側
       const side = rect.right > viewportWidth * 0.7 ? "left" : "right"
-
-      // 計算位置
       const x = side === "right" ? rect.right + 10 : rect.left - 10
       const y = rect.top + rect.height / 2
 
-      setTooltipPosition({ x, y, side })
-      setHoveredActivity(activity.id)
+      dispatch(setTooltipPosition({ x, y, side }))
+      dispatch(setHoveredActivity(activity.id))
     } catch (err) {
       console.error("Error handling activity hover:", err)
     }
-  }, [])
+  }, [dispatch])
 
-  const handleImageHover = useCallback(
-    (imageSrc: string | null, event?: React.MouseEvent) => {
-      try {
-        if (!imageSrc || !event || isMobile) {
-          setHoveredImage(null)
-          return
-        }
-
-        const rect = event.currentTarget.getBoundingClientRect()
-        const viewportWidth = window.innerWidth
-        const viewportHeight = window.innerHeight
-
-        // 計算懸浮視窗位置，確保不超出螢幕
-        let x = rect.right + 10
-        let y = rect.top
-
-        // 如果右側空間不足，顯示在左側
-        if (x + 500 > viewportWidth) {
-          x = rect.left - 510
-        }
-
-        // 如果下方空間不足，向上調整
-        if (y + 500 > viewportHeight) {
-          y = viewportHeight - 510
-        }
-
-        // 確保不超出螢幕頂部
-        if (y < 10) {
-          y = 10
-        }
-
-        setImageTooltipPosition({ x, y })
-        setHoveredImage(imageSrc)
-      } catch (err) {
-        console.error("Error handling image hover:", err)
+  const handleImageHover = useCallback((imageSrc: string | null, event?: React.MouseEvent) => {
+    try {
+      if (!imageSrc || !event || isMobile) {
+        dispatch(setHoveredImage(null))
+        return
       }
-    }, [isMobile])
 
-  const toggleSortOrder = useCallback(() => {
-    setSortOrder(sortOrder === "desc" ? "asc" : "desc")
-  }, [sortOrder])
+      const rect = event.currentTarget.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
+      const viewportHeight = window.innerHeight
 
-  const clearFilters = useCallback(() => {
-    setSelectedYear("all")
-    setSelectedCategory("all")
-    setSelectedMember("all")
-    setShowMajorEventsOnly(false)
-  }, [])
+      let x = rect.right + 10
+      let y = rect.top
+
+      if (x + 500 > viewportWidth) {
+        x = rect.left - 510
+      }
+
+      if (y + 500 > viewportHeight) {
+        y = viewportHeight - 510
+      }
+
+      if (y < 10) {
+        y = 10
+      }
+
+      dispatch(setImageTooltipPosition({ x, y }))
+      dispatch(setHoveredImage(imageSrc))
+    } catch (err) {
+      console.error("Error handling image hover:", err)
+    }
+  }, [isMobile, dispatch])
 
 
-  const [showAll, setShowAll] = useState(false)
-  const defaultCount = 10
-  
-  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all" || showMajorEventsOnly
-  
   const renderYearTimeline = useCallback(
   (year: number) => {
     try {    
@@ -530,27 +279,12 @@ export default function Component() {
         return startYear === year
       })
       // 控制顯示筆數
-      const activitiesToShow = hasActiveFilters
-        ? yearDisplayActivities
-        : (showAll ? yearDisplayActivities : yearDisplayActivities.slice(0, defaultCount))
+      const activitiesToShow = showAll 
+        ? yearDisplayActivities 
+        : yearDisplayActivities.slice(0, defaultCount)
 
-      const getStatusIcon = (iconName: string) => {
-        switch (iconName) {
-          case "CheckCircle":
-            return CheckCircle
-          case "PlayCircle":
-            return PlayCircle
-          case "Clock":
-            return Clock
-          case "PauseCircle":
-            return PauseCircle
-          default:
-            return Clock
-        }
-      }
-      
       if (yearDisplayActivities.length === 0) {
-        return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
+        return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份標題
       }
 
       return (
@@ -558,11 +292,14 @@ export default function Component() {
           <div className="flex items-center gap-4 mb-4">
             <h3 className="text-2xl font-bold text-white">{year}年</h3>
             <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-              {yearDisplayActivities.length} 個活動
+              {!showAll && yearDisplayActivities.length > defaultCount
+                ? `${defaultCount} / ${yearDisplayActivities.length} 個活動`
+                : `${yearDisplayActivities.length} 個活動`
+              }
             </Badge>
           </div>
 
-          {/* 桌面版標題行 */}
+          {/* 桌面版時間軸標題行 */}
           {!isMobile && (
           <div className="flex mb-4 sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
             <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
@@ -594,6 +331,11 @@ export default function Component() {
               const config = getStatusConfig(activity.calculatedStatus || activity.status)
 
               const Icon = getStatusIcon(config.icon)
+
+              // SSR 資料
+              const cardData = cardDataList.find(card => card.activityId.includes(activity.id))
+              const startMonth = new Date(activity.startDate).getMonth() + 1 // 1~12
+              const isLeft = startMonth <= 6
 
               return (
                 <div
@@ -686,16 +428,15 @@ export default function Component() {
                       )}
                       {/* 關聯方案 */}
                       <ActivityPackageBox 
-                        activity={activity} 
-                        processedActivities={processedActivities}
-                        packages={packages}
+                        activity={activity}
                       />
                     </div>
                   </div>
                 
                   {/* 右側時間軸 */}
-                  {!isMobile && (
-                  <div className="flex-1 relative flex flex-col justify-center">
+                  <div className="flex-1 relative items-center">
+                    {!isMobile && (
+                    <div className="flex flex-col justify-center h-full">
                       <div className={`relative h-8 flex items-center justify-center`}>
                         <div
                           className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
@@ -744,20 +485,43 @@ export default function Component() {
                             </div>
                           ) : null
                         })()}
+                    </div>
+                    )}
+                    {/* 活動SSR */}
+                    {cardData && Array.isArray(cardData.item) &&(
+                    <div className={`absolute p-2 w-1/2 flex flex-wrap gap-1 top-1/2 -translate-y-1/2 ${isLeft ? "right-1" : "left-1"}`}>
+                      {cardData.item.map((item, idx) => (
+                        <Image
+                          key={item.image + idx}
+                          src={item.image}
+                          alt={item.name}
+                          width={40}
+                          height={40}
+                          className={`rounded object-cover`}
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.src = "/placeholder.svg"
+                          }}
+                        />
+                      ))}
+                    </div>
+                    )}
                   </div>
-                  )}
                 </div>
               )
             })}
           </div>
           {/* 顯示更多按鈕 */}
-          {!hasActiveFilters && !showAll && yearDisplayActivities.length > defaultCount && (
+          {!showAll && yearDisplayActivities.length > defaultCount && (
             <div className="flex justify-center mt-4">
               <Button
-                onClick={() => setShowAll(true)}
+                onClick={() => { 
+                  dispatch(setShowAll(true))
+                }}
                 className="border border-blue-600 bg-transparent text-blue-600"
               >
-                顯示全部
+                顯示剩餘 {yearDisplayActivities.length - defaultCount} 個活動
               </Button>
             </div>
           )}
@@ -772,9 +536,8 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, hasActiveFilters, processedActivities, packages],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch],
   )
-
 
   // Loading 狀態
   if (isLoading) {
@@ -797,8 +560,8 @@ export default function Component() {
           <div className="text-red-400 text-lg mb-4">{error}</div>
           <Button
             onClick={() => {
-              setError(null)
-              setIsLoading(true)
+              dispatch(setError(null))
+              dispatch(setLoading(true))
               window.location.reload()
             }}
             className="bg-blue-600 hover:bg-blue-700 text-white"
@@ -824,145 +587,17 @@ export default function Component() {
               <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
+              <li>SSR卡片資料建置中</li>
             </ul>
             <PackageCalculator />
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between md:mx-6">
-          <div className="flex items-center gap-4 flex-wrap justify-center md:justify-start">
-            <div className="flex items-center gap-2 flex-1">
-              <Calendar className="w-5 h-5 text-white" />
-              <Select value={selectedYear} onValueChange={setSelectedYear}>
-                <SelectTrigger className="w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                  <SelectValue placeholder="選擇年份" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white">
-                    所有年份
-                  </SelectItem>
-                  {availableYears.map((year) => (
-                    <SelectItem key={year} value={year.toString()} className="text-white">
-                      {year}年
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex items-center gap-2 flex-1">
-              <Filter className="w-5 h-5 text-white" />
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                  <SelectValue placeholder="選擇類型" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white">
-                    所有類型
-                  </SelectItem>
-                  {availableCategories.map((category) => {
-                    return (
-                      <SelectItem key={category} value={category} className="text-white">
-                        {category}
-                      </SelectItem>
-                    )
-                  })}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex items-center gap-2 flex-1">
-              <User className="w-5 h-5 text-white" />
-              <Select value={selectedMember} onValueChange={setSelectedMember}>
-                <SelectTrigger className="w-32 md:w-40 bg-gray-800/50 border-gray-600 text-white flex-auto">
-                  <SelectValue placeholder="選擇成員" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white">
-                    所有成員
-                  </SelectItem>
-                  {availableMembers.map((member) => {
-                    return (
-                      <SelectItem key={member} value={member} className="text-white">
-                        {member}
-                      </SelectItem>
-                    )
-                  })}
-                </SelectContent>
-              </Select>
-            </div>
-            <Label className="text-white bg-gray-800/50 border border-gray-600 hover:bg-gray-700/50 h-9 px-4 rounded-md">
-              <Checkbox checked={showMajorEventsOnly} onCheckedChange={(checked) => setShowMajorEventsOnly(!!checked)} />
-              <p>
-                只顯示
-                <a className="underline" href="https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88" target="_blank">大活動</a>
-              </p>
-            </Label>
-            <Button
-              onClick={toggleSortOrder}
-              variant="outline"
-              size="sm"
-              className="bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50 hover:text-white flex items-center gap-2 flex-auto h-9"
-            >
-              {sortOrder === "desc" ? (
-                <>
-                  <ArrowDown className="w-4 h-4" />
-                  最新在前
-                </>
-              ) : (
-                <>
-                  <ArrowUp className="w-4 h-4" />
-                  最舊在前
-                </>
-              )}
-            </Button>
-            {hasActiveFilters && (
-              <Button
-                onClick={clearFilters}
-                variant="ghost"
-                size="sm"
-                className="text-gray-400 hover:text-white hover:bg-gray-700/50"
-              >
-                清除篩選
-              </Button>
-            )}
-          </div>
-          <div className="flex gap-2 flex-none">
-            {/* 狀態圖例 */}
-            {Object.entries(statusConfig).map(([status, config]) => {
-              const Icon = getStatusIcon(config.icon)
-              return (
-                <div key={status} className="flex items-center gap-1 text-sm text-gray-300">
-                  <div className={`w-3 h-3 ${config.color} rounded`}></div>
-                  <Icon className="w-4 h-4" />
-                  <span>{config.label}</span>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* 篩選狀態顯示 */}
-        {hasActiveFilters && (
-          <div className="flex flex-wrap gap-2 md:mx-6 mt-6 items-center">
-            <span className="text-gray-400 text-sm">目前篩選：</span>
-            {selectedYear !== "all" && (
-              <Badge variant="secondary" className="bg-blue-900/50 text-blue-300">
-                {selectedYear}年
-              </Badge>
-            )}
-            {selectedCategory !== "all" && (
-              <Badge variant="secondary" className="bg-green-900/50 text-green-300">
-                {selectedCategory}
-              </Badge>
-            )}
-            {selectedMember !== "all" && (
-              <Badge variant="secondary" className="bg-purple-900/50 text-purple-300">
-                {selectedMember}
-              </Badge>
-            )}
-            <span className="text-gray-400 text-sm">共 {displayActivities.length} 個活動</span>
-          </div>
-        )}
+        <FilterActivity
+          statusConfig={statusConfig}
+          getStatusIcon={getStatusIcon}
+        />
         {/* 甘特圖 */}
-        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">
+        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">z
           {displayActivities.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 text-lg mb-2">沒有找到符合條件的活動</div>
@@ -980,76 +615,12 @@ export default function Component() {
           尚未開放活動資訊與圖片來源為時空中的繪旅人wiki。
         </p>
       </div>
-      {/* 活動詳情懸浮視窗 */}
-      {hoveredActivity && hoveredActivityData && (
-        <div
-          className="fixed z-[9999] bg-gray-900/95 backdrop-blur-sm text-white p-4 rounded-lg shadow-xl max-w-sm pointer-events-none"
-          style={{
-            left: tooltipPosition.side === "right" ? `${tooltipPosition.x}px` : "auto",
-            right: tooltipPosition.side === "left" ? `${window.innerWidth - tooltipPosition.x}px` : "auto",
-            top: `${tooltipPosition.y}px`,
-            transform: "translateY(-50%)",
-          }}
-        >
-          <h4 className="font-bold mb-1">{hoveredActivityData.name}</h4>
-          <p className="text-xs text-gray-400">
-            繁中服：{hoveredActivityData.startDate} ~ {hoveredActivityData.endDate}
-            <br />
-            {hoveredActivityData.cnStartDate && hoveredActivityData.cnEndDate && (
-              <span>中國服：{hoveredActivityData.cnStartDate} ~ {hoveredActivityData.cnEndDate}</span>
-            )}
-          </p>
-          <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
-        </div>
-      )}
 
-      {/* 圖片懸浮視窗 */}
-      {hoveredImage && (
-        <div
-          className="fixed z-[9998] pointer-events-none"
-          style={{
-            left: `${imageTooltipPosition.x}px`,
-            top: `${imageTooltipPosition.y}px`,
-          }}
-        >
-          <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg p-2 shadow-2xl">
-            <Image
-              src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
-              alt="活動圖片預覽"
-              width={0}
-              height={0}
-              sizes="(max-width: 500px) 100vw, 500px"
-              className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
-              style={{ maxWidth: "500px", maxHeight: "500px" }}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      )}
+      {/* 浮動視窗 */}
+      <FloatingWindow/>
 
       {/* 底部導航按鈕 */}
-      <BottomNav
-        processedActivities={processedActivities}
-        activities={activities}
-        selectedCategory={selectedCategory}
-        selectedMember={selectedMember}
-        showMajorEventsOnly={showMajorEventsOnly}
-      />
+      <BottomNav/>
     </div>
   )
-}
-
-const getStatusIcon = (iconName: string) => {
-  switch (iconName) {
-    case "CheckCircle":
-      return CheckCircle
-    case "PlayCircle":
-      return PlayCircle
-    case "Clock":
-      return Clock
-    case "PauseCircle":
-      return PauseCircle
-    default:
-      return Clock
-  }
 }

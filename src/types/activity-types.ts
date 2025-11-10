@@ -23,3 +23,13 @@ export const statusConfig = {
   ongoing: { color: "bg-blue-500", label: "進行中", icon: "PlayCircle" },
   upcoming: { color: "bg-blue-400", label: "尚未開始", icon: "Clock" },
 } as const
+
+export type SortOrder = "asc" | "desc"
+export type ProcessedActivity = Activity & {
+  calculatedStatus?: Activity["status"]
+}
+export interface DisplayActivityItem {
+  activity: Activity
+  isChild: boolean
+  level: number
+}

@@ -1,0 +1,52 @@
+// store/slices/activitiesSlice.ts
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import type { Activity, ProcessedActivity } from '@/types/activity-types'
+import type { Package } from '@/types/packages-types'
+
+interface ActivitiesState {
+  activities: Activity[]
+  processedActivities: ProcessedActivity[]
+  packages: Package[]
+  isLoading: boolean
+  error: string | null
+}
+
+const initialState: ActivitiesState = {
+  activities: [],
+  processedActivities: [],
+  packages: [],
+  isLoading: true,
+  error: null,
+}
+
+const activitiesSlice = createSlice({
+  name: 'activities',
+  initialState,
+  reducers: {
+    setActivities(state, action: PayloadAction<Activity[]>) {
+      state.activities = action.payload
+    },
+    setProcessedActivities(state, action: PayloadAction<ProcessedActivity[]>) {
+      state.processedActivities = action.payload
+    },
+    setPackages(state, action: PayloadAction<Package[]>) {
+      state.packages = action.payload
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload
+    },
+    setError(state, action: PayloadAction<string | null>) {
+      state.error = action.payload
+    },
+  },
+})
+
+export const {
+  setActivities,
+  setProcessedActivities,
+  setPackages,
+  setLoading,
+  setError,
+} = activitiesSlice.actions
+
+export default activitiesSlice.reducer

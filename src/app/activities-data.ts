@@ -1,4 +1,4 @@
-import type { Activity } from "./activity-types"
+import type { Activity } from "../types/activity-types"
 
 export const activitiesData: Activity[] = [
   {
@@ -4721,6 +4721,7 @@ export const activitiesData: Activity[] = [
     url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD",
     image: "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/e/ec/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%8B%A5%E6%9C%80%E5%90%8E%E4%B9%8B%E6%A2%A6%E7%86%84%E7%81%AD.png",
     category: ["週年慶"],
+    member: ["五人大活動"],
     isMajorEvent: true,
   },
   {
