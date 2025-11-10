@@ -17,6 +17,7 @@ import type { Activity } from "../types/activity-types"
 import { statusConfig } from "../types/activity-types"
 import { activitiesData } from "./activities-data"
 import { packagesData } from "./packages-data"
+import { cardDataList } from "./card-data"
 // 元件
 import PackageCalculator from "@/components/PackageCalculator"
 import { getStatusIcon } from "@/utils/getStatusIcon"
@@ -331,6 +332,11 @@ export default function Component() {
 
               const Icon = getStatusIcon(config.icon)
 
+              // SSR 資料
+              const cardData = cardDataList.find(card => card.activityId.includes(activity.id))
+              const startMonth = new Date(activity.startDate).getMonth() + 1 // 1~12
+              const isLeft = startMonth <= 6
+
               return (
                 <div
                   key={`${activity.id}-${year}`} data-id={activity.id}
@@ -428,8 +434,9 @@ export default function Component() {
                   </div>
                 
                   {/* 右側時間軸 */}
-                  {!isMobile && (
-                  <div className="flex-1 relative flex flex-col justify-center">
+                  <div className="flex-1 relative items-center">
+                    {!isMobile && (
+                    <div className="flex flex-col justify-center h-full">
                       <div className={`relative h-8 flex items-center justify-center`}>
                         <div
                           className={`absolute h-8 ${config.color} rounded-lg flex items-center px-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
@@ -478,8 +485,29 @@ export default function Component() {
                             </div>
                           ) : null
                         })()}
+                    </div>
+                    )}
+                    {/* 活動SSR */}
+                    {cardData && Array.isArray(cardData.item) &&(
+                    <div className={`absolute p-2 w-1/2 flex flex-wrap gap-1 top-1/2 -translate-y-1/2 ${isLeft ? "right-1" : "left-1"}`}>
+                      {cardData.item.map((item, idx) => (
+                        <Image
+                          key={item.image + idx}
+                          src={item.image}
+                          alt={item.name}
+                          width={40}
+                          height={40}
+                          className={`rounded object-cover`}
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.src = "/placeholder.svg"
+                          }}
+                        />
+                      ))}
+                    </div>
+                    )}
                   </div>
-                  )}
                 </div>
               )
             })}
@@ -559,6 +587,7 @@ export default function Component() {
               <li>五人大活動的定義為全員SSR，小活動只會顯示該活動有SSR角色的標籤</li>
               <li>活動類型參照中國服wiki分類</li>
               <li>禮包只推薦一抽$33以內的選項<br />計算方式：1顏料=150鑽、1體力=0.5鑽，其他材料不計算</li>
+              <li>SSR卡片資料建置中</li>
             </ul>
             <PackageCalculator />
           </div>
