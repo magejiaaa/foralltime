@@ -489,7 +489,7 @@ export default function Component() {
                     )}
                     {/* 活動SSR */}
                     {cardData && Array.isArray(cardData.item) &&(
-                    <div className={`absolute p-2 w-1/2 flex flex-wrap gap-1 top-1/2 -translate-y-1/2 ${isLeft ? "right-1" : "left-1"}`}>
+                    <div className={`md:absolute p-2 flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 ${isLeft ? "right-1" : "left-1"}`}>
                       {cardData.item.map((item, idx) => (
                         <Image
                           key={item.image + idx}
