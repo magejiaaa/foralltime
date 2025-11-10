@@ -9,7 +9,7 @@ interface FiltersState {
   selectedMember: string
   showMajorEventsOnly: boolean
   displayActivities: DisplayActivityItem[]
-  showAll: boolean
+  hasActiveFilters: boolean
 }
 
 const initialState: FiltersState = {
@@ -19,7 +19,7 @@ const initialState: FiltersState = {
   selectedMember: 'all',
   showMajorEventsOnly: false,
   displayActivities: [],
-  showAll: false,
+  hasActiveFilters: false,
 }
 
 const filtersSlice = createSlice({
@@ -44,15 +44,15 @@ const filtersSlice = createSlice({
     setDisplayActivities: (state, action: PayloadAction<DisplayActivityItem[]>) => {
       state.displayActivities = action.payload
     },
-    setShowAll: (state, action: PayloadAction<boolean>) => {
-      state.showAll = action.payload
-    },
     resetFilters: (state) => {
       state.selectedYear = 'all'
       state.selectedCategory = 'all'
       state.selectedMember = 'all'
       state.showMajorEventsOnly = false
-      state.showAll = false
+      state.hasActiveFilters = false
+    },
+    setHasActiveFilters: (state, action: PayloadAction<boolean>) => {
+      state.hasActiveFilters = action.payload
     },
   },
 })
@@ -64,8 +64,8 @@ export const {
   setSelectedMember,
   setShowMajorEventsOnly,
   setDisplayActivities,
-  setShowAll,
   resetFilters,
+  setHasActiveFilters
 } = filtersSlice.actions
 
 export default filtersSlice.reducer

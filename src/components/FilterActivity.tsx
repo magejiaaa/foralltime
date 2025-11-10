@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useMemo, useCallback, useEffect } from "react"
+import { useCallback, useEffect } from "react"
 // icon
 import {
   Calendar,
@@ -19,33 +19,28 @@ import { Badge } from "@/components/ui/badge"
 // store
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { 
-  setDisplayActivities, 
   setSortOrder,
   setSelectedYear,
   setSelectedCategory,
   setSelectedMember,
-  setShowMajorEventsOnly 
+  setShowMajorEventsOnly,
+  setHasActiveFilters
 } from '@/store/slices/filtersSlice'
 import { 
   selectAvailableYears,
   selectAvailableCategories,
-  selectAvailableMembers,
-  createDisplayActivitiesSelector
+  selectAvailableMembers
 } from '@/store/selectors/activitySelectors'
+import { setShowAll } from '@/store/slices/uiSlice'
 
 interface FilterActivityProps {
   statusConfig: Record<string, { label: string; color: string; icon: string }>
   getStatusIcon: (iconName: string) => React.ComponentType<React.SVGProps<SVGSVGElement>>
-  // 篩選相關的函數
-  isChildActivity: (id: string) => boolean
-  hasActiveFilters: boolean
 }
 
 export default function FilterActivity({
-  hasActiveFilters,
   statusConfig,
   getStatusIcon,
-  isChildActivity,
 }: FilterActivityProps) {
   const dispatch = useAppDispatch()
 
@@ -58,32 +53,34 @@ export default function FilterActivity({
   const selectedMember = useAppSelector((state) => state.filters.selectedMember)
   const showMajorEventsOnly = useAppSelector((state) => state.filters.showMajorEventsOnly)
   const sortOrder = useAppSelector((state) => state.filters.sortOrder)
+  const hasActiveFilters = useAppSelector((state) => state.filters.hasActiveFilters)
+
+  useEffect(() => {
+    if (hasActiveFilters) {
+      dispatch(setShowAll(true));
+    }
+  }, [hasActiveFilters, dispatch])
 
   // 創建處理函數
   const handleYearChange = useCallback((value: string) => {
     dispatch(setSelectedYear(value))
+    dispatch(setHasActiveFilters(value !== "all"))
   }, [dispatch])
 
   const handleCategoryChange = useCallback((value: string) => {
     dispatch(setSelectedCategory(value))
+    dispatch(setHasActiveFilters(value !== "all"))
   }, [dispatch])
 
   const handleMemberChange = useCallback((value: string) => {
     dispatch(setSelectedMember(value))
+    dispatch(setHasActiveFilters(value !== "all"))
   }, [dispatch])
 
   const handleMajorEventsChange = useCallback((checked: boolean) => {
     dispatch(setShowMajorEventsOnly(checked))
+    dispatch(setHasActiveFilters(checked))
   }, [dispatch])
-
-  // 創建 displayActivities selector
-  const selectDisplayActivities = useMemo(
-    () => createDisplayActivitiesSelector(isChildActivity),
-    [isChildActivity]
-  )
-
-  // 獲取要顯示的活動列表（包含父活動和子活動的層級結構）
-  const displayActivities = useAppSelector(selectDisplayActivities)
 
   const toggleSortOrder = useCallback(() => {
     dispatch(setSortOrder(sortOrder === "desc" ? "asc" : "desc"))
@@ -94,12 +91,9 @@ export default function FilterActivity({
     dispatch(setSelectedCategory("all"))
     dispatch(setSelectedMember("all"))
     dispatch(setShowMajorEventsOnly(false))
+    dispatch(setHasActiveFilters(false))
   }, [dispatch])
 
-  // 當顯示活動改變時，修改store中的displayActivities
-  useEffect(() => {
-    dispatch(setDisplayActivities(displayActivities))
-  }, [displayActivities, dispatch])
 
   return (
     <>

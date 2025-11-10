@@ -7,6 +7,7 @@ interface UIState {
   imageTooltipPosition: { x: number; y: number }
   tooltipPosition: { x: number; y: number; side: 'left' | 'right' }
   isMobile: boolean
+  showAll: boolean
 }
 
 const initialState: UIState = {
@@ -15,6 +16,7 @@ const initialState: UIState = {
   imageTooltipPosition: { x: 0, y: 0 },
   tooltipPosition: { x: 0, y: 0, side: 'right' },
   isMobile: false,
+  showAll: false,
 }
 
 const uiSlice = createSlice({
@@ -36,6 +38,9 @@ const uiSlice = createSlice({
     setIsMobile: (state, action: PayloadAction<boolean>) => {
       state.isMobile = action.payload
     },
+    setShowAll: (state, action: PayloadAction<boolean>) => {
+      state.showAll = action.payload
+    }
   },
 })
 
@@ -45,6 +50,7 @@ export const {
   setImageTooltipPosition,
   setTooltipPosition,
   setIsMobile,
+  setShowAll
 } = uiSlice.actions
 
 export default uiSlice.reducer

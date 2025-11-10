@@ -2,40 +2,16 @@ import { createSelector } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store'
 import type { DisplayActivityItem, Activity } from '@/types/activity-types'
 
-// 基礎選擇器
+// 已篩選的活動
 const selectProcessedActivities = (state: RootState) => state.activities.processedActivities
+// 篩選狀態選擇器
 const selectSortOrder = (state: RootState) => state.filters.sortOrder
 const selectSelectedYear = (state: RootState) => state.filters.selectedYear
 const selectSelectedCategory = (state: RootState) => state.filters.selectedCategory
 const selectSelectedMember = (state: RootState) => state.filters.selectedMember
 const selectShowMajorEventsOnly = (state: RootState) => state.filters.showMajorEventsOnly
 
-// 排序後的活動列表選擇器
-export const selectSortedActivities = createSelector(
-  [
-    (state: RootState) => state.activities.processedActivities,
-    (state: RootState) => state.filters.sortOrder
-  ],
-  (processedActivities, sortOrder) => {
-    const statusPriority = { upcoming: 0, ongoing: 1, completed: 2 } as const
-    
-    return [...processedActivities].sort((a, b) => {
-      if (sortOrder === "desc") {
-        const aStatus = a.calculatedStatus || a.status
-        const bStatus = b.calculatedStatus || b.status
-        
-        if (statusPriority[aStatus] !== statusPriority[bStatus]) {
-          return statusPriority[aStatus] - statusPriority[bStatus]
-        }
-      }
-      
-      const dateA = new Date(a.startDate).getTime()
-      const dateB = new Date(b.startDate).getTime()
-      return sortOrder === "desc" ? dateB - dateA : dateA - dateB
-    })
-  }
-)
-
+// ------------- 篩選條件建立 -------------
 // 可用年份列表選擇器
 export const selectAvailableYears = createSelector(
   [selectProcessedActivities, selectSortOrder],
@@ -104,15 +80,44 @@ export const selectAvailableMembers = createSelector(
   }
 )
 
-// 篩選後的活動選擇器
-export const selectFilteredActivities = createSelector(
+// ------------- 篩選資料處理 -------------
+
+// 排序最新/最舊活動列表選擇器
+// 輸出 processedActivities
+const selectSortedActivities = createSelector(
   [
-    selectSortedActivities,
+    selectProcessedActivities,
+    selectSortOrder
+  ],
+  (processedActivities, sortOrder) => {
+    const statusPriority = { upcoming: 0, ongoing: 1, completed: 2 } as const
+    
+    return [...processedActivities].sort((a, b) => {
+      if (sortOrder === "desc") {
+        const aStatus = a.calculatedStatus || a.status
+        const bStatus = b.calculatedStatus || b.status
+        
+        if (statusPriority[aStatus] !== statusPriority[bStatus]) {
+          return statusPriority[aStatus] - statusPriority[bStatus]
+        }
+      }
+      
+      const dateA = new Date(a.startDate).getTime()
+      const dateB = new Date(b.startDate).getTime()
+      return sortOrder === "desc" ? dateB - dateA : dateA - dateB
+    })
+  }
+)
+
+// 多個條件篩選後的活動
+// 輸出 processedActivities
+const selectFilteredActivities = createSelector(
+  [
+    selectSortedActivities, // 已排序的活動列表
     selectSelectedYear,
     selectSelectedCategory,
     selectSelectedMember,
     selectShowMajorEventsOnly,
-    // 需要從組件傳入的輔助函數，可以通過參數傳遞
   ],
   (sortedActivities, selectedYear, selectedCategory, selectedMember, showMajorEventsOnly) => {
     let filtered = sortedActivities
@@ -164,18 +169,19 @@ export const selectFilteredActivities = createSelector(
   }
 )
 
-// 創建一個工廠函數來處理需要輔助函數的選擇器
-export const createDisplayActivitiesSelector = (
-  isChildActivity: (id: string) => boolean
-) => createSelector(
+// 判斷某活動是否為子活動（被其他活動的 childrenActivities 包含）
+const isChildActivity = (activityId: string, processedActivities: Activity[]): boolean => {
+  return processedActivities.some((activity) => activity.childrenActivities?.includes(activityId))
+}
+
+// 如果含有子活動，就連子活動一起顯示
+// 輸出 processedActivities
+export const hasChildActivitiesSelector = createSelector(
   [
     selectFilteredActivities,
-    selectSortedActivities,
-    selectSelectedYear,
-    selectSelectedCategory,
     selectProcessedActivities,
   ],
-  (filteredActivities, sortedActivities, selectedYear, selectedCategory, processedActivities) => {
+  (filteredActivities, processedActivities) => {
     const result: Array<DisplayActivityItem> = []
     const getChildrenActivities = (parentActivity: Activity): Activity[] => {
       if (!parentActivity.childrenActivities?.length) return []
@@ -183,50 +189,35 @@ export const createDisplayActivitiesSelector = (
         .map((childId) => processedActivities.find((activity) => activity.id === childId))
         .filter(Boolean) as Activity[]
     }
-    // 先篩選所有活動（不區分父子）
-    let allFilteredActivities = sortedActivities
 
-    // 年份篩選
-    if (selectedYear !== "all") {
-      allFilteredActivities = allFilteredActivities.filter((activity) => {
-        const startYear = new Date(activity.startDate).getFullYear()
-        const endYear = new Date(activity.endDate).getFullYear()
-        return startYear <= Number.parseInt(selectedYear) && endYear >= Number.parseInt(selectedYear)
-      })
-    }
+    // 1. 處理父活動（不是子活動的活動）
+    const parentActivities = filteredActivities.filter(
+      activity => !isChildActivity(activity.id, processedActivities)
+    )
 
-    // 類型篩選
-    if (selectedCategory !== "all") {
-      allFilteredActivities = allFilteredActivities.filter((activity) => {
-        if (!activity.category) return false
-        if (Array.isArray(activity.category)) {
-          return activity.category.includes(selectedCategory)
-        }
-        return activity.category === selectedCategory
-      })
-    }
-
-    // 獲取符合條件的活動ID集合
-    const filteredActivityIds = new Set(allFilteredActivities.map((activity) => activity.id))
-
-    // 只處理不是子活動的父活動
-    const parentActivities = filteredActivities.filter(activity => !isChildActivity(activity.id))
+    // 記錄已經顯示過的子活動 id，避免重複
+    const shownChildIds = new Set<string>()
 
     parentActivities.forEach((parentActivity) => {
-      // 添加父活動
+      // 顯示父活動
       result.push({ activity: parentActivity, isChild: false, level: 0 })
 
-      // 檢查子活動
+      // 顯示所有子活動
       const children = getChildrenActivities(parentActivity)
       children.forEach((childActivity) => {
-        // 只顯示符合篩選條件的子活動，或者父活動符合條件時顯示所有子活動
-        const parentMatches = filteredActivityIds.has(parentActivity.id)
-        const childMatches = filteredActivityIds.has(childActivity.id)
-
-        if (parentMatches || childMatches) {
-          result.push({ activity: childActivity, isChild: true, level: 1 })
-        }
+        result.push({ activity: childActivity, isChild: true, level: 1 })
+        shownChildIds.add(childActivity.id)
       })
+    })
+
+    // 2. 處理單獨被篩選到的子活動（父活動沒被篩選到）
+    filteredActivities.forEach((activity) => {
+      if (
+        isChildActivity(activity.id, processedActivities) && // 是子活動
+        !shownChildIds.has(activity.id) // 尚未顯示過
+      ) {
+        result.push({ activity, isChild: true, level: 1 })
+      }
     })
 
     return result

@@ -23,6 +23,7 @@ import { getStatusIcon } from "@/utils/getStatusIcon"
 import BottomNav from "@/components/BottomNav"
 import ActivityPackageBox from "@/components/ActivityPackageBox"
 import FilterActivity from "@/components/FilterActivity"
+import FloatingWindow from "@/components/FloatingWindow"
 
 // Redux imports
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
@@ -33,15 +34,18 @@ import {
   setLoading,
   setError,
 } from '@/store/slices/activitiesSlice'
-import { setShowAll } from '@/store/slices/filtersSlice'
 import {
   setHoveredActivity,
   setHoveredImage,
   setImageTooltipPosition,
   setTooltipPosition,
   setIsMobile,
+  setShowAll
 } from '@/store/slices/uiSlice'
-import { selectAvailableYears } from '@/store/selectors/activitySelectors'
+import { 
+  selectAvailableYears, 
+  hasChildActivitiesSelector 
+} from '@/store/selectors/activitySelectors'
 
 const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
 
@@ -49,13 +53,16 @@ export default function Component() {
   const dispatch = useAppDispatch()
   
   // 從 store 獲取所有必要的資料
-  const { activities, processedActivities, packages, isLoading, error } = useAppSelector(state => state.activities)
-  const { selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, displayActivities, showAll } = useAppSelector(state => state.filters)
+  const { activities, isLoading, error } = useAppSelector(state => state.activities)
+  const { selectedYear } = useAppSelector(state => state.filters)
   const availableYears = useAppSelector(selectAvailableYears)
-  const { hoveredActivity, hoveredImage, imageTooltipPosition, tooltipPosition, isMobile } = useAppSelector(state => state.ui)
+  // 最終篩選活動顯示
+  const displayActivities = useAppSelector(hasChildActivitiesSelector)
+  const { isMobile, showAll } = useAppSelector(state => state.ui)
+
   const defaultCount = 10
 
-  // 自動判斷活動狀態的函數 - 使用useCallback避免重複創建
+  // 根據日期自動判斷活動狀態 - 使用useCallback避免重複創建
   const getActivityStatus = useCallback((activity: Activity): Activity["status"] => {
     try {
       const today = new Date()
@@ -82,7 +89,7 @@ export default function Component() {
     }
   }, [])
 
-  // 初始化數據
+  // 初始化數據，丟資料進store
   useEffect(() => {
     const initializeData = async () => {
       try {
@@ -93,18 +100,17 @@ export default function Component() {
 
         dispatch(setActivities(activitiesData))
         dispatch(setPackages(packagesData))
-        dispatch(setLoading(false))
       } catch (err) {
         console.error("Error initializing data:", err)
         dispatch(setError("載入數據時發生錯誤"))
-        dispatch(setLoading(false))
       }
     }
 
     initializeData()
+    dispatch(setLoading(false))
   }, [dispatch])
 
-  // 處理活動數據，添加計算出的狀態
+  // 根據日期並設定每個活動的計算後狀態 getActivityStatus
   useEffect(() => {
     if (!activities.length) return
 
@@ -118,14 +124,6 @@ export default function Component() {
       console.error("Error processing activities:", err)
     }
   }, [activities, getActivityStatus, dispatch])
-
-  // 檢查是否為子活動
-  const isChildActivity = useCallback(
-    (activityId: string) => {
-      return processedActivities.some((activity) => activity.childrenActivities?.includes(activityId))
-    },
-    [processedActivities],
-  )
 
   // 檢測是否為手機版
   useEffect(() => {
@@ -147,7 +145,7 @@ export default function Component() {
   }, [dispatch])
 
 
-
+  // 創建活動時間軸段落
   const getActivitySegments = useCallback((activity: Activity, year: number) => {
     try {
       const startDate = new Date(activity.startDate)
@@ -247,16 +245,6 @@ export default function Component() {
     }
   }, [isMobile, dispatch])
 
-  const hasActiveFilters = selectedYear !== "all" || selectedCategory !== "all" || selectedMember !== "all" || showMajorEventsOnly
-  const hoveredActivityData = hoveredActivity ? processedActivities.find((a) => a.id === hoveredActivity) : null
-  // 當篩選條件改變時，重置 showAll 狀態
-  useEffect(() => {
-    if (hasActiveFilters) {
-      dispatch(setShowAll(true))
-    } else {
-      dispatch(setShowAll(false))
-    }
-  }, [selectedYear, selectedCategory, selectedMember, showMajorEventsOnly, hasActiveFilters, dispatch])
 
   const renderYearTimeline = useCallback(
   (year: number) => {
@@ -295,7 +283,7 @@ export default function Component() {
         : yearDisplayActivities.slice(0, defaultCount)
 
       if (yearDisplayActivities.length === 0) {
-        return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份
+        return null // 如果該年份沒有符合篩選條件的活動，不顯示該年份標題
       }
 
       return (
@@ -501,7 +489,7 @@ export default function Component() {
             <div className="flex justify-center mt-4">
               <Button
                 onClick={() => { 
-                  dispatch(setShowAll(true)) 
+                  dispatch(setShowAll(true))
                 }}
                 className="border border-blue-600 bg-transparent text-blue-600"
               >
@@ -520,7 +508,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, processedActivities, packages, dispatch],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch],
   )
 
   // Loading 狀態
@@ -576,13 +564,11 @@ export default function Component() {
           </div>
         </div>
         <FilterActivity
-          hasActiveFilters={hasActiveFilters}
           statusConfig={statusConfig}
           getStatusIcon={getStatusIcon}
-          isChildActivity={isChildActivity}
         />
         {/* 甘特圖 */}
-        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">
+        <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl py-6 md:p-6 md:mb-8 relative">z
           {displayActivities.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 text-lg mb-2">沒有找到符合條件的活動</div>
@@ -600,52 +586,9 @@ export default function Component() {
           尚未開放活動資訊與圖片來源為時空中的繪旅人wiki。
         </p>
       </div>
-      {/* 活動詳情懸浮視窗 */}
-      {hoveredActivity && hoveredActivityData && (
-        <div
-          className="fixed z-[9999] bg-gray-900/95 backdrop-blur-sm text-white p-4 rounded-lg shadow-xl max-w-sm pointer-events-none"
-          style={{
-            left: tooltipPosition.side === "right" ? `${tooltipPosition.x}px` : "auto",
-            right: tooltipPosition.side === "left" ? `${window.innerWidth - tooltipPosition.x}px` : "auto",
-            top: `${tooltipPosition.y}px`,
-            transform: "translateY(-50%)",
-          }}
-        >
-          <h4 className="font-bold mb-1">{hoveredActivityData.name}</h4>
-          <p className="text-xs text-gray-400">
-            繁中服：{hoveredActivityData.startDate} ~ {hoveredActivityData.endDate}
-            <br />
-            {hoveredActivityData.cnStartDate && hoveredActivityData.cnEndDate && (
-              <span>中國服：{hoveredActivityData.cnStartDate} ~ {hoveredActivityData.cnEndDate}</span>
-            )}
-          </p>
-          <p className="text-xs text-gray-400">狀態: {statusConfig[hoveredActivityData.calculatedStatus || hoveredActivityData.status].label}</p>
-        </div>
-      )}
 
-      {/* 圖片懸浮視窗 */}
-      {hoveredImage && (
-        <div
-          className="fixed z-[9998] pointer-events-none"
-          style={{
-            left: `${imageTooltipPosition.x}px`,
-            top: `${imageTooltipPosition.y}px`,
-          }}
-        >
-          <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg p-2 shadow-2xl">
-            <Image
-              src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
-              alt="活動圖片預覽"
-              width={0}
-              height={0}
-              sizes="(max-width: 500px) 100vw, 500px"
-              className="max-w-[500px] max-h-[500px] w-auto h-auto object-cover rounded-lg"
-              style={{ maxWidth: "500px", maxHeight: "500px" }}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      )}
+      {/* 浮動視窗 */}
+      <FloatingWindow/>
 
       {/* 底部導航按鈕 */}
       <BottomNav/>
