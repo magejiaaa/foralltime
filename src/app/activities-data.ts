@@ -997,7 +997,7 @@ export const activitiesData: Activity[] = [
     cnStartDate: "2022-05-05",
     cnEndDate: "2022-05-19",
     status: "upcoming",
-    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%BB%E7%BA%BF%E5%87%8F%E5%8D%8A",
+    url: "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%B9%9B%E8%93%9D%E6%B5%B7%E5%B2%9B",
     image: "/activity_img/67.jpg",
     category: ["夏活"],
     member: ["五人大活動"],
