@@ -488,7 +488,7 @@ export default function Component() {
                     </div>
                     )}
                     {/* 活動SSR */}
-                    {cardData && Array.isArray(cardData.item) &&(
+                    {/* {cardData && Array.isArray(cardData.item) &&(
                     <div className={`md:absolute p-2 flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 ${isLeft ? "right-1 justify-end" : "left-1"}`}>
                       {cardData.item.map((item, idx) => (
                         <img
@@ -506,7 +506,7 @@ export default function Component() {
                         />
                       ))}
                     </div>
-                    )}
+                    )} */}
                   </div>
                 </div>
               )
