@@ -503,6 +503,8 @@ export default function Component() {
                             const target = e.target as HTMLImageElement
                             target.src = "/placeholder.svg"
                           }}
+                          referrerPolicy="no-referrer"
+                          crossOrigin="anonymous"
                           unoptimized
                         />
                       ))}
