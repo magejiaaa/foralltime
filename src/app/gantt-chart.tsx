@@ -298,10 +298,9 @@ export default function Component() {
               }
             </Badge>
           </div>
-
           {/* 桌面版時間軸標題行 */}
           {!isMobile && (
-          <div className="flex mb-4 sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
+          <div className="flex mb-4 sticky top-[96px] bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
             <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
               活動資訊
             </div>
@@ -489,21 +488,26 @@ export default function Component() {
                     )}
                     {/* 活動SSR */}
                     {cardData && Array.isArray(cardData.item) &&(
-                    <div className={`md:absolute p-2 flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 ${isLeft ? "right-1" : "left-1"}`}>
+                    <div className={`md:absolute p-2 overflow-hidden flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 
+                    ${isLeft ? "right-1 justify-end" : "left-1"}
+                    `}>
                       {cardData.item.map((item, idx) => (
-                        <Image
-                          key={item.image + idx}
-                          src={item.image}
-                          alt={item.name}
-                          width={40}
-                          height={40}
-                          className={`rounded object-cover`}
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.src = "/placeholder.svg"
-                          }}
-                        />
+                        <div key={item.image + idx}>
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={40}
+                            height={40}
+                            className={`rounded object-cover w-10 h-10`}
+                            loading="lazy"
+                            unoptimized
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.src = "/placeholder.svg"
+                            }}
+                          />
+                          <p className="absolute text-transparent -z-1">{item.name}</p>
+                        </div>
                       ))}
                     </div>
                     )}
