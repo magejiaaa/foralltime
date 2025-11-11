@@ -10,6 +10,16 @@ interface FiltersState {
   showMajorEventsOnly: boolean
   displayActivities: DisplayActivityItem[]
   hasActiveFilters: boolean
+  searchQuery: string
+  searchResults: SearchResult[]
+  currentSearchIndex: number
+  isSearching: boolean
+}
+interface SearchResult {
+  activityId: string
+  activityName: string
+  matchText: string
+  elementId?: string // DOM element ID for scrolling
 }
 
 const initialState: FiltersState = {
@@ -20,6 +30,10 @@ const initialState: FiltersState = {
   showMajorEventsOnly: false,
   displayActivities: [],
   hasActiveFilters: false,
+  searchQuery: "",
+  searchResults: [],
+  currentSearchIndex: -1,
+  isSearching: false
 }
 
 const filtersSlice = createSlice({
