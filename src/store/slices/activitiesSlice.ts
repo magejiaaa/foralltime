@@ -2,11 +2,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { Activity, ProcessedActivity } from '@/types/activity-types'
 import type { Package } from '@/types/packages-types'
+import type { CardType } from '@/types/card-types'
 
 interface ActivitiesState {
   activities: Activity[]
   processedActivities: ProcessedActivity[]
   packages: Package[]
+  cardDataList: CardType[]
   isLoading: boolean
   error: string | null
 }
@@ -17,6 +19,7 @@ const initialState: ActivitiesState = {
   packages: [],
   isLoading: true,
   error: null,
+  cardDataList: [],
 }
 
 const activitiesSlice = createSlice({
@@ -38,6 +41,9 @@ const activitiesSlice = createSlice({
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload
     },
+    setCardDataList(state, action: PayloadAction<CardData[]>) {
+      state.cardDataList = action.payload
+    },
   },
 })
 
@@ -47,6 +53,7 @@ export const {
   setPackages,
   setLoading,
   setError,
+  setCardDataList,
 } = activitiesSlice.actions
 
 export default activitiesSlice.reducer
