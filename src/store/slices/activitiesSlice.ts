@@ -41,7 +41,7 @@ const activitiesSlice = createSlice({
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload
     },
-    setCardDataList(state, action: PayloadAction<CardData[]>) {
+    setCardDataList(state, action: PayloadAction<CardType[]>) {
       state.cardDataList = action.payload
     },
   },
