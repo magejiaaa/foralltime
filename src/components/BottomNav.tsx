@@ -105,7 +105,7 @@ export default function BottomNav() {
         <Dialog open={isFutureActivitiesOpen} onOpenChange={setIsFutureActivitiesOpen}>
           <DialogTrigger asChild>
             <Button
-              className="bg-[#16192ce0] hover:bg-[#16192c] text-white rounded-l-full shadow-lg w-1/2 py-3 px-4 h-auto flex gap-1 items-center justify-center transition"
+              className="bg-[#16192ce0] hover:bg-[#16192c] text-white rounded-l-full shadow-lg w-1/2 py-1 px-4 h-auto flex gap-1 items-center justify-center transition"
               title="未來活動列表"
             ><Clock className="w-5 h-5" />未來活動列表
             </Button>
@@ -193,7 +193,7 @@ export default function BottomNav() {
         </Dialog>
         <Button
           onClick={scrollToTop}
-          className="bg-[#16192ce0] hover:bg-[#16192c] border-l-1 border-l-blue-600 text-white rounded-r-full shadow-lg w-1/2 h-12 p-0 flex items-center justify-center"
+          className="bg-[#16192ce0] hover:bg-[#16192c] border-l-1 border-l-blue-600 text-white rounded-r-full shadow-lg w-1/2 h-10 p-0 flex items-center justify-center"
           title="返回最上方"
         >
           <ArrowUp className="w-5 h-5" />回頂部

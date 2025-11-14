@@ -105,7 +105,7 @@ export default function FilterActivity({
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between py-2 md:sticky top-0 bg-[#16192c]/80 backdrop-blur-sm z-10 md:px-6">
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between py-2 md:sticky md:top-0 bg-[#16192c]/80 md:backdrop-blur-sm z-10 md:px-6">
         <div className="flex items-center gap-x-4 gap-y-2 flex-wrap justify-center md:justify-start">
           {/* 所有年份 */}
           <div className="flex items-center gap-2 flex-1">
@@ -194,7 +194,7 @@ export default function FilterActivity({
             )}
           </Button>
           {/* 搜尋 */}
-          <div className="flex items-center gap-1 flex-1 min-w-1/2 relative">
+          <div className="flex items-center gap-1 flex-1 min-w-1/2 fixed bottom-18 z-10 md:relative">
             <Input
               type="text"
               placeholder="支援搜尋活動名稱、SSR卡名稱"

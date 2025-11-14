@@ -19,43 +19,42 @@ export function useSearchEngine(
   const searchTerm = useAppSelector(s => s.filters.searchTerm);
 
   useEffect(() => {
+    if (!searchTerm) {
+      dispatch(setSearchResults([]));
+      return;
+    }
     // 使用 debounce，延遲 300ms 執行搜尋
     const debounceTimer = setTimeout(() => {
       const term = searchTerm.trim().toLowerCase();
-      if (!term) {
-        dispatch(setSearchResults([]));
-        return;
-      }
-
       const resultSet = new Set<string>();
       
       // 從 displayActivities 取出實際的 activity
       const activities = displayActivities.map(({ activity }) => activity);
 
       // 搜尋 Activity（文字）
-      activities.forEach(a => {
+      for (const activity of activities) {
         if (
-          a.name.toLowerCase().includes(term) ||
-          a.description?.toLowerCase().includes(term)
+          activity.name.toLowerCase().includes(term) ||
+          activity.description?.toLowerCase().includes(term)
         ) {
-          resultSet.add(a.id);
+          resultSet.add(activity.id);
         }
-      });
+      }
 
-      // 搜尋 Card item（圖片 alt）
-      cards.forEach(card => {
-        card.item.forEach(item => {
+      // 搜尋 Card item - 預先建立查找表
+      const activityIdSet = new Set(activities.map(a => a.id));
+      for (const card of cards) {
+        for (const item of card.item) {
           if (item.name.toLowerCase().includes(term)) {
-            // 只加入顯示中的活動ID
-            const displayActivityIds = new Set(activities.map(a => a.id));
-            card.activityId.forEach(id => {
-              if (displayActivityIds.has(id)) {
+            for (const id of card.activityId) {
+              if (activityIdSet.has(id)) {
                 resultSet.add(id);
               }
-            });
+            }
+            break; // 找到匹配就跳出內層迴圈
           }
-        });
-      });
+        }
+      }
 
       dispatch(setSearchResults(Array.from(resultSet)));
     }, 300); // 300ms 延遲
