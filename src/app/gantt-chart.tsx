@@ -26,7 +26,7 @@ import FilterActivity from "@/components/FilterActivity"
 import FloatingWindow from "@/components/FloatingWindow"
 
 // Redux imports
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { useAppDispatch, useAppSelector, useSearchEngine } from '@/store/hooks'
 import {
   setActivities,
   setProcessedActivities,
@@ -130,10 +130,12 @@ export default function Component() {
     if (!activities.length) return
 
     try {
-      const processed = activities.map((activity) => ({
-        ...activity,
-        calculatedStatus: getActivityStatus(activity),
-      }))
+      const processed = activities
+        .filter(activity => activity.startDate && activity.startDate.trim() !== '') // 篩選 startDate 不為空
+        .map((activity) => ({
+          ...activity,
+          calculatedStatus: getActivityStatus(activity),
+        }))
       dispatch(setProcessedActivities(processed))
     } catch (err) {
       console.error("Error processing activities:", err)
@@ -260,6 +262,20 @@ export default function Component() {
     }
   }, [isMobile, dispatch])
 
+  // 使用搜尋引擎 hook
+  useSearchEngine(displayActivities, cardDataList);
+  const { searchResults, currentSearchIndex } = useAppSelector(s => s.filters);
+  // 跳轉對應 DOM
+  useEffect(() => {
+    if (searchResults.length === 0 || currentSearchIndex < 0) return;
+    dispatch(setShowAll(true)); // 顯示全部以確保能找到元素
+    const id = searchResults[currentSearchIndex];
+    const el = document.getElementById(id);
+
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [searchResults, currentSearchIndex, dispatch]);
 
   const renderYearTimeline = useCallback(
   (year: number) => {
@@ -353,10 +369,12 @@ export default function Component() {
 
               return (
                 <div
-                  key={`${activity.id}-${year}`} data-id={activity.id}
-                  className={`flex flex-col md:flex-row rounded-lg backdrop-blur-sm min-h-[80px] ${
-                      isChild ? "ml-1 border-l-4 border-blue-400/50" : ""
-                    } ${activity.calculatedStatus === "ongoing" ? "bg-gray-700/50" : "bg-gray-800/30"}`}
+                  key={`${activity.id}-${year}`} id={activity.id}
+                  className={`flex flex-col md:flex-row rounded-lg backdrop-blur-sm min-h-[80px] 
+                    ${isChild ? "ml-1 border-l-4 border-blue-400/50" : ""} 
+                    ${activity.calculatedStatus === "ongoing" ? "bg-gray-700/50" : "bg-gray-800/30"}
+                    ${activity.id == searchResults[currentSearchIndex] ? "ring-2 ring-blue-400" : ""}
+                  `}
                 >
                   {/* 左側活動資訊欄 */}
                   <div
@@ -551,7 +569,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch, cardDataList, searchResults, currentSearchIndex],
   )
 
   // Loading 狀態
