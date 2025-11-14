@@ -15,9 +15,8 @@ import { Badge } from "@/components/ui/badge"
 // 型別與資料
 import type { Activity } from "../types/activity-types"
 import { statusConfig } from "../types/activity-types"
-import { activitiesData } from "./activities-data"
 import { packagesData } from "./packages-data"
-import { cardDataList } from "./card-data"
+import { ItemType } from "../types/card-types"
 // 元件
 import PackageCalculator from "@/components/PackageCalculator"
 import { getStatusIcon } from "@/utils/getStatusIcon"
@@ -34,6 +33,7 @@ import {
   setPackages,
   setLoading,
   setError,
+  setCardDataList
 } from '@/store/slices/activitiesSlice'
 import {
   setHoveredActivity,
@@ -54,7 +54,7 @@ export default function Component() {
   const dispatch = useAppDispatch()
   
   // 從 store 獲取所有必要的資料
-  const { activities, isLoading, error } = useAppSelector(state => state.activities)
+  const { activities, isLoading, error, cardDataList } = useAppSelector(state => state.activities)
   const { selectedYear } = useAppSelector(state => state.filters)
   const availableYears = useAppSelector(selectAvailableYears)
   // 最終篩選活動顯示
@@ -97,18 +97,32 @@ export default function Component() {
         dispatch(setLoading(true))
         dispatch(setError(null))
 
-        await new Promise((resolve) => setTimeout(resolve, 100))
+        const [activitiesRes, cardDataRes] = await Promise.all([
+          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activities-data.json"),
+          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card-data.json")
+        ])
 
+        if (!activitiesRes.ok || !cardDataRes.ok) {
+          throw new Error(`HTTP error! activities: ${activitiesRes.status}, cards: ${cardDataRes.status}`)
+        }
+
+        const [activitiesData, cardData] = await Promise.all([
+          activitiesRes.json(),
+          cardDataRes.json()
+        ])
+        
         dispatch(setActivities(activitiesData))
         dispatch(setPackages(packagesData))
+        dispatch(setCardDataList(cardData))
       } catch (err) {
         console.error("Error initializing data:", err)
         dispatch(setError("載入數據時發生錯誤"))
+      } finally {
+        dispatch(setLoading(false))
       }
     }
 
     initializeData()
-    dispatch(setLoading(false))
   }, [dispatch])
 
   // 根據日期並設定每個活動的計算後狀態 getActivityStatus
@@ -332,6 +346,7 @@ export default function Component() {
               const Icon = getStatusIcon(config.icon)
 
               // SSR 資料
+              const url = 'https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card_img/'
               const cardData = cardDataList.find(card => card.activityId.includes(activity.id))
               const startMonth = new Date(activity.startDate).getMonth() + 1 // 1~12
               const isLeft = startMonth <= 6
@@ -488,26 +503,22 @@ export default function Component() {
                     )}
                     {/* 活動SSR */}
                     {cardData && Array.isArray(cardData.item) &&(
-                    <div className={`md:absolute p-2 overflow-hidden flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 
-                    ${isLeft ? "right-1 justify-end" : "left-1"}
-                    `}>
-                      {cardData.item.map((item, idx) => (
-                        <div key={item.image + idx}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={40}
-                            height={40}
-                            className={`rounded object-cover w-10 h-10`}
-                            loading="lazy"
-                            unoptimized
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement
-                              target.src = "/placeholder.svg"
-                            }}
-                          />
-                          <p className="absolute text-transparent -z-1">{item.name}</p>
-                        </div>
+                    <div className={`md:absolute p-2 flex flex-wrap gap-1 md:w-1/2 md:top-1/2 md:-translate-y-1/2 ${isLeft ? "right-1 justify-end" : "left-1"}`}>
+                      {cardData.item.map((item: ItemType, idx) => (
+                        <Image
+                          key={item.image + idx}
+                          src={url + item.image}
+                          alt={item.name}
+                          width={40}
+                          height={40}
+                          className={`rounded object-cover w-10 h-10`}
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.src = "/placeholder.svg"
+                          }}
+                          unoptimized
+                        />
                       ))}
                     </div>
                     )}
