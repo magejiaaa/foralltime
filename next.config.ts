@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
       },
     ],
     minimumCacheTTL: 2678400, // 31 days
+  },
+  env: {
+    BLOB_BASE_URL: process.env.NODE_ENV === 'development'
+      ? '/'
+      : 'https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/',
   }
 };
 

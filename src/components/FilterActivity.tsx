@@ -194,11 +194,11 @@ export default function FilterActivity({
             )}
           </Button>
           {/* 搜尋 */}
-          <div className="flex items-center gap-1 flex-1 min-w-1/2 fixed bottom-18 z-10 md:relative">
+          <div className="flex items-center gap-1 flex-1 min-w-1/2 fixed bottom-18 md:bottom-0 z-10 md:relative">
             <Input
               type="text"
-              placeholder="支援搜尋活動名稱、SSR卡名稱"
-              className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-300 focus:border-blue-500 h-9 text-xs"
+              placeholder="活動名稱、SSR卡名"
+              className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-300 focus:border-blue-500 h-9 text-xs pr-10"
               value={searchTerm}
               onChange={(e) => dispatch(setSearchTerm(e.target.value))}
             />

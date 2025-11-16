@@ -96,10 +96,10 @@ export default function Component() {
       try {
         dispatch(setLoading(true))
         dispatch(setError(null))
-
+        const baseUrl = process.env.BLOB_BASE_URL
         const [activitiesRes, cardDataRes] = await Promise.all([
-          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activities-data.json"),
-          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card-data.json")
+          fetch(`${baseUrl}activities-data.json`),
+          fetch(`${baseUrl}card-data.json`)
         ])
 
         if (!activitiesRes.ok || !cardDataRes.ok) {
@@ -110,7 +110,6 @@ export default function Component() {
           activitiesRes.json(),
           cardDataRes.json()
         ])
-        
         dispatch(setActivities(activitiesData))
         dispatch(setPackages(packagesData))
         dispatch(setCardDataList(cardData))
@@ -385,7 +384,13 @@ export default function Component() {
 
               // SSR 資料
               const url = 'https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card_img/'
-              const cardData = cardDataList.find(card => card.activityId.includes(activity.id))
+              const cardData = cardDataList?.find(card => {
+                if (!card || !card.activityId) return false
+                
+                if (Array.isArray(card.activityId)) {
+                  return card.activityId.includes(activity.id)
+                }
+              })
               const startMonth = new Date(activity.startDate).getMonth() + 1 // 1~12
               const isLeft = startMonth <= 6
               // 搜尋高亮

@@ -44,6 +44,9 @@ export function useSearchEngine(
       // 搜尋 Card item - 預先建立查找表
       const activityIdSet = new Set(activities.map(a => a.id));
       for (const card of cards) {
+        if (!card.item || !Array.isArray(card.item)) {
+          continue; // 跳過這張卡片
+        }
         for (const item of card.item) {
           if (item.name.toLowerCase().includes(term)) {
             for (const id of card.activityId) {
