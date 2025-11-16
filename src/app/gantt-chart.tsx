@@ -26,7 +26,7 @@ import FilterActivity from "@/components/FilterActivity"
 import FloatingWindow from "@/components/FloatingWindow"
 
 // Redux imports
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { useAppDispatch, useAppSelector, useSearchEngine } from '@/store/hooks'
 import {
   setActivities,
   setProcessedActivities,
@@ -96,10 +96,10 @@ export default function Component() {
       try {
         dispatch(setLoading(true))
         dispatch(setError(null))
-
+        const baseUrl = process.env.BLOB_BASE_URL
         const [activitiesRes, cardDataRes] = await Promise.all([
-          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activities-data.json"),
-          fetch("https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card-data.json")
+          fetch(`${baseUrl}activities-data.json`),
+          fetch(`${baseUrl}card-data.json`)
         ])
 
         if (!activitiesRes.ok || !cardDataRes.ok) {
@@ -110,7 +110,6 @@ export default function Component() {
           activitiesRes.json(),
           cardDataRes.json()
         ])
-        
         dispatch(setActivities(activitiesData))
         dispatch(setPackages(packagesData))
         dispatch(setCardDataList(cardData))
@@ -130,10 +129,12 @@ export default function Component() {
     if (!activities.length) return
 
     try {
-      const processed = activities.map((activity) => ({
-        ...activity,
-        calculatedStatus: getActivityStatus(activity),
-      }))
+      const processed = activities
+        .filter(activity => activity.startDate && activity.startDate.trim() !== '') // 篩選 startDate 不為空
+        .map((activity) => ({
+          ...activity,
+          calculatedStatus: getActivityStatus(activity),
+        }))
       dispatch(setProcessedActivities(processed))
     } catch (err) {
       console.error("Error processing activities:", err)
@@ -260,9 +261,45 @@ export default function Component() {
     }
   }, [isMobile, dispatch])
 
+  // 使用搜尋引擎 hook
+  useSearchEngine(displayActivities, cardDataList);
+  const { searchResults, currentSearchIndex } = useAppSelector(s => s.filters);
+  // 跳轉對應 DOM
+  useEffect(() => {
+    if (searchResults.length === 0 || currentSearchIndex < 0) return;
+    // 使用 requestAnimationFrame 優化滾動效能
+    const handleScroll = () => {
+      dispatch(setShowAll(true));
+      
+      // 延遲一個 frame，確保 DOM 更新完成
+      requestAnimationFrame(() => {
+        const id = searchResults[currentSearchIndex];
+        const el = document.getElementById(id);
+
+        if (el) {
+          // 使用 instant 模式避免動畫卡頓
+          el.scrollIntoView({ 
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: "center" 
+          });
+        }
+      });
+    };
+
+    // 短暫延遲避免快速切換
+    const scrollTimer = setTimeout(handleScroll, 50);
+    
+    return () => clearTimeout(scrollTimer);
+  }, [searchResults, currentSearchIndex, dispatch]);
 
   const renderYearTimeline = useCallback(
   (year: number) => {
+    // 將高亮邏輯移到外面，避免在每個活動渲染時重複計算
+    const highlightedId = searchResults.length > 0 && 
+                          currentSearchIndex >= 0 && 
+                          currentSearchIndex < searchResults.length 
+                          ? searchResults[currentSearchIndex] 
+                          : null;
     try {    
       // 計算剩餘時間的函數
       const getRemainingTime = (endDate: string) => {
@@ -312,10 +349,9 @@ export default function Component() {
               }
             </Badge>
           </div>
-
           {/* 桌面版時間軸標題行 */}
           {!isMobile && (
-          <div className="flex mb-4 sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
+          <div className="flex mb-4 sticky top-[96px] bg-gray-900/80 backdrop-blur-sm z-10 pt-2 pb-2 border-b border-gray-600">
             <div className="w-80 flex-shrink-0 text-center text-sm text-gray-300 border-r border-gray-600 pr-4">
               活動資訊
             </div>
@@ -348,16 +384,26 @@ export default function Component() {
 
               // SSR 資料
               const url = 'https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/card_img/'
-              const cardData = cardDataList.find(card => card.activityId.includes(activity.id))
+              const cardData = cardDataList?.find(card => {
+                if (!card || !card.activityId) return false
+                
+                if (Array.isArray(card.activityId)) {
+                  return card.activityId.includes(activity.id)
+                }
+              })
               const startMonth = new Date(activity.startDate).getMonth() + 1 // 1~12
               const isLeft = startMonth <= 6
+              // 搜尋高亮
+              const isHighlighted = activity.id === highlightedId;
 
               return (
                 <div
-                  key={`${activity.id}-${year}`} data-id={activity.id}
-                  className={`flex flex-col md:flex-row rounded-lg backdrop-blur-sm min-h-[80px] ${
-                      isChild ? "ml-1 border-l-4 border-blue-400/50" : ""
-                    } ${activity.calculatedStatus === "ongoing" ? "bg-gray-700/50" : "bg-gray-800/30"}`}
+                  key={`${activity.id}-${year}`} id={activity.id}
+                  className={`flex flex-col md:flex-row rounded-lg backdrop-blur-sm min-h-[80px] 
+                    ${isChild ? "ml-1 border-l-4 border-blue-400/50" : ""} 
+                    ${activity.calculatedStatus === "ongoing" ? "bg-gray-700/50" : "bg-gray-800/30"}
+                    ${isHighlighted ? "ring-2 ring-blue-400" : ""}
+                  `}
                 >
                   {/* 左側活動資訊欄 */}
                   <div
@@ -552,7 +598,7 @@ export default function Component() {
         )
       }
     },
-    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch],
+    [displayActivities, isMobile, getActivitySegments, handleActivityHover, handleImageHover, showAll, dispatch, cardDataList, searchResults, currentSearchIndex],
   )
 
   // Loading 狀態

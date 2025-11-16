@@ -10,6 +10,9 @@ interface FiltersState {
   showMajorEventsOnly: boolean
   displayActivities: DisplayActivityItem[]
   hasActiveFilters: boolean
+  searchTerm: string
+  searchResults: string[]
+  currentSearchIndex: number
 }
 
 const initialState: FiltersState = {
@@ -20,6 +23,9 @@ const initialState: FiltersState = {
   showMajorEventsOnly: false,
   displayActivities: [],
   hasActiveFilters: false,
+  searchTerm: "",
+  searchResults: [],
+  currentSearchIndex: -1,
 }
 
 const filtersSlice = createSlice({
@@ -54,6 +60,24 @@ const filtersSlice = createSlice({
     setHasActiveFilters: (state, action: PayloadAction<boolean>) => {
       state.hasActiveFilters = action.payload
     },
+    setSearchTerm(state, action: PayloadAction<string>) {
+      state.searchTerm = action.payload;
+      state.currentSearchIndex = 0;
+    },
+    setSearchResults(state, action: PayloadAction<string[]>) {
+      state.searchResults = action.payload;
+      // 沒有結果 → index 設 -1
+      state.currentSearchIndex = action.payload.length > 0 ? 0 : -1;
+    },
+    goNext(state) {
+      if (state.searchResults.length === 0) return;
+      state.currentSearchIndex = (state.currentSearchIndex + 1) % state.searchResults.length;
+    },
+    goPrev(state) {
+      if (state.searchResults.length === 0) return;
+      state.currentSearchIndex =
+        (state.currentSearchIndex - 1 + state.searchResults.length) % state.searchResults.length;
+    }
   },
 })
 
@@ -65,7 +89,11 @@ export const {
   setShowMajorEventsOnly,
   setDisplayActivities,
   resetFilters,
-  setHasActiveFilters
+  setHasActiveFilters,
+  setSearchTerm,
+  setSearchResults,
+  goNext,
+  goPrev
 } = filtersSlice.actions
 
 export default filtersSlice.reducer
