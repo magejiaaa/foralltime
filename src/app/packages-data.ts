@@ -191,4 +191,19 @@ export const packagesData: Package[] = [
             }
         ],
     },
+    {
+        id: "pkg008",
+        name: "生日禮包",
+        description: "",
+        isActive: true,
+        pricingOptions: [
+            commonPackages.thirtyThreeYuanGiftPack,
+            {
+                name: "顏料鑽石箱",
+                price: 490,
+                totalDraws: 10,
+                diamonds: 980
+            }
+        ],
+    },
 ]
