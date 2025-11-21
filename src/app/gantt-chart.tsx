@@ -97,9 +97,10 @@ export default function Component() {
         dispatch(setLoading(true))
         dispatch(setError(null))
         const baseUrl = process.env.BLOB_BASE_URL
+        // 上傳檔案終端機執行 npx tsx upload-script.ts
         const [activitiesRes, cardDataRes] = await Promise.all([
-          fetch(`${baseUrl}activities-data.json`),
-          fetch(`${baseUrl}card-data.json`)
+          fetch(`${baseUrl}activities-data.json`, { next: { revalidate: 86400 } }),
+          fetch(`${baseUrl}card-data.json`, { next: { revalidate: 86400 } })
         ])
 
         if (!activitiesRes.ok || !cardDataRes.ok) {
@@ -111,6 +112,7 @@ export default function Component() {
           cardDataRes.json()
         ])
         dispatch(setActivities(activitiesData))
+        // TODO 載入優化
         dispatch(setPackages(packagesData))
         dispatch(setCardDataList(cardData))
       } catch (err) {

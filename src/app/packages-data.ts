@@ -132,12 +132,7 @@ export const packagesData: Package[] = [
                 diamonds: 450,
             },
             commonPackages.monthlySpecialBox,
-            {
-                name: "每日禮包",
-                price: 33,
-                totalDraws: 1,
-                diamonds: 20,
-            },
+            commonPackages.thirtyThreeYuanGiftPack,
             commonPackages.artMaterialGiftPack,
             {
                 name: "服裝優惠折扣包(330-270)",
