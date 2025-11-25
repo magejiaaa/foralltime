@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "繪旅人繁中服活動時間軸",
+  title: "時空中的繪旅人繁中服活動時間軸",
   description: "依照時空中的繪旅人繁中服活動時間軸，提供活動資訊和狀態追蹤。",
   keywords: ["繪旅人", "繁中服", "活動", "時間軸"],
   openGraph: {
-    title: "繪旅人繁中服活動時間軸",
+    title: "時空中的繪旅人繁中服活動時間軸",
     description: "依照時空中的繪旅人繁中服活動時間軸，提供活動資訊和狀態追蹤。",
     images: "/og-image.png",
   },

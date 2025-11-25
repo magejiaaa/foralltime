@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       new URL('https://i0.hdslb.com/**'),
       new URL('https://huiji-thumb.huijistatic.com/**'),
       new URL('https://nie.res.netease.com/**'),
+      new URL('https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/**'),
       {
         protocol: 'https',
         hostname: '**.fbcdn.net',

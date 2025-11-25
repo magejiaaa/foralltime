@@ -1,5 +1,9 @@
 import { put } from '@vercel/blob';
 import { packagesData } from './src/app/packages-data';
+import dotenv from 'dotenv';
+
+// 載入環境變數
+dotenv.config({ path: '.env.local' });
 
 async function uploadPackagesToBlob() {
   try {
@@ -10,6 +14,8 @@ async function uploadPackagesToBlob() {
     const blob = await put('packages-data.json', jsonData, {
       access: 'public',
       contentType: 'application/json',
+      addRandomSuffix: false, // 保持檔名固定
+      allowOverwrite: true, // 允許覆蓋同名檔案
     });
     
     console.log('✅ 上傳成功！');

@@ -22,7 +22,7 @@ async function uploadMultipleFiles() {
 
   console.log(`🚀 準備上傳 ${filesToUpload.length} 個檔案...`);
   try {
-    // 3. 使用 Promise.all 同時啟動所有上傳任務
+    // 使用 Promise.all 同時啟動所有上傳任務
     const uploadPromises = filesToUpload.map(async (file) => {
       
       // 讀取檔案內容

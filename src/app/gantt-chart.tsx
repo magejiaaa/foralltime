@@ -15,7 +15,6 @@ import { Badge } from "@/components/ui/badge"
 // 型別與資料
 import type { Activity } from "../types/activity-types"
 import { statusConfig } from "../types/activity-types"
-import { packagesData } from "./packages-data"
 import { ItemType } from "../types/card-types"
 // 元件
 import PackageCalculator from "@/components/PackageCalculator"
@@ -98,21 +97,23 @@ export default function Component() {
         dispatch(setError(null))
         const baseUrl = process.env.BLOB_BASE_URL
         // 上傳檔案終端機執行 npx tsx upload-script.ts
-        const [activitiesRes, cardDataRes] = await Promise.all([
+        // 上傳裡包資料終端機執行 npx tsx upload-packages-script.ts
+        const [activitiesRes, cardDataRes, packagesRes] = await Promise.all([
           fetch(`${baseUrl}activities-data.json`, { next: { revalidate: 86400 } }),
-          fetch(`${baseUrl}card-data.json`, { next: { revalidate: 86400 } })
+          fetch(`${baseUrl}card-data.json`, { next: { revalidate: 86400 } }),
+          fetch(`https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/packages-data.json`, { next: { revalidate: 86400 } })
         ])
 
-        if (!activitiesRes.ok || !cardDataRes.ok) {
-          throw new Error(`HTTP error! activities: ${activitiesRes.status}, cards: ${cardDataRes.status}`)
+        if (!activitiesRes.ok || !cardDataRes.ok || !packagesRes.ok) {
+          throw new Error(`HTTP error! activities: ${activitiesRes.status}, cards: ${cardDataRes.status}, packages: ${packagesRes.status}`)
         }
 
-        const [activitiesData, cardData] = await Promise.all([
+        const [activitiesData, cardData, packagesData] = await Promise.all([
           activitiesRes.json(),
-          cardDataRes.json()
+          cardDataRes.json(),
+          packagesRes.json()
         ])
         dispatch(setActivities(activitiesData))
-        // TODO 載入優化
         dispatch(setPackages(packagesData))
         dispatch(setCardDataList(cardData))
       } catch (err) {
