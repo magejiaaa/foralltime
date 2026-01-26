@@ -141,7 +141,7 @@ export default function BottomNav() {
                   filteredPlannedActivities.map((activity) => (
                     <div key={activity.id} className="flex bg-gray-800/30 p-3 rounded-lg" data-id={activity.id}>
                         <a href={activity.url} target="_blank" className="flex items-center gap-3">
-                          <Image
+                          <img
                             src={activity.image || "/placeholder.svg"}
                             alt={activity.name}
                             className="w-16 h-16 rounded-full object-cover"
@@ -153,6 +153,7 @@ export default function BottomNav() {
                               target.src = "/placeholder.svg"
                             }}
                             loading="lazy"
+                            referrerPolicy="no-referrer"
                           />
                           <div className="h-full">
                             <h4 className={`${activity.isSpecificDate ? "text-blue-500" : "text-white"} flex items-center gap-1 font-medium`}>

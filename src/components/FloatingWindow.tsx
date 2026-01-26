@@ -48,9 +48,10 @@ export default function FloatingWindow() {
           }}
         >
           <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg p-2 shadow-2xl">
-            <Image
+            <img
               src={hoveredImage.replace("height=40&width=40", "height=auto&width=auto") || "/placeholder.svg"}
               alt="活動圖片預覽"
+              referrerPolicy="no-referrer"
               width={0}
               height={0}
               sizes="(max-width: 500px) 100vw, 500px"
