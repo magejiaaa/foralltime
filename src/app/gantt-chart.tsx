@@ -413,7 +413,7 @@ export default function Component() {
                     className={`w-full md:w-80 ${isChild ? "md:w-[312px]" : ""} flex-shrink-0 p-4 md:border-r md:border-gray-600/50 flex md:items-center gap-4`}
                   >
                     <div className="relative">
-                      <Image
+                      <img
                         src={activity.image || "/placeholder.svg"}
                         alt={activity.name}
                         width={100}
@@ -427,6 +427,7 @@ export default function Component() {
                             target.src = "/placeholder.svg"
                         }}
                         loading="lazy"
+                        referrerPolicy="no-referrer"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
