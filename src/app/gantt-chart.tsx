@@ -560,6 +560,7 @@ export default function Component() {
                           key={item.image + idx}
                           src={url + item.image}
                           alt={item.name}
+                          title={item.name}
                           width={40}
                           height={40}
                           className={`rounded object-cover w-10 h-10`}

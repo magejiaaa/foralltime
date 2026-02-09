@@ -2153,8 +2153,8 @@
   {
     "id": "135",
     "name": "魔女的復甦．服裝上架",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-12",
+    "endDate": "2026-02-24",
     "cnStartDate": "2023-01-05",
     "cnEndDate": "2023-01-17",
     "status": "upcoming",
@@ -2502,7 +2502,7 @@
     "cnEndDate": "2023-04-27",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89",
-    "image": "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/0/0c/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E5%BF%83%E5%8A%A8%E6%97%B6%E5%85%89.png",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/156.jpg",
     "member": [
       "羅夏"
     ],
@@ -2511,31 +2511,34 @@
   {
     "id": "157",
     "name": "繾綣假日第七期",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-05",
+    "endDate": "2026-03-19",
     "cnStartDate": "2023-04-24",
     "cnEndDate": "2023-06-05",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BC%B1%E7%BB%BB%E5%81%87%E6%97%A52",
-    "image": "https://huiji-public.huijistatic.com/hlr1023/uploads/d/d5/%E5%8F%B6%E7%91%84-%E9%86%89%E5%A5%A2%E8%BF%B7%E5%8D%8E-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/157.jpg",
     "member": [
       "葉瑄"
     ],
     "category": [
       "繾綣假日"
     ],
-    "isSpecificDate": true
+    "isSpecificDate": true,
+    "childrenActivities": [
+      "158"
+    ]
   },
   {
     "id": "158",
     "name": "未成之作",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-05",
+    "endDate": "2026-02-12",
     "cnStartDate": "2023-04-24",
     "cnEndDate": "2023-05-01",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%9C%AA%E6%88%90%E4%B9%8B%E4%BD%9C",
-    "image": "https://huiji-public.huijistatic.com/hlr1023/uploads/d/d5/%E5%8F%B6%E7%91%84-%E9%86%89%E5%A5%A2%E8%BF%B7%E5%8D%8E-%E7%AA%81%E7%A0%B4%E5%89%8D.jpg",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/158.jpg",
     "member": [
       "葉瑄"
     ],
@@ -2917,7 +2920,11 @@
     "member": [
       "五人大活動"
     ],
-    "isMajorEvent": true
+    "isMajorEvent": true,
+    "childrenActivities": [
+      "183",
+      "184"
+    ]
   },
   {
     "id": "182",
@@ -3266,7 +3273,7 @@
     "cnEndDate": "2023-10-13",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80",
-    "image": "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/3/3e/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png/900px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E6%BC%AB%E9%95%BF%E7%9A%84%E7%AE%B4%E8%A8%80.png",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/204.jpg",
     "category": [
       "週年慶"
     ],
@@ -6003,13 +6010,13 @@
   {
     "id": "387",
     "name": "季旅專列第三期",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-05",
+    "endDate": "2026-02-12",
     "cnStartDate": "2023-07-06",
     "cnEndDate": "2023-07-13",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E5%AD%A3%E6%97%85%E4%B8%93%E5%88%97",
-    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/385.jpg",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/387.jpg",
     "category": [
       "季旅專列"
     ]
