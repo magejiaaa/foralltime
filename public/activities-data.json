@@ -2235,8 +2235,8 @@
   {
     "id": "140",
     "name": "艾因．[絢彩成像]服裝上架",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-26",
+    "endDate": "2026-03-05",
     "cnStartDate": "2023-02-02",
     "cnEndDate": "2023-02-09",
     "status": "upcoming",
@@ -2340,8 +2340,8 @@
   {
     "id": "146",
     "name": "2026路辰生日",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-03-15",
+    "endDate": "2026-03-26",
     "cnStartDate": "2023-03-15",
     "cnEndDate": "2023-03-26",
     "status": "upcoming",
@@ -2432,8 +2432,8 @@
   {
     "id": "152",
     "name": "前路迢迢．復刻",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-02-23",
+    "endDate": "2026-03-09",
     "cnStartDate": "2023-04-13",
     "cnEndDate": "2023-04-27",
     "status": "upcoming",
@@ -3047,13 +3047,13 @@
   {
     "id": "190",
     "name": "紅線牽",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-03-02",
+    "endDate": "2026-03-15",
     "cnStartDate": "2023-08-17",
     "cnEndDate": "2023-08-31",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E7%BA%A2%E7%BA%BF%E7%89%B5",
-    "image": "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/b/b1/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png/1050px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E7%BA%A2%E7%BA%BF%E7%89%B5.png",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/190.jpg",
     "category": [
       "七夕",
       "全員CR"
@@ -3082,13 +3082,13 @@
   {
     "id": "192",
     "name": "雲作渡河橋",
-    "startDate": "",
-    "endDate": "",
-    "cnStartDate": "2023-08-17",
+    "startDate": "2026-03-09",
+    "endDate": "2026-03-16",
+    "cnStartDate": "2023-08-24",
     "cnEndDate": "2023-08-31",
     "status": "upcoming",
     "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E4%B8%8E%E5%8D%BF%E4%B9%A6#%E4%BA%91%E4%BD%9C%E6%B8%A1%E6%B2%B3%E6%A1%A5",
-    "image": "",
+    "image": "https://f5qssdvtkcxlbsr2.public.blob.vercel-storage.com/activity_img/192.jpg",
     "category": [
       "七夕"
     ],
@@ -3114,8 +3114,8 @@
   {
     "id": "194",
     "name": "特殊邀約．花自芳菲",
-    "startDate": "",
-    "endDate": "",
+    "startDate": "2026-03-27",
+    "endDate": "2026-04-03",
     "cnStartDate": "2023-08-31",
     "cnEndDate": "2023-09-07",
     "status": "upcoming",
@@ -3268,7 +3268,7 @@
     "id": "204",
     "name": "漫長的箴言",
     "startDate": "2026-02-05",
-    "endDate": "2026-02-26",
+    "endDate": "2026-02-20",
     "cnStartDate": "2023-09-28",
     "cnEndDate": "2023-10-13",
     "status": "upcoming",
@@ -6320,6 +6320,48 @@
     ],
     "member": [
       "葉瑄"
+    ]
+  },
+  {
+    "id": "408",
+    "name": "元旦祝福禮贈",
+    "startDate": "",
+    "endDate": "",
+    "cnStartDate": "2026-01-01",
+    "cnEndDate": "2026-01-08",
+    "status": "upcoming",
+    "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/2026%E5%85%83%E6%97%A6%E7%A5%9D%E7%A6%8F%E7%A4%BC%E8%B5%A0",
+    "image": "",
+    "category": [
+      "元旦"
+    ]
+  },
+  {
+    "id": "409",
+    "name": "日常福利·掉落加倍",
+    "startDate": "",
+    "endDate": "",
+    "cnStartDate": "2026-01-01",
+    "cnEndDate": "2026-01-06",
+    "status": "upcoming",
+    "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0%E5%85%B3%E5%8D%A1%E5%85%A8%E5%BC%80",
+    "image": "",
+    "category": [
+      "關卡全開"
+    ]
+  },
+  {
+    "id": "410",
+    "name": "觸夢尋緣",
+    "startDate": "",
+    "endDate": "",
+    "cnStartDate": "2026-01-08",
+    "cnEndDate": "2026-01-15",
+    "status": "upcoming",
+    "url": "https://hlr1023.huijiwiki.com/wiki/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88/%E8%A7%A6%E6%A2%A6%E5%AF%BB%E7%BC%98",
+    "image": "https://huiji-thumb.huijistatic.com/hlr1023/uploads/thumb/7/7f/%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A7%A6%E6%A2%A6%E5%AF%BB%E7%BC%98.png/700px-%E6%B4%BB%E5%8A%A8%E5%AE%A3%E4%BC%A0-%E8%A7%A6%E6%A2%A6%E5%AF%BB%E7%BC%98.png",
+    "category": [
+      "邀約"
     ]
   }
 ]

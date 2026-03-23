@@ -398,6 +398,8 @@ export default function Component() {
               const isLeft = startMonth <= 6
               // 搜尋高亮
               const isHighlighted = activity.id === highlightedId;
+              // 圖片域名判斷
+              const isVercelBlob = (url: string) => url.includes('f5qssdvtkcxlbsr2');
 
               return (
                 <div
@@ -413,6 +415,18 @@ export default function Component() {
                     className={`w-full md:w-80 ${isChild ? "md:w-[312px]" : ""} flex-shrink-0 p-4 md:border-r md:border-gray-600/50 flex md:items-center gap-4`}
                   >
                     <div className="relative">
+                    {isVercelBlob(activity.image) ? (
+                      <Image
+                        src={activity.image || "/placeholder.svg"}
+                        alt={activity.name}
+                        width={100}
+                        height={100}
+                        className={`${isMobile ? "w-20 h-20" : "w-12 h-12"} rounded-lg object-cover flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all`}
+                        onMouseEnter={(e) => handleImageHover(activity.image, e)}
+                        onMouseLeave={() => handleImageHover(null)}
+                        loading="lazy"
+                      />
+                    ) : (
                       <img
                         src={activity.image || "/placeholder.svg"}
                         alt={activity.name}
@@ -429,6 +443,7 @@ export default function Component() {
                         loading="lazy"
                         referrerPolicy="no-referrer"
                       />
+                    )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <a href={activity.url} target="_blank" className="text-white font-medium text-sm truncate flex items-center gap-2 mb-1">
